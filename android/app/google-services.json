@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "434496288442",
+    "project_id": "mbium-2dadd",
+    "storage_bucket": "mbium-2dadd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434496288442:android:44c5d13e39834002997483",
+        "android_client_info": {
+          "package_name": "com.example.mbium_mobile_client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLuAh1lJ6Nia3AE-NRP6g5nL-qUNNQpYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
