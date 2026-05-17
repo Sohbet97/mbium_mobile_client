@@ -119,6 +119,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Reels`
+  String get reels {
+    return Intl.message(
+      'Reels',
+      name: 'reels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Habarlar`
+  String get chats {
+    return Intl.message(
+      'Habarlar',
+      name: 'chats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sebet`
+  String get card {
+    return Intl.message(
+      'Sebet',
+      name: 'card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meniň Mbium`
+  String get my_mbium {
+    return Intl.message(
+      'Meniň Mbium',
+      name: 'my_mbium',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

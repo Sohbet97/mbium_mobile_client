@@ -25,9 +25,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
         "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
+        "card": MessageLookupByLibrary.simpleMessage("Sebet"),
+        "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
+        "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
         "no": MessageLookupByLibrary.simpleMessage("Ýok"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
+        "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "yes": MessageLookupByLibrary.simpleMessage("Hawa")
       };
 }
