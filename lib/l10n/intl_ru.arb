@@ -1,0 +1,15 @@
+{
+  "@@locale": "ru",
+
+  "AppName": "Mbium",
+  "yes": "Да",
+  "no": "Нет",
+  "add": "Добавить",
+  "noDataAvailable": "Нет данных",
+  "camera": "Камера",
+  "gallery": "Галерея",
+  "reels": "Reels",
+  "chats": "Чаты",
+  "card": "Корзина",
+  "my_mbium": "Мой Mbium"
+}

@@ -14,6 +14,8 @@ class AppColors {
   static const Color lightSurface = Colors.white;
   static const Color lightTextPrimary = Color(0xFF0F172A);
   static const Color lightTextSecondary = Color(0xFF475569); // Slate 600
+  static const Color lightSelectedNavBarItem = Color(0xff59773A);
+  static const Color lightNavBarIcon = Color(0xff1E1E1E);
 
   static const Color errorRed = Color(0xFFD32F2F);
   static const Color successGreen = Color(0xFF2E7D32);

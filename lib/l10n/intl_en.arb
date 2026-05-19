@@ -1,13 +1,15 @@
 {
-    "AppName" : "Mbium",
-    "yes" : "Hawa",
-    "no"    :   "Ýok",
-    "add"   :   "Goşmak",
-    "noDataAvailable"   :   "Maglumat ýok",
-    "camera"    :   "Kamera",
-    "gallery"   :   "Gallereýa",
-    "reels" :   "Reels",
-    "chats" :   "Habarlar",
-    "card"  :   "Sebet",
-    "my_mbium"  :   "Meniň Mbium"
+  "@@locale": "en",
+
+  "AppName": "Mbium",
+  "yes": "Yes",
+  "no": "No",
+  "add": "Add",
+  "noDataAvailable": "No data available",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "reels": "Reels",
+  "chats": "Chats",
+  "card": "Cart",
+  "my_mbium": "My Mbium"
 }

@@ -12,6 +12,8 @@ ThemeData darkTheme = ThemeData(
     surface: AppColors.darkSurface,
     onSurface: AppColors.darkTextPrimary,
     error: AppColors.errorRed,
+    secondary: Colors.white,
+    tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -46,6 +48,30 @@ ThemeData darkTheme = ThemeData(
     bodyLarge: TextStyle(color: AppColors.darkTextPrimary),
     bodyMedium: TextStyle(color: AppColors.darkTextSecondary),
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColors.darkBg,
+
+    type: BottomNavigationBarType.fixed,
+
+    selectedItemColor:
+        AppColors.lightSelectedNavBarItem, // softer purple for dark mode
+    unselectedItemColor: AppColors.navWhite,
+
+    selectedLabelStyle: const TextStyle(
+      fontSize: 9,
+      fontWeight: FontWeight.w600,
+    ),
+
+    unselectedLabelStyle: const TextStyle(
+      fontSize: 9,
+      fontWeight: FontWeight.w600,
+    ),
+
+    showSelectedLabels: true,
+    showUnselectedLabels: true,
+
+    elevation: 0,
+  ),
 );
 
 ThemeData lightTheme = ThemeData(
@@ -57,6 +83,8 @@ ThemeData lightTheme = ThemeData(
     onPrimary: Colors.black,
     surface: AppColors.lightSurface,
     onSurface: AppColors.lightTextPrimary,
+    secondary: AppColors.lightNavBarIcon,
+    tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -80,5 +108,36 @@ ThemeData lightTheme = ThemeData(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(color: Colors.grey),
     ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColors.navWhite,
+
+    type: BottomNavigationBarType.fixed,
+
+    selectedItemColor: AppColors.lightSelectedNavBarItem,
+    unselectedItemColor: AppColors.lightTextPrimary,
+
+    selectedLabelStyle: const TextStyle(
+      fontSize: 9,
+      fontWeight: FontWeight.w600,
+    ),
+
+    unselectedLabelStyle: const TextStyle(
+      fontSize: 9,
+      fontWeight: FontWeight.w600,
+    ),
+
+    showSelectedLabels: true,
+    showUnselectedLabels: true,
+
+    elevation: 12,
+  ),
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+      color: AppColors.lightBg,
+      fontWeight: FontWeight.bold,
+    ),
+    bodyLarge: TextStyle(color: AppColors.lightTextPrimary),
+    bodyMedium: TextStyle(color: AppColors.lightTextSecondary),
   ),
 );
