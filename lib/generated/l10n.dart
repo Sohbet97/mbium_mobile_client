@@ -159,6 +159,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Products`
+  String get products {
+    return Intl.message(
+      'Products',
+      name: 'products',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shops`
+  String get ondurijiler {
+    return Intl.message(
+      'Shops',
+      name: 'ondurijiler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welaýatlar boýunça`
+  String get welayatlar_boyunca {
+    return Intl.message(
+      'Welaýatlar boýunça',
+      name: 'welayatlar_boyunca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI agent`
+  String get Ai_agent {
+    return Intl.message(
+      'AI agent',
+      name: 'Ai_agent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

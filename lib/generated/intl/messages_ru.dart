@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
         "camera": MessageLookupByLibrary.simpleMessage("Камера"),
@@ -31,7 +32,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "my_mbium": MessageLookupByLibrary.simpleMessage("Мой Mbium"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Нет данных"),
+        "ondurijiler": MessageLookupByLibrary.simpleMessage("Производители"),
+        "products": MessageLookupByLibrary.simpleMessage("Товары"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "welayatlar_boyunca":
+            MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

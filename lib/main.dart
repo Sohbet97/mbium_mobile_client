@@ -3,6 +3,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
+import 'package:mbium_mobile_client/feature/home/data/ai_repository.dart';
+import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
+import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -133,6 +137,22 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => MainRepository(dio: apiClient.dio),
         ),
+
+        // person
+        RepositoryProvider(
+          create: (context) => PersonRepository(
+            dio: apiClient.dio,
+            preferences: widget.appPreferences,
+          ),
+        ),
+
+        // ai repository
+        RepositoryProvider(
+          create: (context) => AiRepository(
+            dio: apiClient.dio,
+            appPreferences: widget.appPreferences,
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -142,6 +162,18 @@ class _MyAppState extends State<MyApp> {
               dio: apiClient.dio,
               appPreferences: widget.appPreferences,
             )..add(const MainInitial()),
+          ),
+
+          // person
+          BlocProvider(
+            create: (context) =>
+                PersonBloc(repository: context.read<PersonRepository>()),
+          ),
+
+          // ai bloc
+          BlocProvider(
+            create: (context) =>
+                AiBloc(repository: context.read<AiRepository>()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(
