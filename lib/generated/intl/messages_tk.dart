@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a tk locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,21 +18,20 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'tk';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
-        "add": MessageLookupByLibrary.simpleMessage("Add"),
-        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
-        "card": MessageLookupByLibrary.simpleMessage("Cart"),
-        "chats": MessageLookupByLibrary.simpleMessage("Chats"),
-        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
-        "my_mbium": MessageLookupByLibrary.simpleMessage("My Mbium"),
-        "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noDataAvailable":
-            MessageLookupByLibrary.simpleMessage("No data available"),
+        "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
+        "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
+        "card": MessageLookupByLibrary.simpleMessage("Sebet"),
+        "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
+        "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
+        "no": MessageLookupByLibrary.simpleMessage("Ýok"),
+        "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
-        "yes": MessageLookupByLibrary.simpleMessage("Yes")
+        "yes": MessageLookupByLibrary.simpleMessage("Hawa")
       };
 }

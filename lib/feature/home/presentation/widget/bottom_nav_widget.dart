@@ -21,7 +21,6 @@ class BottomNavWidget extends StatelessWidget {
           },
           items: [
             BottomNavigationBarItem(
-              //          icon: SvgIcon(iconName: 'assets/icons/mbium_logo_kici.svg'),
               icon: Image.asset('assets/images/logo_kici.png'),
               label: ' ',
             ),

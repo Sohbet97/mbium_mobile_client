@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -56,62 +52,112 @@ class S {
 
   /// `Mbium`
   String get AppName {
-    return Intl.message('Mbium', name: 'AppName', desc: '', args: []);
+    return Intl.message(
+      'Mbium',
+      name: 'AppName',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Hawa`
+  /// `Yes`
   String get yes {
-    return Intl.message('Hawa', name: 'yes', desc: '', args: []);
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Ýok`
+  /// `No`
   String get no {
-    return Intl.message('Ýok', name: 'no', desc: '', args: []);
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Goşmak`
+  /// `Add`
   String get add {
-    return Intl.message('Goşmak', name: 'add', desc: '', args: []);
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Maglumat ýok`
+  /// `No data available`
   String get noDataAvailable {
     return Intl.message(
-      'Maglumat ýok',
+      'No data available',
       name: 'noDataAvailable',
       desc: '',
       args: [],
     );
   }
 
-  /// `Kamera`
+  /// `Camera`
   String get camera {
-    return Intl.message('Kamera', name: 'camera', desc: '', args: []);
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Gallereýa`
+  /// `Gallery`
   String get gallery {
-    return Intl.message('Gallereýa', name: 'gallery', desc: '', args: []);
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Reels`
   String get reels {
-    return Intl.message('Reels', name: 'reels', desc: '', args: []);
+    return Intl.message(
+      'Reels',
+      name: 'reels',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Habarlar`
+  /// `Chats`
   String get chats {
-    return Intl.message('Habarlar', name: 'chats', desc: '', args: []);
+    return Intl.message(
+      'Chats',
+      name: 'chats',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Sebet`
+  /// `Cart`
   String get card {
-    return Intl.message('Sebet', name: 'card', desc: '', args: []);
+    return Intl.message(
+      'Cart',
+      name: 'card',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Meniň Mbium`
+  /// `My Mbium`
   String get my_mbium {
-    return Intl.message('Meniň Mbium', name: 'my_mbium', desc: '', args: []);
+    return Intl.message(
+      'My Mbium',
+      name: 'my_mbium',
+      desc: '',
+      args: [],
+    );
   }
 }
 
