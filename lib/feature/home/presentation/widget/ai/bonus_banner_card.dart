@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import 'package:mbium_mobile_client/core/themes/app_text_styles.dart';
+import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 
 class BonusBannerCard extends StatelessWidget {
@@ -35,7 +35,7 @@ class BonusBannerCard extends StatelessWidget {
                       SizedBox(width: 6),
                       Text(
                         coinQuantity!,
-                        style: AppTextStyles.s13w600clGreen.copyWith(
+                        style: context.appTextStyles.s13w600clGreen.copyWith(
                           color: AppColors.bonusCoinGrey,
                         ),
                       ),
@@ -52,7 +52,7 @@ class BonusBannerCard extends StatelessWidget {
             width: 12,
           ),
           SizedBox(width: 9),
-          Text(title, style: AppTextStyles.s13w600clGreen),
+          Text(title, style: context.appTextStyles.s13w600clGreen),
         ],
       ),
     );

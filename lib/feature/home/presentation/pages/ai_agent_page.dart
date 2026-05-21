@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import 'package:mbium_mobile_client/core/themes/app_text_styles.dart';
+import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/ai/ai_recommendations_list.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/ai/bonus_banner_card.dart';
@@ -53,13 +53,13 @@ class _AiAgetntPageState extends State<AiAgetntPage> {
                 children: [
                   Text(
                     'AI Agendyň ',
-                    style: AppTextStyles.s16w600clBlack.copyWith(
+                    style: context.appTextStyles.s16w600clBlack.copyWith(
                       color: AppColors.bonusBannerTextGreen,
                     ),
                   ),
                   Text(
                     'masdlahat berýän harytlary',
-                    style: AppTextStyles.s16w600clBlack,
+                    style: context.appTextStyles.s16w600clBlack,
                   ),
                 ],
               ),
