@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.dart';
 
@@ -10,6 +11,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const SplashScreen());
     case '/home':
       return FadeRoute(page: const HomeScreen());
+    case '/categories':
+      return FadeRoute(page: const CategoriesScreen());
 
     default:
       return FadeRoute(

@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "card": MessageLookupByLibrary.simpleMessage("Sebet"),
+        "categories": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
         "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
