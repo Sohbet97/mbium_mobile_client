@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class ApiClient {
   final Dio dio;
-  static String baseUrl = 'http://10.229.66.99:8000/api/';
+  static String baseUrl = 'http://216.250.11.232/api/buyer';
   String? token;
 
   ApiClient()

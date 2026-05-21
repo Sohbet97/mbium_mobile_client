@@ -30,11 +30,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "chats": MessageLookupByLibrary.simpleMessage("Чаты"),
         "gallery": MessageLookupByLibrary.simpleMessage("Галерея"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("Мой Mbium"),
+        "nasazlyk_yuze_cykdy":
+            MessageLookupByLibrary.simpleMessage("Näsazlyk ýüze çykdy"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Нет данных"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Производители"),
         "products": MessageLookupByLibrary.simpleMessage("Товары"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
         "welayatlar_boyunca":
             MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")

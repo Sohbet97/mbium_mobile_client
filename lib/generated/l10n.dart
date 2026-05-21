@@ -199,6 +199,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Täzele`
+  String get refresh {
+    return Intl.message(
+      'Täzele',
+      name: 'refresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Näsazlyk ýüze çykdy`
+  String get nasazlyk_yuze_cykdy {
+    return Intl.message(
+      'Näsazlyk ýüze çykdy',
+      name: 'nasazlyk_yuze_cykdy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
