@@ -32,4 +32,13 @@ class AppColors {
   static const Color navBarGrey = Color(
     0xFFE2E8F0,
   ); // Slate 200 dlya tonkih razdeliteley
+
+  //AI Agent page colors
+  static Color bonusBannerGreen = Color(0xffA7B192).withValues(alpha: 0.18);
+  static const Color bonusBannerTextGreen = Color(0xff84A245);
+  static const Color bonusBannerBorderGreen = Color(0xff7A9443);
+  static const Color black = Colors.black;
+  static const Color aiTextBlack = Color(0xff202020);
+  static const Color textLightGrey = Color(0xff959886);
+  static const Color bonusCoinGrey = Color(0xff837A7A);
 }
