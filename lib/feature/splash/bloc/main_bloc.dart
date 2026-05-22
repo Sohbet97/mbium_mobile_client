@@ -27,7 +27,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   ) async {
     emit(
       state.copyWith(
-        themeMode: appPreferences.readThemeMode(),
+        themeMode: ThemeMode.light,
         languageCode: _resolveLanguageCode(appPreferences.readLanguageCode()),
       ),
     );
