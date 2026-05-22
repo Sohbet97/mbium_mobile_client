@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
 
 class AiAgetntPage extends StatefulWidget {
@@ -25,8 +26,17 @@ class _AiAgetntPageState extends State<AiAgetntPage> {
       builder: (context, state) {
         return SingleChildScrollView(
           padding: const EdgeInsets.all(10),
-          child: Column(children: [
-              
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CategoriesScreen()),
+                  );
+                },
+                child: Text('data'),
+              ),
             ],
           ),
         );

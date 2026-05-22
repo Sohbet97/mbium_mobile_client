@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/core/themes/gradient_theme.dart';
 
 import 'app_colors.dart';
 
@@ -16,6 +17,15 @@ ThemeData darkTheme = ThemeData(
     tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
+  extensions: <ThemeExtension<dynamic>>[
+    GradientTheme(
+      containerGradient: LinearGradient(
+        colors: [Color(0xff1A0806), Color(0xff180A07)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    ),
+  ],
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primaryGreen,
@@ -87,6 +97,15 @@ ThemeData lightTheme = ThemeData(
     tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
+  extensions: <ThemeExtension<dynamic>>[
+    GradientTheme(
+      containerGradient: LinearGradient(
+        colors: [Color(0xff1A0806), Color(0xff180A07)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    ),
+  ],
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primaryGreen,
