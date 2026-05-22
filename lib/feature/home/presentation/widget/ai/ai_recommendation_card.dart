@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
+import 'package:mbium_mobile_client/feature/home/extensions/ai_recomendation.dart';
 import 'package:mbium_mobile_client/feature/home/models/ai_recomendasion_model.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 
@@ -28,7 +29,7 @@ class AiRecommendationCard extends StatelessWidget {
                   ),
                   SizedBox(width: 8),
                   Text(
-                    recommendation.title,
+                    recommendation.getTitle(context),
                     style: context.appTextStyles.s13w600clBlack,
                   ),
                   Expanded(child: SizedBox()),
@@ -40,9 +41,9 @@ class AiRecommendationCard extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 3),
-              recommendation.subtitle != null
+              recommendation.getSubtitle(context) != null
                   ? Text(
-                      recommendation.subtitle!,
+                      recommendation.getSubtitle(context)!,
                       style: context.appTextStyles.s13w600clGreen.copyWith(
                         color: AppColors.textLightGrey,
                       ),

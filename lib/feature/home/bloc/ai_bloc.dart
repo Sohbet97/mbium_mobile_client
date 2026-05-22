@@ -21,7 +21,6 @@ class AiBloc extends Bloc<AiEvent, AiState> {
     emit(GetRecomendasionListProgress());
     try {
       final result = await repository.loadRecomendasionList();
-      await Future.delayed(const Duration(seconds: 2));
       emit(GetRecomendasionListSuccess(models: result));
     } catch (e) {
       emit(GetRecomendasionListError(errorMessage: e.toString()));
