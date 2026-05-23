@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "card": MessageLookupByLibrary.simpleMessage("Корзина"),
         "categories": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
         "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
+        "category_empty":
+            MessageLookupByLibrary.simpleMessage("Içki kategoriýa ýok"),
         "chats": MessageLookupByLibrary.simpleMessage("Чаты"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),

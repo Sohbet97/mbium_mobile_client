@@ -29,7 +29,9 @@
     "top" : "Top",
   "live"  : "Live",
   "satys" : "satyş",
-  "search"  : "Gözleg..."
+  "search"  : "Gözleg...",
+  "category_empty"  : "Içki kategoriýa ýok"
+
 
 
 

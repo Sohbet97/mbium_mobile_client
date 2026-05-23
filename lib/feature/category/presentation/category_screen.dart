@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/widgets/loading_widget.dart';
 import 'package:mbium_mobile_client/core/widgets/my_error_widget.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
+import 'package:mbium_mobile_client/feature/category/presentation/category_lisw_page.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_card.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/recommended_product_card.dart';
 
@@ -54,10 +55,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
           if (state is LoadCategoriesSuccess) {
             final cats = state.categories;
+
+            return CategoryListPage(categories: cats);
             return SafeArea(
               child: Row(
                 children: [
                   Expanded(
+                    flex: 70,
                     child: ListView(
                       children: [
                         GridView.builder(

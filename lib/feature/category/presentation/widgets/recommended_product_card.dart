@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mbium_mobile_client/core/themes/gradient_theme.dart';
 
 class RecommendedProductCard extends StatelessWidget {
   final String productName;
@@ -14,12 +13,7 @@ class RecommendedProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(11),
-        gradient: Theme.of(
-          context,
-        ).extension<GradientTheme>()!.containerGradient,
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(11)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

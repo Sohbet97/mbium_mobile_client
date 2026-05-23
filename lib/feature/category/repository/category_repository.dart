@@ -16,7 +16,7 @@ class CategoryRepository {
     try {
       final response = await dio.get('/catalog/categories/tree');
       if (response.statusCode == 200) {
-        final data = response.data as List;
+        final data = response.data['data'] as List;
         _categories = data.map((json) => CategoryModel.fromJson(json)).toList();
         return _categories!;
       } else {

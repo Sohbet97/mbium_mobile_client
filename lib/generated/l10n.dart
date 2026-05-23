@@ -319,6 +319,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Içki kategoriýa ýok`
+  String get category_empty {
+    return Intl.message(
+      'Içki kategoriýa ýok',
+      name: 'category_empty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
