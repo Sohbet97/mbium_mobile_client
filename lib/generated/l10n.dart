@@ -240,26 +240,6 @@ class S {
     );
   }
 
-  /// `AI Agendyň`
-  String get ai_agendyn {
-    return Intl.message(
-      'AI Agendyň',
-      name: 'ai_agendyn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `maslahat berýän harytlary`
-  String get maslahat_beryan_harytlary {
-    return Intl.message(
-      'maslahat berýän harytlary',
-      name: 'maslahat_beryan_harytlary',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Kategoriýa`
   String get category {
     return Intl.message(
@@ -325,6 +305,26 @@ class S {
     return Intl.message(
       'Içki kategoriýa ýok',
       name: 'category_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI Agendyň`
+  String get ai_agendyn {
+    return Intl.message(
+      'AI Agendyň',
+      name: 'ai_agendyn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `maslahat berýän harytlary`
+  String get maslahat_beryan_harytlary {
+    return Intl.message(
+      'maslahat berýän harytlary',
+      name: 'maslahat_beryan_harytlary',
       desc: '',
       args: [],
     );
