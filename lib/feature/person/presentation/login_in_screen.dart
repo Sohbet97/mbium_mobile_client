@@ -10,6 +10,7 @@ class LoginInScreen extends StatefulWidget {
 class _LoginInScreenState extends State<LoginInScreen> {
   @override
   Widget build(BuildContext context) {
+    final logoUrl = 'assets/icons/logo.svg';
     return Center(child: Text('loginIN'));
   }
 }
