@@ -6,7 +6,7 @@ final class MainState extends Equatable {
   final int navigationIndex;
 
   const MainState({
-    this.themeMode = ThemeMode.system,
+    this.themeMode = ThemeMode.light,
     this.languageCode = 'ru',
     this.navigationIndex = 0,
   });

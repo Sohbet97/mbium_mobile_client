@@ -1,0 +1,33 @@
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+
+enum AppLanguage { tk, ru, en }
+
+extension ProductLocalization on ProductModel {
+  String getLocalizedName(int langIndex) {
+    if (langIndex < 0 || langIndex >= AppLanguage.values.length) {
+      return name;
+    }
+
+    final language = AppLanguage.values[langIndex];
+
+    switch (language) {
+      case AppLanguage.ru:
+        return nameRu.isNotEmpty ? nameRu : name;
+      case AppLanguage.en:
+        return nameEng.isNotEmpty ? nameEng : name;
+      default:
+        return name;
+    }
+  }
+
+  String nameByLang(AppLanguage lang) {
+    switch (lang) {
+      case AppLanguage.ru:
+        return nameRu.isNotEmpty ? nameRu : name;
+      case AppLanguage.en:
+        return nameEng.isNotEmpty ? nameEng : name;
+      case AppLanguage.tk:
+        return name;
+    }
+  }
+}

@@ -29,7 +29,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "card": MessageLookupByLibrary.simpleMessage("Sebet"),
+        "categories": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
         "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
+        "category_empty":
+            MessageLookupByLibrary.simpleMessage("Içki kategoriýa ýok"),
         "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
@@ -38,11 +41,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "maslahat_beryan_harytlary":
             MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
+        "nasazlyk_yuze_cykdy":
+            MessageLookupByLibrary.simpleMessage("Näsazlyk ýüze çykdy"),
         "no": MessageLookupByLibrary.simpleMessage("Ýok"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
         "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
         "satys": MessageLookupByLibrary.simpleMessage("satyş"),
         "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
         "top": MessageLookupByLibrary.simpleMessage("Top"),

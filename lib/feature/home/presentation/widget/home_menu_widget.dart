@@ -21,7 +21,7 @@ class HomeMenuWidget extends StatelessWidget {
             subTitle: localization.boyunca,
             color: !isDark ? Colors.white : Colors.grey.shade800,
             onTap: () {
-              Navigator.pushNamed(context, '/category');
+              Navigator.pushNamed(context, '/categories');
             },
           ),
 
