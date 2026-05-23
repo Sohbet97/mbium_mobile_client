@@ -329,6 +329,58 @@ class S {
       args: [],
     );
   }
+
+  String get ahlisi {
+    return Intl.message('Ählisi', name: 'ahlisi', args: []);
+  }
+
+  String get ayakgaplar {
+    return Intl.message('Aýakgaplar', name: 'ayakgaplar', args: []);
+  }
+
+  String get egin_esikler {
+    return Intl.message('Egin-eşikler', name: 'egin_esikler', args: []);
+  }
+
+  String get elektronika {
+    return Intl.message('Elektronika', name: 'elektronika', args: []);
+  }
+
+  String get oyuncaklar {
+    return Intl.message('Oýnawaçlar', name: 'oyuncaklar', args: []);
+  }
+
+  String get kitaplar {
+    return Intl.message('Kitaplar', name: 'kitaplar', args: []);
+  }
+
+  String get mugt_dastawka {
+    return Intl.message('Mugt dastawka', name: 'mugt_dastawka', args: []);
+  }
+
+  String get mbium_coin_bilen {
+    return Intl.message('MBIUM Coin bilen töleseňiz', name: 'mbium_coin_bilen', args: []);
+  }
+
+  String get baha_goraglylygy {
+    return Intl.message('Baha goraglylygy', name: 'baha_goraglylygy', args: []);
+  }
+
+  String get gune_cenli {
+    return Intl.message('60 güne çenli', name: 'gune_cenli', args: []);
+  }
+
+  String get mugt_dastawka_mbium_coin {
+    return Intl.message('Mugt dastawka MBIUM Coin bilen töleseňiz', name: 'mugt_dastawka_mbium_coin', args: []);
+  }
+
+  String get maslahat_beriyanler {
+    return Intl.message('Maslahat beriýänler', name: 'maslahat_beriyanler', args: []);
+  }
+
+  String get maslahat_beriyanler_subtitle {
+    return Intl.message('Saýlanan geýimlere görä harytlarymyz', name: 'maslahat_beriyanler_subtitle', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
