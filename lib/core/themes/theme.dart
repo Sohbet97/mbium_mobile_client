@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:mbium_mobile_client/core/themes/gradient_theme.dart';
-=======
 import 'package:mbium_mobile_client/core/themes/app_text_styles.dart';
->>>>>>> 5e7e7111dc73a3b7cc5ca21ba5cd3e96edd87350
 
 import 'app_colors.dart';
 
@@ -25,14 +21,6 @@ ThemeData darkTheme = ThemeData(
     tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
-<<<<<<< HEAD
-  extensions: <ThemeExtension<dynamic>>[
-    GradientTheme(
-      containerGradient: LinearGradient(
-        colors: [Color(0xff1A0806), Color(0xff180A07)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-=======
   // Registering dark mode values for your custom text styles
   extensions: const <ThemeExtension<dynamic>>[
     AppTextStyles(
@@ -50,7 +38,6 @@ ThemeData darkTheme = ThemeData(
         fontSize: 13,
         fontWeight: FontWeight.w600,
         color: Colors.white,
->>>>>>> 5e7e7111dc73a3b7cc5ca21ba5cd3e96edd87350
       ),
     ),
   ],
@@ -125,14 +112,6 @@ ThemeData lightTheme = ThemeData(
     tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
-<<<<<<< HEAD
-  extensions: <ThemeExtension<dynamic>>[
-    GradientTheme(
-      containerGradient: LinearGradient(
-        colors: [Color(0xff1A0806), Color(0xff180A07)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-=======
   // Registering light mode values for your custom text styles
   extensions: const <ThemeExtension<dynamic>>[
     AppTextStyles(
@@ -151,7 +130,6 @@ ThemeData lightTheme = ThemeData(
         fontSize: 13,
         fontWeight: FontWeight.w600,
         color: AppColors.aiTextBlack,
->>>>>>> 5e7e7111dc73a3b7cc5ca21ba5cd3e96edd87350
       ),
     ),
   ],

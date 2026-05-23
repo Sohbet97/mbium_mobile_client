@@ -259,6 +259,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Kategoriýa`
+  String get category {
+    return Intl.message(
+      'Kategoriýa',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `boýunça`
+  String get boyunca {
+    return Intl.message(
+      'boýunça',
+      name: 'boyunca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top`
+  String get top {
+    return Intl.message(
+      'Top',
+      name: 'top',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live`
+  String get live {
+    return Intl.message(
+      'Live',
+      name: 'live',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `satyş`
+  String get satys {
+    return Intl.message(
+      'satyş',
+      name: 'satys',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gözleg...`
+  String get search {
+    return Intl.message(
+      'Gözleg...',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

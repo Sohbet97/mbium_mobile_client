@@ -10,7 +10,7 @@ class AppColors {
   static const Color darkTextPrimary = Colors.white;
   static const Color darkTextSecondary = Color(0xFF94A3B8);
 
-  static const Color lightBg = Color(0xFFF7F9F8);
+  static const Color lightBg = Color.fromARGB(255, 242, 244, 243);
   static const Color lightSurface = Colors.white;
   static const Color lightTextPrimary = Color(0xFF0F172A);
   static const Color lightTextSecondary = Color(0xFF475569); // Slate 600
