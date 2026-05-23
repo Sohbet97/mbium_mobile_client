@@ -25,10 +25,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "card": MessageLookupByLibrary.simpleMessage("Cart"),
+        "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
         "chats": MessageLookupByLibrary.simpleMessage("Chats"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "live": MessageLookupByLibrary.simpleMessage("Live"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("My Mbium"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDataAvailable":
@@ -36,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Shops"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "satys": MessageLookupByLibrary.simpleMessage("satyş"),
+        "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
+        "top": MessageLookupByLibrary.simpleMessage("Top"),
         "welayatlar_boyunca":
             MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
