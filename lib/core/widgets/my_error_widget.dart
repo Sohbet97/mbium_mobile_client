@@ -19,9 +19,12 @@ class MyErrorWidget extends StatelessWidget {
             padding: const EdgeInsetsGeometry.all(10),
             child: Text(message),
           ),
-          ElevatedButton(
-            onPressed: onReload,
-            child: Text(S.of(context).refresh),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: onReload,
+              child: Text(S.of(context).refresh),
+            ),
           ),
         ],
       ),
