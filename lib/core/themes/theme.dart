@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/core/themes/app_text_styles.dart';
 
 import 'app_colors.dart';
+
+extension AppThemeContext on BuildContext {
+  AppTextStyles get appTextStyles => Theme.of(this).extension<AppTextStyles>()!;
+}
 
 ThemeData darkTheme = ThemeData(
   useMaterial3: true,
@@ -16,6 +21,26 @@ ThemeData darkTheme = ThemeData(
     tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
+  // Registering dark mode values for your custom text styles
+  extensions: const <ThemeExtension<dynamic>>[
+    AppTextStyles(
+      s13w600clGreen: TextStyle(
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+      s16w600clBlack: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+      s13w600clBlack: TextStyle(
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    ),
+  ],
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primaryGreen,
@@ -87,6 +112,27 @@ ThemeData lightTheme = ThemeData(
     tertiary: AppColors.lightSelectedNavBarItem,
   ),
 
+  // Registering light mode values for your custom text styles
+  extensions: const <ThemeExtension<dynamic>>[
+    AppTextStyles(
+      s13w600clGreen: TextStyle(
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: AppColors.bonusBannerTextGreen,
+      ),
+      s16w600clBlack: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+
+      s13w600clBlack: TextStyle(
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: AppColors.aiTextBlack,
+      ),
+    ),
+  ],
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primaryGreen,

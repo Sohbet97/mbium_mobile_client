@@ -259,6 +259,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Derejäni galdyr`
+  String get derejani_galdyr {
+    return Intl.message(
+      'Derejäni galdyr',
+      name: 'derejani_galdyr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI Agendyň`
+  String get ai_agendyn {
+    return Intl.message(
+      'AI Agendyň',
+      name: 'ai_agendyn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `maslahat berýän harytlary`
+  String get maslahat_beryan_harytlary {
+    return Intl.message(
+      'maslahat berýän harytlary',
+      name: 'maslahat_beryan_harytlary',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

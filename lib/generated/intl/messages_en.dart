@@ -25,13 +25,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
         "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "card": MessageLookupByLibrary.simpleMessage("Cart"),
         "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
         "chats": MessageLookupByLibrary.simpleMessage("Chats"),
+        "derejani_galdyr":
+            MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "live": MessageLookupByLibrary.simpleMessage("Live"),
+        "maslahat_beryan_harytlary":
+            MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("My Mbium"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDataAvailable":
