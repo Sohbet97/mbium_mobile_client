@@ -41,5 +41,9 @@
   "gune_cenli": "Up to 60 days",
   "mugt_dastawka_mbium_coin": "Free delivery when paying with MBIUM Coin",
   "maslahat_beriyanler": "Recommended",
-  "maslahat_beriyanler_subtitle": "Products based on your selected clothing"
+  "maslahat_beriyanler_subtitle": "Products based on your selected clothing",
+  "product_empty" : "Haryt ýok" ,
+"sizin_ucin"  : "Siziň üçin"
+
+
 }

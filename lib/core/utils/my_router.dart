@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/product_detail_screen.dart';
 import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.dart';
 
 import 'FadeRouter.dart';
@@ -13,6 +15,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const HomeScreen());
     case '/categories':
       return FadeRoute(page: const CategoriesScreen());
+    case '/productDetail':
+      final product = settings.arguments as ProductModel;
+      return FadeRoute(page: ProductDetailScreen(product: product));
 
     default:
       return FadeRoute(
