@@ -39,14 +39,7 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
   Widget build(BuildContext context) {
     final l10n = S.of(context);
 
-    final List<String> categories = [
-      l10n.ahlisi,
-      l10n.ayakgaplar,
-      l10n.egin_esikler,
-      l10n.elektronika,
-      l10n.oyuncaklar,
-      l10n.kitaplar,
-    ];
+    final List<String> categories = ['1', '2', '3', '4', '5'];
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 8),

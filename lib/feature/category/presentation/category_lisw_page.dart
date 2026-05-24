@@ -16,7 +16,6 @@ import '../../../generated/l10n.dart';
 class CategoryListPage extends StatefulWidget {
   const CategoryListPage({super.key, required this.categories});
   final List<CategoryModel> categories;
-
   @override
   State<CategoryListPage> createState() => _CategoryListPageState();
 }

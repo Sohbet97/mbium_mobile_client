@@ -26,13 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
         "abuna": MessageLookupByLibrary.simpleMessage("Abuna"),
         "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
-        "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
         "ai_agendin_mugt_dowri":
             MessageLookupByLibrary.simpleMessage("AI agendiň MUGT döwri"),
         "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
         "ai_agent_mugt_barla_desc": MessageLookupByLibrary.simpleMessage(
             "AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň"),
-        "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
         "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
         "baha_goraglylygy":
             MessageLookupByLibrary.simpleMessage("Baha goraglylygy"),
@@ -46,8 +44,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
-        "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
-        "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
         "email_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
             "Elektron poçta arkaly dowam et"),
         "favorites": MessageLookupByLibrary.simpleMessage("Halanlarym"),
@@ -56,24 +52,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Google bilen dowam et"),
         "gune_cenli": MessageLookupByLibrary.simpleMessage("60 güne çenli"),
         "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
-        "kitaplar": MessageLookupByLibrary.simpleMessage("Kitaplar"),
         "kupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
         "live": MessageLookupByLibrary.simpleMessage("Live"),
         "maslahat_beriyanler":
-            MessageLookupByLibrary.simpleMessage("Maslahat beriýänler"),
-        "maslahat_beriyanler_subtitle": MessageLookupByLibrary.simpleMessage(
-            "Saýlanan geýimlere görä harytlarymyz"),
+            MessageLookupByLibrary.simpleMessage("Maslahat berilýänler"),
+        "maslahat_beriyanler_subtitle":
+            MessageLookupByLibrary.simpleMessage("Maslahat berilýän harytlar"),
         "maslahat_beryan_harytlary":
             MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
         "mbium_coin_bilen":
-            MessageLookupByLibrary.simpleMessage("MBIUM Coin bilen töleseňiz"),
+            MessageLookupByLibrary.simpleMessage("Mbium coin bilen"),
         "mbiumda_satyp_basla":
             MessageLookupByLibrary.simpleMessage("MBIUM-da satyp başla"),
         "menin_sargytlarym":
             MessageLookupByLibrary.simpleMessage("Meniň sargytlarym"),
-        "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt dastawka"),
-        "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
-            "Mugt dastawka MBIUM Coin bilen töleseňiz"),
+        "mugt_dastawka":
+            MessageLookupByLibrary.simpleMessage("Mugt eltip bermek"),
+        "mugt_dastawka_mbium_coin":
+            MessageLookupByLibrary.simpleMessage("Mugt eltip bermek"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
         "myhma_hokmunde":
             MessageLookupByLibrary.simpleMessage("Myhman hökmünde dowam et"),
@@ -85,7 +81,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("Ýok"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
-        "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
         "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
         "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
