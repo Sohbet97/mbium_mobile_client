@@ -28,11 +28,14 @@ class AiRecommendationCard extends StatelessWidget {
                     width: 15,
                   ),
                   SizedBox(width: 8),
-                  Text(
-                    recommendation.getTitle(context),
-                    style: context.appTextStyles.s13w600clBlack,
+                  Expanded(
+                    child: Text(
+                      recommendation.getTitle(context),
+                      style: context.appTextStyles.s13w600clBlack,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  Expanded(child: SizedBox()),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: AppColors.textLightGrey,

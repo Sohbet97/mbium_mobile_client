@@ -27,16 +27,31 @@ ThemeData darkTheme = ThemeData(
       s13w600clGreen: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w600,
+        fontFamily: 'assets/fonts/urbanist_semiBold.ttf',
         color: Colors.white,
       ),
       s16w600clBlack: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w600,
+        fontFamily: 'assets/fonts/urbanist_semiBold.ttf',
         color: Colors.white,
       ),
       s13w600clBlack: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w600,
+        fontFamily: 'assets/fonts/urbanist_semiBold.ttf',
+        color: Colors.white,
+      ),
+      s14w400clWhite: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'assets/fonts/urbanist_regular.ttf',
+        color: Colors.white,
+      ),
+      s20w700clWhite: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'assets/fonts/urbanist_bold.ttf',
         color: Colors.white,
       ),
     ),
@@ -118,18 +133,34 @@ ThemeData lightTheme = ThemeData(
       s13w600clGreen: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w600,
+        fontFamily: 'assets/fonts/urbanist_semiBold.ttf',
         color: AppColors.bonusBannerTextGreen,
       ),
       s16w600clBlack: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w600,
+        fontFamily: 'assets/fonts/urbanist_semiBold.ttf',
         color: Colors.black,
       ),
 
       s13w600clBlack: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w600,
+        fontFamily: 'assets/fonts/urbanist_semiBold.ttf',
         color: AppColors.aiTextBlack,
+      ),
+
+      s14w400clWhite: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'assets/fonts/urbanist_regular.ttf',
+        color: Colors.white,
+      ),
+      s20w700clWhite: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'assets/fonts/urbanist_bold.ttf',
+        color: Colors.white,
       ),
     ),
   ],
