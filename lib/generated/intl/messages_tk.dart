@@ -22,70 +22,58 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
-    "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
-    "abuna": MessageLookupByLibrary.simpleMessage("Abuna"),
-    "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
-    "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
-    "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
-    "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
-    "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
-    "card": MessageLookupByLibrary.simpleMessage("Sebet"),
-    "categories": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
-    "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
-    "category_empty": MessageLookupByLibrary.simpleMessage(
-      "Içki kategoriýa ýok",
-    ),
-    "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
-    "derejani_galdyr": MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
-    "email_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
-      "Elektron poçta arkaly dowam et",
-    ),
-    "favorites": MessageLookupByLibrary.simpleMessage("Halanlarym"),
-    "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
-    "google_dowan_et": MessageLookupByLibrary.simpleMessage(
-      "Google bilen dowam et",
-    ),
-    "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
-    "kupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
-    "live": MessageLookupByLibrary.simpleMessage("Live"),
-    "maslahat_beryan_harytlary": MessageLookupByLibrary.simpleMessage(
-      "maslahat berýän harytlary",
-    ),
-    "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
-    "nasazlyk_yuze_cykdy": MessageLookupByLibrary.simpleMessage(
-      "Näsazlyk ýüze çykdy",
-    ),
-    "myhma_hokmunde": MessageLookupByLibrary.simpleMessage(
-      "Myhman hökmünde dowam et",
-    ),
-    "myhman": MessageLookupByLibrary.simpleMessage("Myhman"),
-    "myhman_desc": MessageLookupByLibrary.simpleMessage(
-      "Ulgama girmeklik üçin basyň",
-    ),
-    "no": MessageLookupByLibrary.simpleMessage("Ýok"),
-    "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
-    "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
-    "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
-    "reels": MessageLookupByLibrary.simpleMessage("Reels"),
-    "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
-    "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
-      "Sargyt goraglylygy we \n uly arzanladyşlar",
-    ),
-    "satys": MessageLookupByLibrary.simpleMessage("satyş"),
-    "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
-    "telefon_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
-      "Telefon belgi arkaly dowam et",
-    ),
-    "tolegler": MessageLookupByLibrary.simpleMessage("Tölegler"),
-    "top": MessageLookupByLibrary.simpleMessage("Top"),
-    "turkmenistanda_oyden_cykman_sowda_et":
-        MessageLookupByLibrary.simpleMessage(
-          "Türkmenistanyň ähli ýerinden öýden çykman söwda ediň",
-        ),
-    "welayatlar_boyunca": MessageLookupByLibrary.simpleMessage(
-      "Welaýatlar boýunça",
-    ),
-    "yes": MessageLookupByLibrary.simpleMessage("Hawa"),
-  };
+        "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
+        "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
+        "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
+        "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
+        "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
+        "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
+        "baha_goraglylygy":
+            MessageLookupByLibrary.simpleMessage("Baha goraglylygy"),
+        "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
+        "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
+        "card": MessageLookupByLibrary.simpleMessage("Sebet"),
+        "categories": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
+        "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
+        "category_empty":
+            MessageLookupByLibrary.simpleMessage("Içki kategoriýa ýok"),
+        "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
+        "derejani_galdyr":
+            MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
+        "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
+        "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
+        "gune_cenli": MessageLookupByLibrary.simpleMessage("60 güne çenli"),
+        "kitaplar": MessageLookupByLibrary.simpleMessage("Kitaplar"),
+        "live": MessageLookupByLibrary.simpleMessage("Live"),
+        "maslahat_beriyanler":
+            MessageLookupByLibrary.simpleMessage("Maslahat beriýänler"),
+        "maslahat_beriyanler_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Saýlanan geýimlere görä harytlarymyz"),
+        "maslahat_beryan_harytlary":
+            MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
+        "mbium_coin_bilen":
+            MessageLookupByLibrary.simpleMessage("MBIUM Coin bilen töleseňiz"),
+        "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt dastawka"),
+        "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
+            "Mugt dastawka MBIUM Coin bilen töleseňiz"),
+        "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
+        "nasazlyk_yuze_cykdy":
+            MessageLookupByLibrary.simpleMessage("Näsazlyk ýüze çykdy"),
+        "no": MessageLookupByLibrary.simpleMessage("Ýok"),
+        "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
+        "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
+        "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
+        "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
+        "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
+        "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
+        "satys": MessageLookupByLibrary.simpleMessage("satyş"),
+        "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
+        "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
+        "top": MessageLookupByLibrary.simpleMessage("Top"),
+        "welayatlar_boyunca":
+            MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
+        "yes": MessageLookupByLibrary.simpleMessage("Hawa")
+      };
 }

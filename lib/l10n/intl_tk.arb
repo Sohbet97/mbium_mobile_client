@@ -31,18 +31,20 @@
 
   "ai_agendyn"  : "AI Agendyň",
   "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
-  "turkmenistanda_oyden_cykman_sowda_et"  : "Türkmenistanyň ähli ýerinden öýden çykman söwda ediň",
-  "sargyt_goraglylygy" :  "Sargyt goraglylygy we \n uly arzanladyşlar",
-  "google_dowan_et" : "Google bilen dowam et",
-  "telefon_bilen_dowam_et"  : "Telefon belgi arkaly dowam et",
-  "email_bilen_dowam_et"  : "Elektron poçta arkaly dowam et",
-  "myhma_hokmunde"  : "Myhman hökmünde dowam et",
-  "myhman"  : "Myhman",
-  "myhman_desc" : "Ulgama girmeklik üçin basyň",
-  "ayratynlyklar" : "Aýratynlyklar",
-  "favorites" : "Halanlarym",
-  "history" : "Taryhy",
-  "abuna" : "Abuna",
-  "kupons"  : "Kuponlar",
-  "tolegler"  : "Tölegler"
-} 
+
+"ahlisi": "Ählisi",
+"ayakgaplar": "Aýakgaplar",
+"egin_esikler": "Egin-eşikler",
+"elektronika": "Elektronika",
+"oyuncaklar": "Oýnawaçlar",
+"kitaplar": "Kitaplar",
+"mugt_dastawka": "Mugt dastawka",
+"mbium_coin_bilen": "MBIUM Coin bilen töleseňiz",
+"baha_goraglylygy": "Baha goraglylygy",
+"gune_cenli": "60 güne çenli",
+"mugt_dastawka_mbium_coin": "Mugt dastawka MBIUM Coin bilen töleseňiz",
+"maslahat_beriyanler": "Maslahat beriýänler",
+"maslahat_beriyanler_subtitle": "Saýlanan geýimlere görä harytlarymyz",
+"product_empty" : "Haryt ýok" ,
+"sizin_ucin"  : "Siziň üçin"
+}
