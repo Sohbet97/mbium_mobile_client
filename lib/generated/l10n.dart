@@ -180,10 +180,10 @@ class S {
     );
   }
 
-  /// `Welaýatlar boýunça`
+  /// `By region`
   String get welayatlar_boyunca {
     return Intl.message(
-      'Welaýatlar boýunça',
+      'By region',
       name: 'welayatlar_boyunca',
       desc: '',
       args: [],
@@ -280,10 +280,10 @@ class S {
     );
   }
 
-  /// `sales`
+  /// `Sales`
   String get satys {
     return Intl.message(
-      'sales',
+      'Sales',
       name: 'satys',
       desc: '',
       args: [],
@@ -460,21 +460,201 @@ class S {
     );
   }
 
-  /// `Haryt ýok`
+  /// `No products`
   String get product_empty {
     return Intl.message(
-      'Haryt ýok',
+      'No products',
       name: 'product_empty',
       desc: '',
       args: [],
     );
   }
 
-  /// `Siziň üçin`
+  /// `For you`
   String get sizin_ucin {
     return Intl.message(
-      'Siziň üçin',
+      'For you',
       name: 'sizin_ucin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shop from anywhere in Turkmenistan without leaving home`
+  String get turkmenistanda_oyden_cykman_sowda_et {
+    return Intl.message(
+      'Shop from anywhere in Turkmenistan without leaving home',
+      name: 'turkmenistanda_oyden_cykman_sowda_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order protection and \n big discounts`
+  String get sargyt_goraglylygy {
+    return Intl.message(
+      'Order protection and \n big discounts',
+      name: 'sargyt_goraglylygy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with Google`
+  String get google_dowan_et {
+    return Intl.message(
+      'Continue with Google',
+      name: 'google_dowan_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with phone number`
+  String get telefon_bilen_dowam_et {
+    return Intl.message(
+      'Continue with phone number',
+      name: 'telefon_bilen_dowam_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with email`
+  String get email_bilen_dowam_et {
+    return Intl.message(
+      'Continue with email',
+      name: 'email_bilen_dowam_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue as guest`
+  String get myhma_hokmunde {
+    return Intl.message(
+      'Continue as guest',
+      name: 'myhma_hokmunde',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guest`
+  String get myhman {
+    return Intl.message(
+      'Guest',
+      name: 'myhman',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to sign in`
+  String get myhman_desc {
+    return Intl.message(
+      'Tap to sign in',
+      name: 'myhman_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Features`
+  String get ayratynlyklar {
+    return Intl.message(
+      'Features',
+      name: 'ayratynlyklar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites`
+  String get favorites {
+    return Intl.message(
+      'Favorites',
+      name: 'favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription`
+  String get abuna {
+    return Intl.message(
+      'Subscription',
+      name: 'abuna',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coupons`
+  String get kupons {
+    return Intl.message(
+      'Coupons',
+      name: 'kupons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payments`
+  String get tolegler {
+    return Intl.message(
+      'Payments',
+      name: 'tolegler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try the AI agent for free and subscribe for full access`
+  String get ai_agent_mugt_barla_desc {
+    return Intl.message(
+      'Try the AI agent for free and subscribe for full access',
+      name: 'ai_agent_mugt_barla_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My orders`
+  String get menin_sargytlarym {
+    return Intl.message(
+      'My orders',
+      name: 'menin_sargytlarym',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI agent FREE period`
+  String get ai_agendin_mugt_dowri {
+    return Intl.message(
+      'AI agent FREE period',
+      name: 'ai_agendin_mugt_dowri',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start selling on MBIUM`
+  String get mbiumda_satyp_basla {
+    return Intl.message(
+      'Start selling on MBIUM',
+      name: 'mbiumda_satyp_basla',
       desc: '',
       args: [],
     );

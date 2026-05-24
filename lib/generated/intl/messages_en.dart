@@ -24,10 +24,16 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
+        "abuna": MessageLookupByLibrary.simpleMessage("Subscription"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "ahlisi": MessageLookupByLibrary.simpleMessage("All"),
+        "ai_agendin_mugt_dowri":
+            MessageLookupByLibrary.simpleMessage("AI agent FREE period"),
         "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agent\'s"),
+        "ai_agent_mugt_barla_desc": MessageLookupByLibrary.simpleMessage(
+            "Try the AI agent for free and subscribe for full access"),
         "ayakgaplar": MessageLookupByLibrary.simpleMessage("Footwear"),
+        "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Features"),
         "baha_goraglylygy":
             MessageLookupByLibrary.simpleMessage("Price protection"),
         "boyunca": MessageLookupByLibrary.simpleMessage("by"),
@@ -42,9 +48,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upgrade level"),
         "egin_esikler": MessageLookupByLibrary.simpleMessage("Clothing"),
         "elektronika": MessageLookupByLibrary.simpleMessage("Electronics"),
+        "email_bilen_dowam_et":
+            MessageLookupByLibrary.simpleMessage("Continue with email"),
+        "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "google_dowan_et":
+            MessageLookupByLibrary.simpleMessage("Continue with Google"),
         "gune_cenli": MessageLookupByLibrary.simpleMessage("Up to 60 days"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
         "kitaplar": MessageLookupByLibrary.simpleMessage("Books"),
+        "kupons": MessageLookupByLibrary.simpleMessage("Coupons"),
         "live": MessageLookupByLibrary.simpleMessage("Live"),
         "maslahat_beriyanler":
             MessageLookupByLibrary.simpleMessage("Recommended"),
@@ -54,10 +67,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("recommended products"),
         "mbium_coin_bilen":
             MessageLookupByLibrary.simpleMessage("Pay with MBIUM Coin"),
+        "mbiumda_satyp_basla":
+            MessageLookupByLibrary.simpleMessage("Start selling on MBIUM"),
+        "menin_sargytlarym": MessageLookupByLibrary.simpleMessage("My orders"),
         "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Free delivery"),
         "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
             "Free delivery when paying with MBIUM Coin"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("My Mbium"),
+        "myhma_hokmunde":
+            MessageLookupByLibrary.simpleMessage("Continue as guest"),
+        "myhman": MessageLookupByLibrary.simpleMessage("Guest"),
+        "myhman_desc": MessageLookupByLibrary.simpleMessage("Tap to sign in"),
         "nasazlyk_yuze_cykdy":
             MessageLookupByLibrary.simpleMessage("An error occurred"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -65,16 +85,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No data available"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Shops"),
         "oyuncaklar": MessageLookupByLibrary.simpleMessage("Toys"),
-        "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
+        "product_empty": MessageLookupByLibrary.simpleMessage("No products"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
-        "satys": MessageLookupByLibrary.simpleMessage("sales"),
+        "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
+            "Order protection and \n big discounts"),
+        "satys": MessageLookupByLibrary.simpleMessage("Sales"),
         "search": MessageLookupByLibrary.simpleMessage("Search..."),
-        "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
+        "sizin_ucin": MessageLookupByLibrary.simpleMessage("For you"),
+        "telefon_bilen_dowam_et":
+            MessageLookupByLibrary.simpleMessage("Continue with phone number"),
+        "tolegler": MessageLookupByLibrary.simpleMessage("Payments"),
         "top": MessageLookupByLibrary.simpleMessage("Top"),
-        "welayatlar_boyunca":
-            MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
+        "turkmenistanda_oyden_cykman_sowda_et":
+            MessageLookupByLibrary.simpleMessage(
+                "Shop from anywhere in Turkmenistan without leaving home"),
+        "welayatlar_boyunca": MessageLookupByLibrary.simpleMessage("By region"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }
