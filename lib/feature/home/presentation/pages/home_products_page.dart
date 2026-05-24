@@ -10,7 +10,6 @@ import 'package:mbium_mobile_client/feature/home_products/presentation/widget/ho
 
 import '../../../../generated/l10n.dart';
 
-// TODO: Gerçek API verisiyle değiştirilecek
 final _mockProducts = List.generate(
   10,
   (i) => ProductModel(
@@ -66,30 +65,24 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
           ),
           const SizedBox(height: 10),
 
-
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: HomeMenuWidget(),
           ),
           const SizedBox(height: 16),
 
-      
           ProductSectionWidget(
             banner: const PromoBannerWidget(),
             products: _mockProducts,
           ),
           const SizedBox(height: 20),
 
-          
           CategoryTabsWidget(
             categories: categories,
-            onCategorySelected: (index) {
-            
-            },
+            onCategorySelected: (index) {},
           ),
           const SizedBox(height: 16),
 
-  
           SectionHeaderWidget(
             title: l10n.maslahat_beriyanler,
             subtitle: l10n.maslahat_beriyanler_subtitle,
@@ -99,7 +92,6 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
           ProductSectionWidget(products: _mockProducts),
           const SizedBox(height: 20),
 
-          
           ProductSectionWidget(
             banner: const DeliveryCoinBannerWidget(),
             products: _mockProducts,
