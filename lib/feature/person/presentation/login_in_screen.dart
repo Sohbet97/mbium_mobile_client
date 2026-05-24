@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
-import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/widgets/button_widget.dart';
 
 class LoginInScreen extends StatefulWidget {

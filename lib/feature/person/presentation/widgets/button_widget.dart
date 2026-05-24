@@ -15,7 +15,6 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme.primary;
     final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
