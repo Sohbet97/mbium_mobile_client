@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/widgets/mbium_menu_widget.dart';
+import 'package:mbium_mobile_client/feature/myMbium/presentation/widgets/settings_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/login_in_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/widgets/person_litle_data_widget.dart';
+import 'package:mbium_mobile_client/main.dart';
+
+import '../../../generated/l10n.dart';
 
 class MyMbiumPage extends StatelessWidget {
   const MyMbiumPage({super.key});
@@ -31,6 +35,7 @@ class _MyMbiumDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = S.of(context);
 
     final primaryColor = theme.colorScheme.primary;
     return CustomScrollView(
@@ -68,6 +73,27 @@ class _MyMbiumDataPage extends StatelessWidget {
           title: const PersonLittleDataWidget(),
         ),
         const SliverToBoxAdapter(child: MbiumMenuWidget()),
+        const SliverToBoxAdapter(child: SettingsBannerWidget()),
+        SliverToBoxAdapter(
+          child: Container(
+            padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            decoration: BoxDecoration(color: theme.cardColor),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localization.menin_sargytlarym,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: !isDarkTheme ? Colors.black : null,
+                  ),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right)),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

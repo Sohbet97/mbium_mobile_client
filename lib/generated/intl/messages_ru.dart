@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "abuna": MessageLookupByLibrary.simpleMessage("Abuna"),
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
         "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
+        "ai_agent_mugt_barla_desc": MessageLookupByLibrary.simpleMessage(
+            "AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň"),
         "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
         "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Камера"),
@@ -46,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "live": MessageLookupByLibrary.simpleMessage("Live"),
         "maslahat_beryan_harytlary":
             MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
+        "menin_sargytlarym":
+            MessageLookupByLibrary.simpleMessage("Meniň sargytlarym"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("Мой Mbium"),
         "myhma_hokmunde":
             MessageLookupByLibrary.simpleMessage("Myhman hökmünde dowam et"),

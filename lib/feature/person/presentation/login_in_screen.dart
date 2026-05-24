@@ -9,8 +9,8 @@ import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import '../../../generated/l10n.dart';
 
 class LoginInScreen extends StatefulWidget {
-  const LoginInScreen({super.key});
-
+  const LoginInScreen({super.key, this.isModal});
+  final bool? isModal;
   @override
   State<LoginInScreen> createState() => _LoginInScreenState();
 }
@@ -93,6 +93,9 @@ class _LoginInScreenState extends State<LoginInScreen> {
               GestureDetector(
                 onTap: () {
                   context.read<PersonBloc>().add(RegisterWithGostEvent());
+                  if (widget.isModal == true) {
+                    Navigator.pop(context);
+                  }
                 },
                 child: Text(
                   localization.myhma_hokmunde,

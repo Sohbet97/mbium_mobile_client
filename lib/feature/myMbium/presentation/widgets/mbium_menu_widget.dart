@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
+import 'package:mbium_mobile_client/main.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -24,7 +25,10 @@ class MbiumMenuWidget extends StatelessWidget {
             children: [
               Text(
                 localization.ayratynlyklar,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isDarkTheme ? null : Colors.black,
+                ),
               ),
               GestureDetector(child: Icon(Icons.arrow_right)),
             ],

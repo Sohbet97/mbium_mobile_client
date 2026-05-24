@@ -429,6 +429,26 @@ class S {
       args: [],
     );
   }
+
+  /// `AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň`
+  String get ai_agent_mugt_barla_desc {
+    return Intl.message(
+      'AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň',
+      name: 'ai_agent_mugt_barla_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meniň sargytlarym`
+  String get menin_sargytlarym {
+    return Intl.message(
+      'Meniň sargytlarym',
+      name: 'menin_sargytlarym',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
