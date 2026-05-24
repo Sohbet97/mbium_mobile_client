@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
+import 'package:mbium_mobile_client/feature/settings/presentation/settings_screen.dart';
 import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.dart';
 
 import 'FadeRouter.dart';
@@ -10,6 +11,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const SplashScreen());
     case '/home':
       return FadeRoute(page: const HomeScreen());
+    case '/settings':
+      return FadeRoute(page: const SettingsScreen());
 
     default:
       return FadeRoute(

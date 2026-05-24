@@ -289,6 +289,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Türkmenistanyň ähli ýerinden öýden çykman söwda ediň`
+  String get turkmenistanda_oyden_cykman_sowda_et {
+    return Intl.message(
+      'Türkmenistanyň ähli ýerinden öýden çykman söwda ediň',
+      name: 'turkmenistanda_oyden_cykman_sowda_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google bilen dowam et`
+  String get google_dowan_et {
+    return Intl.message(
+      'Google bilen dowam et',
+      name: 'google_dowan_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Telefon belgi arkaly dowam et`
+  String get telefon_bilen_dowam_et {
+    return Intl.message(
+      'Telefon belgi arkaly dowam et',
+      name: 'telefon_bilen_dowam_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Elektron poçta arkaly dowam et`
+  String get email_bilen_dowam_et {
+    return Intl.message(
+      'Elektron poçta arkaly dowam et',
+      name: 'email_bilen_dowam_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Myhman hökmünde dowam et`
+  String get myhma_hokmunde {
+    return Intl.message(
+      'Myhman hökmünde dowam et',
+      name: 'myhma_hokmunde',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sargyt goraglylygy we \n uly arzanladyşlar`
+  String get sargyt_goraglylygy {
+    return Intl.message(
+      'Sargyt goraglylygy we \n uly arzanladyşlar',
+      name: 'sargyt_goraglylygy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Myhman`
+  String get myhman {
+    return Intl.message(
+      'Myhman',
+      name: 'myhman',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ulgama girmeklik üçin basyň`
+  String get myhman_desc {
+    return Intl.message(
+      'Ulgama girmeklik üçin basyň',
+      name: 'myhman_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aýratynlyklar`
+  String get ayratynlyklar {
+    return Intl.message(
+      'Aýratynlyklar',
+      name: 'ayratynlyklar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Halanlarym`
+  String get favorites {
+    return Intl.message(
+      'Halanlarym',
+      name: 'favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taryhy`
+  String get history {
+    return Intl.message(
+      'Taryhy',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Abuna`
+  String get abuna {
+    return Intl.message(
+      'Abuna',
+      name: 'abuna',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuponlar`
+  String get kupons {
+    return Intl.message(
+      'Kuponlar',
+      name: 'kupons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tölegler`
+  String get tolegler {
+    return Intl.message(
+      'Tölegler',
+      name: 'tolegler',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

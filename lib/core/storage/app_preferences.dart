@@ -6,6 +6,7 @@ class AppPreferences {
   static const _themeModeKey = 'theme_mode';
   static const _languageCodeKey = 'language_code';
   static const _registerKey = 'is_registered';
+  static const _isGosth = "is_gost";
 
   final SharedPreferences _sharedPreferences;
 
@@ -48,5 +49,13 @@ class AppPreferences {
 
   Future<bool> isRegistered() async {
     return _sharedPreferences.getBool(_registerKey) ?? false;
+  }
+
+  Future<bool> isGostUser() async {
+    return _sharedPreferences.getBool(_isGosth) ?? false;
+  }
+
+  Future<void> saveGostUser(bool status) {
+    return _sharedPreferences.setBool(_isGosth, status);
   }
 }

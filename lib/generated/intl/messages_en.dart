@@ -24,8 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
+        "abuna": MessageLookupByLibrary.simpleMessage("Abuna"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
+        "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
         "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "card": MessageLookupByLibrary.simpleMessage("Cart"),
@@ -33,20 +35,40 @@ class MessageLookup extends MessageLookupByLibrary {
         "chats": MessageLookupByLibrary.simpleMessage("Chats"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
+        "email_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
+            "Elektron poçta arkaly dowam et"),
+        "favorites": MessageLookupByLibrary.simpleMessage("Halanlarym"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "google_dowan_et":
+            MessageLookupByLibrary.simpleMessage("Google bilen dowam et"),
+        "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
+        "kupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
         "live": MessageLookupByLibrary.simpleMessage("Live"),
         "maslahat_beryan_harytlary":
             MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("My Mbium"),
+        "myhma_hokmunde":
+            MessageLookupByLibrary.simpleMessage("Myhman hökmünde dowam et"),
+        "myhman": MessageLookupByLibrary.simpleMessage("Myhman"),
+        "myhman_desc":
+            MessageLookupByLibrary.simpleMessage("Ulgama girmeklik üçin basyň"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDataAvailable":
             MessageLookupByLibrary.simpleMessage("No data available"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Shops"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
+            "Sargyt goraglylygy we \n uly arzanladyşlar"),
         "satys": MessageLookupByLibrary.simpleMessage("satyş"),
         "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
+        "telefon_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
+            "Telefon belgi arkaly dowam et"),
+        "tolegler": MessageLookupByLibrary.simpleMessage("Tölegler"),
         "top": MessageLookupByLibrary.simpleMessage("Top"),
+        "turkmenistanda_oyden_cykman_sowda_et":
+            MessageLookupByLibrary.simpleMessage(
+                "Türkmenistanyň ähli ýerinden öýden çykman söwda ediň"),
         "welayatlar_boyunca":
             MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
