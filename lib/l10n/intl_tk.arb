@@ -16,18 +16,33 @@
   "ondurijiler" : "Öndürijiler",
   "welayatlar_boyunca" : "Welaýatlar boýunça",
   "Ai_agent"  : "AI agent",
+  "derejani_galdyr" : "Derejäni galdyr",
   "refresh" : "Täzele",
   "nasazlyk_yuze_cykdy" : "Näsazlyk ýüze çykdy",
   "categories" :  "Kategoriýalar",
-  "derejani_galdyr" : "Derejäni galdyr",
-  "ai_agendyn"  : "AI Agendyň",
-  "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
   "category"  : "Kategoriýa",
   "boyunca" : "boýunça",
-  "top" : "Top",
+    "top" : "Top",
   "live"  : "Live",
   "satys" : "satyş",
   "search"  : "Gözleg...",
-  "category_empty"  : "Içki kategoriýa ýok"
+  "category_empty"  : "Içki kategoriýa ýok",
 
+
+  "ai_agendyn"  : "AI Agendyň",
+  "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
+
+"ahlisi": "Ählisi",
+"ayakgaplar": "Aýakgaplar",
+"egin_esikler": "Egin-eşikler",
+"elektronika": "Elektronika",
+"oyuncaklar": "Oýnawaçlar",
+"kitaplar": "Kitaplar",
+"mugt_dastawka": "Mugt dastawka",
+"mbium_coin_bilen": "MBIUM Coin bilen töleseňiz",
+"baha_goraglylygy": "Baha goraglylygy",
+"gune_cenli": "60 güne çenli",
+"mugt_dastawka_mbium_coin": "Mugt dastawka MBIUM Coin bilen töleseňiz",
+"maslahat_beriyanler": "Maslahat beriýänler",
+"maslahat_beriyanler_subtitle": "Saýlanan geýimlere görä harytlarymyz" 
 }

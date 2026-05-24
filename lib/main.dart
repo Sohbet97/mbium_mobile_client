@@ -5,6 +5,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
+import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/data/ai_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
@@ -159,6 +160,11 @@ class _MyAppState extends State<MyApp> {
         // category
         RepositoryProvider(
           create: (context) => CategoryRepository(dio: apiClient.dio),
+        ),
+
+        // products
+        RepositoryProvider(
+          create: (context) => ProductRepository(dio: apiClient.dio),
         ),
       ],
       child: MultiBlocProvider(
