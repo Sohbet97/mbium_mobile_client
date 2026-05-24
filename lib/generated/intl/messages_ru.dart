@@ -33,7 +33,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Камера"),
         "card": MessageLookupByLibrary.simpleMessage("Корзина"),
+        "categories": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
         "category": MessageLookupByLibrary.simpleMessage("Kategoriýa"),
+        "category_empty":
+            MessageLookupByLibrary.simpleMessage("Içki kategoriýa ýok"),
         "chats": MessageLookupByLibrary.simpleMessage("Чаты"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
@@ -56,11 +59,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "myhman": MessageLookupByLibrary.simpleMessage("Myhman"),
         "myhman_desc":
             MessageLookupByLibrary.simpleMessage("Ulgama girmeklik üçin basyň"),
+        "nasazlyk_yuze_cykdy":
+            MessageLookupByLibrary.simpleMessage("Näsazlyk ýüze çykdy"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Нет данных"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Производители"),
         "products": MessageLookupByLibrary.simpleMessage("Товары"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
+        "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
         "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
             "Sargyt goraglylygy we \n uly arzanladyşlar"),
         "satys": MessageLookupByLibrary.simpleMessage("satyş"),

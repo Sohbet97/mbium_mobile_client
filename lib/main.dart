@@ -3,6 +3,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
+import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/data/ai_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
@@ -153,6 +155,11 @@ class _MyAppState extends State<MyApp> {
             appPreferences: widget.appPreferences,
           ),
         ),
+
+        // category
+        RepositoryProvider(
+          create: (context) => CategoryRepository(dio: apiClient.dio),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -174,6 +181,13 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 AiBloc(repository: context.read<AiRepository>()),
+          ),
+
+          // category
+          BlocProvider(
+            create: (context) =>
+                CategoryBloc(repository: context.read<CategoryRepository>())
+                  ..add(LoadCategoriesEvent(isRefresh: true)),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

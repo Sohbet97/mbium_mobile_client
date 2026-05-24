@@ -16,12 +16,22 @@
   "ondurijiler" : "Производители",
   "welayatlar_boyunca" : "Welaýatlar boýunça",
   "Ai_agent"  : "AI agent",
+  "refresh" : "Täzele",
+  "nasazlyk_yuze_cykdy" : "Näsazlyk ýüze çykdy",
+  "categories" :  "Kategoriýalar",
+
+
   "category"  : "Kategoriýa",
   "boyunca" : "boýunça",
     "top" : "Top",
   "live"  : "Live",
   "satys" : "satyş",
   "search"  : "Gözleg...",
+  "category_empty"  : "Içki kategoriýa ýok",
+
+
+
+
 
 
 

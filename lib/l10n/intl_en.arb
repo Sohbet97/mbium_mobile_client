@@ -16,15 +16,24 @@
   "ondurijiler" : "Shops",
   "welayatlar_boyunca" : "Welaýatlar boýunça",
   "Ai_agent"  : "AI agent",
+  "refresh" : "Täzele",
+  "nasazlyk_yuze_cykdy" : "Näsazlyk ýüze çykdy",
+  "categories" :  "Kategoriýalar",
+
+
+  "derejani_galdyr" : "Derejäni galdyr",
   "category"  : "Kategoriýa",
   "boyunca" : "boýunça",
     "top" : "Top",
   "live"  : "Live",
   "satys" : "satyş",
   "search"  : "Gözleg...",
+  "category_empty"  : "Içki kategoriýa ýok",
 
 
-  "derejani_galdyr" : "Derejäni galdyr",
+
+
+
     "ai_agendyn"  : "AI Agendyň",
   "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
     "turkmenistanda_oyden_cykman_sowda_et"  : "Türkmenistanyň ähli ýerinden öýden çykman söwda ediň",

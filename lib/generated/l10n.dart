@@ -200,6 +200,46 @@ class S {
     );
   }
 
+  /// `Täzele`
+  String get refresh {
+    return Intl.message(
+      'Täzele',
+      name: 'refresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Näsazlyk ýüze çykdy`
+  String get nasazlyk_yuze_cykdy {
+    return Intl.message(
+      'Näsazlyk ýüze çykdy',
+      name: 'nasazlyk_yuze_cykdy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kategoriýalar`
+  String get categories {
+    return Intl.message(
+      'Kategoriýalar',
+      name: 'categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Derejäni galdyr`
+  String get derejani_galdyr {
+    return Intl.message(
+      'Derejäni galdyr',
+      name: 'derejani_galdyr',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Kategoriýa`
   String get category {
     return Intl.message(
@@ -260,11 +300,11 @@ class S {
     );
   }
 
-  /// `Derejäni galdyr`
-  String get derejani_galdyr {
+  /// `Içki kategoriýa ýok`
+  String get category_empty {
     return Intl.message(
-      'Derejäni galdyr',
-      name: 'derejani_galdyr',
+      'Içki kategoriýa ýok',
+      name: 'category_empty',
       desc: '',
       args: [],
     );
