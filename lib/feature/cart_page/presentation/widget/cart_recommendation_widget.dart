@@ -1,10 +1,172 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/core/themes/theme.dart';
+import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/generated/l10n.dart';
 
-class CartRecommendationWidget extends StatelessWidget {
+class CartRecommendationWidget extends StatefulWidget {
   const CartRecommendationWidget({super.key});
 
   @override
+  State<CartRecommendationWidget> createState() =>
+      _CartRecommendationWidgetState();
+}
+
+class _CartRecommendationWidgetState extends State<CartRecommendationWidget> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ProductBloc>().add(
+          const LoadProducts(FilterModel(limit: 10)),
+        );
+  }
+
+  String _getProductName(ProductModel product) {
+    final locale = Localizations.localeOf(context).languageCode;
+    switch (locale) {
+      case 'ru':
+        return product.nameRu.isNotEmpty ? product.nameRu : product.name;
+      case 'en':
+        return product.nameEng.isNotEmpty ? product.nameEng : product.name;
+      default:
+        return product.name;
+    }
+  }
+
+  String _getImageUrl(ProductModel product) {
+    if (product.productMedia.isNotEmpty) {
+      final media = product.productMedia.first;
+      if (media is Map && media['url'] != null) {
+        return media['url'].toString();
+      }
+    }
+    return '';
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const SizedBox.shrink();
+    final l10n = S.of(context);
+    final textStyles = context.appTextStyles;
+
+    return BlocBuilder<ProductBloc, ProductState>(
+      builder: (context, state) {
+        if (state is ProductLoading) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (state is ProductError) {
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              state.message,
+              style: const TextStyle(
+                color: AppColors.errorRed,
+                fontSize: 12,
+              ),
+            ),
+          );
+        }
+
+        if (state is ProductLoaded) {
+          final products = state.products;
+          if (products.isEmpty) return const SizedBox.shrink();
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: Text(
+                  l10n.siz_ucin_maslahat,
+                  style: textStyles.s16w600clBlack,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.75,
+                  ),
+                  itemCount: products.length,
+                  itemBuilder: (context, i) {
+                    final product = products[i];
+                    final imageUrl = _getImageUrl(product);
+
+                    return GestureDetector(
+                      onTap: () {},
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: imageUrl.isNotEmpty
+                                  ? Image.network(
+                                      imageUrl,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) =>
+                                          _placeholder(context),
+                                    )
+                                  : _placeholder(context),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          
+                          Text(
+                            _getProductName(product),
+                            style: textStyles.s13w600clBlack
+                                .copyWith(fontSize: 12),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                      
+                          Text(
+                            '${product.price.toStringAsFixed(0)} ${product.currency}',
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryGreen,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        }
+
+        return const SizedBox.shrink();
+      },
+    );
+  }
+
+  Widget _placeholder(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: Theme.of(context).colorScheme.surface,
+      child: const Icon(
+        Icons.image_not_supported_outlined,
+        color: AppColors.textLightGrey,
+      ),
+    );
   }
 }

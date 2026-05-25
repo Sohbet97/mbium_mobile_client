@@ -17,7 +17,7 @@ class CartAlibabaWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Başlık
+          
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 4),
             child: Row(
@@ -45,7 +45,7 @@ class CartAlibabaWidget extends StatelessWidget {
             ),
           ),
 
-          // Açıklama
+          
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
             child: Text(
@@ -58,11 +58,9 @@ class CartAlibabaWidget extends StatelessWidget {
             ),
           ),
 
-          // 4 Özellik
           const CartFeaturesWidget(),
           const SizedBox(height: 12),
 
-          // Ödeme yöntemleri
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
             child: CartPaymentMethodsWidget(),
