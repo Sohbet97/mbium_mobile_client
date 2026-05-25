@@ -76,7 +76,11 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
             products: _mockProducts,
           ),
           const SizedBox(height: 20),
-          CategoryTabsWidget(categories: []),
+          CategoryTabsWidget(
+            onCategorySelected: (int p1) {
+              // TODO selected category
+            },
+          ),
           const SizedBox(height: 16),
           SectionHeaderWidget(
             title: l10n.maslahat_beriyanler,
