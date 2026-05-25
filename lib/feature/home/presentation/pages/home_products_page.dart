@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/home_menu_widget.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/promo_banner_widget.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/delivery_coin_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/category_tabs_widget.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/section_header_widget.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/product_section_widget.dart';
+import 'package:mbium_mobile_client/feature/home_products/presentation/widget/delivery_coin_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/horizontal_product_list_widget.dart';
+import 'package:mbium_mobile_client/feature/home_products/presentation/widget/product_section_widget.dart';
+import 'package:mbium_mobile_client/feature/home_products/presentation/widget/promo_banner_widget.dart';
+import 'package:mbium_mobile_client/feature/home_products/presentation/widget/section_header_widget.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -31,6 +33,14 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
   final _searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<CategoryBloc>().add(
+      const LoadCategoriesEvent(isRefresh: false),
+    );
+  }
+
+  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
@@ -39,15 +49,6 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
-
-    final List<String> categories = [
-      l10n.ahlisi,
-      l10n.ayakgaplar,
-      l10n.egin_esikler,
-      l10n.elektronika,
-      l10n.oyuncaklar,
-      l10n.kitaplar,
-    ];
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -65,31 +66,18 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
             ),
           ),
           const SizedBox(height: 10),
-
-
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: HomeMenuWidget(),
           ),
           const SizedBox(height: 16),
-
-      
           ProductSectionWidget(
             banner: const PromoBannerWidget(),
             products: _mockProducts,
           ),
           const SizedBox(height: 20),
-
-          
-          CategoryTabsWidget(
-            categories: categories,
-            onCategorySelected: (index) {
-            
-            },
-          ),
+          CategoryTabsWidget(categories: []),
           const SizedBox(height: 16),
-
-  
           SectionHeaderWidget(
             title: l10n.maslahat_beriyanler,
             subtitle: l10n.maslahat_beriyanler_subtitle,
@@ -98,8 +86,6 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
           const SizedBox(height: 10),
           ProductSectionWidget(products: _mockProducts),
           const SizedBox(height: 20),
-
-          
           ProductSectionWidget(
             banner: const DeliveryCoinBannerWidget(),
             products: _mockProducts,

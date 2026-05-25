@@ -11,79 +11,111 @@ class PromoBannerWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: _BannerItem(
-              icon: Icons.local_shipping_outlined,
-              title: l10n.mugt_dastawka,
-              subtitle: l10n.mbium_coin_bilen,
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.bonusBannerGreen,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: AppColors.bonusBannerBorderGreen.withValues(alpha: 0.4),
+            width: 1,
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: _BannerItem(
-              icon: Icons.shield_outlined,
-              title: l10n.baha_goraglylygy,
-              subtitle: l10n.gune_cenli,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _BannerItem extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  const _BannerItem({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColors.bonusBannerGreen,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppColors.bonusBannerBorderGreen.withValues(alpha: 0.4),
-          width: 1,
         ),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: AppColors.bonusBannerTextGreen, size: 22),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.aiTextBlack,
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              // Sol taraf - Mugt dastawka
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 10),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.local_shipping_outlined,
+                        color: AppColors.bonusBannerTextGreen,
+                        size: 22,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              l10n.mugt_dastawka,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.aiTextBlack,
+                              ),
+                            ),
+                            Text(
+                              l10n.mbium_coin_bilen,
+                              style: const TextStyle(
+                                fontSize: 10,
+                                color: AppColors.textLightGrey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: AppColors.textLightGrey,
+              ),
+
+              // Orta ayraç çizgisi
+              VerticalDivider(
+                width: 1,
+                thickness: 1,
+                color: AppColors.bonusBannerBorderGreen.withValues(alpha: 0.4),
+                indent: 8,
+                endIndent: 8,
+              ),
+
+              // Sağ taraf - Baha goraglylygy
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 10),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.shield_outlined,
+                        color: AppColors.bonusBannerTextGreen,
+                        size: 22,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              l10n.baha_goraglylygy,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.aiTextBlack,
+                              ),
+                            ),
+                            Text(
+                              l10n.gune_cenli,
+                              style: const TextStyle(
+                                fontSize: 10,
+                                color: AppColors.textLightGrey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

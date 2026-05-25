@@ -459,7 +459,51 @@ class S {
       args: [],
     );
   }
+  String get sargytlar {
+    return Intl.message('Sargytlar', name: 'sargytlar', args: []);
+  }
+
+  String get duydurys {
+    return Intl.message('Duýduryş', name: 'duydurys', args: []);
+  }
+
+  String get basga {
+    return Intl.message('Başga', name: 'basga', args: []);
+  }
+
+  String get habarlary_gozle {
+    return Intl.message('Habarlary ýa-da üpjünçileri gözle', name: 'habarlary_gozle', args: []);
+  }
+
+  String get okalmanlar {
+    return Intl.message('Okalmanlar', name: 'okalmanlar', args: []);
+  }
+
+  String get menin_belgim {
+    return Intl.message('Meniň belgim', name: 'menin_belgim', args: []);
+  }
+
+  String get habar_yok {
+    return Intl.message('Habar ýok', name: 'habar_yok', args: []);
+  }
+
+  String get sargyt_goragy_text {
+    return Intl.message('Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.', name: 'sargyt_goragy_text', args: []);
+  }
+
+  String get has_ginisleyin {
+    return Intl.message('Has giňişleýin', name: 'has_ginisleyin', args: []);
+  }
+
+  String get siz_ucin_maslahat {
+    return Intl.message('Siz üçin maslahat beriýär', name: 'siz_ucin_maslahat', args: []);
+  }
+ 
+  String get mohum_habarlary {
+  return Intl.message('Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň', name: 'mohum_habarlary', args: []);
 }
+}
+
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
