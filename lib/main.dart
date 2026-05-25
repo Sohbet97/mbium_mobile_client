@@ -73,7 +73,7 @@ void initForegroundNotifications(BuildContext context) {
 
     if (notification != null) {
       flutterLocalNotificationsPlugin.show(
-        id: notification.hashCode, // 👈 передаём ID
+        id: notification.hashCode,
         title: notification.title,
         body: notification.body,
         notificationDetails: NotificationDetails(
