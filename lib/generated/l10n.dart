@@ -330,180 +330,266 @@ class S {
     );
   }
 
-  /// `All`
+  /// `Ählisi`
   String get ahlisi {
     return Intl.message(
-      'All',
+      'Ählisi',
       name: 'ahlisi',
       desc: '',
       args: [],
     );
   }
 
-  /// `Footwear`
+  /// `Aýakgaplar`
   String get ayakgaplar {
     return Intl.message(
-      'Footwear',
+      'Aýakgaplar',
       name: 'ayakgaplar',
       desc: '',
       args: [],
     );
   }
 
-  /// `Clothing`
+  /// `Egin-eşikler`
   String get egin_esikler {
     return Intl.message(
-      'Clothing',
+      'Egin-eşikler',
       name: 'egin_esikler',
       desc: '',
       args: [],
     );
   }
 
-  /// `Electronics`
+  /// `Elektronika`
   String get elektronika {
     return Intl.message(
-      'Electronics',
+      'Elektronika',
       name: 'elektronika',
       desc: '',
       args: [],
     );
   }
 
-  /// `Toys`
+  /// `Oýnawaçlar`
   String get oyuncaklar {
     return Intl.message(
-      'Toys',
+      'Oýnawaçlar',
       name: 'oyuncaklar',
       desc: '',
       args: [],
     );
   }
 
-  /// `Books`
+  /// `Kitaplar`
   String get kitaplar {
     return Intl.message(
-      'Books',
+      'Kitaplar',
       name: 'kitaplar',
       desc: '',
       args: [],
     );
   }
 
-  /// `Free delivery`
+  /// `Mugt dastawka`
   String get mugt_dastawka {
     return Intl.message(
-      'Free delivery',
+      'Mugt dastawka',
       name: 'mugt_dastawka',
       desc: '',
       args: [],
     );
   }
 
-  /// `Pay with MBIUM Coin`
+  /// `MBIUM Coin bilen töleseňiz`
   String get mbium_coin_bilen {
     return Intl.message(
-      'Pay with MBIUM Coin',
+      'MBIUM Coin bilen töleseňiz',
       name: 'mbium_coin_bilen',
       desc: '',
       args: [],
     );
   }
 
-  /// `Price protection`
+  /// `Baha goraglylygy`
   String get baha_goraglylygy {
     return Intl.message(
-      'Price protection',
+      'Baha goraglylygy',
       name: 'baha_goraglylygy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Up to 60 days`
+  /// `60 güne çenli`
   String get gune_cenli {
     return Intl.message(
-      'Up to 60 days',
+      '60 güne çenli',
       name: 'gune_cenli',
       desc: '',
       args: [],
     );
   }
 
-  /// `Free delivery when paying with MBIUM Coin`
+  /// `Mugt dastawka MBIUM Coin bilen töleseňiz`
   String get mugt_dastawka_mbium_coin {
     return Intl.message(
-      'Free delivery when paying with MBIUM Coin',
+      'Mugt dastawka MBIUM Coin bilen töleseňiz',
       name: 'mugt_dastawka_mbium_coin',
       desc: '',
       args: [],
     );
   }
 
-  /// `Recommended`
+  /// `Maslahat beriýänler`
   String get maslahat_beriyanler {
     return Intl.message(
-      'Recommended',
+      'Maslahat beriýänler',
       name: 'maslahat_beriyanler',
       desc: '',
       args: [],
     );
   }
 
-  /// `Products based on your selected clothing`
+  /// `Saýlanan geýimlere görä harytlarymyz`
   String get maslahat_beriyanler_subtitle {
     return Intl.message(
-      'Products based on your selected clothing',
+      'Saýlanan geýimlere görä harytlarymyz',
       name: 'maslahat_beriyanler_subtitle',
       desc: '',
       args: [],
     );
   }
+
+  /// `Sargytlar`
   String get sargytlar {
-    return Intl.message('Sargytlar', name: 'sargytlar', args: []);
+    return Intl.message(
+      'Sargytlar',
+      name: 'sargytlar',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Duýduryş`
   String get duydurys {
-    return Intl.message('Duýduryş', name: 'duydurys', args: []);
+    return Intl.message(
+      'Duýduryş',
+      name: 'duydurys',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Başga`
   String get basga {
-    return Intl.message('Başga', name: 'basga', args: []);
+    return Intl.message(
+      'Başga',
+      name: 'basga',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Habarlary ýa-da üpjünçileri gözle`
   String get habarlary_gozle {
-    return Intl.message('Habarlary ýa-da üpjünçileri gözle', name: 'habarlary_gozle', args: []);
+    return Intl.message(
+      'Habarlary ýa-da üpjünçileri gözle',
+      name: 'habarlary_gozle',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Okalmanlar`
   String get okalmanlar {
-    return Intl.message('Okalmanlar', name: 'okalmanlar', args: []);
+    return Intl.message(
+      'Okalmanlar',
+      name: 'okalmanlar',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Meniň belgim`
   String get menin_belgim {
-    return Intl.message('Meniň belgim', name: 'menin_belgim', args: []);
+    return Intl.message(
+      'Meniň belgim',
+      name: 'menin_belgim',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Habar ýok`
   String get habar_yok {
-    return Intl.message('Habar ýok', name: 'habar_yok', args: []);
+    return Intl.message(
+      'Habar ýok',
+      name: 'habar_yok',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.`
   String get sargyt_goragy_text {
-    return Intl.message('Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.', name: 'sargyt_goragy_text', args: []);
+    return Intl.message(
+      'Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.',
+      name: 'sargyt_goragy_text',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Has giňişleýin`
   String get has_ginisleyin {
-    return Intl.message('Has giňişleýin', name: 'has_ginisleyin', args: []);
+    return Intl.message(
+      'Has giňişleýin',
+      name: 'has_ginisleyin',
+      desc: '',
+      args: [],
+    );
   }
 
+  /// `Siz üçin maslahat beriýär`
   String get siz_ucin_maslahat {
-    return Intl.message('Siz üçin maslahat beriýär', name: 'siz_ucin_maslahat', args: []);
+    return Intl.message(
+      'Siz üçin maslahat beriýär',
+      name: 'siz_ucin_maslahat',
+      desc: '',
+      args: [],
+    );
   }
- 
-  String get mohum_habarlary {
-  return Intl.message('Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň', name: 'mohum_habarlary', args: []);
-}
-}
 
+  /// `Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň`
+  String get mohum_habarlary {
+    return Intl.message(
+      'Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň',
+      name: 'mohum_habarlary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Siziň üçin`
+  String get sizin_ucin {
+    return Intl.message(
+      'Siziň üçin',
+      name: 'sizin_ucin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `haryt ýok`
+  String get product_empty {
+    return Intl.message(
+      'haryt ýok',
+      name: 'product_empty',
+      desc: '',
+      args: [],
+    );
+  }
+}
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();

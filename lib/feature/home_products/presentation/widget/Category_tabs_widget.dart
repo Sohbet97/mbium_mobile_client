@@ -151,13 +151,11 @@ class _CategoryTabsWidgetState extends State<CategoryTabsWidget> {
       title: Text(
         model.getNameByLanguage(context.read<MainBloc>().state.languageCode),
       ),
-      // Если детей нет, можно обрабатывать тап на саму плитку
       onExpansionChanged: (isExpanded) {
         if (model.children.isEmpty) {
           onInitTap(model);
         }
       },
-      // Рекурсивно передаем колбэк дальше вниз по дереву
       children: model.children
           .map((item) => _buildItemExpansion(item, onInitTap))
           .toList(),

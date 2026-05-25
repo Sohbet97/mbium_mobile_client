@@ -29,14 +29,11 @@ class SearchWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: color),
-        borderRadius: BorderRadius.circular(
-          8,
-        ), // Сделал чуть мягче углы (было 4)
+        borderRadius: BorderRadius.circular(8),
         color: !isDarkTheme ? Colors.white : Colors.grey.shade800,
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment
-            .center, // Выравнивание элементов строки по центру
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(width: 8),
           GestureDetector(
