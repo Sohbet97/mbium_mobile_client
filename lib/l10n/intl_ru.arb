@@ -40,24 +40,25 @@
   "derejani_galdyr" : "Derejäni galdyr",
     "ai_agendyn"  : "AI Agendyň",
   "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
-    "turkmenistanda_oyden_cykman_sowda_et"  : "Türkmenistanyň ähli ýerinden öýden çykman söwda ediň",
-  "google_dowan_et" : "Google bilen dowam et",
-  "telefon_bilen_dowam_et"  : "Telefon belgi arkaly dowam et",
-  "email_bilen_dowam_et"  : "Elektron poçta arkaly dowam et",
-  "myhma_hokmunde"  : "Myhman hökmünde dowam et",
-  "sargyt_goraglylygy" :  "Sargyt goraglylygy we \n uly arzanladyşlar",
-  "myhman"  : "Myhman",
-  "myhman_desc" : "Ulgama girmeklik üçin basyň",
-  "ayratynlyklar" : "Aýratynlyklar",
-  "favorites" : "Halanlarym",
-    "history" : "Taryhy",
-  "abuna" : "Abuna",
-  "kupons"  : "Kuponlar",
-  "tolegler"  : "Tölegler",
-  "ai_agent_mugt_barla_desc"  : "AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň",
-  "menin_sargytlarym" : "Meniň sargytlarym",
-  "ai_agendin_mugt_dowri" : "AI agendiň MUGT döwri",
-  "mbiumda_satyp_basla" : "MBIUM-da satyp başla"
+
+"ahlisi": "Ählisi",
+"ayakgaplar": "Aýakgaplar",
+"egin_esikler": "Egin-eşikler",
+"elektronika": "Elektronika",
+"oyuncaklar": "Oýnawaçlar",
+"kitaplar": "Kitaplar",
+
+"sargytlar": "Sargytlar",
+"duydurys": "Duýduryş",
+"basga": "Başga",
+"habarlary_gozle": "Habarlary ýa-da üpjünçileri gözle",
+"okalmanlar": "Okalmanlar",
+"menin_belgim": "Meniň belgim",
+"habar_yok": "Habar ýok",
+"sargyt_goragy_text": "Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.",
+"has_ginisleyin": "Has giňişleýin",
+"siz_ucin_maslahat": "Siz üçin maslahat beriýär",
+"mohum_habarlary": "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň"
 
 
 

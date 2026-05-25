@@ -58,8 +58,24 @@
   "maslahat_beriyanler" : "Maslahat berilýänler",
   "maslahat_beriyanler_subtitle"  : "Maslahat berilýän harytlar",
 
-  "gune_cenli"  : "60 güne çenli"
+"ahlisi": "Ählisi",
+"ayakgaplar": "Aýakgaplar",
+"egin_esikler": "Egin-eşikler",
+"elektronika": "Elektronika",
+"oyuncaklar": "Oýnawaçlar",
+"kitaplar": "Kitaplar",
 
+"gune_cenli": "60 güne çenli",
 
-
-} 
+"sargytlar": "Sargytlar",
+"duydurys": "Duýduryş",
+"basga": "Başga",
+"habarlary_gozle": "Habarlary ýa-da üpjünçileri gözle",
+"okalmanlar": "Okalmanlar",
+"menin_belgim": "Meniň belgim",
+"habar_yok": "Habar ýok",
+"sargyt_goragy_text": "Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.",
+"has_ginisleyin": "Has giňişleýin",
+"siz_ucin_maslahat": "Siz üçin maslahat beriýär",
+"mohum_habarlary": "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň"
+}

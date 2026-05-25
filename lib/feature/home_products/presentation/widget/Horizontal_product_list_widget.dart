@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/product_card_widget.dart';
 
-class ProductModel {
-  final String imageUrl;
-  final String price;
-  final String name;
-
-  const ProductModel({
-    required this.imageUrl,
-    required this.price,
-    required this.name,
-  });
-}
+import '../../../products/models/product_model.dart';
 
 class HorizontalProductListWidget extends StatelessWidget {
   final List<ProductModel> products;
@@ -35,8 +25,8 @@ class HorizontalProductListWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final product = products[index];
           return ProductCardWidget(
-            imageUrl: product.imageUrl,
-            price: product.price,
+            imageUrl: product.currency,
+            price: product.price.toString(),
             name: product.name,
             onTap: onProductTap,
           );

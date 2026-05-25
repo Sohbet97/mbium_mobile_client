@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
         "baha_goraglylygy":
             MessageLookupByLibrary.simpleMessage("Baha goraglylygy"),
+        "basga": MessageLookupByLibrary.simpleMessage("Başga"),
         "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
         "camera": MessageLookupByLibrary.simpleMessage("Камера"),
         "card": MessageLookupByLibrary.simpleMessage("Корзина"),
@@ -44,15 +45,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "chats": MessageLookupByLibrary.simpleMessage("Чаты"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
+<<<<<<< HEAD
         "email_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
             "Elektron poçta arkaly dowam et"),
         "favorites": MessageLookupByLibrary.simpleMessage("Halanlarym"),
+=======
+        "duydurys": MessageLookupByLibrary.simpleMessage("Duýduryş"),
+        "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
+        "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
+>>>>>>> feature/chats
         "gallery": MessageLookupByLibrary.simpleMessage("Галерея"),
         "google_dowan_et":
             MessageLookupByLibrary.simpleMessage("Google bilen dowam et"),
         "gune_cenli": MessageLookupByLibrary.simpleMessage("60 güne çenli"),
+<<<<<<< HEAD
         "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
         "kupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
+=======
+        "habar_yok": MessageLookupByLibrary.simpleMessage("Habar ýok"),
+        "habarlary_gozle": MessageLookupByLibrary.simpleMessage(
+            "Habarlary ýa-da üpjünçileri gözle"),
+        "has_ginisleyin":
+            MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
+        "kitaplar": MessageLookupByLibrary.simpleMessage("Kitaplar"),
+>>>>>>> feature/chats
         "live": MessageLookupByLibrary.simpleMessage("Live"),
         "maslahat_beriyanler":
             MessageLookupByLibrary.simpleMessage("Maslahat berilýänler"),
@@ -61,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maslahat_beryan_harytlary":
             MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
         "mbium_coin_bilen":
+<<<<<<< HEAD
             MessageLookupByLibrary.simpleMessage("Mbium coin bilen"),
         "mbiumda_satyp_basla":
             MessageLookupByLibrary.simpleMessage("MBIUM-da satyp başla"),
@@ -70,6 +87,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mugt eltip bermek"),
         "mugt_dastawka_mbium_coin":
             MessageLookupByLibrary.simpleMessage("Mugt eltip bermek"),
+=======
+            MessageLookupByLibrary.simpleMessage("MBIUM Coin bilen töleseňiz"),
+        "menin_belgim": MessageLookupByLibrary.simpleMessage("Meniň belgim"),
+        "mohum_habarlary": MessageLookupByLibrary.simpleMessage(
+            "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň"),
+        "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt dastawka"),
+        "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
+            "Mugt dastawka MBIUM Coin bilen töleseňiz"),
+>>>>>>> feature/chats
         "my_mbium": MessageLookupByLibrary.simpleMessage("Мой Mbium"),
         "myhma_hokmunde":
             MessageLookupByLibrary.simpleMessage("Myhman hökmünde dowam et"),
@@ -80,15 +106,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Näsazlyk ýüze çykdy"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noDataAvailable": MessageLookupByLibrary.simpleMessage("Нет данных"),
+        "okalmanlar": MessageLookupByLibrary.simpleMessage("Okalmanlar"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Производители"),
         "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
         "products": MessageLookupByLibrary.simpleMessage("Товары"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
+<<<<<<< HEAD
         "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
             "Sargyt goraglylygy we \n uly arzanladyşlar"),
+=======
+        "sargyt_goragy_text": MessageLookupByLibrary.simpleMessage(
+            "Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň."),
+        "sargytlar": MessageLookupByLibrary.simpleMessage("Sargytlar"),
+>>>>>>> feature/chats
         "satys": MessageLookupByLibrary.simpleMessage("satyş"),
         "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
+        "siz_ucin_maslahat":
+            MessageLookupByLibrary.simpleMessage("Siz üçin maslahat beriýär"),
         "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
         "telefon_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
             "Telefon belgi arkaly dowam et"),
