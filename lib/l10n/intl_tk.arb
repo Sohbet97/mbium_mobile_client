@@ -49,14 +49,10 @@
   "menin_sargytlarym" : "Meniň sargytlarym",
   "ai_agendin_mugt_dowri" : "AI agendiň MUGT döwri",
   "mbiumda_satyp_basla" : "MBIUM-da satyp başla",
-  "product_empty" : "Haryt ýok",
-  "sizin_ucin"  : "Siziň üçin",
-  "mugt_dastawka" : "Mugt eltip bermek",
-  "mbium_coin_bilen"  : "Mbium coin bilen",
-  "baha_goraglylygy" : "Baha goraglylygy",
-  "mugt_dastawka_mbium_coin"  : "Mugt eltip bermek",
-  "maslahat_beriyanler" : "Maslahat berilýänler",
-  "maslahat_beriyanler_subtitle"  : "Maslahat berilýän harytlar",
+
+
+
+
 
 "ahlisi": "Ählisi",
 "ayakgaplar": "Aýakgaplar",
@@ -64,9 +60,13 @@
 "elektronika": "Elektronika",
 "oyuncaklar": "Oýnawaçlar",
 "kitaplar": "Kitaplar",
-
+"mugt_dastawka": "Mugt dastawka",
+"mbium_coin_bilen": "MBIUM Coin bilen töleseňiz",
+"baha_goraglylygy": "Baha goraglylygy",
 "gune_cenli": "60 güne çenli",
-
+"mugt_dastawka_mbium_coin": "Mugt dastawka MBIUM Coin bilen töleseňiz",
+"maslahat_beriyanler": "Maslahat beriýänler",
+"maslahat_beriyanler_subtitle": "Saýlanan geýimlere görä harytlarymyz",
 "sargytlar": "Sargytlar",
 "duydurys": "Duýduryş",
 "basga": "Başga",
@@ -77,5 +77,7 @@
 "sargyt_goragy_text": "Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.",
 "has_ginisleyin": "Has giňişleýin",
 "siz_ucin_maslahat": "Siz üçin maslahat beriýär",
-"mohum_habarlary": "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň"
+"mohum_habarlary": "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň",
+"product_empty" : "Haryt ýok",
+"sizin_ucin"  : "Siziň üçin"
 }
