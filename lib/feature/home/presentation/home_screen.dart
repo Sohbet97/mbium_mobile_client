@@ -5,6 +5,7 @@ import 'package:mbium_mobile_client/feature/home/presentation/widget/bottom_nav_
 import 'package:mbium_mobile_client/feature/myMbium/presentation/my_mbium_page.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:mbium_mobile_client/feature/chats/presentation/pages/chats_page.dart';
+import 'package:mbium_mobile_client/feature/cart_page/presentation/page/cart_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const HomePage(),
     Center(child: Text('REELS')),
     const ChatsPage(),  
-    Center(child: Text('CARD')),
+     const CartPage(), 
     const MyMbiumPage(),
   ];
   @override

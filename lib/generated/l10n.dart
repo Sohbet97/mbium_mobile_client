@@ -423,7 +423,52 @@ class S {
  
   String get mohum_habarlary {
   return Intl.message('Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň', name: 'mohum_habarlary', args: []);
-}
+  }
+
+  String get sebet {
+    return Intl.message('Sebet', name: 'sebet', args: []);
+  }
+
+  String get sebedinez_bos {
+    return Intl.message('Sebediniz boş', name: 'sebedinez_bos', args: []);
+  }
+
+  String get mugt_eltip_bermek_maks {
+    return Intl.message('MUGT ELTIP BERMEK maks. 20 \$', name: 'mugt_eltip_bermek_maks', args: []);
+  }
+
+  String get satyn_al {
+    return Intl.message('Satyn al', name: 'satyn_al', args: []);
+  }
+
+  String get us_a_eltip_bermek {
+    return Intl.message('US-a eltip bermek', name: 'us_a_eltip_bermek', args: []);
+  }
+
+  String get alibaba_sargyt_goragy {
+    return Intl.message('Alibaba.com sargyt goragy', name: 'alibaba_sargyt_goragy', args: []);
+  }
+
+  String get alibaba_sargyt_goragy_desc {
+    return Intl.message('Diňe Alibaba.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance', name: 'alibaba_sargyt_goragy_desc', args: []);
+  }
+
+  String get ynamly_tolegier {
+    return Intl.message('Ynamly\ntölegler', name: 'ynamly_tolegier', args: []);
+  }
+
+  String get kepillendirilen_eltip_bermek {
+    return Intl.message('Kepillendirilen\neltip bermek', name: 'kepillendirilen_eltip_bermek', args: []);
+  }
+
+  String get yza_gaytarmak_goragy {
+    return Intl.message('Yza\ngaytarmak\ngoragy', name: 'yza_gaytarmak_goragy', args: []);
+  }
+
+  String get goldanylyan_toleg_usullary {
+    return Intl.message('Goldanylýan töleg usullary', name: 'goldanylyan_toleg_usullary', args: []);
+  }
+
 }
 
 
