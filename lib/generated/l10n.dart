@@ -879,6 +879,33 @@ class S {
       args: [],
     );
   }
+
+String get mbium_sargyt_goraglylygy {
+  return Intl.message(
+    'MBIUM sargyt goraglylygy',
+    name: 'mbium_sargyt_goraglylygy',
+    desc: '',
+    args: [],
+  );
+}
+
+String get mbium_sargyt_goraglylygy_desc {
+  return Intl.message(
+    'Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner',
+    name: 'mbium_sargyt_goraglylygy_desc',
+    desc: '',
+    args: [],
+  );
+}
+
+String get toleg_usullary {
+  return Intl.message(
+    'Töleg usullary:',
+    name: 'toleg_usullary',
+    desc: '',
+    args: [],
+  );
+}
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import '../../../../../generated/l10n.dart';
 
@@ -16,15 +17,10 @@ class CartEmptyWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            'assets/images/cart_box.png',
+          SvgPicture.asset(
+            'assets/icons/empty_cart.svg',
             width: 80,
             height: 80,
-            errorBuilder: (_, __, ___) => const Icon(
-              Icons.shopping_cart_outlined,
-              size: 64,
-              color: AppColors.textLightGrey,
-            ),
           ),
           const SizedBox(height: 12),
           Text(

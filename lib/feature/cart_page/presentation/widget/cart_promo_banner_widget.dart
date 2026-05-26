@@ -15,30 +15,31 @@ class CartPromoBannerWidget extends StatelessWidget {
       color: AppColors.bonusBannerGreen,
       child: Row(
         children: [
-          const Icon(
-            Icons.local_shipping_outlined,
-            size: 18,
-            color: AppColors.bonusBannerTextGreen,
-          ),
+          const Icon(Icons.local_shipping_outlined,
+              size: 18, color: AppColors.bonusBannerTextGreen),
           const SizedBox(width: 8),
           Expanded(
             child: Row(
               children: [
-                Text(
-                  l10n.mugt_eltip_bermek_maks,
-                  style: const TextStyle(
+                const Text(
+                  'MUGT ELTIP BERMEK ',
+                  style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: AppColors.bonusBannerTextGreen,
                   ),
                 ),
-
-                const SizedBox(width: 4),
-                const Icon(
-                  Icons.access_time_outlined,
-                  size: 14,
-                  color: AppColors.aiTextBlack,
+                const Text(
+                  'maks. 300TMT',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.aiTextBlack,
+                  ),
                 ),
+                const SizedBox(width: 4),
+                const Icon(Icons.access_time_outlined,
+                    size: 14, color: AppColors.aiTextBlack),
               ],
             ),
           ),
@@ -55,11 +56,8 @@ class CartPromoBannerWidget extends StatelessWidget {
                     color: AppColors.bonusBannerTextGreen,
                   ),
                 ),
-                const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 12,
-                  color: AppColors.bonusBannerTextGreen,
-                ),
+                const Icon(Icons.arrow_forward_ios_rounded,
+                    size: 12, color: AppColors.bonusBannerTextGreen),
               ],
             ),
           ),
