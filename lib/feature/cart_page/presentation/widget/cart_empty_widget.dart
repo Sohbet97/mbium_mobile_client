@@ -13,7 +13,7 @@ class CartEmptyWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 32),
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
