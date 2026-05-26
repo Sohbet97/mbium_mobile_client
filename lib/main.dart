@@ -5,6 +5,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
+import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
@@ -201,6 +202,13 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 ProductBloc(repository: context.read<ProductRepository>()),
+          ),
+
+          // collections
+          BlocProvider(
+            create: (context) =>
+                CollectionBloc(dio: apiClient.dio)
+                  ..add(LoadAllCollectionEvent()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(
