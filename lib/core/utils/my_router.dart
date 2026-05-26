@@ -6,6 +6,7 @@ import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/product_detail_screen.dart';
 import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.dart';
 
+import '../../feature/favorite/presentation/favorite_screen.dart';
 import 'FadeRouter.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -21,6 +22,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/productDetail':
       final product = settings.arguments as ProductModel;
       return FadeRoute(page: ProductDetailScreen(product: product));
+    case '/favorite':
+      return FadeRoute(page: const FavoriteScreen());
 
     default:
       return FadeRoute(
