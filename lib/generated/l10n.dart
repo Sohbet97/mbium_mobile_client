@@ -770,10 +770,10 @@ class S {
     );
   }
 
-  /// `MUGT ELTIP BERMEK maks. 20 $`
+  /// `MUGT ELTIP BERMEK maks`
   String get mugt_eltip_bermek_maks {
     return Intl.message(
-      'MUGT ELTIP BERMEK maks. 20 \$',
+      'MUGT ELTIP BERMEK maks',
       name: 'mugt_eltip_bermek_maks',
       desc: '',
       args: [],
@@ -800,20 +800,20 @@ class S {
     );
   }
 
-  /// `Alibaba.com sargyt goragy`
+  /// `Mbium.com sargyt goragy`
   String get alibaba_sargyt_goragy {
     return Intl.message(
-      'Alibaba.com sargyt goragy',
+      'Mbium.com sargyt goragy',
       name: 'alibaba_sargyt_goragy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Diňe Alibaba.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance`
+  /// `Diňe Mbium.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance`
   String get alibaba_sargyt_goragy_desc {
     return Intl.message(
-      'Diňe Alibaba.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance',
+      'Diňe Mbium.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance',
       name: 'alibaba_sargyt_goragy_desc',
       desc: '',
       args: [],

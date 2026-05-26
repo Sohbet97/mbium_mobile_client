@@ -33,9 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "ai_agent_mugt_barla_desc": MessageLookupByLibrary.simpleMessage(
             "AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň"),
         "alibaba_sargyt_goragy":
-            MessageLookupByLibrary.simpleMessage("Alibaba.com sargyt goragy"),
+            MessageLookupByLibrary.simpleMessage("Mbium.com sargyt goragy"),
         "alibaba_sargyt_goragy_desc": MessageLookupByLibrary.simpleMessage(
-            "Diňe Alibaba.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance"),
+            "Diňe Mbium.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance"),
         "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
         "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
         "baha_goraglylygy":
@@ -92,8 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt dastawka"),
         "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
             "Mugt dastawka MBIUM Coin bilen töleseňiz"),
-        "mugt_eltip_bermek_maks": MessageLookupByLibrary.simpleMessage(
-            "MUGT ELTIP BERMEK maks. 20 \$"),
+        "mugt_eltip_bermek_maks":
+            MessageLookupByLibrary.simpleMessage("MUGT ELTIP BERMEK maks"),
         "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
         "myhma_hokmunde":
             MessageLookupByLibrary.simpleMessage("Myhman hökmünde dowam et"),

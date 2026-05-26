@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
 import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dart';
+import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
@@ -223,9 +224,14 @@ class _MyAppState extends State<MyApp> {
 
           // cart
           BlocProvider(
-            create: (context) => CartBloc(
-              repository: context.read<CartRepository>(),
-            )..add(const LoadCartEvent()),
+            create: (context) =>
+                CartBloc(repository: context.read<CartRepository>())
+                  ..add(const LoadCartEvent()),
+          ),
+
+          // favorite
+          BlocProvider(
+            create: (context) => FavoriteBloc()..add(LoadFavorites()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

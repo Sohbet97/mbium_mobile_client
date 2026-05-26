@@ -39,6 +39,7 @@ class _CartPageState extends State<CartPage> {
     _productBloc = context.read<ProductBloc>()..add(LoadProducts(_filter));
     _scrollController.addListener(_onScroll);
     _cartBloc = context.read<CartBloc>()..add(const LoadCartEvent());
+    context.read<FavoriteBloc>().add(LoadFavorites());
   }
 
   void _onScroll() {
@@ -118,10 +119,16 @@ class _CartPageState extends State<CartPage> {
 
                       BlocBuilder<FavoriteBloc, FavoriteState>(
                         builder: (context, state) {
-                          final count = 0;
-                          return Badge.count(
-                            count: 2,
+                          final count = state is FavoriteLoaded
+                              ? state.favorites.length
+                              : 0;
+                          return Badge(
                             isLabelVisible: count > 0,
+                            label: Text(
+                              count.toString(),
+
+                              style: const TextStyle(fontSize: 6),
+                            ),
                             child: const Icon(
                               Icons.favorite_border_outlined,
                               color: AppColors.lightTextSecondary,
