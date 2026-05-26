@@ -32,7 +32,9 @@ class HomeMenuWidget extends StatelessWidget {
             title: localization.top,
             subTitle: localization.satys,
             color: !isDark ? Colors.white : Colors.grey.shade800,
-            onTap: () {},
+            onTap: () {
+             Navigator.pushNamed(context, '/top-products');
+            }
           ),
 
           const SizedBox(width: 8),
