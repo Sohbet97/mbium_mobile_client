@@ -34,6 +34,7 @@ class S {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
+
       return instance;
     });
   }
@@ -49,6 +50,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Mbium`
   String get AppName {
     return Intl.message(
       'Mbium',
@@ -58,6 +60,7 @@ class S {
     );
   }
 
+  /// `Hawa`
   String get yes {
     return Intl.message(
       'Hawa',
@@ -67,6 +70,7 @@ class S {
     );
   }
 
+  /// `Ýok`
   String get no {
     return Intl.message(
       'Ýok',
@@ -76,6 +80,7 @@ class S {
     );
   }
 
+  /// `Goşmak`
   String get add {
     return Intl.message(
       'Goşmak',
@@ -85,6 +90,7 @@ class S {
     );
   }
 
+  /// `Maglumat ýok`
   String get noDataAvailable {
     return Intl.message(
       'Maglumat ýok',
@@ -94,6 +100,7 @@ class S {
     );
   }
 
+  /// `Kamera`
   String get camera {
     return Intl.message(
       'Kamera',
@@ -103,6 +110,7 @@ class S {
     );
   }
 
+  /// `Gallereýa`
   String get gallery {
     return Intl.message(
       'Gallereýa',
@@ -112,6 +120,7 @@ class S {
     );
   }
 
+  /// `Reels`
   String get reels {
     return Intl.message(
       'Reels',
@@ -121,6 +130,7 @@ class S {
     );
   }
 
+  /// `Habarlar`
   String get chats {
     return Intl.message(
       'Habarlar',
@@ -130,6 +140,7 @@ class S {
     );
   }
 
+  /// `Sebet`
   String get card {
     return Intl.message(
       'Sebet',
@@ -139,6 +150,7 @@ class S {
     );
   }
 
+  /// `Meniň Mbium`
   String get my_mbium {
     return Intl.message(
       'Meniň Mbium',
@@ -148,6 +160,7 @@ class S {
     );
   }
 
+  /// `Harytlar`
   String get products {
     return Intl.message(
       'Harytlar',
@@ -157,6 +170,7 @@ class S {
     );
   }
 
+  /// `Öndürijiler`
   String get ondurijiler {
     return Intl.message(
       'Öndürijiler',
@@ -166,6 +180,7 @@ class S {
     );
   }
 
+  /// `Welaýatlar boýunça`
   String get welayatlar_boyunca {
     return Intl.message(
       'Welaýatlar boýunça',
@@ -175,6 +190,7 @@ class S {
     );
   }
 
+  /// `AI agent`
   String get Ai_agent {
     return Intl.message(
       'AI agent',
@@ -184,6 +200,7 @@ class S {
     );
   }
 
+  /// `Derejäni galdyr`
   String get derejani_galdyr {
     return Intl.message(
       'Derejäni galdyr',
@@ -193,6 +210,7 @@ class S {
     );
   }
 
+  /// `Täzele`
   String get refresh {
     return Intl.message(
       'Täzele',
@@ -202,6 +220,7 @@ class S {
     );
   }
 
+  /// `Näsazlyk ýüze çykdy`
   String get nasazlyk_yuze_cykdy {
     return Intl.message(
       'Näsazlyk ýüze çykdy',
@@ -211,6 +230,7 @@ class S {
     );
   }
 
+  /// `Kategoriýalar`
   String get categories {
     return Intl.message(
       'Kategoriýalar',
@@ -220,6 +240,7 @@ class S {
     );
   }
 
+  /// `Kategoriýa`
   String get category {
     return Intl.message(
       'Kategoriýa',
@@ -229,6 +250,7 @@ class S {
     );
   }
 
+  /// `boýunça`
   String get boyunca {
     return Intl.message(
       'boýunça',
@@ -238,6 +260,7 @@ class S {
     );
   }
 
+  /// `Top`
   String get top {
     return Intl.message(
       'Top',
@@ -247,6 +270,7 @@ class S {
     );
   }
 
+  /// `Live`
   String get live {
     return Intl.message(
       'Live',
@@ -256,6 +280,7 @@ class S {
     );
   }
 
+  /// `satyş`
   String get satys {
     return Intl.message(
       'satyş',
@@ -265,6 +290,7 @@ class S {
     );
   }
 
+  /// `Gözleg...`
   String get search {
     return Intl.message(
       'Gözleg...',
@@ -274,6 +300,7 @@ class S {
     );
   }
 
+  /// `Içki kategoriýa ýok`
   String get category_empty {
     return Intl.message(
       'Içki kategoriýa ýok',
@@ -283,6 +310,7 @@ class S {
     );
   }
 
+  /// `AI Agendyň`
   String get ai_agendyn {
     return Intl.message(
       'AI Agendyň',
@@ -292,6 +320,7 @@ class S {
     );
   }
 
+  /// `maslahat berýän harytlary`
   String get maslahat_beryan_harytlary {
     return Intl.message(
       'maslahat berýän harytlary',
@@ -301,6 +330,7 @@ class S {
     );
   }
 
+  /// `Türkmenistanyň ähli ýerinden öýden çykman söwda ediň`
   String get turkmenistanda_oyden_cykman_sowda_et {
     return Intl.message(
       'Türkmenistanyň ähli ýerinden öýden çykman söwda ediň',
@@ -310,6 +340,7 @@ class S {
     );
   }
 
+  /// `Sargyt goraglylygy we \n uly arzanladyşlar`
   String get sargyt_goraglylygy {
     return Intl.message(
       'Sargyt goraglylygy we \n uly arzanladyşlar',
@@ -319,6 +350,7 @@ class S {
     );
   }
 
+  /// `Google bilen dowam et`
   String get google_dowan_et {
     return Intl.message(
       'Google bilen dowam et',
@@ -328,6 +360,7 @@ class S {
     );
   }
 
+  /// `Telefon belgi arkaly dowam et`
   String get telefon_bilen_dowam_et {
     return Intl.message(
       'Telefon belgi arkaly dowam et',
@@ -337,6 +370,7 @@ class S {
     );
   }
 
+  /// `Elektron poçta arkaly dowam et`
   String get email_bilen_dowam_et {
     return Intl.message(
       'Elektron poçta arkaly dowam et',
@@ -346,6 +380,7 @@ class S {
     );
   }
 
+  /// `Myhman hökmünde dowam et`
   String get myhma_hokmunde {
     return Intl.message(
       'Myhman hökmünde dowam et',
@@ -355,6 +390,7 @@ class S {
     );
   }
 
+  /// `Myhman`
   String get myhman {
     return Intl.message(
       'Myhman',
@@ -364,6 +400,7 @@ class S {
     );
   }
 
+  /// `Ulgama girmeklik üçin basyň`
   String get myhman_desc {
     return Intl.message(
       'Ulgama girmeklik üçin basyň',
@@ -373,6 +410,7 @@ class S {
     );
   }
 
+  /// `Aýratynlyklar`
   String get ayratynlyklar {
     return Intl.message(
       'Aýratynlyklar',
@@ -382,6 +420,7 @@ class S {
     );
   }
 
+  /// `Halanlarym`
   String get favorites {
     return Intl.message(
       'Halanlarym',
@@ -391,6 +430,7 @@ class S {
     );
   }
 
+  /// `Taryhy`
   String get history {
     return Intl.message(
       'Taryhy',
@@ -400,6 +440,7 @@ class S {
     );
   }
 
+  /// `Abuna`
   String get abuna {
     return Intl.message(
       'Abuna',
@@ -409,6 +450,7 @@ class S {
     );
   }
 
+  /// `Kuponlar`
   String get kupons {
     return Intl.message(
       'Kuponlar',
@@ -418,6 +460,7 @@ class S {
     );
   }
 
+  /// `Tölegler`
   String get tolegler {
     return Intl.message(
       'Tölegler',
@@ -427,6 +470,7 @@ class S {
     );
   }
 
+  /// `AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň`
   String get ai_agent_mugt_barla_desc {
     return Intl.message(
       'AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň',
@@ -436,6 +480,7 @@ class S {
     );
   }
 
+  /// `Meniň sargytlarym`
   String get menin_sargytlarym {
     return Intl.message(
       'Meniň sargytlarym',
@@ -445,6 +490,7 @@ class S {
     );
   }
 
+  /// `AI agendiň MUGT döwri`
   String get ai_agendin_mugt_dowri {
     return Intl.message(
       'AI agendiň MUGT döwri',
@@ -454,6 +500,7 @@ class S {
     );
   }
 
+  /// `MBIUM-da satyp başla`
   String get mbiumda_satyp_basla {
     return Intl.message(
       'MBIUM-da satyp başla',
@@ -463,6 +510,7 @@ class S {
     );
   }
 
+  /// `Ählisi`
   String get ahlisi {
     return Intl.message(
       'Ählisi',
@@ -472,6 +520,7 @@ class S {
     );
   }
 
+  /// `Aýakgaplar`
   String get ayakgaplar {
     return Intl.message(
       'Aýakgaplar',
@@ -481,6 +530,7 @@ class S {
     );
   }
 
+  /// `Egin-eşikler`
   String get egin_esikler {
     return Intl.message(
       'Egin-eşikler',
@@ -490,6 +540,7 @@ class S {
     );
   }
 
+  /// `Elektronika`
   String get elektronika {
     return Intl.message(
       'Elektronika',
@@ -499,6 +550,7 @@ class S {
     );
   }
 
+  /// `Oýnawaçlar`
   String get oyuncaklar {
     return Intl.message(
       'Oýnawaçlar',
@@ -508,6 +560,7 @@ class S {
     );
   }
 
+  /// `Kitaplar`
   String get kitaplar {
     return Intl.message(
       'Kitaplar',
@@ -517,6 +570,7 @@ class S {
     );
   }
 
+  /// `Mugt dastawka`
   String get mugt_dastawka {
     return Intl.message(
       'Mugt dastawka',
@@ -526,6 +580,7 @@ class S {
     );
   }
 
+  /// `MBIUM Coin bilen töleseňiz`
   String get mbium_coin_bilen {
     return Intl.message(
       'MBIUM Coin bilen töleseňiz',
@@ -535,6 +590,7 @@ class S {
     );
   }
 
+  /// `Baha goraglylygy`
   String get baha_goraglylygy {
     return Intl.message(
       'Baha goraglylygy',
@@ -544,6 +600,7 @@ class S {
     );
   }
 
+  /// `60 güne çenli`
   String get gune_cenli {
     return Intl.message(
       '60 güne çenli',
@@ -553,6 +610,7 @@ class S {
     );
   }
 
+  /// `Mugt dastawka MBIUM Coin bilen töleseňiz`
   String get mugt_dastawka_mbium_coin {
     return Intl.message(
       'Mugt dastawka MBIUM Coin bilen töleseňiz',
@@ -562,6 +620,7 @@ class S {
     );
   }
 
+  /// `Maslahat beriýänler`
   String get maslahat_beriyanler {
     return Intl.message(
       'Maslahat beriýänler',
@@ -571,6 +630,7 @@ class S {
     );
   }
 
+  /// `Saýlanan geýimlere görä harytlarymyz`
   String get maslahat_beriyanler_subtitle {
     return Intl.message(
       'Saýlanan geýimlere görä harytlarymyz',
@@ -580,6 +640,7 @@ class S {
     );
   }
 
+  /// `Sargytlar`
   String get sargytlar {
     return Intl.message(
       'Sargytlar',
@@ -589,6 +650,7 @@ class S {
     );
   }
 
+  /// `Duýduryş`
   String get duydurys {
     return Intl.message(
       'Duýduryş',
@@ -598,6 +660,7 @@ class S {
     );
   }
 
+  /// `Başga`
   String get basga {
     return Intl.message(
       'Başga',
@@ -607,6 +670,7 @@ class S {
     );
   }
 
+  /// `Habarlary ýa-da üpjünçileri gözle`
   String get habarlary_gozle {
     return Intl.message(
       'Habarlary ýa-da üpjünçileri gözle',
@@ -616,6 +680,7 @@ class S {
     );
   }
 
+  /// `Okalmanlar`
   String get okalmanlar {
     return Intl.message(
       'Okalmanlar',
@@ -625,6 +690,7 @@ class S {
     );
   }
 
+  /// `Meniň belgim`
   String get menin_belgim {
     return Intl.message(
       'Meniň belgim',
@@ -634,6 +700,7 @@ class S {
     );
   }
 
+  /// `Habar ýok`
   String get habar_yok {
     return Intl.message(
       'Habar ýok',
@@ -643,6 +710,7 @@ class S {
     );
   }
 
+  /// `Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.`
   String get sargyt_goragy_text {
     return Intl.message(
       'Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.',
@@ -652,6 +720,7 @@ class S {
     );
   }
 
+  /// `Has giňişleýin`
   String get has_ginisleyin {
     return Intl.message(
       'Has giňişleýin',
@@ -661,6 +730,7 @@ class S {
     );
   }
 
+  /// `Siz üçin maslahat beriýär`
   String get siz_ucin_maslahat {
     return Intl.message(
       'Siz üçin maslahat beriýär',
@@ -670,6 +740,7 @@ class S {
     );
   }
 
+  /// `Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň`
   String get mohum_habarlary {
     return Intl.message(
       'Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň',
@@ -679,6 +750,7 @@ class S {
     );
   }
 
+  /// `Sebet`
   String get sebet {
     return Intl.message(
       'Sebet',
@@ -688,6 +760,7 @@ class S {
     );
   }
 
+  /// `Sebediniz boş`
   String get sebedinez_bos {
     return Intl.message(
       'Sebediniz boş',
@@ -697,6 +770,7 @@ class S {
     );
   }
 
+  /// `MUGT ELTIP BERMEK maks. 20 $`
   String get mugt_eltip_bermek_maks {
     return Intl.message(
       'MUGT ELTIP BERMEK maks. 20 \$',
@@ -706,6 +780,7 @@ class S {
     );
   }
 
+  /// `Satyn al`
   String get satyn_al {
     return Intl.message(
       'Satyn al',
@@ -715,6 +790,7 @@ class S {
     );
   }
 
+  /// `US-a eltip bermek`
   String get us_a_eltip_bermek {
     return Intl.message(
       'US-a eltip bermek',
@@ -724,6 +800,7 @@ class S {
     );
   }
 
+  /// `Alibaba.com sargyt goragy`
   String get alibaba_sargyt_goragy {
     return Intl.message(
       'Alibaba.com sargyt goragy',
@@ -733,6 +810,7 @@ class S {
     );
   }
 
+  /// `Diňe Alibaba.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance`
   String get alibaba_sargyt_goragy_desc {
     return Intl.message(
       'Diňe Alibaba.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance',
@@ -742,6 +820,7 @@ class S {
     );
   }
 
+  /// `Ynamly\ntölegler`
   String get ynamly_tolegier {
     return Intl.message(
       'Ynamly\ntölegler',
@@ -751,6 +830,7 @@ class S {
     );
   }
 
+  /// `Kepillendirilen\neltip bermek`
   String get kepillendirilen_eltip_bermek {
     return Intl.message(
       'Kepillendirilen\neltip bermek',
@@ -760,6 +840,7 @@ class S {
     );
   }
 
+  /// `Yza\ngaytarmak\ngoragy`
   String get yza_gaytarmak_goragy {
     return Intl.message(
       'Yza\ngaytarmak\ngoragy',
@@ -769,6 +850,7 @@ class S {
     );
   }
 
+  /// `Goldanylýan töleg usullary`
   String get goldanylyan_toleg_usullary {
     return Intl.message(
       'Goldanylýan töleg usullary',
@@ -778,6 +860,7 @@ class S {
     );
   }
 
+  /// `Haryt ýok`
   String get product_empty {
     return Intl.message(
       'Haryt ýok',
@@ -787,6 +870,7 @@ class S {
     );
   }
 
+  /// `Siziň üçin`
   String get sizin_ucin {
     return Intl.message(
       'Siziň üçin',

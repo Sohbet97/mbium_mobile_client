@@ -19,21 +19,7 @@ class _CartRecommendationWidgetState extends State<CartRecommendationWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<ProductBloc>().add(
-          const LoadProducts(FilterModel(limit: 10)),
-        );
-  }
-
-  String _getProductName(ProductModel product) {
-    final locale = Localizations.localeOf(context).languageCode;
-    switch (locale) {
-      case 'ru':
-        return product.nameRu.isNotEmpty ? product.nameRu : product.name;
-      case 'en':
-        return product.nameEng.isNotEmpty ? product.nameEng : product.name;
-      default:
-        return product.name;
-    }
+    context.read<ProductBloc>().add(const LoadProducts(FilterModel(limit: 10)));
   }
 
   String _getImageUrl(ProductModel product) {
@@ -65,10 +51,7 @@ class _CartRecommendationWidgetState extends State<CartRecommendationWidget> {
             padding: const EdgeInsets.all(16),
             child: Text(
               state.message,
-              style: const TextStyle(
-                color: AppColors.errorRed,
-                fontSize: 12,
-              ),
+              style: const TextStyle(color: AppColors.errorRed, fontSize: 12),
             ),
           );
         }
@@ -80,7 +63,6 @@ class _CartRecommendationWidgetState extends State<CartRecommendationWidget> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                 child: Text(
@@ -94,8 +76,7 @@ class _CartRecommendationWidgetState extends State<CartRecommendationWidget> {
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
@@ -126,16 +107,17 @@ class _CartRecommendationWidgetState extends State<CartRecommendationWidget> {
                             ),
                           ),
                           const SizedBox(height: 6),
-                          
+
                           Text(
-                            _getProductName(product),
-                            style: textStyles.s13w600clBlack
-                                .copyWith(fontSize: 12),
+                            product.name,
+                            style: textStyles.s13w600clBlack.copyWith(
+                              fontSize: 12,
+                            ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 2),
-                      
+
                           Text(
                             '${product.price.toStringAsFixed(0)} ${product.currency}',
                             style: const TextStyle(

@@ -13,6 +13,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   final PersonRepository repository;
   PersonBloc({required this.repository}) : super(PersonState()) {
     on<IsRegisteredEvent>(_onIsRegistered);
+    on<RegisterWithGostEvent>(_onRegisterWithGost);
   }
 
   FutureOr<void> _onIsRegistered(
@@ -21,9 +22,21 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   ) async {
     try {
       final result = await repository.preferences.isRegistered();
-      emit(state.copyWith(isRegistered: result));
+      final isGost = await repository.preferences.isGostUser();
+      emit(state.copyWith(isRegistered: result, isGostUser: isGost));
     } catch (e) {
       emit(state.copyWith(errorMessage: '$e'));
     }
+  }
+
+  FutureOr<void> _onRegisterWithGost(
+    RegisterWithGostEvent event,
+    Emitter<PersonState> emit,
+  ) async {
+    repository.preferences.saveRegistrationStatus(true);
+    repository.preferences.saveGostUser(true);
+    emit(
+      state.copyWith(isRegistered: true, personModel: null, isGostUser: true),
+    );
   }
 }

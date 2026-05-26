@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final _pages = <Widget>[
     const HomePage(),
     Center(child: Text('REELS')),
-    const ChatsPage(),  
-     const CartPage(), 
+    const ChatsPage(),
+    const CartPage(),
     const MyMbiumPage(),
   ];
   @override

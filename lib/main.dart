@@ -10,6 +10,8 @@ import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/data/ai_repository.dart';
+import 'package:mbium_mobile_client/feature/cart_page/bloc/cart_bloc.dart';
+import 'package:mbium_mobile_client/feature/cart_page/data/cart_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
 
@@ -168,6 +170,14 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => ProductRepository(dio: apiClient.dio),
         ),
+
+        // cart
+        RepositoryProvider(
+          create: (context) => CartRepository(
+            dio: apiClient.dio,
+            appPreferences: widget.appPreferences,
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -209,6 +219,13 @@ class _MyAppState extends State<MyApp> {
             create: (context) =>
                 CollectionBloc(dio: apiClient.dio)
                   ..add(LoadAllCollectionEvent()),
+          ),
+
+          // cart
+          BlocProvider(
+            create: (context) => CartBloc(
+              repository: context.read<CartRepository>(),
+            )..add(const LoadCartEvent()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

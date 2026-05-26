@@ -2,41 +2,32 @@
   "@@locale": "ru",
 
   "AppName": "Mbium",
-  "yes": "Да",
-  "no": "Нет",
-  "add": "Добавить",
-  "noDataAvailable": "Нет данных",
-  "camera": "Камера",
-  "gallery": "Галерея",
+  "yes": "Hawa",
+  "no": "Ýok",
+  "add": "Goşmak",
+  "noDataAvailable": "Maglumat ýok",
+  "camera": "Kamera",
+  "gallery": "Gallereýa",
   "reels": "Reels",
-  "chats": "Чаты",
-  "card": "Корзина",
-  "my_mbium": "Мой Mbium",
-  "products"  : "Товары",
-  "ondurijiler" : "Производители",
+  "chats": "Habarlar",
+  "card": "Sebet",
+  "my_mbium": "Meniň Mbium",
+  "products"  : "Harytlar",
+  "ondurijiler" : "Öndürijiler",
   "welayatlar_boyunca" : "Welaýatlar boýunça",
   "Ai_agent"  : "AI agent",
+  "derejani_galdyr" : "Derejäni galdyr",
   "refresh" : "Täzele",
   "nasazlyk_yuze_cykdy" : "Näsazlyk ýüze çykdy",
   "categories" :  "Kategoriýalar",
-
-
   "category"  : "Kategoriýa",
   "boyunca" : "boýunça",
-    "top" : "Top",
+  "top" : "Top",
   "live"  : "Live",
   "satys" : "satyş",
   "search"  : "Gözleg...",
   "category_empty"  : "Içki kategoriýa ýok",
-
-
-
-
-
-
-
-  "derejani_galdyr" : "Derejäni galdyr",
-    "ai_agendyn"  : "AI Agendyň",
+  "ai_agendyn"  : "AI Agendyň",
   "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
 
 "ahlisi": "Ählisi",
@@ -73,5 +64,9 @@
 "ynamly_tolegier": "Ynamly\ntölegler",
 "kepillendirilen_eltip_bermek": "Kepillendirilen\neltip bermek",
 "yza_gaytarmak_goragy": "Yza\ngaytarmak\ngoragy",
-"goldanylyan_toleg_usullary": "Goldanylýan töleg usullary"
+"goldanylyan_toleg_usullary": "Goldanylýan töleg usullary",
+"product_empty" : "Haryt ýok",
+"sizin_ucin"  : "Siziň üçin"
+
+
 }

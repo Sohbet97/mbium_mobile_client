@@ -22,13 +22,11 @@
   "categories" :  "Kategoriýalar",
   "category"  : "Kategoriýa",
   "boyunca" : "boýunça",
-    "top" : "Top",
+  "top" : "Top",
   "live"  : "Live",
   "satys" : "satyş",
   "search"  : "Gözleg...",
   "category_empty"  : "Içki kategoriýa ýok",
-
-
   "ai_agendyn"  : "AI Agendyň",
   "maslahat_beryan_harytlary"  : "maslahat berýän harytlary",
 
@@ -66,5 +64,7 @@
 "ynamly_tolegier": "Ynamly\ntölegler",
 "kepillendirilen_eltip_bermek": "Kepillendirilen\neltip bermek",
 "yza_gaytarmak_goragy": "Yza\ngaytarmak\ngoragy",
-"goldanylyan_toleg_usullary": "Goldanylýan töleg usullary"
+"goldanylyan_toleg_usullary": "Goldanylýan töleg usullary",
+"product_empty" : "Haryt ýok",
+"sizin_ucin"  : "Siziň üçin"
 }

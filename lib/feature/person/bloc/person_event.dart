@@ -8,3 +8,5 @@ sealed class PersonEvent extends Equatable {
 }
 
 final class IsRegisteredEvent extends PersonEvent {}
+
+final class RegisterWithGostEvent extends PersonEvent {}
