@@ -63,4 +63,10 @@ class AppPreferences {
 
   Future<bool> setString(String key, String value) =>
       _sharedPreferences.setString(key, value);
+
+  List<String>? getStringList(String key) =>
+      _sharedPreferences.getStringList(key);
+
+  Future<bool> setStringList(String key, List<String> value) =>
+      _sharedPreferences.setStringList(key, value);
 }

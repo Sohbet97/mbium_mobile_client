@@ -7,6 +7,7 @@ import 'package:mbium_mobile_client/feature/products/presentation/product_detail
 import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.dart';
 import 'package:mbium_mobile_client/feature/top_products/presentation/pages/top_products_page.dart';
 
+import '../../feature/favorite/presentation/favorite_screen.dart';
 import 'FadeRouter.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -24,6 +25,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/productDetail':
       final product = settings.arguments as ProductModel;
       return FadeRoute(page: ProductDetailScreen(product: product));
+    case '/favorite':
+      return FadeRoute(page: const FavoriteScreen());
+
     default:
       return FadeRoute(
         page: Scaffold(body: Center(child: Text('404 Screen not Found'))),
