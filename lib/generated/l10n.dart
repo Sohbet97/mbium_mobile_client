@@ -906,6 +906,42 @@ String get toleg_usullary {
     args: [],
   );
 }
+
+String get turkmenistanda_in_gowysy {
+  return Intl.message(
+    'Türkmenistanda iň gowysy',
+    name: 'turkmenistanda_in_gowysy',
+    desc: '',
+    args: [],
+  );
+}
+
+String get kategoriyany_saylan {
+  return Intl.message(
+    'Kategoriýany saýlaň',
+    name: 'kategoriyany_saylan',
+    desc: '',
+    args: [],
+  );
+}
+
+String get satuw_liderleri {
+  return Intl.message(
+    'Satuw liderleri',
+    name: 'satuw_liderleri',
+    desc: '',
+    args: [],
+  );
+}
+
+String get in_meshgurlar {
+  return Intl.message(
+    'Iň meşgurlar',
+    name: 'in_meshgurlar',
+    desc: '',
+    args: [],
+  );
+}
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
