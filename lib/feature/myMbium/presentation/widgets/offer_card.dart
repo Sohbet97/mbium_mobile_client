@@ -63,7 +63,7 @@ class OfferCard extends StatelessWidget {
             ),
           ),
 
-          SvgIcon(iconName: 'assets/icons/delivery.svg', height: 42, width: 42),
+          Image.asset('assets/images/delivery-truck.png'),
         ],
       ),
     );
