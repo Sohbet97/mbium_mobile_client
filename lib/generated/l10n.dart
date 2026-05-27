@@ -800,20 +800,20 @@ class S {
     );
   }
 
-  /// `Mbium.com sargyt goragy`
+  /// `MBIUM sargyt goraglylygy`
   String get alibaba_sargyt_goragy {
     return Intl.message(
-      'Mbium.com sargyt goragy',
+      'MBIUM sargyt goraglylygy',
       name: 'alibaba_sargyt_goragy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Diňe Mbium.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance`
+  /// `Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner`
   String get alibaba_sargyt_goragy_desc {
     return Intl.message(
-      'Diňe Mbium.com arkaly ýerleşdirilen we tölenen sargytlar mugt goragdan peýdalanyp biler 🛡️ Trade Assurance',
+      'Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner',
       name: 'alibaba_sargyt_goragy_desc',
       desc: '',
       args: [],
@@ -880,68 +880,55 @@ class S {
     );
   }
 
-String get mbium_sargyt_goraglylygy {
-  return Intl.message(
-    'MBIUM sargyt goraglylygy',
-    name: 'mbium_sargyt_goraglylygy',
-    desc: '',
-    args: [],
-  );
-}
+  /// `Töleg usullary:`
+  String get toleg_usullary {
+    return Intl.message(
+      'Töleg usullary:',
+      name: 'toleg_usullary',
+      desc: '',
+      args: [],
+    );
+  }
 
-String get mbium_sargyt_goraglylygy_desc {
-  return Intl.message(
-    'Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner',
-    name: 'mbium_sargyt_goraglylygy_desc',
-    desc: '',
-    args: [],
-  );
-}
+  /// `Türkmenistanda iň gowysy`
+  String get turkmenistanda_in_gowysy {
+    return Intl.message(
+      'Türkmenistanda iň gowysy',
+      name: 'turkmenistanda_in_gowysy',
+      desc: '',
+      args: [],
+    );
+  }
 
-String get toleg_usullary {
-  return Intl.message(
-    'Töleg usullary:',
-    name: 'toleg_usullary',
-    desc: '',
-    args: [],
-  );
-}
+  /// `Kategoriýany saýlaň`
+  String get kategoriyany_saylan {
+    return Intl.message(
+      'Kategoriýany saýlaň',
+      name: 'kategoriyany_saylan',
+      desc: '',
+      args: [],
+    );
+  }
 
-String get turkmenistanda_in_gowysy {
-  return Intl.message(
-    'Türkmenistanda iň gowysy',
-    name: 'turkmenistanda_in_gowysy',
-    desc: '',
-    args: [],
-  );
-}
+  /// `Satuw liderleri`
+  String get satuw_liderleri {
+    return Intl.message(
+      'Satuw liderleri',
+      name: 'satuw_liderleri',
+      desc: '',
+      args: [],
+    );
+  }
 
-String get kategoriyany_saylan {
-  return Intl.message(
-    'Kategoriýany saýlaň',
-    name: 'kategoriyany_saylan',
-    desc: '',
-    args: [],
-  );
-}
-
-String get satuw_liderleri {
-  return Intl.message(
-    'Satuw liderleri',
-    name: 'satuw_liderleri',
-    desc: '',
-    args: [],
-  );
-}
-
-String get in_meshgurlar {
-  return Intl.message(
-    'Iň meşgurlar',
-    name: 'in_meshgurlar',
-    desc: '',
-    args: [],
-  );
-}
+  /// `Iň meşgurlar`
+  String get in_meshgurlar {
+    return Intl.message(
+      'Iň meşgurlar',
+      name: 'in_meshgurlar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
