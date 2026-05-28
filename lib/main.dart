@@ -17,7 +17,6 @@ import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
 import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
 import 'package:mbium_mobile_client/feature/shops/data/shop_repository.dart';
-import 'package:mbium_mobile_client/feature/shops/model/shop_filter_model.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 

@@ -9,10 +9,7 @@ import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.da
 import 'package:mbium_mobile_client/feature/top_products/presentation/pages/top_products_page.dart';
 
 import '../../feature/favorite/presentation/favorite_screen.dart';
-<<<<<<< HEAD
 import '../../feature/shops/presentation/shop_detail_screen.dart';
-=======
->>>>>>> settings
 import 'FadeRouter.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
