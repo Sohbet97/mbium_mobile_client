@@ -60,12 +60,12 @@ class _ShopsOndabaryjyWidgetState
           if (products.isEmpty) return const SizedBox.shrink();
 
           return SizedBox(
-            height: 160,
+            height: 220,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: products.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 10),
+              separatorBuilder: (_, __) => const SizedBox(width: 12),
               itemBuilder: (context, i) {
                 final product = products[i];
                 final imageUrl = _getImageUrl(product);
@@ -73,36 +73,36 @@ class _ShopsOndabaryjyWidgetState
                 return GestureDetector(
                   onTap: () {},
                   child: SizedBox(
-                    width: 100,
+                    width: 180,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(12),
                           child: imageUrl.isNotEmpty
                               ? Image.network(
                                   imageUrl,
-                                  width: 100,
-                                  height: 110,
+                                  width: 180,
+                                  height: 160,
                                   fit: BoxFit.cover,
                                   errorBuilder: (_, __, ___) =>
                                       _placeholder(context),
                                 )
                               : _placeholder(context),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 6),
                         Text(
                           '${product.price.toStringAsFixed(0)} ${product.currency}',
                           style: const TextStyle(
-                            fontSize: 11,
+                            fontSize: 13,
                             fontWeight: FontWeight.w700,
                             color: AppColors.primaryGreen,
                           ),
                         ),
+                        const SizedBox(height: 2),
                         Text(
                           product.name,
-                          style: textStyles.s13w600clBlack.copyWith(
-                              fontSize: 10),
+                          style: textStyles.s13w600clBlack.copyWith(fontSize: 12),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -122,11 +122,11 @@ class _ShopsOndabaryjyWidgetState
 
   Widget _placeholder(BuildContext context) {
     return Container(
-      width: 100,
-      height: 110,
+      width: 180,
+      height: 160,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: const Icon(
         Icons.image_not_supported_outlined,
