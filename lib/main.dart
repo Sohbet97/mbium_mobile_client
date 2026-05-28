@@ -15,6 +15,9 @@ import 'package:mbium_mobile_client/feature/cart_page/bloc/cart_bloc.dart';
 import 'package:mbium_mobile_client/feature/cart_page/data/cart_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
+import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
+import 'package:mbium_mobile_client/feature/shops/data/shop_repository.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_filter_model.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -172,6 +175,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => ProductRepository(dio: apiClient.dio),
         ),
 
+        // shops
+        RepositoryProvider(
+          create: (context) => ShopRepository(dio: apiClient.dio),
+        ),
+
         // cart
         RepositoryProvider(
           create: (context) => CartRepository(
@@ -215,6 +223,12 @@ class _MyAppState extends State<MyApp> {
                 ProductBloc(repository: context.read<ProductRepository>()),
           ),
 
+          // shops
+          BlocProvider(
+            create: (context) =>
+                ShopBloc(repository: context.read<ShopRepository>()),
+          ),
+
           // collections
           BlocProvider(
             create: (context) =>
@@ -231,9 +245,9 @@ class _MyAppState extends State<MyApp> {
 
           // favorite
           BlocProvider(
-            create: (context) => FavoriteBloc(
-              appPreferences: widget.appPreferences,
-            )..add(const LoadFavorites()),
+            create: (context) =>
+                FavoriteBloc(appPreferences: widget.appPreferences)
+                  ..add(const LoadFavorites()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

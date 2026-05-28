@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,42 +56,22 @@ class S {
 
   /// `Mbium`
   String get AppName {
-    return Intl.message(
-      'Mbium',
-      name: 'AppName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mbium', name: 'AppName', desc: '', args: []);
   }
 
   /// `Hawa`
   String get yes {
-    return Intl.message(
-      'Hawa',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Hawa', name: 'yes', desc: '', args: []);
   }
 
   /// `Ýok`
   String get no {
-    return Intl.message(
-      'Ýok',
-      name: 'no',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ýok', name: 'no', desc: '', args: []);
   }
 
   /// `Goşmak`
   String get add {
-    return Intl.message(
-      'Goşmak',
-      name: 'add',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Goşmak', name: 'add', desc: '', args: []);
   }
 
   /// `Maglumat ýok`
@@ -102,82 +86,42 @@ class S {
 
   /// `Kamera`
   String get camera {
-    return Intl.message(
-      'Kamera',
-      name: 'camera',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kamera', name: 'camera', desc: '', args: []);
   }
 
   /// `Gallereýa`
   String get gallery {
-    return Intl.message(
-      'Gallereýa',
-      name: 'gallery',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Gallereýa', name: 'gallery', desc: '', args: []);
   }
 
   /// `Reels`
   String get reels {
-    return Intl.message(
-      'Reels',
-      name: 'reels',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Reels', name: 'reels', desc: '', args: []);
   }
 
   /// `Habarlar`
   String get chats {
-    return Intl.message(
-      'Habarlar',
-      name: 'chats',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Habarlar', name: 'chats', desc: '', args: []);
   }
 
   /// `Sebet`
   String get card {
-    return Intl.message(
-      'Sebet',
-      name: 'card',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sebet', name: 'card', desc: '', args: []);
   }
 
   /// `Meniň Mbium`
   String get my_mbium {
-    return Intl.message(
-      'Meniň Mbium',
-      name: 'my_mbium',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Meniň Mbium', name: 'my_mbium', desc: '', args: []);
   }
 
   /// `Harytlar`
   String get products {
-    return Intl.message(
-      'Harytlar',
-      name: 'products',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Harytlar', name: 'products', desc: '', args: []);
   }
 
   /// `Öndürijiler`
   String get ondurijiler {
-    return Intl.message(
-      'Öndürijiler',
-      name: 'ondurijiler',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Öndürijiler', name: 'ondurijiler', desc: '', args: []);
   }
 
   /// `Welaýatlar boýunça`
@@ -192,12 +136,7 @@ class S {
 
   /// `AI agent`
   String get Ai_agent {
-    return Intl.message(
-      'AI agent',
-      name: 'Ai_agent',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('AI agent', name: 'Ai_agent', desc: '', args: []);
   }
 
   /// `Derejäni galdyr`
@@ -212,12 +151,7 @@ class S {
 
   /// `Täzele`
   String get refresh {
-    return Intl.message(
-      'Täzele',
-      name: 'refresh',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Täzele', name: 'refresh', desc: '', args: []);
   }
 
   /// `Näsazlyk ýüze çykdy`
@@ -242,62 +176,32 @@ class S {
 
   /// `Kategoriýa`
   String get category {
-    return Intl.message(
-      'Kategoriýa',
-      name: 'category',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kategoriýa', name: 'category', desc: '', args: []);
   }
 
   /// `boýunça`
   String get boyunca {
-    return Intl.message(
-      'boýunça',
-      name: 'boyunca',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('boýunça', name: 'boyunca', desc: '', args: []);
   }
 
   /// `Top`
   String get top {
-    return Intl.message(
-      'Top',
-      name: 'top',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Top', name: 'top', desc: '', args: []);
   }
 
   /// `Live`
   String get live {
-    return Intl.message(
-      'Live',
-      name: 'live',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Live', name: 'live', desc: '', args: []);
   }
 
   /// `satyş`
   String get satys {
-    return Intl.message(
-      'satyş',
-      name: 'satys',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('satyş', name: 'satys', desc: '', args: []);
   }
 
   /// `Gözleg...`
   String get search {
-    return Intl.message(
-      'Gözleg...',
-      name: 'search',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Gözleg...', name: 'search', desc: '', args: []);
   }
 
   /// `Içki kategoriýa ýok`
@@ -312,12 +216,7 @@ class S {
 
   /// `AI Agendyň`
   String get ai_agendyn {
-    return Intl.message(
-      'AI Agendyň',
-      name: 'ai_agendyn',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('AI Agendyň', name: 'ai_agendyn', desc: '', args: []);
   }
 
   /// `maslahat berýän harytlary`
@@ -392,12 +291,7 @@ class S {
 
   /// `Myhman`
   String get myhman {
-    return Intl.message(
-      'Myhman',
-      name: 'myhman',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Myhman', name: 'myhman', desc: '', args: []);
   }
 
   /// `Ulgama girmeklik üçin basyň`
@@ -422,52 +316,27 @@ class S {
 
   /// `Halanlarym`
   String get favorites {
-    return Intl.message(
-      'Halanlarym',
-      name: 'favorites',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Halanlarym', name: 'favorites', desc: '', args: []);
   }
 
   /// `Taryhy`
   String get history {
-    return Intl.message(
-      'Taryhy',
-      name: 'history',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Taryhy', name: 'history', desc: '', args: []);
   }
 
   /// `Abuna`
   String get abuna {
-    return Intl.message(
-      'Abuna',
-      name: 'abuna',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Abuna', name: 'abuna', desc: '', args: []);
   }
 
   /// `Kuponlar`
   String get kupons {
-    return Intl.message(
-      'Kuponlar',
-      name: 'kupons',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kuponlar', name: 'kupons', desc: '', args: []);
   }
 
   /// `Tölegler`
   String get tolegler {
-    return Intl.message(
-      'Tölegler',
-      name: 'tolegler',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Tölegler', name: 'tolegler', desc: '', args: []);
   }
 
   /// `AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň`
@@ -512,22 +381,12 @@ class S {
 
   /// `Ählisi`
   String get ahlisi {
-    return Intl.message(
-      'Ählisi',
-      name: 'ahlisi',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ählisi', name: 'ahlisi', desc: '', args: []);
   }
 
   /// `Aýakgaplar`
   String get ayakgaplar {
-    return Intl.message(
-      'Aýakgaplar',
-      name: 'ayakgaplar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Aýakgaplar', name: 'ayakgaplar', desc: '', args: []);
   }
 
   /// `Egin-eşikler`
@@ -542,32 +401,17 @@ class S {
 
   /// `Elektronika`
   String get elektronika {
-    return Intl.message(
-      'Elektronika',
-      name: 'elektronika',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Elektronika', name: 'elektronika', desc: '', args: []);
   }
 
   /// `Oýnawaçlar`
   String get oyuncaklar {
-    return Intl.message(
-      'Oýnawaçlar',
-      name: 'oyuncaklar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Oýnawaçlar', name: 'oyuncaklar', desc: '', args: []);
   }
 
   /// `Kitaplar`
   String get kitaplar {
-    return Intl.message(
-      'Kitaplar',
-      name: 'kitaplar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kitaplar', name: 'kitaplar', desc: '', args: []);
   }
 
   /// `Mugt dastawka`
@@ -642,32 +486,17 @@ class S {
 
   /// `Sargytlar`
   String get sargytlar {
-    return Intl.message(
-      'Sargytlar',
-      name: 'sargytlar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sargytlar', name: 'sargytlar', desc: '', args: []);
   }
 
   /// `Duýduryş`
   String get duydurys {
-    return Intl.message(
-      'Duýduryş',
-      name: 'duydurys',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Duýduryş', name: 'duydurys', desc: '', args: []);
   }
 
   /// `Başga`
   String get basga {
-    return Intl.message(
-      'Başga',
-      name: 'basga',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Başga', name: 'basga', desc: '', args: []);
   }
 
   /// `Habarlary ýa-da üpjünçileri gözle`
@@ -682,12 +511,7 @@ class S {
 
   /// `Okalmanlar`
   String get okalmanlar {
-    return Intl.message(
-      'Okalmanlar',
-      name: 'okalmanlar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Okalmanlar', name: 'okalmanlar', desc: '', args: []);
   }
 
   /// `Meniň belgim`
@@ -702,12 +526,7 @@ class S {
 
   /// `Habar ýok`
   String get habar_yok {
-    return Intl.message(
-      'Habar ýok',
-      name: 'habar_yok',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Habar ýok', name: 'habar_yok', desc: '', args: []);
   }
 
   /// `Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň.`
@@ -752,12 +571,7 @@ class S {
 
   /// `Sebet`
   String get sebet {
-    return Intl.message(
-      'Sebet',
-      name: 'sebet',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sebet', name: 'sebet', desc: '', args: []);
   }
 
   /// `Sebediniz boş`
@@ -782,12 +596,7 @@ class S {
 
   /// `Satyn al`
   String get satyn_al {
-    return Intl.message(
-      'Satyn al',
-      name: 'satyn_al',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Satyn al', name: 'satyn_al', desc: '', args: []);
   }
 
   /// `US-a eltip bermek`
@@ -862,22 +671,12 @@ class S {
 
   /// `Haryt ýok`
   String get product_empty {
-    return Intl.message(
-      'Haryt ýok',
-      name: 'product_empty',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Haryt ýok', name: 'product_empty', desc: '', args: []);
   }
 
   /// `Siziň üçin`
   String get sizin_ucin {
-    return Intl.message(
-      'Siziň üçin',
-      name: 'sizin_ucin',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Siziň üçin', name: 'sizin_ucin', desc: '', args: []);
   }
 
   /// `Töleg usullary:`
@@ -925,6 +724,78 @@ class S {
     return Intl.message(
       'Iň meşgurlar',
       name: 'in_meshgurlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get oz_bahany_sayla {
+    return Intl.message(
+      'Öz bahaňy saýla',
+      name: 'oz_bahany_sayla',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get obrazesleri_al {
+    return Intl.message(
+      'Obrazesleri al',
+      name: 'obrazesleri_al',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get ondabaryjy_ondurijiler {
+    return Intl.message(
+      'Öndabaryjy öndürijiler',
+      name: 'ondabaryjy_ondurijiler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get obrazesler_boyunca_tayyarlanan {
+    return Intl.message(
+      'Obrazesler boýunça tayyarlanan',
+      name: 'obrazesler_boyunca_tayyarlanan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get dalandyrys_sertifikaty_bolan {
+    return Intl.message(
+      'Dalandyryş sertifikaty bolan',
+      name: 'dalandyrys_sertifikaty_bolan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get giri_mumkin {
+    return Intl.message(
+      'Giriş mümkin',
+      name: 'giri_mumkin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get balkan_lale_shop_name {
+    return Intl.message(
+      'Balkan Läle plastik önümleri HK',
+      name: 'balkan_lale_shop_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get balkan_lale_shop_desc {
+    return Intl.message(
+      'Sertifikatlaşdyrylan. 150 işçi+100000 zakaz ýerine ýetirilen',
+      name: 'balkan_lale_shop_desc',
       desc: '',
       args: [],
     );

@@ -4,10 +4,12 @@ import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/settings/presentation/settings_screen.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/product_detail_screen.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.dart';
 import 'package:mbium_mobile_client/feature/top_products/presentation/pages/top_products_page.dart';
 
 import '../../feature/favorite/presentation/favorite_screen.dart';
+import '../../feature/shops/presentation/shop_detail_screen.dart';
 import 'FadeRouter.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -27,6 +29,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: ProductDetailScreen(product: product));
     case '/favorite':
       return FadeRoute(page: const FavoriteScreen());
+    case '/shopDetail':
+      final shopModel = settings.arguments as ShopModel;
+      return FadeRoute(page: ShopDetailScreen(shopModel: shopModel));
 
     default:
       return FadeRoute(
