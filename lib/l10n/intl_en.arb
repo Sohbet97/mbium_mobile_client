@@ -96,7 +96,27 @@
   "dalandyrys_sertifikaty_bolan": "Dalandyryş sertifikaty bolan",
   "giri_mumkin": "Giriş mümkin",
   "balkan_lale_shop_name": "Balkan Läle plastik önümleri HK",
-  "balkan_lale_shop_desc": "Sertifikatlaşdyrylan. 150 işçi+100000 zakaz ýerine ýetirilen"
+  "balkan_lale_shop_desc": "Sertifikatlaşdyrylan. 150 işçi+100000 zakaz ýerine ýetirilen",
+  "profil"  : "Profil",
+  "habarlar" : "Habarlar",  
+  "language"  : "Dil",
+  "podpiska"  : "AI ýazgysy",
+  "english" : "English",
+  "russkiy" : "Русский",
+  "turkmence" : "Türkmen",
+  "addresses" : "Salgylarym",
+  "all_functions" : "All Functions",
+  "orders"  : "Orders",
+  "gorulen_harytlar"  : "Görülen harytlar",
+  "cupons"  : "Kuponlar",
+"support" : "Support",
+"ulanys_duzgunleri" : "Ulanyş düzgünleri"
+
+
+
+
+
+
 
 
 }
