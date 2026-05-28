@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
+import 'package:mbium_mobile_client/feature/shops/extensions/shop_extension.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 
 class ShopsBannerWidget extends StatelessWidget {
-  final String shopName;
-  final String description;
+  final ShopModel shop;
   final VoidCallback? onTap;
 
-  const ShopsBannerWidget({
-    super.key,
-    required this.shopName,
-    required this.description,
-    this.onTap,
-  });
+  const ShopsBannerWidget({super.key, this.onTap, required this.shop});
 
   @override
   Widget build(BuildContext context) {
@@ -32,21 +28,45 @@ class ShopsBannerWidget extends StatelessWidget {
                 color: AppColors.bonusBannerGreen,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(
-                Icons.local_shipping_outlined,
-                color: AppColors.bonusBannerTextGreen,
-                size: 26,
-              ),
+              child: shop.logo == null
+                  ? const Icon(
+                      Icons.local_shipping_outlined,
+                      color: AppColors.bonusBannerTextGreen,
+                      size: 26,
+                    )
+                  : Image.network(
+                      shop.logo!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => const Icon(
+                        Icons.local_shipping_outlined,
+                        color: AppColors.bonusBannerTextGreen,
+                        size: 26,
+                      ),
+                    ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(shopName, style: textStyles.s16w600clBlack),
+                  Row(
+                    children: [
+                      Text(
+                        shop.localizedName,
+                        style: textStyles.s16w600clBlack,
+                      ),
+                      const SizedBox(width: 6),
+                      Icon(Icons.star, color: Colors.amber, size: 16),
+                      const SizedBox(width: 2),
+                      Text(
+                        shop.rating?.toString() ?? '0',
+                        style: textStyles.s13w600clBlack,
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 2),
                   Text(
-                    description,
+                    shop.localizedDescription,
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.textLightGrey,

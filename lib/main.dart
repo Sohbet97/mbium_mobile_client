@@ -246,7 +246,9 @@ class _MyAppState extends State<MyApp> {
 
           // favorite
           BlocProvider(
-            create: (context) => FavoriteBloc()..add(LoadFavorites()),
+            create: (context) => FavoriteBloc(
+              appPreferences: widget.appPreferences,
+            )..add(const LoadFavorites()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

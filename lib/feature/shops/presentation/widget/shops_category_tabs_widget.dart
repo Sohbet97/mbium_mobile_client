@@ -9,7 +9,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../generated/l10n.dart';
 
 class ShopsCategoryTabsWidget extends StatefulWidget {
-  final Function(int) onCategorySelected;
+  final Function(int?) onCategorySelected;
 
   const ShopsCategoryTabsWidget({super.key, required this.onCategorySelected});
 
@@ -25,14 +25,13 @@ class _ShopsCategoryTabsWidgetState extends State<ShopsCategoryTabsWidget> {
   void initState() {
     super.initState();
     context.read<CategoryBloc>().add(
-          const LoadCategoriesEvent(isRefresh: false),
-        );
+      const LoadCategoriesEvent(isRefresh: false),
+    );
   }
 
   void _handleCategorySelect(int i) {
     setState(() {
       _isSelected = i;
-      widget.onCategorySelected(i);
     });
   }
 
@@ -116,15 +115,17 @@ class _ShopsCategoryTabsWidgetState extends State<ShopsCategoryTabsWidget> {
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == 0) {
-                        return _buildItem(
-                          localization.ahlisi,
-                          () => _handleCategorySelect(0),
-                          _isSelected == 0,
-                        );
+                        return _buildItem(localization.ahlisi, () {
+                          _handleCategorySelect(0);
+                          widget.onCategorySelected(null);
+                        }, _isSelected == 0);
                       }
                       return _buildItem(
                         cats[index - 1].getNameByLanguage(languageCode),
-                        () => _handleCategorySelect(index + 1),
+                        () {
+                          _handleCategorySelect(index + 1);
+                          widget.onCategorySelected(cats[index - 1].id);
+                        },
                         _isSelected == index + 1,
                       );
                     },
