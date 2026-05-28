@@ -71,17 +71,19 @@
 "turkmenistanda_in_gowysy": "Türkmenistanda iň gowysy",
 "kategoriyany_saylan": "Kategoriýany saýlaň",
 "satuw_liderleri": "Satuw liderleri",
-<<<<<<< HEAD
 "in_meshgurlar": "Iň meşgurlar",
-"oz_bahany_sayla": "Öz bahaňy saýla",
-"obrazesleri_al": "Obrazesleri al",
-"ondabaryjy_ondurijiler": "Öndabaryjy öndürijiler",
-"obrazesler_boyunca_tayyarlanan": "Obrazesler boýunça taýýarlanan",
-"dalandyrys_sertifikaty_bolan": "Dalandyryş sertifikaty bolan",
-"giri_mumkin": "Giriş mümkin",
-"balkan_lale_shop_name": "Balkan Läle plastik önümleri HK",
-"balkan_lale_shop_desc": "Sertifikatlaşdyrylan. 150 işçi+100000 zakaz ýerine ýetirilen"
-=======
-"in_meshgurlar": "Iň meşgurlar"
->>>>>>> settings
+"profil"  : "Profil",
+"habarlar" : "Habarlar",  
+"language"  : "Dil",
+"english" : "English",
+"russkiy" : "Русский",
+"turkmence" : "Türkmen",
+"addresses" : "Salgylarym",
+"all_functions" : "Ähli funksiýalar",
+"orders"  : "Sargytlarym",
+"gorulen_harytlar"  : "Görülen harytlar",
+"cupons"  : "Kuponlar",
+"support" : "Goldaw merkezi",
+"ulanys_duzgunleri" : "Ulanyş düzgünleri"
+
 }

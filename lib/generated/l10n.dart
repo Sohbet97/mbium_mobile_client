@@ -1009,6 +1009,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Profil`
+  String get profil {
+    return Intl.message(
+      'Profil',
+      name: 'profil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Habarlar`
+  String get habarlar {
+    return Intl.message(
+      'Habarlar',
+      name: 'habarlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dil`
+  String get language {
+    return Intl.message(
+      'Dil',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI ýazgysy`
+  String get podpiska {
+    return Intl.message(
+      'AI ýazgysy',
+      name: 'podpiska',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Русский`
+  String get russkiy {
+    return Intl.message(
+      'Русский',
+      name: 'russkiy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Türkmen`
+  String get turkmence {
+    return Intl.message(
+      'Türkmen',
+      name: 'turkmence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salgylarym`
+  String get addresses {
+    return Intl.message(
+      'Salgylarym',
+      name: 'addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Functions`
+  String get all_functions {
+    return Intl.message(
+      'All Functions',
+      name: 'all_functions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get orders {
+    return Intl.message(
+      'Orders',
+      name: 'orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Görülen harytlar`
+  String get gorulen_harytlar {
+    return Intl.message(
+      'Görülen harytlar',
+      name: 'gorulen_harytlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuponlar`
+  String get cupons {
+    return Intl.message(
+      'Kuponlar',
+      name: 'cupons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support`
+  String get support {
+    return Intl.message(
+      'Support',
+      name: 'support',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ulanyş düzgünleri`
+  String get ulanys_duzgunleri {
+    return Intl.message(
+      'Ulanyş düzgünleri',
+      name: 'ulanys_duzgunleri',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

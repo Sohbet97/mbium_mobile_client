@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
+import 'package:mbium_mobile_client/feature/products/bloc/recently/recently_viewed_bloc.dart';
 import 'package:mbium_mobile_client/main.dart';
 
 import '../../../../generated/l10n.dart';
@@ -22,18 +23,23 @@ class MbiumMenuWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                localization.ayratynlyklar,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: isDarkTheme ? null : Colors.black,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/allFunctions');
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localization.ayratynlyklar,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: isDarkTheme ? null : Colors.black,
+                  ),
                 ),
-              ),
-              GestureDetector(child: Icon(Icons.arrow_right)),
-            ],
+                Icon(Icons.arrow_right),
+              ],
+            ),
           ),
           const SizedBox(height: 11),
 
@@ -59,33 +65,33 @@ class MbiumMenuWidget extends StatelessWidget {
                   },
                 ),
 
-                _buildItem(
-                  '$mainUrl/history.svg',
-                  localization.history,
-                  () {},
-                  null,
+                BlocBuilder<RecentlyViewedBloc, RecentlyViewedState>(
+                  builder: (context, state) {
+                    final count = state is RecentlyViewedLoaded
+                        ? state.products.length
+                        : 0;
+                    return _buildItem(
+                      '$mainUrl/history.svg',
+                      localization.history,
+                      () {
+                        Navigator.pushNamed(context, '/review');
+                      },
+                      count > 0 ? count.toString() : null,
+                    );
+                  },
                 ),
 
-                _buildItem(
-                  '$mainUrl/abuna.svg',
-                  localization.abuna,
-                  () {},
-                  null,
-                ),
+                _buildItem('$mainUrl/abuna.svg', localization.abuna, () {
+                  Navigator.pushNamed(context, '/abuna');
+                }, null),
 
-                _buildItem(
-                  '$mainUrl/cupon.svg',
-                  localization.kupons,
-                  () {},
-                  null,
-                ),
+                _buildItem('$mainUrl/cupon.svg', localization.kupons, () {
+                  Navigator.pushNamed(context, '/cupons');
+                }, null),
 
-                _buildItem(
-                  '$mainUrl/toleg.svg',
-                  localization.tolegler,
-                  () {},
-                  null,
-                ),
+                _buildItem('$mainUrl/toleg.svg', localization.tolegler, () {
+                  Navigator.pushNamed(context, '/tolegler');
+                }, null),
               ],
             ),
           ),

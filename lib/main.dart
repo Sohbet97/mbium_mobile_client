@@ -17,7 +17,8 @@ import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
 import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
 import 'package:mbium_mobile_client/feature/shops/data/shop_repository.dart';
-import 'package:mbium_mobile_client/feature/shops/model/shop_filter_model.dart';
+import 'package:mbium_mobile_client/feature/products/bloc/recently/recently_viewed_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/data/recently_viewed_repository.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -180,6 +181,12 @@ class _MyAppState extends State<MyApp> {
           create: (context) => ShopRepository(dio: apiClient.dio),
         ),
 
+        // recently viewed
+        RepositoryProvider(
+          create: (context) =>
+              RecentlyViewedRepository(preferences: widget.appPreferences),
+        ),
+
         // cart
         RepositoryProvider(
           create: (context) => CartRepository(
@@ -241,6 +248,13 @@ class _MyAppState extends State<MyApp> {
             create: (context) =>
                 CartBloc(repository: context.read<CartRepository>())
                   ..add(const LoadCartEvent()),
+          ),
+
+          // recently viewed
+          BlocProvider(
+            create: (context) => RecentlyViewedBloc(
+              repository: context.read<RecentlyViewedRepository>(),
+            )..add(const LoadRecentlyViewed()),
           ),
 
           // favorite
