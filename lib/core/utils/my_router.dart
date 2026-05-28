@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_screen.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
@@ -62,6 +63,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const ToleglerScreen());
     case '/abuna':
       return FadeRoute(page: const AbunaScreen());
+    case '/sargytEt':
+      return FadeRoute(page: const SargytEtScreen());
 
     default:
       return FadeRoute(

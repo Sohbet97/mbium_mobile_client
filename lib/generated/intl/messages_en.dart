@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
         "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
         "in_meshgurlar": MessageLookupByLibrary.simpleMessage("Iň meşgurlar"),
+        "jemi": MessageLookupByLibrary.simpleMessage("Jemi"),
         "kategoriyany_saylan":
             MessageLookupByLibrary.simpleMessage("Kategoriýany saýlaň"),
         "kepillendirilen_eltip_bermek": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
         "russkiy": MessageLookupByLibrary.simpleMessage("Русский"),
+        "sargyt_etmek": MessageLookupByLibrary.simpleMessage("Sargyt etmek"),
         "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
             "Sargyt goraglylygy we \n uly arzanladyşlar"),
         "sargyt_goragy_text": MessageLookupByLibrary.simpleMessage(

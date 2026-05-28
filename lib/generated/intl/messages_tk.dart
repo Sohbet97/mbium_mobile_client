@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "has_ginisleyin":
             MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
         "in_meshgurlar": MessageLookupByLibrary.simpleMessage("Iň meşgurlar"),
+        "jemi": MessageLookupByLibrary.simpleMessage("Jemi"),
         "kategoriyany_saylan":
             MessageLookupByLibrary.simpleMessage("Kategoriýany saýlaň"),
         "kepillendirilen_eltip_bermek": MessageLookupByLibrary.simpleMessage(
@@ -104,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
         "russkiy": MessageLookupByLibrary.simpleMessage("Русский"),
+        "sargyt_etmek": MessageLookupByLibrary.simpleMessage("Sargyt etmek"),
         "sargyt_goragy_text": MessageLookupByLibrary.simpleMessage(
             "Sargyt goragyny almak üçin diňe MBIUM-da gürleşiň we geleşik ediň."),
         "sargytlar": MessageLookupByLibrary.simpleMessage("Sargytlar"),
