@@ -150,7 +150,12 @@ class _MyMbiumDataPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(child: SizedBox()),
-                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right)),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/reg_shop');
+                  },
+                  icon: Icon(Icons.arrow_right),
+                ),
               ],
             ),
           ),
