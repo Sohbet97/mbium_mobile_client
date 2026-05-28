@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:mbium_mobile_client/core/constants/my_empty_widget.dart';
+import 'package:mbium_mobile_client/core/widgets/loading_widget.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/widgets/mbium_menu_widget.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/widgets/offers_list.dart';
@@ -7,6 +10,8 @@ import 'package:mbium_mobile_client/feature/myMbium/presentation/widgets/setting
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/login_in_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/widgets/person_litle_data_widget.dart';
+import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/mason_grid_item.dart';
 import 'package:mbium_mobile_client/main.dart';
 
 import '../../../generated/l10n.dart';
@@ -149,6 +154,64 @@ class _MyMbiumDataPage extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        const SliverToBoxAdapter(child: SizedBox(height: 10)),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsetsGeometry.only(
+              top: 20,
+              left: 10,
+              bottom: 3,
+            ),
+            child: Text(
+              S.of(context).sizin_ucin,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+          ),
+        ),
+        BlocBuilder<ProductBloc, ProductState>(
+          builder: (context, state) {
+            if (state is ProductLoading) {
+              return const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: MyLoadingWidget(),
+                ),
+              );
+            }
+
+            if (state is ProductError) {
+              return SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(state.message),
+                  ),
+                ),
+              );
+            }
+
+            if (state is ProductLoaded) {
+              final products = state.products;
+              if (products.isEmpty) {
+                return SliverToBoxAdapter(
+                  child: MyEmptyWidget(emptyText: S.of(context).product_empty),
+                );
+              }
+
+              return SliverMasonryGrid.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 1,
+                crossAxisSpacing: 1,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return ProductMassonGridItem(product: product);
+                },
+                childCount: products.length,
+              );
+            }
+            return SliverToBoxAdapter();
+          },
         ),
       ],
     );
