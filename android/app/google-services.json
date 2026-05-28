@@ -12,7 +12,12 @@
           "package_name": "com.example.mbium_mobile_client"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1021753471406-22kjuhouep58uf0ch8sd5aqq06qniv2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBdhkn_XdwTHmOrvFVyz6S7DC33zDWb9Jk"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021753471406-22kjuhouep58uf0ch8sd5aqq06qniv2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -27,76 +27,103 @@ class _LoginInScreenState extends State<LoginInScreen> {
           if (state.isGostUser == true) {
             context.read<MainBloc>().add(SetNavigationPageEvent(index: 4));
           }
+          if (state.isRegistered && !state.isGostUser && state.personModel != null) {
+            if (widget.isModal == true) {
+              Navigator.pop(context);
+            } else {
+              context.read<MainBloc>().add(SetNavigationPageEvent(index: 0));
+            }
+          }
+          if (state.errorMessage != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage!),
+                backgroundColor: AppColors.errorRed,
+              ),
+            );
+          }
         },
         builder: (context, state) {
           return Column(
             children: [
               Container(
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Color(0xff187443), Color(0xff5FA67E)],
-                    begin: AlignmentGeometry.topCenter,
-                    end: AlignmentGeometry.bottomCenter,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     Image.asset(logoUrl),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     Text(
                       localization.turkmenistanda_oyden_cykman_sowda_et,
                       style: context.appTextStyles.s14w400clWhite,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 7),
+                    const SizedBox(height: 7),
                     Text(
                       localization.sargyt_goraglylygy,
                       style: context.appTextStyles.s20w700clWhite,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 11),
+                    const SizedBox(height: 11),
                   ],
                 ),
               ),
               Image.asset(logoImageUrl),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: ButtonWidget(
-                  iconUrl: 'assets/icons/google.svg',
-                  title: localization.google_dowan_et,
-                  onTap: () {},
-                ),
+                child: state.isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.primaryGreen,
+                        ),
+                      )
+                    : ButtonWidget(
+                        iconUrl: 'assets/icons/google.svg',
+                        title: localization.google_dowan_et,
+                        onTap: () => context
+                            .read<PersonBloc>()
+                            .add(SignInWithGoogleEvent()),
+                      ),
               ),
-              SizedBox(height: 14),
+              const SizedBox(height: 14),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: ButtonWidget(
                   iconUrl: 'assets/icons/call.svg',
                   title: localization.telefon_bilen_dowam_et,
-                  onTap: () {},
+                  onTap: state.isLoading ? () {} : () {},
                 ),
               ),
-              SizedBox(height: 14),
+              const SizedBox(height: 14),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: ButtonWidget(
                   iconUrl: 'assets/icons/mail.svg',
                   title: localization.email_bilen_dowam_et,
-                  onTap: () {},
+                  onTap: state.isLoading ? () {} : () {},
                 ),
               ),
-              SizedBox(height: 29),
+              const SizedBox(height: 29),
               GestureDetector(
-                onTap: () {
-                  context.read<PersonBloc>().add(RegisterWithGostEvent());
-                  if (widget.isModal == true) {
-                    Navigator.pop(context);
-                  }
-                },
+                onTap: state.isLoading
+                    ? null
+                    : () {
+                        context
+                            .read<PersonBloc>()
+                            .add(RegisterWithGostEvent());
+                        if (widget.isModal == true) {
+                          Navigator.pop(context);
+                        }
+                      },
                 child: Text(
                   localization.myhma_hokmunde,
                   style: context.appTextStyles.s13w600clBlack.copyWith(

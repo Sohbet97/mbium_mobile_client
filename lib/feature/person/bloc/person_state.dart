@@ -7,6 +7,7 @@ final class PersonState extends Equatable {
   final String? errorMessage;
   final bool isUpdateProgress;
   final bool isGostUser;
+  final bool isLoading;
 
   const PersonState({
     this.isRegistered = false,
@@ -15,6 +16,7 @@ final class PersonState extends Equatable {
     this.errorMessage,
     this.isUpdateProgress = false,
     this.isGostUser = false,
+    this.isLoading = false,
   });
 
   PersonState copyWith({
@@ -24,14 +26,17 @@ final class PersonState extends Equatable {
     String? errorMessage,
     bool? isUpdateProgress,
     bool? isGostUser,
+    bool? isLoading,
+    bool clearError = false,
   }) {
     return PersonState(
       isRegistered: isRegistered ?? this.isRegistered,
       personModel: personModel ?? this.personModel,
       userType: userType ?? this.userType,
-      errorMessage: errorMessage ?? this.errorMessage,
+      errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
       isUpdateProgress: isUpdateProgress ?? this.isUpdateProgress,
       isGostUser: isGostUser ?? this.isGostUser,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
@@ -43,5 +48,6 @@ final class PersonState extends Equatable {
     errorMessage,
     isUpdateProgress,
     isGostUser,
+    isLoading,
   ];
 }

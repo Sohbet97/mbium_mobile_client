@@ -11,9 +11,12 @@ part 'person_state.dart';
 
 class PersonBloc extends Bloc<PersonEvent, PersonState> {
   final PersonRepository repository;
-  PersonBloc({required this.repository}) : super(PersonState()) {
+
+  PersonBloc({required this.repository}) : super(const PersonState()) {
     on<IsRegisteredEvent>(_onIsRegistered);
     on<RegisterWithGostEvent>(_onRegisterWithGost);
+    on<SignInWithGoogleEvent>(_onSignInWithGoogle);
+    on<SignOutEvent>(_onSignOut);
   }
 
   FutureOr<void> _onIsRegistered(
@@ -33,10 +36,39 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     RegisterWithGostEvent event,
     Emitter<PersonState> emit,
   ) async {
-    repository.preferences.saveRegistrationStatus(true);
-    repository.preferences.saveGostUser(true);
+    await repository.preferences.saveRegistrationStatus(true);
+    await repository.preferences.saveGostUser(true);
     emit(
       state.copyWith(isRegistered: true, personModel: null, isGostUser: true),
     );
+  }
+
+  FutureOr<void> _onSignInWithGoogle(
+    SignInWithGoogleEvent event,
+    Emitter<PersonState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, clearError: true));
+    try {
+      final person = await repository.signInWithGoogle();
+      emit(state.copyWith(
+        isLoading: false,
+        isRegistered: true,
+        isGostUser: false,
+        personModel: person,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        isLoading: false,
+        errorMessage: e.toString().replaceFirst('Exception: ', ''),
+      ));
+    }
+  }
+
+  FutureOr<void> _onSignOut(
+    SignOutEvent event,
+    Emitter<PersonState> emit,
+  ) async {
+    await repository.signOut();
+    emit(const PersonState());
   }
 }
