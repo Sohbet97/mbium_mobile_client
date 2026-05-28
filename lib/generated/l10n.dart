@@ -942,6 +942,78 @@ String get in_meshgurlar {
     args: [],
   );
 }
+
+String get oz_bahany_sayla {
+  return Intl.message(
+    'Öz bahaňy saýla',
+    name: 'oz_bahany_sayla',
+    desc: '',
+    args: [],
+  );
+}
+
+String get obrazesleri_al {
+  return Intl.message(
+    'Obrazesleri al',
+    name: 'obrazesleri_al',
+    desc: '',
+    args: [],
+  );
+}
+
+String get ondabaryjy_ondurijiler {
+  return Intl.message(
+    'Öndabaryjy öndürijiler',
+    name: 'ondabaryjy_ondurijiler',
+    desc: '',
+    args: [],
+  );
+}
+
+String get obrazesler_boyunca_tayyarlanan {
+  return Intl.message(
+    'Obrazesler boýunça tayyarlanan',
+    name: 'obrazesler_boyunca_tayyarlanan',
+    desc: '',
+    args: [],
+  );
+}
+
+String get dalandyrys_sertifikaty_bolan {
+  return Intl.message(
+    'Dalandyryş sertifikaty bolan',
+    name: 'dalandyrys_sertifikaty_bolan',
+    desc: '',
+    args: [],
+  );
+}
+
+String get giri_mumkin {
+  return Intl.message(
+    'Giriş mümkin',
+    name: 'giri_mumkin',
+    desc: '',
+    args: [],
+  );
+}
+
+String get balkan_lale_shop_name {
+  return Intl.message(
+    'Balkan Läle plastik önümleri HK',
+    name: 'balkan_lale_shop_name',
+    desc: '',
+    args: [],
+  );
+}
+
+String get balkan_lale_shop_desc {
+  return Intl.message(
+    'Sertifikatlaşdyrylan. 150 işçi+100000 zakaz ýerine ýetirilen',
+    name: 'balkan_lale_shop_desc',
+    desc: '',
+    args: [],
+  );
+}
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
