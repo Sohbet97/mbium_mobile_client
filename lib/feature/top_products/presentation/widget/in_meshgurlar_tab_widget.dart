@@ -5,7 +5,6 @@ import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
-import 'package:mbium_mobile_client/generated/l10n.dart';
 
 class InMeshgurlarTabWidget extends StatefulWidget {
   const InMeshgurlarTabWidget({super.key});

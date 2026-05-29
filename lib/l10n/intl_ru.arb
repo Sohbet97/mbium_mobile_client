@@ -1,6 +1,5 @@
 {
   "@@locale": "ru",
-
   "AppName": "Mbium",
   "yes": "Hawa",
   "no": "Ýok",
@@ -93,14 +92,8 @@
 "gorulen_harytlar"  : "Görülen harytlar",
   "cupons"  : "Kuponlar",
 "support" : "Goldaw merkezi",
-"ulanys_duzgunleri" : "Ulanyş düzgünleri"
-
-
-
-
-
-
-
-
+"ulanys_duzgunleri" : "Ulanyş düzgünleri",
+"sargyt_etmek"  : "Sargyt etmek",
+"jemi"  : "Jemi"
 
 }

@@ -1010,6 +1010,126 @@ class S {
     );
   }
 
+  /// `MBIUM satyş bilen Türkmenistan boýunça biznes syýahatyňyza başlaň`
+  String get mbium_satys_bilen_biznes {
+    return Intl.message(
+      'MBIUM satyş bilen Türkmenistan boýunça biznes syýahatyňyza başlaň',
+      name: 'mbium_satys_bilen_biznes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tutuş ýurt boýunça müňlerçe alyjylar`
+  String get tutus_yurt_boyunca_alyjylar {
+    return Intl.message(
+      'Tutuş ýurt boýunça müňlerçe alyjylar',
+      name: 'tutus_yurt_boyunca_alyjylar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Çäksiz ösüş üçin`
+  String get caksiz_osush_ucin {
+    return Intl.message(
+      'Çäksiz ösüş üçin',
+      name: 'caksiz_osush_ucin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `0% satuw komisiýasy`
+  String get satuw_komisiyasy {
+    return Intl.message(
+      '0% satuw komisiýasy',
+      name: 'satuw_komisiyasy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Degişli hünärmenlerden aýratyn peýdaly maslahatlar`
+  String get degisli_hunarmenlerden_maslahatlar {
+    return Intl.message(
+      'Degişli hünärmenlerden aýratyn peýdaly maslahatlar',
+      name: 'degisli_hunarmenlerden_maslahatlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Şu gün satyjy hasabyny dörediň \nwe ýörite mümkinçilikleri açyň.`
+  String get satyjy_hasabyny_doredin {
+    return Intl.message(
+      'Şu gün satyjy hasabyny dörediň \nwe ýörite mümkinçilikleri açyň.',
+      name: 'satyjy_hasabyny_doredin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Telefon belgiňizi giriziň`
+  String get telefon_belgi {
+    return Intl.message(
+      'Telefon belgiňizi giriziň',
+      name: 'telefon_belgi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kärhananyň ýa-da Dukanyň adyny giriziň`
+  String get karhananyn_dukanyn_ady {
+    return Intl.message(
+      'Kärhananyň ýa-da Dukanyň adyny giriziň',
+      name: 'karhananyn_dukanyn_ady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ibermek bilen, siz MBIUM şertleri we düzgünleri \nbilen razylaşýarsyňyz`
+  String get ibermek_bilen_razylasyarsynyz {
+    return Intl.message(
+      'Ibermek bilen, siz MBIUM şertleri we düzgünleri \nbilen razylaşýarsyňyz',
+      name: 'ibermek_bilen_razylasyarsynyz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dowam et`
+  String get dowam_et {
+    return Intl.message(
+      'Dowam et',
+      name: 'dowam_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorag bar bolsa`
+  String get sorag_bar_bolsa {
+    return Intl.message(
+      'Sorag bar bolsa',
+      name: 'sorag_bar_bolsa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Göni efirdäki çada başlaň`
+  String get goni_efir {
+    return Intl.message(
+      'Göni efirdäki çada başlaň',
+      name: 'goni_efir',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Profil`
   String get profil {
     return Intl.message(
@@ -1145,6 +1265,26 @@ class S {
     return Intl.message(
       'Ulanyş düzgünleri',
       name: 'ulanys_duzgunleri',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sargyt etmek`
+  String get sargyt_etmek {
+    return Intl.message(
+      'Sargyt etmek',
+      name: 'sargyt_etmek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jemi`
+  String get jemi {
+    return Intl.message(
+      'Jemi',
+      name: 'jemi',
       desc: '',
       args: [],
     );
