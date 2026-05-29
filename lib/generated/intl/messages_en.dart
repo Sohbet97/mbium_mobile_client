@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
         "ai_agent_mugt_barla_desc": MessageLookupByLibrary.simpleMessage(
             "AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň"),
+        "ai_komegi_bilen_obs": MessageLookupByLibrary.simpleMessage(
+            "AI kömegi bilen ÖBS-ny aňsatlyk bilen dörediň"),
         "alibaba_sargyt_goragy":
             MessageLookupByLibrary.simpleMessage("MBIUM sargyt goraglylygy"),
         "alibaba_sargyt_goragy_desc": MessageLookupByLibrary.simpleMessage(
@@ -65,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Degişli hünärmenlerden aýratyn peýdaly maslahatlar"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
+        "dizayn_sazlamalary":
+            MessageLookupByLibrary.simpleMessage("Dizaýn sazlamalary"),
         "dowam_et": MessageLookupByLibrary.simpleMessage("Dowam et"),
         "duydurys": MessageLookupByLibrary.simpleMessage("Duýduryş"),
         "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
@@ -105,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
         "language": MessageLookupByLibrary.simpleMessage("Dil"),
         "live": MessageLookupByLibrary.simpleMessage("Live"),
+        "logotypin_gornushi":
+            MessageLookupByLibrary.simpleMessage("Logotyň görnüşi"),
         "maslahat_beriyanler":
             MessageLookupByLibrary.simpleMessage("Maslahat beriýänler"),
         "maslahat_beriyanler_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -113,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("maslahat berýän harytlary"),
         "mbium_coin_bilen":
             MessageLookupByLibrary.simpleMessage("MBIUM Coin bilen töleseňiz"),
+        "mbium_hyzmat_sertleri":
+            MessageLookupByLibrary.simpleMessage("hyzmat şertlerine"),
         "mbium_satys_bilen_biznes": MessageLookupByLibrary.simpleMessage(
             "MBIUM satyş bilen Türkmenistan boýunça biznes syýahatyňyza başlaň"),
         "mbiumda_satyp_basla":
@@ -141,14 +149,29 @@ class MessageLookup extends MessageLookupByLibrary {
             "Obrazesler boýunça taýýarlanan"),
         "obrazesleri_al":
             MessageLookupByLibrary.simpleMessage("Obrazesleri al"),
+        "obs": MessageLookupByLibrary.simpleMessage("ÖBS"),
+        "obs_barada_has_ginisleyin": MessageLookupByLibrary.simpleMessage(
+            "ÖBS barada has giňişleýin maglumat"),
         "okalmanlar": MessageLookupByLibrary.simpleMessage("Okalmanlar"),
+        "on_gorulen_onumler_section": MessageLookupByLibrary.simpleMessage(
+            "Öň görülen önümleriň taryhyndan söwda teklibi alyň"),
         "ondabaryjy_ondurijiler":
             MessageLookupByLibrary.simpleMessage("Öndabaryjy öndürijiler"),
         "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
         "orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
+        "oz_bahany_appbar_title": MessageLookupByLibrary.simpleMessage(
+            "Öz bahaň we islegleriňe görä sargyt"),
         "oz_bahany_sayla":
             MessageLookupByLibrary.simpleMessage("Öz bahaňy saýla"),
+        "oz_bahany_sayla_desc": MessageLookupByLibrary.simpleMessage(
+            "Müşderiňiň takyk saýlawy we bahalaryny çalt deňeşdirmesi"),
+        "oz_bahany_sayla_title": MessageLookupByLibrary.simpleMessage(
+            "Soraglaryňyzy beriň we islegiňize gabat gelýän harydy tapyň"),
+        "oz_bahany_surat_yuklan": MessageLookupByLibrary.simpleMessage(
+            "Surat ýüklän ýa-da açar sözleri giriziň. Meselem, 100 sany oýunjak aýy, goşulan dizaýn nusgasyny görüň."),
+        "oz_bahany_ugratmak_bilen":
+            MessageLookupByLibrary.simpleMessage("Ugratmak bilen, siz MBIUM"),
         "podpiska": MessageLookupByLibrary.simpleMessage("AI ýazgysy"),
         "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
         "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
@@ -178,7 +201,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
         "sorag_bar_bolsa":
             MessageLookupByLibrary.simpleMessage("Sorag bar bolsa"),
+        "sowda_teklip_sargytlaryn_in_meshgurlary":
+            MessageLookupByLibrary.simpleMessage(
+                "Söwda teklip sargytlarynyň iň meşgurlary"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "takyk_isleglerini_duzun":
+            MessageLookupByLibrary.simpleMessage("Takyk islegleriňizi düzüň"),
         "telefon_belgi":
             MessageLookupByLibrary.simpleMessage("Telefon belgiňizi giriziň"),
         "telefon_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
@@ -187,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Töleg usullary:"),
         "tolegler": MessageLookupByLibrary.simpleMessage("Tölegler"),
         "top": MessageLookupByLibrary.simpleMessage("Top"),
+        "toplumyn_sazlamalary":
+            MessageLookupByLibrary.simpleMessage("Toplumyň sazlamalary"),
         "turkmence": MessageLookupByLibrary.simpleMessage("Türkmen"),
         "turkmenistanda_in_gowysy":
             MessageLookupByLibrary.simpleMessage("Türkmenistanda iň gowysy"),
@@ -199,6 +229,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ulanyş düzgünleri"),
         "us_a_eltip_bermek":
             MessageLookupByLibrary.simpleMessage("US-a eltip bermek"),
+        "we_gizlilik_syyyasatyna": MessageLookupByLibrary.simpleMessage(
+            "we gizlilik syýasatyna razy bolýarsyňyz."),
         "welayatlar_boyunca":
             MessageLookupByLibrary.simpleMessage("Welaýatlar boýunça"),
         "yes": MessageLookupByLibrary.simpleMessage("Hawa"),

@@ -33,7 +33,7 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
               width: double.infinity,
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: AppColors.navWhite,
+                color: AppColors.lightBg,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
@@ -42,7 +42,7 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: AppColors.lightBg,
+                      color: AppColors.navWhite,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Icon(
@@ -71,8 +71,7 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
               children: [
                 Checkbox(
                   value: _isAgreed,
-                  onChanged: (val) =>
-                      setState(() => _isAgreed = val ?? false),
+                  onChanged: (val) => setState(() => _isAgreed = val ?? false),
                   fillColor: WidgetStateProperty.resolveWith(
                     (states) => states.contains(WidgetState.selected)
                         ? AppColors.bonusBannerTextGreen
@@ -100,8 +99,7 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          TextSpan(
-                              text: ' ${l10n.we_gizlilik_syyyasatyna}'),
+                          TextSpan(text: ' ${l10n.we_gizlilik_syyyasatyna}'),
                         ],
                       ),
                     ),
@@ -113,8 +111,11 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
 
             Row(
               children: [
-                const Icon(Icons.auto_awesome,
-                    color: AppColors.navWhite, size: 16),
+                const Icon(
+                  Icons.auto_awesome,
+                  color: AppColors.navWhite,
+                  size: 16,
+                ),
                 const SizedBox(width: 6),
                 Text(
                   l10n.ai_komegi_bilen_obs,
@@ -134,8 +135,7 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.navWhite,
-                  side: const BorderSide(
-                      color: AppColors.navWhite, width: 1.2),
+                  side: const BorderSide(color: AppColors.navWhite, width: 1.2),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),

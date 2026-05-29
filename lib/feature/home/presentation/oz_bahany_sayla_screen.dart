@@ -31,12 +31,7 @@ class _OzBahanySaylaScreenState extends State<OzBahanySaylaScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.navWhite,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.primaryGreen),
-          onPressed: () => Navigator.pop(context),
-        ),
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -46,8 +41,8 @@ class _OzBahanySaylaScreenState extends State<OzBahanySaylaScreen> {
                 color: AppColors.bonusBannerTextGreen,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: const Text(
-                'ÖBS',
+              child: Text(
+                l10n.obs,
                 style: TextStyle(
                   color: AppColors.navWhite,
                   fontWeight: FontWeight.w700,
@@ -79,8 +74,11 @@ class _OzBahanySaylaScreenState extends State<OzBahanySaylaScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  const Icon(Icons.arrow_forward,
-                   color: AppColors.bonusBannerTextGreen, size: 16),
+                  const Icon(
+                    Icons.arrow_forward,
+                    color: AppColors.bonusBannerTextGreen,
+                    size: 16,
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     l10n.obs_barada_has_ginisleyin,
