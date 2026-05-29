@@ -10,7 +10,6 @@ import 'package:mbium_mobile_client/feature/city/presentation/widget/city_catego
 import 'package:mbium_mobile_client/feature/city/presentation/widget/city_horizontal_list_widget.dart';
 import 'package:mbium_mobile_client/feature/city/presentation/widget/city_maslahat_widget.dart';
 import 'package:mbium_mobile_client/feature/city/presentation/widget/city_banner_product_widget.dart';
-import '../../../../generated/l10n.dart';
 
 class CityPage extends StatefulWidget {
   const CityPage({super.key});
@@ -35,8 +34,8 @@ class _CityPageState extends State<CityPage> {
   void initState() {
     super.initState();
     context.read<CategoryBloc>().add(
-          const LoadCategoriesEvent(isRefresh: false),
-        );
+      const LoadCategoriesEvent(isRefresh: false),
+    );
 
     _productBloc = ProductBloc(repository: context.read<ProductRepository>());
     _productBloc.add(LoadProducts(_productFilter));
@@ -45,8 +44,9 @@ class _CityPageState extends State<CityPage> {
     _maslahatBloc = ProductBloc(repository: context.read<ProductRepository>());
     _maslahatBloc.add(const LoadProducts(FilterModel(limit: 10)));
 
-    _bannerProductBloc =
-        ProductBloc(repository: context.read<ProductRepository>());
+    _bannerProductBloc = ProductBloc(
+      repository: context.read<ProductRepository>(),
+    );
     _bannerProductBloc.add(const LoadProducts(FilterModel(limit: 10)));
   }
 
