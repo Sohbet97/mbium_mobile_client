@@ -27,7 +27,9 @@ class _LoginInScreenState extends State<LoginInScreen> {
           if (state.isGostUser == true) {
             context.read<MainBloc>().add(SetNavigationPageEvent(index: 4));
           }
-          if (state.isRegistered && !state.isGostUser && state.personModel != null) {
+          if (state.isRegistered &&
+              !state.isGostUser &&
+              state.personModel != null) {
             if (widget.isModal == true) {
               Navigator.pop(context);
             } else {
@@ -89,9 +91,9 @@ class _LoginInScreenState extends State<LoginInScreen> {
                     : ButtonWidget(
                         iconUrl: 'assets/icons/google.svg',
                         title: localization.google_dowan_et,
-                        onTap: () => context
-                            .read<PersonBloc>()
-                            .add(SignInWithGoogleEvent()),
+                        onTap: () => context.read<PersonBloc>().add(
+                          SignInWithGoogleEvent(),
+                        ),
                       ),
               ),
               const SizedBox(height: 14),
@@ -112,14 +114,24 @@ class _LoginInScreenState extends State<LoginInScreen> {
                   onTap: state.isLoading ? () {} : () {},
                 ),
               ),
-              const SizedBox(height: 29),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton.icon(
+                    iconAlignment: IconAlignment.end,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
+                    icon: Icon(Icons.verified_user),
+                    label: Text(localization.register),
+                  ),
+                ],
+              ),
               GestureDetector(
                 onTap: state.isLoading
                     ? null
                     : () {
-                        context
-                            .read<PersonBloc>()
-                            .add(RegisterWithGostEvent());
+                        context.read<PersonBloc>().add(RegisterWithGostEvent());
                         if (widget.isModal == true) {
                           Navigator.pop(context);
                         }

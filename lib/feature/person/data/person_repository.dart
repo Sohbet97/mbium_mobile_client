@@ -52,4 +52,42 @@ class PersonRepository {
   }
 
   String? getSavedToken() => preferences.getString('auth_token');
+
+  Future<PersonModel> createNewUser({
+    required String phoneNumber,
+    required String password,
+    required String name,
+    required String surName,
+    required String? email,
+    required DateTime? birthday,
+  }) async {
+    try {
+      final data = {
+        "phone_number": phoneNumber,
+        "password": password,
+        "name": name,
+        "surname": surName,
+        "email": email,
+        "birth_date": birthday?.toIso8601String(),
+      };
+      final url = dio.options.baseUrl.replaceAll('/buyer', '');
+      final response = await dio.post('$url/auth/register', data: data);
+
+      print('response: $response');
+      if (response.statusCode == 201) {
+        final data = response.data as Map<String, dynamic>?;
+        final sessionId = data?['session_id'];
+
+        final personResponse = await dio.get(
+          '$url/auth/me',
+          options: Options(headers: {'Authorization': 'Bearer $sessionId'}),
+        );
+
+        print('person response: $personResponse');
+      }
+      throw Exception('code : ${response.statusCode}');
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

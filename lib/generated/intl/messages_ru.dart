@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
         "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
         "addresses": MessageLookupByLibrary.simpleMessage("Salgylarym"),
+        "ady": MessageLookupByLibrary.simpleMessage("Ady"),
         "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
         "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
         "alibaba_sargyt_goragy":
@@ -55,10 +56,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dalandyryş sertifikaty bolan"),
         "derejani_galdyr":
             MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
+        "doglan_guni": MessageLookupByLibrary.simpleMessage("Doglan güni"),
         "duydurys": MessageLookupByLibrary.simpleMessage("Duýduryş"),
+        "e_pocta": MessageLookupByLibrary.simpleMessage("E-poçta"),
         "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
         "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
         "giri_mumkin": MessageLookupByLibrary.simpleMessage("Giriş mümkin"),
         "goldanylyan_toleg_usullary":
@@ -72,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Habarlary ýa-da üpjünçileri gözle"),
         "has_ginisleyin":
             MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
+        "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
+        "hokmany": MessageLookupByLibrary.simpleMessage("Hökmany"),
         "in_meshgurlar": MessageLookupByLibrary.simpleMessage("Iň meşgurlar"),
         "jemi": MessageLookupByLibrary.simpleMessage("Jemi"),
         "kategoriyany_saylan":
@@ -114,12 +120,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
         "oz_bahany_sayla":
             MessageLookupByLibrary.simpleMessage("Öz bahaňy saýla"),
+        "parol": MessageLookupByLibrary.simpleMessage("Parol"),
         "podpiska": MessageLookupByLibrary.simpleMessage("AI ýazgysy ru"),
         "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
         "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
         "profil": MessageLookupByLibrary.simpleMessage("Profil"),
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
+        "register": MessageLookupByLibrary.simpleMessage("Registrasiýa bolmak"),
         "russkiy": MessageLookupByLibrary.simpleMessage("Русский"),
         "sargyt_etmek": MessageLookupByLibrary.simpleMessage("Sargyt etmek"),
         "sargyt_goragy_text": MessageLookupByLibrary.simpleMessage(

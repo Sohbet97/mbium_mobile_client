@@ -1289,6 +1289,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Registrasiýa bolmak`
+  String get register {
+    return Intl.message(
+      'Registrasiýa bolmak',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ady`
+  String get ady {
+    return Intl.message(
+      'Ady',
+      name: 'ady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Familiýasy`
+  String get familiasy {
+    return Intl.message(
+      'Familiýasy',
+      name: 'familiasy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-poçta`
+  String get e_pocta {
+    return Intl.message(
+      'E-poçta',
+      name: 'e_pocta',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parol`
+  String get parol {
+    return Intl.message(
+      'Parol',
+      name: 'parol',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doglan güni`
+  String get doglan_guni {
+    return Intl.message(
+      'Doglan güni',
+      name: 'doglan_guni',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hasap açmak`
+  String get hasap_ac {
+    return Intl.message(
+      'Hasap açmak',
+      name: 'hasap_ac',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hökmany`
+  String get hokmany {
+    return Intl.message(
+      'Hökmany',
+      name: 'hokmany',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

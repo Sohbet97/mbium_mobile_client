@@ -81,22 +81,27 @@ class _MyMbiumDataPage extends StatelessWidget {
         const SliverToBoxAdapter(child: MbiumMenuWidget()),
         const SliverToBoxAdapter(child: SettingsBannerWidget()),
         SliverToBoxAdapter(
-          child: Container(
-            padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            decoration: BoxDecoration(color: theme.cardColor),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  localization.menin_sargytlarym,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: !isDarkTheme ? Colors.black : null,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/orders');
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              decoration: BoxDecoration(color: theme.cardColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    localization.menin_sargytlarym,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: !isDarkTheme ? Colors.black : null,
+                    ),
                   ),
-                ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right)),
-              ],
+                  IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right)),
+                ],
+              ),
             ),
           ),
         ),
