@@ -85,5 +85,20 @@
 "support" : "Goldaw merkezi",
 "ulanys_duzgunleri" : "Ulanyş düzgünleri",
 "sargyt_etmek"  : "Sargyt etmek",
-"jemi"  : "Jemi"
+"jemi"  : "Jemi",
+"oz_bahany_appbar_title": "Öz bahaň we islegleriňe görä sargyt",
+"oz_bahany_sayla_title": "Soraglaryňyzy beriň we islegiňize gabat gelýän harydy tapyň",
+"oz_bahany_sayla_desc": "Müşderiňiň takyk saýlawy we bahalaryny çalt deňeşdirmesi",
+"sowda_teklip_sargytlaryn_in_meshgurlary": "Söwda teklip sargytlarynyň iň meşgurlary",
+"dizayn_sazlamalary": "Dizaýn sazlamalary",
+"logotypin_gornushi": "Logotyň görnüşi",
+"toplumyn_sazlamalary": "Toplumyň sazlamalary",
+"obs_barada_has_ginisleyin": "ÖBS barada has giňişleýin maglumat",
+"oz_bahany_surat_yuklan": "Surat ýüklän ýa-da açar sözleri giriziň. Meselem, 100 sany oýunjak aýy, goşulan dizaýn nusgasyny görüň.",
+"oz_bahany_ugratmak_bilen": "Ugratmak bilen, siz MBIUM",
+"mbium_hyzmat_sertleri": "hyzmat şertlerine",
+"we_gizlilik_syyyasatyna": "we gizlilik syýasatyna razy bolýarsyňyz.",
+"ai_komegi_bilen_obs": "AI kömegi bilen ÖBS-ny aňsatlyk bilen dörediň",
+"takyk_isleglerini_duzun": "Takyk islegleriňizi düzüň",
+"on_gorulen_onumler_section": "Öň görülen önümleriň taryhyndan söwda teklibi alyň"
 }

@@ -1289,6 +1289,141 @@ class S {
       args: [],
     );
   }
+
+  String get oz_bahany_appbar_title {
+  return Intl.message(
+    'Öz bahaň we islegleriňe görä sargyt',
+    name: 'oz_bahany_appbar_title',
+    desc: '',
+    args: [],
+  );
+}
+
+String get oz_bahany_sayla_title {
+  return Intl.message(
+    'Soraglaryňyzy beriň we islegiňize gabat gelýän harydy tapyň',
+    name: 'oz_bahany_sayla_title',
+    desc: '',
+    args: [],
+  );
+}
+
+String get oz_bahany_sayla_desc {
+  return Intl.message(
+    'Müşderiňiň takyk saýlawy we bahalaryny çalt deňeşdirmesi',
+    name: 'oz_bahany_sayla_desc',
+    desc: '',
+    args: [],
+  );
+}
+
+String get sowda_teklip_sargytlaryn_in_meshgurlary {
+  return Intl.message(
+    'Söwda teklip sargytlarynyň iň meşgurlary',
+    name: 'sowda_teklip_sargytlaryn_in_meshgurlary',
+    desc: '',
+    args: [],
+  );
+}
+
+String get dizayn_sazlamalary {
+  return Intl.message(
+    'Dizaýn sazlamalary',
+    name: 'dizayn_sazlamalary',
+    desc: '',
+    args: [],
+  );
+}
+
+String get logotypin_gornushi {
+  return Intl.message(
+    'Logotyň görnüşi',
+    name: 'logotypin_gornushi',
+    desc: '',
+    args: [],
+  );
+}
+
+String get toplumyn_sazlamalary {
+  return Intl.message(
+    'Toplumyň sazlamalary',
+    name: 'toplumyn_sazlamalary',
+    desc: '',
+    args: [],
+  );
+}
+
+String get obs_barada_has_ginisleyin {
+  return Intl.message(
+    'ÖBS barada has giňişleýin maglumat',
+    name: 'obs_barada_has_ginisleyin',
+    desc: '',
+    args: [],
+  );
+}
+
+String get oz_bahany_surat_yuklan {
+  return Intl.message(
+    'Surat ýüklän ýa-da açar sözleri giriziň. Meselem, 100 sany oýunjak aýy, goşulan dizaýn nusgasyny görüň.',
+    name: 'oz_bahany_surat_yuklan',
+    desc: '',
+    args: [],
+  );
+}
+
+String get oz_bahany_ugratmak_bilen {
+  return Intl.message(
+    'Ugratmak bilen, siz MBIUM',
+    name: 'oz_bahany_ugratmak_bilen',
+    desc: '',
+    args: [],
+  );
+}
+
+String get mbium_hyzmat_sertleri {
+  return Intl.message(
+    'hyzmat şertlerine',
+    name: 'mbium_hyzmat_sertleri',
+    desc: '',
+    args: [],
+  );
+}
+
+String get we_gizlilik_syyyasatyna {
+  return Intl.message(
+    'we gizlilik syýasatyna razy bolýarsyňyz.',
+    name: 'we_gizlilik_syyyasatyna',
+    desc: '',
+    args: [],
+  );
+}
+
+String get ai_komegi_bilen_obs {
+  return Intl.message(
+    'AI kömegi bilen ÖBS-ny aňsatlyk bilen dörediň',
+    name: 'ai_komegi_bilen_obs',
+    desc: '',
+    args: [],
+  );
+}
+
+String get takyk_isleglerini_duzun {
+  return Intl.message(
+    'Takyk islegleriňizi düzüň',
+    name: 'takyk_isleglerini_duzun',
+    desc: '',
+    args: [],
+  );
+}
+
+String get on_gorulen_onumler_section {
+  return Intl.message(
+    'Öň görülen önümleriň taryhyndan söwda teklibi alyň',
+    name: 'on_gorulen_onumler_section',
+    desc: '',
+    args: [],
+  );
+}
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
