@@ -132,7 +132,9 @@ class _OzBahanyFormWidgetState extends State<OzBahanyFormWidget> {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/rfqScreen');
+                },
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.navWhite,
                   side: const BorderSide(color: AppColors.navWhite, width: 1.2),

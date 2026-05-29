@@ -3,6 +3,7 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_scr
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
+import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/reg_shop_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/abuna_Screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/addresses/addresses_screen.dart';
@@ -75,6 +76,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const ChatsScreen());
     case '/ozBahanySayla':
       return FadeRoute(page: const OzBahanySaylaScreen());
+    case '/rfqScreen':
+      return FadeRoute(page: const OzBahanRfqScreen());
 
     default:
       return FadeRoute(
