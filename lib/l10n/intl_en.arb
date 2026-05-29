@@ -107,5 +107,32 @@
   "ibermek_bilen_razylasyarsynyz": "Ibermek bilen, siz MBIUM şertleri we düzgünleri \nbilen razylaşýarsyňyz",
   "dowam_et": "Dowam et",
   "sorag_bar_bolsa": "Sorag bar bolsa",
-  "goni_efir": "Göni efirdäki çada başlaň"
+  "goni_efir": "Göni efirdäki çada başlaň",
+
+  "profil"  : "Profil",
+  "habarlar" : "Habarlar",  
+  "language"  : "Dil",
+  "podpiska"  : "AI ýazgysy",
+  "english" : "English",
+  "russkiy" : "Русский",
+  "turkmence" : "Türkmen",
+  "addresses" : "Salgylarym",
+  "all_functions" : "All Functions",
+  "orders"  : "Orders",
+  "gorulen_harytlar"  : "Görülen harytlar",
+  "cupons"  : "Kuponlar",
+  "support" : "Support",
+  "ulanys_duzgunleri" : "Ulanyş düzgünleri",
+  "sargyt_etmek"  : "Sargyt etmek",
+  "jemi"  : "Jemi"
+
+
+
+
+
+
+
+
+
+
 }

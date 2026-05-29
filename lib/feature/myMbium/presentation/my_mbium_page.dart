@@ -63,7 +63,7 @@ class _MyMbiumDataPage extends StatelessWidget {
             const SizedBox(width: 5),
 
             _buildActionButton('assets/icons/support.svg', () {
-              // TODO click to support
+              Navigator.pushNamed(context, '/support');
             }),
             const SizedBox(width: 5),
 
@@ -103,29 +103,34 @@ class _MyMbiumDataPage extends StatelessWidget {
 
         const SliverToBoxAdapter(child: OffersList()),
         SliverToBoxAdapter(
-          child: Container(
-            padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
-            margin: const EdgeInsets.only(top: 6),
-            decoration: BoxDecoration(color: theme.cardColor),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.asset(
-                  'assets/images/melek_ai.png',
-                  height: 50,
-                  width: 50,
-                ),
-                SizedBox(width: 10),
-                Text(
-                  localization.ai_agendin_mugt_dowri,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: !isDarkTheme ? Colors.black : null,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/aiPodpiska');
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
+              margin: const EdgeInsets.only(top: 6),
+              decoration: BoxDecoration(color: theme.cardColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/melek_ai.png',
+                    height: 50,
+                    width: 50,
                   ),
-                ),
-                Expanded(child: SizedBox()),
-                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right)),
-              ],
+                  SizedBox(width: 10),
+                  Text(
+                    localization.ai_agendin_mugt_dowri,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: !isDarkTheme ? Colors.black : null,
+                    ),
+                  ),
+                  Expanded(child: SizedBox()),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right)),
+                ],
+              ),
             ),
           ),
         ),
