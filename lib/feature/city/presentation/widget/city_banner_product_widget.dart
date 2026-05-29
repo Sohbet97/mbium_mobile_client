@@ -8,7 +8,9 @@ import 'package:mbium_mobile_client/feature/products/presentation/widgets/produc
 import 'package:shimmer/shimmer.dart';
 
 class CityBannerProductWidget extends StatefulWidget {
-  const CityBannerProductWidget({super.key});
+  final ProductBloc productBloc;
+
+  const CityBannerProductWidget({super.key, required this.productBloc});
 
   @override
   State<CityBannerProductWidget> createState() =>
@@ -28,7 +30,7 @@ class _CityBannerProductWidgetState extends State<CityBannerProductWidget> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      context.read<ProductBloc>().add(LoadMoreProducts());
+      widget.productBloc.add(LoadMoreProducts());
     }
   }
 
@@ -40,13 +42,12 @@ class _CityBannerProductWidgetState extends State<CityBannerProductWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductBloc, ProductState>(
-      listener: (context, state) {
-        if (state is ProductLoaded) {
-          setState(() => _products.addAll(state.products));
-        }
-      },
+    return BlocBuilder<ProductBloc, ProductState>(
+      bloc: widget.productBloc,
       builder: (context, state) {
+        if (state is ProductLoaded) {
+          _products.addAll(state.products);
+        }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

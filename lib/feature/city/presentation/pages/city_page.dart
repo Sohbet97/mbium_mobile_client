@@ -10,7 +10,6 @@ import 'package:mbium_mobile_client/feature/city/presentation/widget/city_catego
 import 'package:mbium_mobile_client/feature/city/presentation/widget/city_horizontal_list_widget.dart';
 import 'package:mbium_mobile_client/feature/city/presentation/widget/city_maslahat_widget.dart';
 import 'package:mbium_mobile_client/feature/city/presentation/widget/city_banner_product_widget.dart';
-import '../../../../generated/l10n.dart';
 
 class CityPage extends StatefulWidget {
   const CityPage({super.key});
@@ -88,14 +87,12 @@ class _CityPageState extends State<CityPage> {
           ),
           const SizedBox(height: 16),
 
-          BlocConsumer<ProductBloc, ProductState>(
+          BlocBuilder<ProductBloc, ProductState>(
             bloc: _productBloc,
-            listener: (context, state) {
-              if (state is ProductLoaded) {
-                setState(() => _products.addAll(state.products));
-              }
-            },
             builder: (context, state) {
+              if (state is ProductLoaded) {
+                _products.addAll(state.products);
+              }
               return CityHorizontalListWidget(
                 productBloc: _productBloc,
                 scrollController: _productController,
@@ -116,16 +113,10 @@ class _CityPageState extends State<CityPage> {
           ),
           const SizedBox(height: 16),
 
-          BlocProvider.value(
-            value: _maslahatBloc,
-            child: const CityMaslahatWidget(),
-          ),
+          CityMaslahatWidget(productBloc: _maslahatBloc),
           const SizedBox(height: 20),
 
-          BlocProvider.value(
-            value: _bannerProductBloc,
-            child: const CityBannerProductWidget(),
-          ),
+          CityBannerProductWidget(productBloc: _bannerProductBloc),
           const SizedBox(height: 24),
         ],
       ),
