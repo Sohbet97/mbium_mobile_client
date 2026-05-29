@@ -9,7 +9,9 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../generated/l10n.dart';
 
 class CityMaslahatWidget extends StatefulWidget {
-  const CityMaslahatWidget({super.key});
+  final ProductBloc productBloc;
+
+  const CityMaslahatWidget({super.key, required this.productBloc});
 
   @override
   State<CityMaslahatWidget> createState() => _CityMaslahatWidgetState();
@@ -28,7 +30,7 @@ class _CityMaslahatWidgetState extends State<CityMaslahatWidget> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      context.read<ProductBloc>().add(LoadMoreProducts());
+      widget.productBloc.add(LoadMoreProducts());
     }
   }
 
@@ -42,13 +44,12 @@ class _CityMaslahatWidgetState extends State<CityMaslahatWidget> {
   Widget build(BuildContext context) {
     final l10n = S.of(context);
 
-    return BlocConsumer<ProductBloc, ProductState>(
-      listener: (context, state) {
-        if (state is ProductLoaded) {
-          setState(() => _products.addAll(state.products));
-        }
-      },
+    return BlocBuilder<ProductBloc, ProductState>(
+      bloc: widget.productBloc,
       builder: (context, state) {
+        if (state is ProductLoaded) {
+          _products.addAll(state.products);
+        }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
