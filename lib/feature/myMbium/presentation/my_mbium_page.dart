@@ -135,33 +135,38 @@ class _MyMbiumDataPage extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: Container(
-            padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
-            decoration: BoxDecoration(color: theme.cardColor),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.asset(
-                  'assets/images/logo_kici.png',
-                  height: 50,
-                  width: 50,
-                ),
-                SizedBox(width: 10),
-                Text(
-                  localization.mbiumda_satyp_basla,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: !isDarkTheme ? Colors.black : null,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/reg_shop');
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10),
+              decoration: BoxDecoration(color: theme.cardColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/logo_kici.png',
+                    height: 50,
+                    width: 50,
                   ),
-                ),
-                Expanded(child: SizedBox()),
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/reg_shop');
-                  },
-                  icon: Icon(Icons.arrow_right),
-                ),
-              ],
+                  SizedBox(width: 10),
+                  Text(
+                    localization.mbiumda_satyp_basla,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: !isDarkTheme ? Colors.black : null,
+                    ),
+                  ),
+                  Expanded(child: SizedBox()),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/reg_shop');
+                    },
+                    icon: Icon(Icons.arrow_right),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

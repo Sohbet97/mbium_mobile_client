@@ -138,11 +138,11 @@ class _RegShopScreenState extends State<RegShopScreen> {
                           validator: PhoneValidator.compose([
                             PhoneValidator.required(
                               context,
-                              errorText: 'telefon belgisi talap edilyar',
+                              errorText: localization.telefon_belgi,
                             ),
                             PhoneValidator.validMobile(
                               context,
-                              errorText: 'nadogry telefon belgisi',
+                              errorText: localization.telefon_belgi,
                             ),
                           ]),
                         ),
@@ -152,7 +152,7 @@ class _RegShopScreenState extends State<RegShopScreen> {
                           hintText: localization.karhananyn_dukanyn_ady,
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
-                              return 'karhana ady talap edilyar';
+                              return localization.karhananyn_dukanyn_ady;
                             }
                             return null;
                           },
@@ -169,7 +169,7 @@ class _RegShopScreenState extends State<RegShopScreen> {
                           title: localization.dowam_et,
                           onTap: () {
                             if (_globalKey.currentState!.validate()) {
-                              print('validation accepted!');
+                              // TODO click to continue
                             }
                           },
                         ),
@@ -186,13 +186,18 @@ class _RegShopScreenState extends State<RegShopScreen> {
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                     SizedBox(width: 6),
-                    Text(
-                      localization.goni_efir,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Theme.of(
-                          context,
-                        ).textTheme.labelSmall?.color,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/chats');
+                      },
+                      child: Text(
+                        localization.goni_efir,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          decoration: TextDecoration.underline,
+                          decorationColor: Theme.of(
+                            context,
+                          ).textTheme.labelSmall?.color,
+                        ),
                       ),
                     ),
                   ],

@@ -3,9 +3,7 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_scr
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
-<<<<<<< HEAD
 import 'package:mbium_mobile_client/feature/person/presentation/reg_shop_screen.dart';
-=======
 import 'package:mbium_mobile_client/feature/myMbium/presentation/abuna_Screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/addresses/addresses_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/ai_podpiska_screen.dart';
@@ -13,7 +11,6 @@ import 'package:mbium_mobile_client/feature/myMbium/presentation/all_functions_s
 import 'package:mbium_mobile_client/feature/myMbium/presentation/support_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/ulanys_duzgunleri_screen.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/recently_review_screen.dart';
->>>>>>> b3ee6f323c0488a4dac250ccba94c10135439d14
 import 'package:mbium_mobile_client/feature/settings/presentation/settings_screen.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/product_detail_screen.dart';
@@ -24,11 +21,9 @@ import 'package:mbium_mobile_client/feature/tolegler/presentation/tolegler_Scree
 import 'package:mbium_mobile_client/feature/top_products/presentation/pages/top_products_page.dart';
 
 import '../../feature/favorite/presentation/favorite_screen.dart';
-<<<<<<< HEAD
-=======
+import '../../feature/message/presentation/chats_screen.dart';
 import '../../feature/orders/presentation/orders_screen.dart';
 import '../../feature/shops/presentation/shop_detail_screen.dart';
->>>>>>> b3ee6f323c0488a4dac250ccba94c10135439d14
 import 'FadeRouter.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -51,10 +46,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/shopDetail':
       final shopModel = settings.arguments as ShopModel;
       return FadeRoute(page: ShopDetailScreen(shopModel: shopModel));
-<<<<<<< HEAD
     case '/reg_shop':
       return FadeRoute(page: const RegShopScreen());
-=======
     case '/aiPodpiska':
       return FadeRoute(page: const AiPodpiskaScreen());
     case '/addresses':
@@ -77,7 +70,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const AbunaScreen());
     case '/sargytEt':
       return FadeRoute(page: const SargytEtScreen());
->>>>>>> b3ee6f323c0488a4dac250ccba94c10135439d14
+    case '/chats':
+      return FadeRoute(page: const ChatsScreen());
 
     default:
       return FadeRoute(
