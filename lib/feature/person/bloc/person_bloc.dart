@@ -18,6 +18,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     on<SignInWithGoogleEvent>(_onSignInWithGoogle);
     on<SignOutEvent>(_onSignOut);
     on<CreateNewUserEvent>(_onCreateNewUser);
+    on<LogOutEvent>(_logOut);
   }
 
   FutureOr<void> _onIsRegistered(
@@ -102,5 +103,18 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString(), isLoading: false));
     }
+  }
+
+  FutureOr<void> _logOut(LogOutEvent event, Emitter<PersonState> emit) async {
+    await repository.preferences.clearAll();
+    emit(
+      state.copyWith(
+        isGostUser: false,
+        isLoading: false,
+        isRegistered: false,
+        personModel: null,
+        errorMessage: null,
+      ),
+    );
   }
 }

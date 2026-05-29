@@ -1369,6 +1369,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Sazlamalar`
+  String get settings {
+    return Intl.message(
+      'Sazlamalar',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pul birligi`
+  String get currency {
+    return Intl.message(
+      'Pul birligi',
+      name: 'currency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bildirişler`
+  String get notifications {
+    return Intl.message(
+      'Bildirişler',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ulanyjyny pozmak`
+  String get delete_user {
+    return Intl.message(
+      'Ulanyjyny pozmak',
+      name: 'delete_user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wersiýa`
+  String get version {
+    return Intl.message(
+      'Wersiýa',
+      name: 'version',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bahalandyrmak`
+  String get bahalandyrmak {
+    return Intl.message(
+      'Bahalandyrmak',
+      name: 'bahalandyrmak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keş arassalamak`
+  String get kes_arassalamak {
+    return Intl.message(
+      'Keş arassalamak',
+      name: 'kes_arassalamak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Çykyş`
+  String get log_out {
+    return Intl.message(
+      'Çykyş',
+      name: 'log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hakykatdanam ulgamdan çykmak isleýärsiňizmi?`
+  String get log_out_desc {
+    return Intl.message(
+      'Hakykatdanam ulgamdan çykmak isleýärsiňizmi?',
+      name: 'log_out_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hawa`
+  String get hawa {
+    return Intl.message(
+      'Hawa',
+      name: 'hawa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ýok`
+  String get yok {
+    return Intl.message(
+      'Ýok',
+      name: 'yok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ulgamdan çykdyňyz`
+  String get ulgamdan_cykdynyz {
+    return Intl.message(
+      'Ulgamdan çykdyňyz',
+      name: 'ulgamdan_cykdynyz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hoş geldiňiz`
+  String get welcome {
+    return Intl.message(
+      'Hoş geldiňiz',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

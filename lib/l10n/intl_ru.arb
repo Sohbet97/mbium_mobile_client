@@ -102,7 +102,29 @@
 "parol" : "Parol",
 "doglan_guni" : "Doglan güni",
 "hasap_ac" : "Hasap açmak",
-"hokmany" : "Hökmany"
+"hokmany" : "Hökmany",
+"settings"  : "Sazlamalar",
+"currency"  : "Pul birligi",
+"notifications" : "Bildirişler",
+"delete_user" : "Ulanyjyny pozmak",
+"version" : "Wersiýa",
+"bahalandyrmak" : "Bahalandyrmak",
+"kes_arassalamak" : "Keş arassalamak",
+"log_out" : "Çykyş",
+"log_out_desc"  : "Hakykatdanam ulgamdan çykmak isleýärsiňizmi?",
+"hawa"  : "Hawa",
+"yok" : "Ýok",
+"ulgamdan_cykdynyz" : "Ulgamdan çykdyňyz",
+"welcome" : "Hoş geldiňiz"
+
+
+
+
+
+
+
+
+
 
 
 

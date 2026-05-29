@@ -32,3 +32,5 @@ final class CreateNewUserEvent extends PersonEvent {
     required this.phone,
   });
 }
+
+final class LogOutEvent extends PersonEvent {}

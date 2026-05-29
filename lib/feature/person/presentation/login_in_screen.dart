@@ -25,7 +25,7 @@ class _LoginInScreenState extends State<LoginInScreen> {
       body: BlocConsumer<PersonBloc, PersonState>(
         listener: (context, state) {
           if (state.isGostUser == true) {
-            context.read<MainBloc>().add(SetNavigationPageEvent(index: 4));
+            context.read<MainBloc>().add(SetNavigationPageEvent(index: 0));
           }
           if (state.isRegistered &&
               !state.isGostUser &&
@@ -134,6 +134,10 @@ class _LoginInScreenState extends State<LoginInScreen> {
                         context.read<PersonBloc>().add(RegisterWithGostEvent());
                         if (widget.isModal == true) {
                           Navigator.pop(context);
+                        } else {
+                          context.read<MainBloc>().add(
+                            SetNavigationPageEvent(index: 4),
+                          );
                         }
                       },
                 child: Text(
