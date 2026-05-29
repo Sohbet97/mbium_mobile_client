@@ -20,7 +20,6 @@ class ProductMassonGridItem extends StatelessWidget {
     return '';
   }
 
-  // Расчет процента скидки
   int? get _discountPercent {
     if (product.compareAtPrice != null &&
         product.compareAtPrice! > product.price) {
@@ -37,13 +36,13 @@ class ProductMassonGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyles = context.appTextStyles;
     final discount = _discountPercent;
-
+    final color = Theme.of(context).cardColor;
     return GestureDetector(
       onTap: () =>
           Navigator.pushNamed(context, '/productDetail', arguments: product),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: color,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.grey.withOpacity(0.12), width: 1),
           boxShadow: [

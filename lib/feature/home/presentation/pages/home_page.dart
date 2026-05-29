@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/pages/ai_agent_page.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/pages/city_page.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/pages/home_products_page.dart';
-import 'package:mbium_mobile_client/feature/home/presentation/pages/shops_page.dart';
+import 'package:mbium_mobile_client/feature/shops/presentation/pages/shops_page.dart';
 
 import '../../../../generated/l10n.dart';
 

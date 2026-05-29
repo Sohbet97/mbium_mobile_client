@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 
 class OfferCard extends StatelessWidget {
   const OfferCard({super.key});
@@ -63,7 +62,7 @@ class OfferCard extends StatelessWidget {
             ),
           ),
 
-          SvgIcon(iconName: 'assets/icons/delivery.svg', height: 42, width: 42),
+          Image.asset('assets/images/delivery-truck.png'),
         ],
       ),
     );

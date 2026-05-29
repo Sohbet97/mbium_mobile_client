@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import '../widget/top_products_header_widget.dart';
 import '../widget/top_products_tabs_widget.dart';
 import '../widget/ahlisi_tab_widget.dart';
@@ -35,9 +34,7 @@ class _TopProductsPageState extends State<TopProductsPage>
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          SliverToBoxAdapter(
-            child: const TopProductsHeaderWidget(),
-          ),
+          SliverToBoxAdapter(child: const TopProductsHeaderWidget()),
           SliverPersistentHeader(
             pinned: true,
             delegate: _TabBarDelegate(
@@ -65,7 +62,10 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return tabBar;
   }
 

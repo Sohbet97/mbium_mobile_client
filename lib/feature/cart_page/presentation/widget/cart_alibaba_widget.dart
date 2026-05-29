@@ -25,7 +25,7 @@ class CartAlibabaWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        l10n.mbium_sargyt_goraglylygy,
+                        l10n.alibaba_sargyt_goragy,
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
@@ -33,20 +33,26 @@ class CartAlibabaWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 4),
-                      const Icon(Icons.verified_outlined,
-                          size: 15, color: AppColors.bonusBannerTextGreen),
+                      const Icon(
+                        Icons.verified_outlined,
+                        size: 15,
+                        color: AppColors.bonusBannerTextGreen,
+                      ),
                     ],
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios_rounded,
-                    size: 14, color: AppColors.lightTextSecondary),
+                const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14,
+                  color: AppColors.lightTextSecondary,
+                ),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
             child: Text(
-              l10n.mbium_sargyt_goraglylygy_desc,
+              l10n.alibaba_sargyt_goragy_desc,
               style: const TextStyle(
                 fontSize: 11,
                 color: AppColors.lightTextSecondary,

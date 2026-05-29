@@ -71,5 +71,21 @@
 "turkmenistanda_in_gowysy": "Türkmenistanda iň gowysy",
 "kategoriyany_saylan": "Kategoriýany saýlaň",
 "satuw_liderleri": "Satuw liderleri",
-"in_meshgurlar": "Iň meşgurlar"
+"in_meshgurlar": "Iň meşgurlar",
+"profil"  : "Profil",
+"habarlar" : "Habarlar",  
+"language"  : "Dil",
+"english" : "English",
+"russkiy" : "Русский",
+"turkmence" : "Türkmen",
+"addresses" : "Salgylarym",
+"all_functions" : "Ähli funksiýalar",
+"orders"  : "Sargytlarym",
+"gorulen_harytlar"  : "Görülen harytlar",
+"cupons"  : "Kuponlar",
+"support" : "Goldaw merkezi",
+"ulanys_duzgunleri" : "Ulanyş düzgünleri",
+"sargyt_etmek"  : "Sargyt etmek",
+"jemi"  : "Jemi"
+
 }
