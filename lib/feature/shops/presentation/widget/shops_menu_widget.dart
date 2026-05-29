@@ -30,7 +30,9 @@ class ShopsMenuWidget extends StatelessWidget {
             title: l10n.oz_bahany_sayla,
             subTitle: '',
             color: color,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/ozBahanySayla');
+            },
           ),
           const SizedBox(width: 8),
           _buildItem(
@@ -76,11 +78,12 @@ class ShopsMenuWidget extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 11),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
                   ),
                   if (subTitle.isNotEmpty)
-                    Text(subTitle,
-                        style: const TextStyle(fontSize: 10)),
+                    Text(subTitle, style: const TextStyle(fontSize: 10)),
                 ],
               ),
             ),
