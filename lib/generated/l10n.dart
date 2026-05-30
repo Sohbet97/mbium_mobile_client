@@ -1502,7 +1502,7 @@ String get surat_gos {
 /// `Ý götow(a) предоставить свою визитку поставщикам...`
 String get rfq_checkbox1 {
   return Intl.message(
-    'Ý götow(a) предоставить свою визитку поставщикам, опубликовавшим свои ценовые предложения.',
+    'Я готов(a) предоставить свою визитку поставщикам, опубликовавшим свои ценовые предложения.',
     name: 'rfq_checkbox1',
     desc: '',
     args: [],
@@ -1524,6 +1524,51 @@ String get ugrat {
   return Intl.message(
     'Ugrat',
     name: 'ugrat',
+    desc: '',
+    args: [],
+  );
+}
+
+String get unit_sany {
+  return Intl.message(
+    'sany',
+    name: 'unit_sany',
+    desc: '',
+    args: [],
+  );
+}
+
+String get unit_kg {
+  return Intl.message(
+    'kg',
+    name: 'unit_kg',
+    desc: '',
+    args: [],
+  );
+}
+
+String get unit_litr {
+  return Intl.message(
+    'litr',
+    name: 'unit_litr',
+    desc: '',
+    args: [],
+  );
+}
+
+String get unit_m {
+  return Intl.message(
+    'm',
+    name: 'unit_m',
+    desc: '',
+    args: [],
+  );
+}
+
+String get unit_sm {
+  return Intl.message(
+    'sm',
+    name: 'unit_sm',
     desc: '',
     args: [],
   );
