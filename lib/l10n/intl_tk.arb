@@ -101,5 +101,13 @@
 "ai_komegi_bilen_obs": "AI kömegi bilen ÖBS-ny aňsatlyk bilen dörediň",
 "takyk_isleglerini_duzun": "Takyk islegleriňizi düzüň",
 "on_gorulen_onumler_section": "Öň görülen önümleriň taryhyndan söwda teklibi alyň",
-"obs" : "ÖBS"
+"obs" : "ÖBS",
+"gozlege_basanda": "Gözlege basanda",
+"jikme_jik_talaplary_girizin": "Jikme-jik talaplary giriziň",
+"jikme_jik_talaplary_hint": "Üpjünçilerden has takyk söwda tekliplerini almak üçin jikme-jik talaplaryny ýazyň",
+"mocberi_girizin": "Möçberi giriziň",
+"surat_gos": "Surat goş",
+"rfq_checkbox1": "Ý götow(a) предоставить свою визитку поставщикам, опубликовавшим свои ценовые предложения.",
+"rfq_checkbox2": "Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri",
+"ugrat": "Ugrat"
 }

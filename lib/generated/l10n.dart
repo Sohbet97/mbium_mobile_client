@@ -1449,6 +1449,86 @@ class S {
       args: [],
     );
   }
+/// `Gözlege basanda`
+String get gozlege_basanda {
+  return Intl.message(
+    'Gözlege basanda',
+    name: 'gozlege_basanda',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Jikme-jik talaplary giriziň`
+String get jikme_jik_talaplary_girizin {
+  return Intl.message(
+    'Jikme-jik talaplary giriziň',
+    name: 'jikme_jik_talaplary_girizin',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Üpjünçilerden has takyk söwda tekliplerini almak üçin...`
+String get jikme_jik_talaplary_hint {
+  return Intl.message(
+    'Üpjünçilerden has takyk söwda tekliplerini almak üçin jikme-jik talaplaryny ýazyň',
+    name: 'jikme_jik_talaplary_hint',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Möçberi giriziň`
+String get mocberi_girizin {
+  return Intl.message(
+    'Möçberi giriziň',
+    name: 'mocberi_girizin',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Surat goş`
+String get surat_gos {
+  return Intl.message(
+    'Surat goş',
+    name: 'surat_gos',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Ý götow(a) предоставить свою визитку поставщикам...`
+String get rfq_checkbox1 {
+  return Intl.message(
+    'Ý götow(a) предоставить свою визитку поставщикам, опубликовавшим свои ценовые предложения.',
+    name: 'rfq_checkbox1',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Я прочитал(а), понял(а) и соглашаюсь...`
+String get rfq_checkbox2 {
+  return Intl.message(
+    'Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri',
+    name: 'rfq_checkbox2',
+    desc: '',
+    args: [],
+  );
+}
+
+/// `Ugrat`
+String get ugrat {
+  return Intl.message(
+    'Ugrat',
+    name: 'ugrat',
+    desc: '',
+    args: [],
+  );
+}
+  
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
