@@ -12,9 +12,13 @@ class RfqQuantityWidget extends StatefulWidget {
 
 class _RfqQuantityWidgetState extends State<RfqQuantityWidget> {
   final _quantityController = TextEditingController();
-  String _selectedUnit = 'sany';
+  late String _selectedUnit;
 
-  final List<String> _units = ['sany', 'kg', 'litr', 'm', 'sm'];
+  @override
+  void initState() {
+    super.initState();
+    _selectedUnit = 'sany';
+  }
 
   @override
   void dispose() {
@@ -26,6 +30,18 @@ class _RfqQuantityWidgetState extends State<RfqQuantityWidget> {
   Widget build(BuildContext context) {
     final l10n = S.of(context);
     final textStyles = context.appTextStyles;
+
+    final units = [
+      l10n.unit_sany,
+      l10n.unit_kg,
+      l10n.unit_litr,
+      l10n.unit_m,
+      l10n.unit_sm,
+    ];
+
+    if (!units.contains(_selectedUnit)) {
+      _selectedUnit = units.first;
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,18 +77,15 @@ class _RfqQuantityWidgetState extends State<RfqQuantityWidget> {
                   fillColor: Theme.of(context).colorScheme.surface,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide:
-                        const BorderSide(color: AppColors.navBarGrey),
+                    borderSide: const BorderSide(color: AppColors.navBarGrey),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide:
-                        const BorderSide(color: AppColors.navBarGrey),
+                    borderSide: const BorderSide(color: AppColors.navBarGrey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide:
-                        const BorderSide(color: AppColors.primaryGreen),
+                    borderSide: const BorderSide(color: AppColors.primaryGreen),
                   ),
                   contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16, vertical: 12),
@@ -92,7 +105,7 @@ class _RfqQuantityWidgetState extends State<RfqQuantityWidget> {
                   value: _selectedUnit,
                   icon: const Icon(Icons.keyboard_arrow_down_rounded,
                       color: AppColors.lightTextSecondary),
-                  items: _units.map((unit) {
+                  items: units.map((unit) {
                     return DropdownMenuItem(
                       value: unit,
                       child: Text(unit,
@@ -100,7 +113,7 @@ class _RfqQuantityWidgetState extends State<RfqQuantityWidget> {
                     );
                   }).toList(),
                   onChanged: (val) =>
-                      setState(() => _selectedUnit = val ?? 'sany'),
+                      setState(() => _selectedUnit = val ?? units.first),
                 ),
               ),
             ),

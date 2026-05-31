@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
@@ -113,8 +114,8 @@ class _RfqImageWidgetState extends State<RfqImageWidget> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        _images[index].path,
+                      child: Image.file(
+                        File(_images[index].path),
                         width: 80,
                         height: 80,
                         fit: BoxFit.cover,
