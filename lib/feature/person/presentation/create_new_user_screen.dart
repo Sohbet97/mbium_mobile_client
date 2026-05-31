@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mbium_mobile_client/core/constants/helpers.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
+import 'package:mbium_mobile_client/feature/person/bloc/Auth/auth_bloc.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -61,7 +61,7 @@ class _CreateNewUserScreenState extends State<CreateNewUserScreen> {
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
-    context.read<PersonBloc>().add(
+    context.read<AuthBloc>().add(
       CreateNewUserEvent(
         name: _nameController.text.trim(),
         sureName: _surnameController.text.trim(),
@@ -79,18 +79,21 @@ class _CreateNewUserScreenState extends State<CreateNewUserScreen> {
   Widget build(BuildContext context) {
     final loc = S.of(context);
     return Scaffold(
-      body: BlocConsumer<PersonBloc, PersonState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state.isRegistered &&
-              state.personModel != null &&
-              !state.isGostUser) {
-            Navigator.pop(context);
-          }
-          if (state.errorMessage != null) {
+          if (state is CreateNewUserError) {
             MyHelpers.showMessage(
-              state.errorMessage!,
+              loc.nasazlyk_yuze_cykdy,
               AppColors.errorRed,
               context,
+            );
+          }
+
+          if (state is CreateNewUserSuccess) {
+            Navigator.pushReplacementNamed(
+              context,
+              '/otpVerify',
+              arguments: state.sessionId,
             );
           }
         },
@@ -171,7 +174,7 @@ class _CreateNewUserScreenState extends State<CreateNewUserScreen> {
                           onTap: _pickBirthday,
                         ),
                         const SizedBox(height: 28),
-                        if (state.isLoading)
+                        if (state is CreateNewUserProgress)
                           const Center(
                             child: CircularProgressIndicator(
                               color: AppColors.primaryGreen,

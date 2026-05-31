@@ -33,57 +33,51 @@ class _OzBahanRfqScreenState extends State<OzBahanRfqScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.navWhite,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.primaryGreen),
-          onPressed: () => Navigator.pop(context),
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RfqSearchWidget(controller: _searchController),
-            const SizedBox(height: 20),
+      appBar: AppBar(title: Text(l10n.oz_bahany_sayla)),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RfqSearchWidget(controller: _searchController),
+              const SizedBox(height: 20),
 
-            RfqDetailsWidget(controller: _detailsController),
-            const SizedBox(height: 16),
+              RfqDetailsWidget(controller: _detailsController),
+              const SizedBox(height: 16),
 
-            const RfqImageWidget(),
-            const SizedBox(height: 20),
+              const RfqImageWidget(),
+              const SizedBox(height: 20),
 
-            const RfqQuantityWidget(),
-            const SizedBox(height: 20),
+              const RfqQuantityWidget(),
+              const SizedBox(height: 20),
 
-            const RfqCheckboxesWidget(),
-            const SizedBox(height: 24),
+              const RfqCheckboxesWidget(),
+              const SizedBox(height: 24),
 
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryGreen,
-                  foregroundColor: AppColors.navWhite,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryGreen,
+                    foregroundColor: AppColors.navWhite,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ),
-                child: Text(
-                  l10n.ugrat,
-                  style: textStyles.s16w600clBlack.copyWith(
-                    color: AppColors.navWhite,
+                  child: Text(
+                    l10n.ugrat,
+                    style: textStyles.s16w600clBlack.copyWith(
+                      color: AppColors.navWhite,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-          ],
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );

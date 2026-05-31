@@ -5,6 +5,7 @@ import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/create_new_user_screen.dart';
+import 'package:mbium_mobile_client/feature/person/presentation/otp_verified_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/person_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/reg_shop_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/abuna_Screen.dart';
@@ -83,6 +84,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const CreateNewUserScreen());
     case '/profil':
       return FadeRoute(page: const PersonScreen());
+    case '/otpVerify':
+      final session = settings.arguments as String;
+      return FadeRoute(page: OtpVerifiedScreen(sessionId: session));
 
     default:
       return FadeRoute(
