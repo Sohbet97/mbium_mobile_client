@@ -1199,7 +1199,7 @@ class S {
     );
   }
 
-  /// `Üpjünçilerden has takyk söwda tekliplerini almak üçin...`
+  /// `Üpjünçilerden has takyk söwda tekliplerini almak üçin jikme-jik talaplaryny ýazyň`
   String get jikme_jik_talaplary_hint {
     return Intl.message(
       'Üpjünçilerden has takyk söwda tekliplerini almak üçin jikme-jik talaplaryny ýazyň',
@@ -1224,7 +1224,7 @@ class S {
     return Intl.message('Surat goş', name: 'surat_gos', desc: '', args: []);
   }
 
-  /// `Ý götow(a) предоставить свою визитку поставщикам...`
+  /// `Я готов(a) предоставить свою визитку поставщикам, опубликовавшим свои ценовые предложения.`
   String get rfq_checkbox1 {
     return Intl.message(
       'Я готов(a) предоставить свою визитку поставщикам, опубликовавшим свои ценовые предложения.',
@@ -1234,7 +1234,7 @@ class S {
     );
   }
 
-  /// `Я прочитал(а), понял(а) и соглашаюсь...`
+  /// `Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri`
   String get rfq_checkbox2 {
     return Intl.message(
       'Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri',
@@ -1249,26 +1249,32 @@ class S {
     return Intl.message('Ugrat', name: 'ugrat', desc: '', args: []);
   }
 
+  /// `sany`
   String get unit_sany {
     return Intl.message('sany', name: 'unit_sany', desc: '', args: []);
   }
 
+  /// `kg`
   String get unit_kg {
     return Intl.message('kg', name: 'unit_kg', desc: '', args: []);
   }
 
+  /// `litr`
   String get unit_litr {
     return Intl.message('litr', name: 'unit_litr', desc: '', args: []);
   }
 
+  /// `m`
   String get unit_m {
     return Intl.message('m', name: 'unit_m', desc: '', args: []);
   }
 
+  /// `sm`
   String get unit_sm {
     return Intl.message('sm', name: 'unit_sm', desc: '', args: []);
   }
 
+  /// `Registrasiýa bolmak`
   String get register {
     return Intl.message(
       'Registrasiýa bolmak',
@@ -1406,6 +1412,66 @@ class S {
   /// `Hoş geldiňiz`
   String get welcome {
     return Intl.message('Hoş geldiňiz', name: 'welcome', desc: '', args: []);
+  }
+
+  /// `Top satyjylar`
+  String get top_satyjylar {
+    return Intl.message(
+      'Top satyjylar',
+      name: 'top_satyjylar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ýer`
+  String get yer {
+    return Intl.message('Ýer', name: 'yer', desc: '', args: []);
+  }
+
+  /// `Satyjy`
+  String get satyjy {
+    return Intl.message('Satyjy', name: 'satyjy', desc: '', args: []);
+  }
+
+  /// `Haryt sany`
+  String get haryt_sany {
+    return Intl.message('Haryt sany', name: 'haryt_sany', desc: '', args: []);
+  }
+
+  /// `Müşderi baha reýting`
+  String get musderi_baha_reyting {
+    return Intl.message(
+      'Müşderi baha reýting',
+      name: 'musderi_baha_reyting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Satyş sany`
+  String get satys_sany {
+    return Intl.message('Satyş sany', name: 'satys_sany', desc: '', args: []);
+  }
+
+  /// `Kurýer tizligi`
+  String get kuryer_tizligi {
+    return Intl.message(
+      'Kurýer tizligi',
+      name: 'kuryer_tizligi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Likelar`
+  String get like {
+    return Intl.message('Likelar', name: 'like', desc: '', args: []);
+  }
+
+  /// `Umumy ball`
+  String get umumy_ball {
+    return Intl.message('Umumy ball', name: 'umumy_ball', desc: '', args: []);
   }
 }
 
