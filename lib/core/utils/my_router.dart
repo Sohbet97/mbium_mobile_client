@@ -4,6 +4,8 @@ import 'package:mbium_mobile_client/feature/category/presentation/category_scree
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
+import 'package:mbium_mobile_client/feature/person/presentation/create_new_user_screen.dart';
+import 'package:mbium_mobile_client/feature/person/presentation/person_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/reg_shop_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/abuna_Screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/addresses/addresses_screen.dart';
@@ -25,7 +27,6 @@ import '../../feature/favorite/presentation/favorite_screen.dart';
 import '../../feature/home/presentation/oz_bahany_sayla_screen.dart';
 import '../../feature/message/presentation/chats_screen.dart';
 import '../../feature/orders/presentation/orders_screen.dart';
-import '../../feature/shops/presentation/shop_detail_screen.dart';
 import 'FadeRouter.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -78,6 +79,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const OzBahanySaylaScreen());
     case '/rfqScreen':
       return FadeRoute(page: const OzBahanRfqScreen());
+    case '/register':
+      return FadeRoute(page: const CreateNewUserScreen());
+    case '/profil':
+      return FadeRoute(page: const PersonScreen());
 
     default:
       return FadeRoute(

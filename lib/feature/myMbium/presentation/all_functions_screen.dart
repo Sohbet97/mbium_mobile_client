@@ -164,7 +164,9 @@ class _AllFunctionsScreenState extends State<AllFunctionsScreen> {
                         children: [
                           _buildItem(
                             title: localization.mbiumda_satyp_basla,
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/reg_shop');
+                            },
                           ),
 
                           _buildItem(

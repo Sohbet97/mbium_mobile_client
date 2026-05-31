@@ -64,14 +64,14 @@ class MyHelpers {
         ),
         actions: [
           CupertinoDialogAction(
-            isDefaultAction: false,
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(t.no, style: TextStyle(color: Colors.grey)),
-          ),
-          CupertinoDialogAction(
             isDestructiveAction: true,
             onPressed: () => Navigator.pop(context, true),
             child: Text(t.yes),
+          ),
+          CupertinoDialogAction(
+            isDefaultAction: false,
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(t.no, style: TextStyle(color: Colors.grey)),
           ),
         ],
       ),

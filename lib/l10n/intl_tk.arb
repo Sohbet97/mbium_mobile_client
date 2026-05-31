@@ -114,5 +114,27 @@
 "unit_kg": "kg",
 "unit_litr": "litr",
 "unit_m": "m",
-"unit_sm": "sm"
-}
+"unit_sm": "sm",
+"register" : "Registrasiýa bolmak",
+"ady" : "Ady",
+"familiasy" : "Familiýasy",
+"e_pocta" : "E-poçta",
+"parol" : "Parol",
+"doglan_guni" : "Doglan güni",
+"hasap_ac" : "Hasap açmak",
+"hokmany" : "Hökmany",
+"settings"  : "Sazlamalar",
+"currency"  : "Pul birligi",
+"notifications" : "Bildirişler",
+"delete_user" : "Ulanyjyny pozmak",
+"version" : "Wersiýa",
+"bahalandyrmak" : "Bahalandyrmak",
+"kes_arassalamak" : "Keş arassalamak",
+"log_out" : "Çykyş",
+"log_out_desc"  : "Hakykatdanam ulgamdan çykmak isleýärsiňizmi?",
+"hawa"  : "Hawa",
+"yok" : "Ýok",
+"ulgamdan_cykdynyz" : "Ulgamdan çykdyňyz",
+"welcome" : "Hoş geldiňiz"
+} 
+
