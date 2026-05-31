@@ -1407,6 +1407,132 @@ class S {
   String get welcome {
     return Intl.message('Hoş geldiňiz', name: 'welcome', desc: '', args: []);
   }
+
+  String get alyyjy_gornushi {
+  return Intl.message(
+    'Alyjy görnüşi',
+    name: 'alyyjy_gornushi',
+    desc: '',
+    args: [],
+  );
+}
+
+String get doly_ady {
+  return Intl.message(
+    'Doly ady',
+    name: 'doly_ady',
+    desc: '',
+    args: [],
+  );
+}
+
+String get elektron_poctasy {
+  return Intl.message(
+    'Elektron poçtasy',
+    name: 'elektron_poctasy',
+    desc: '',
+    args: [],
+  );
+}
+
+String get telefon_belgisi {
+  return Intl.message(
+    'Telefon belgisi',
+    name: 'telefon_belgisi',
+    desc: '',
+    args: [],
+  );
+}
+
+String get paroly_uytget {
+  return Intl.message(
+    'Paroly üýtget',
+    name: 'paroly_uytget',
+    desc: '',
+    args: [],
+  );
+}
+
+String get baglanan_hasaplar {
+  return Intl.message(
+    'Baglanan hasaplar',
+    name: 'baglanan_hasaplar',
+    desc: '',
+    args: [],
+  );
+}
+
+String get baglanan_hasaplar_desc {
+  return Intl.message(
+    'Has çalt we aňsat girmek üçin MBIUM hasabyňyzy şu aşakdaky hasaplara bagla',
+    name: 'baglanan_hasaplar_desc',
+    desc: '',
+    args: [],
+  );
+}
+
+String get baglanan {
+  return Intl.message(
+    'Baglanan',
+    name: 'baglanan',
+    desc: '',
+    args: [],
+  );
+}
+
+String get baglanmady {
+  return Intl.message(
+    'Bağlanmady',
+    name: 'baglanmady',
+    desc: '',
+    args: [],
+  );
+}
+
+String get haryt_gozlegindaki_ileri_tutmalar {
+  return Intl.message(
+    'Haryt gözlegindäki ileri tutmalar',
+    name: 'haryt_gozlegindaki_ileri_tutmalar',
+    desc: '',
+    args: [],
+  );
+}
+
+String get harytlar_ucin_shahsy_hodurlemeleri_alyn {
+  return Intl.message(
+    'Harytlar üçin şahsy hödürlemeleri alyň',
+    name: 'harytlar_ucin_shahsy_hodurlemeleri_alyn',
+    desc: '',
+    args: [],
+  );
+}
+
+String get gozleg_tejribani_gowulandyrmak {
+  return Intl.message(
+    'Gözleg tejribäňizi gowulandyrmak üçin gysgaça anketary dolduryň',
+    name: 'gozleg_tejribani_gowulandyrmak',
+    desc: '',
+    args: [],
+  );
+}
+
+String get sowda_maglumatlary {
+  return Intl.message(
+    'Söwda maglumatlary',
+    name: 'sowda_maglumatlary',
+    desc: '',
+    args: [],
+  );
+}
+
+String get sowda_maglumatlary_desc {
+  return Intl.message(
+    'Üpjünçileri tapmak has netijeli bolar ýaly profilimizi dolduryň.',
+    name: 'sowda_maglumatlary_desc',
+    desc: '',
+    args: [],
+  );
+}
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
