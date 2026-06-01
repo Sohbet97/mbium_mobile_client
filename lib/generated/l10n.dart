@@ -1533,6 +1533,87 @@ String get sowda_maglumatlary_desc {
     args: [],
   );
 }
+
+String get rfq_testimonial_text {
+  return Intl.message(
+    'RFQ maňa köp wagt tygşytlaýar... Men ýönekeýjek bu resminamany düzüp bilärin, ondan soň üpjünçiler meniň bilen habarlaşarlar.',
+    name: 'rfq_testimonial_text',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_testimonial_title {
+  return Intl.message(
+    'Üpjünçilik hünärmeni we esasy bilmen',
+    name: 'rfq_testimonial_title',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_nahili_ulanmaly {
+  return Intl.message(
+    'RFQ nähili ulanmaly',
+    name: 'rfq_nahili_ulanmaly',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_step1_title {
+  return Intl.message(
+    'Soragňyzy beýan ediň',
+    name: 'rfq_step1_title',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_step1_desc {
+  return Intl.message(
+    'Suraty ýükläň, harydyň açar sözlerini giriziň, talaplary döretmek üçin AI ulanyň we bularyň hemmesini RFQ görnüşinde çap ediň.',
+    name: 'rfq_step1_desc',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_step2_title {
+  return Intl.message(
+    'Takyk söwda teklip ýazgylaryny alyň',
+    name: 'rfq_step2_title',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_step2_desc {
+  return Intl.message(
+    'Çatda ýa-da elektron poçta arkaly laýyk gelýän üpjünçilerden 15-e çenli takyk söwda teklip ýazgylaryny alyň.',
+    name: 'rfq_step2_desc',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_step3_title {
+  return Intl.message(
+    '«Meniň RFQ»-da söwda teklip ýazgylaryny deňeşdiriň',
+    name: 'rfq_step3_title',
+    desc: '',
+    args: [],
+  );
+}
+
+String get rfq_step3_desc {
+  return Intl.message(
+    'Sargyt jikme-jikliklerini anyklamak üçin zerurlyklarňyzy takyk kanagatlandyrmaga taýýar bolan üpjünçiler bilen habarlaşyň.',
+    name: 'rfq_step3_desc',
+    desc: '',
+    args: [],
+  );
+}
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

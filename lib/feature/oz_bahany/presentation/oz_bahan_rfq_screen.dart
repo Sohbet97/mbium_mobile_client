@@ -6,6 +6,8 @@ import 'package:mbium_mobile_client/feature/oz_bahany/presentation/widget/rfq_de
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/widget/rfq_image_widget.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/widget/rfq_quantity_widget.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/widget/rfq_checkboxes_widget.dart';
+import 'package:mbium_mobile_client/feature/oz_bahany/presentation/widget/rfq_testimonial_widget.dart';
+import 'package:mbium_mobile_client/feature/oz_bahany/presentation/widget/rfq_how_to_widget.dart';
 import '../../../generated/l10n.dart';
 
 class OzBahanRfqScreen extends StatefulWidget {
@@ -76,6 +78,8 @@ class _OzBahanRfqScreenState extends State<OzBahanRfqScreen> {
                 ),
               ),
               const SizedBox(height: 24),
+              const RfqTestimonialWidget(),
+              const RfqHowToWidget(),
             ],
           ),
         ),
