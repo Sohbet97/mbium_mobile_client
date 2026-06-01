@@ -24,14 +24,19 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
     "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
+    "Men_sul_akkauntdan_narazy": MessageLookupByLibrary.simpleMessage(
+      "Men şul akkauntyň bir zadyndan närazy",
+    ),
     "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
     "addresses": MessageLookupByLibrary.simpleMessage("Salgylarym"),
     "ady": MessageLookupByLibrary.simpleMessage("Ady"),
+    "agza_bolanlarym": MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),
     "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
     "ai_agendyn": MessageLookupByLibrary.simpleMessage("AI Agendyň"),
     "ai_komegi_bilen_obs": MessageLookupByLibrary.simpleMessage(
       "AI kömegi bilen ÖBS-ny aňsatlyk bilen dörediň",
     ),
+    "akkaundy_blokla": MessageLookupByLibrary.simpleMessage("Akkaundy blokla"),
     "alibaba_sargyt_goragy": MessageLookupByLibrary.simpleMessage(
       "MBIUM sargyt goraglylygy",
     ),
@@ -195,11 +200,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "oz_bahany_ugratmak_bilen": MessageLookupByLibrary.simpleMessage(
       "Ugratmak bilen, siz MBIUM",
     ),
+    "oz_pikirini_yaz": MessageLookupByLibrary.simpleMessage("öz pikiriňi ýaz"),
+    "oz_saherimdaki": MessageLookupByLibrary.simpleMessage("Öz şäherimdäkiler"),
     "parol": MessageLookupByLibrary.simpleMessage("Parol"),
     "podpiska": MessageLookupByLibrary.simpleMessage("AI ýazgysy ru"),
+    "posty_udalit_et": MessageLookupByLibrary.simpleMessage(
+      "Posty öňüňden çykmaz ýaly udalit et",
+    ),
     "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
     "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
     "profil": MessageLookupByLibrary.simpleMessage("Profil"),
+    "profile_arza_et": MessageLookupByLibrary.simpleMessage("Profile arza et"),
     "reels": MessageLookupByLibrary.simpleMessage("Reels"),
     "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
     "register": MessageLookupByLibrary.simpleMessage("Registrasiýa bolmak"),
@@ -221,6 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "satys": MessageLookupByLibrary.simpleMessage("satyş"),
     "satys_sany": MessageLookupByLibrary.simpleMessage("Satyş sany"),
     "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
+    "sebede_gos": MessageLookupByLibrary.simpleMessage("SEBEDE GOŞ"),
     "sebedinez_bos": MessageLookupByLibrary.simpleMessage("Sebediniz boş"),
     "sebet": MessageLookupByLibrary.simpleMessage("Sebet"),
     "settings": MessageLookupByLibrary.simpleMessage("Sazlamalar"),
@@ -232,6 +244,10 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Söwda teklip sargytlarynyň iň meşgurlary",
         ),
+    "sowgat_ber": MessageLookupByLibrary.simpleMessage("SOWGAT BER"),
+    "sul_akkaunda_degisli_wideo_gorkezme": MessageLookupByLibrary.simpleMessage(
+      "Şul akkaunda degişli hiç bir wideo görkezme",
+    ),
     "support": MessageLookupByLibrary.simpleMessage("Goldaw merkezi"),
     "surat_gos": MessageLookupByLibrary.simpleMessage("Surat goş"),
     "takyk_isleglerini_duzun": MessageLookupByLibrary.simpleMessage(
@@ -247,6 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "turkmenistanda_in_gowysy": MessageLookupByLibrary.simpleMessage(
       "Türkmenistanda iň gowysy",
     ),
+    "udalit_et": MessageLookupByLibrary.simpleMessage("Udalit et"),
     "ugrat": MessageLookupByLibrary.simpleMessage("Ugrat"),
     "ulanys_duzgunleri": MessageLookupByLibrary.simpleMessage(
       "Ulanyş düzgünleri",
@@ -254,6 +271,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ulgamdan_cykdynyz": MessageLookupByLibrary.simpleMessage(
       "Ulgamdan çykdyňyz",
     ),
+    "umumy": MessageLookupByLibrary.simpleMessage("Umumy"),
     "umumy_ball": MessageLookupByLibrary.simpleMessage("Umumy ball"),
     "unit_kg": MessageLookupByLibrary.simpleMessage("kg"),
     "unit_litr": MessageLookupByLibrary.simpleMessage("litr"),
