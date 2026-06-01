@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import 'package:mbium_mobile_client/core/themes/theme.dart';
 import '../../../../generated/l10n.dart';
 
 class PersonTradeWidget extends StatelessWidget {
@@ -9,26 +8,30 @@ class PersonTradeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
-    final textStyles = context.appTextStyles;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ListTile(
-        title: Text(l10n.sowda_maglumatlary, style: textStyles.s13w600clBlack),
-        subtitle: Text(
-          l10n.sowda_maglumatlary_desc,
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.lightTextSecondary,
-          ),
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(l10n.sowda_maglumatlary,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                const Icon(Icons.arrow_forward_ios,
+                    size: 16, color: Colors.grey),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(l10n.sowda_maglumatlary_desc,
+                style: const TextStyle(
+                    fontSize: 12, color: AppColors.lightTextSecondary)),
+          ],
         ),
-        trailing: const Icon(Icons.arrow_forward_ios_rounded,
-            size: 14, color: AppColors.lightTextSecondary),
-        onTap: () {},
       ),
     );
   }

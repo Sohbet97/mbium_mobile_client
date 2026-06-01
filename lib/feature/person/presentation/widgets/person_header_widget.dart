@@ -11,7 +11,6 @@ class PersonHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context);
     final textStyles = context.appTextStyles;
 
     return BlocBuilder<PersonBloc, PersonState>(
@@ -21,15 +20,9 @@ class PersonHeaderWidget extends StatelessWidget {
         final avatar = person?.avatar;
 
         return Container(
-          margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          width: double.infinity,
           padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-          ),
+          color: Theme.of(context).colorScheme.surface,
           child: Row(
             children: [
               CircleAvatar(
@@ -83,39 +76,17 @@ class PersonHeaderWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: AppColors.primaryGreen,
-                  side: const BorderSide(color: AppColors.primaryGreen),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 6),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.add, size: 14),
-                    const SizedBox(width: 4),
-                    Text(l10n.alyyjy_gornushi,
-                        style: const TextStyle(fontSize: 12)),
-                  ],
-                ),
-              ),
               const SizedBox(width: 8),
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: AppColors.navWhite,
+                  color: AppColors.navBarGrey,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: SvgPicture.asset(
                   'assets/icons/qr-code.svg',
                   width: 22,
                   height: 22,
-                  
                 ),
               ),
             ],
