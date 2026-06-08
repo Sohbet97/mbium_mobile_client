@@ -1878,6 +1878,129 @@ class S {
       desc: '',
       args: [],
     );
+<<<<<<< HEAD
+=======
+  }
+
+  /// `SEBEDE GOŞ`
+  String get sebede_gos {
+    return Intl.message(
+      'SEBEDE GOŞ',
+      name: 'sebede_gos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `öz pikiriňi ýaz`
+  String get oz_pikirini_yaz {
+    return Intl.message(
+      'öz pikiriňi ýaz',
+      name: 'oz_pikirini_yaz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SOWGAT BER`
+  String get sowgat_ber {
+    return Intl.message(
+      'SOWGAT BER',
+      name: 'sowgat_ber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agza bolanlarym`
+  String get agza_bolanlarym {
+    return Intl.message(
+      'Agza bolanlarym',
+      name: 'agza_bolanlarym',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Öz şäherimdäkiler`
+  String get oz_saherimdaki {
+    return Intl.message(
+      'Öz şäherimdäkiler',
+      name: 'oz_saherimdaki',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Umumy`
+  String get umumy {
+    return Intl.message(
+      'Umumy',
+      name: 'umumy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Udalit et`
+  String get udalit_et {
+    return Intl.message(
+      'Udalit et',
+      name: 'udalit_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Posty öňüňden çykmaz ýaly udalit et`
+  String get posty_udalit_et {
+    return Intl.message(
+      'Posty öňüňden çykmaz ýaly udalit et',
+      name: 'posty_udalit_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Akkaundy blokla`
+  String get akkaundy_blokla {
+    return Intl.message(
+      'Akkaundy blokla',
+      name: 'akkaundy_blokla',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Şul akkaunda degişli hiç bir wideo görkezme`
+  String get sul_akkaunda_degisli_wideo_gorkezme {
+    return Intl.message(
+      'Şul akkaunda degişli hiç bir wideo görkezme',
+      name: 'sul_akkaunda_degisli_wideo_gorkezme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile arza et`
+  String get profile_arza_et {
+    return Intl.message(
+      'Profile arza et',
+      name: 'profile_arza_et',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Men şul akkauntyň bir zadyndan närazy`
+  String get Men_sul_akkauntdan_narazy {
+    return Intl.message(
+      'Men şul akkauntyň bir zadyndan närazy',
+      name: 'Men_sul_akkauntdan_narazy',
+      desc: '',
+      args: [],
+    );
+>>>>>>> reels
   }
 }
 

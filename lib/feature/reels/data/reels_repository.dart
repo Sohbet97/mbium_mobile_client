@@ -11,6 +11,7 @@ class ReelsRepository {
   ReelsRepository({required this.dio, required this.appPreferences});
 
   static const _mockVideos = [
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
