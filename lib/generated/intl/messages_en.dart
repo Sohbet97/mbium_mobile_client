@@ -24,20 +24,14 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Ai_agent": MessageLookupByLibrary.simpleMessage("AI agent"),
         "AppName": MessageLookupByLibrary.simpleMessage("Mbium"),
-<<<<<<< HEAD
-=======
         "Men_sul_akkauntdan_narazy": MessageLookupByLibrary.simpleMessage(
             "Men şul akkauntyň bir zadyndan närazy"),
->>>>>>> reels
         "abuna": MessageLookupByLibrary.simpleMessage("Abuna"),
         "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
         "addresses": MessageLookupByLibrary.simpleMessage("Salgylarym"),
         "ady": MessageLookupByLibrary.simpleMessage("Ady"),
-<<<<<<< HEAD
-=======
         "agza_bolanlarym":
             MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),
->>>>>>> reels
         "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
         "ai_agendin_mugt_dowri":
             MessageLookupByLibrary.simpleMessage("AI agendiň MUGT döwri"),
@@ -46,11 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "AI agendi mugt barlap göriň we has doly maglumat almak üçin agza boluň"),
         "ai_komegi_bilen_obs": MessageLookupByLibrary.simpleMessage(
             "AI kömegi bilen ÖBS-ny aňsatlyk bilen dörediň"),
-<<<<<<< HEAD
-=======
         "akkaundy_blokla":
             MessageLookupByLibrary.simpleMessage("Akkaundy blokla"),
->>>>>>> reels
         "alibaba_sargyt_goragy":
             MessageLookupByLibrary.simpleMessage("MBIUM sargyt goraglylygy"),
         "alibaba_sargyt_goragy_desc": MessageLookupByLibrary.simpleMessage(
@@ -119,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haryt_sany": MessageLookupByLibrary.simpleMessage("Haryt sany"),
         "has_ginisleyin":
             MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
+        "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
         "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
         "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
         "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
@@ -217,13 +209,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Surat ýüklän ýa-da açar sözleri giriziň. Meselem, 100 sany oýunjak aýy, goşulan dizaýn nusgasyny görüň."),
         "oz_bahany_ugratmak_bilen":
             MessageLookupByLibrary.simpleMessage("Ugratmak bilen, siz MBIUM"),
-<<<<<<< HEAD
-        "parol": MessageLookupByLibrary.simpleMessage("Parol"),
-        "podpiska": MessageLookupByLibrary.simpleMessage("AI ýazgysy"),
-        "product_empty": MessageLookupByLibrary.simpleMessage("Haryt ýok"),
-        "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
-        "profil": MessageLookupByLibrary.simpleMessage("Profil"),
-=======
         "oz_pikirini_yaz":
             MessageLookupByLibrary.simpleMessage("öz pikiriňi ýaz"),
         "oz_saherimdaki":
@@ -237,7 +222,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "profil": MessageLookupByLibrary.simpleMessage("Profil"),
         "profile_arza_et":
             MessageLookupByLibrary.simpleMessage("Profile arza et"),
->>>>>>> reels
         "reels": MessageLookupByLibrary.simpleMessage("Reels"),
         "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
         "register": MessageLookupByLibrary.simpleMessage("Registrasiýa bolmak"),
@@ -263,10 +247,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "satys": MessageLookupByLibrary.simpleMessage("satyş"),
         "satys_sany": MessageLookupByLibrary.simpleMessage("Satyş sany"),
         "search": MessageLookupByLibrary.simpleMessage("Gözleg..."),
-<<<<<<< HEAD
-=======
         "sebede_gos": MessageLookupByLibrary.simpleMessage("SEBEDE GOŞ"),
->>>>>>> reels
         "sebedinez_bos": MessageLookupByLibrary.simpleMessage("Sebediniz boş"),
         "sebet": MessageLookupByLibrary.simpleMessage("Sebet"),
         "settings": MessageLookupByLibrary.simpleMessage("Sazlamalar"),
@@ -278,13 +259,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "sowda_teklip_sargytlaryn_in_meshgurlary":
             MessageLookupByLibrary.simpleMessage(
                 "Söwda teklip sargytlarynyň iň meşgurlary"),
-<<<<<<< HEAD
-=======
         "sowgat_ber": MessageLookupByLibrary.simpleMessage("SOWGAT BER"),
         "sul_akkaunda_degisli_wideo_gorkezme":
             MessageLookupByLibrary.simpleMessage(
                 "Şul akkaunda degişli hiç bir wideo görkezme"),
->>>>>>> reels
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "surat_gos": MessageLookupByLibrary.simpleMessage("Surat goş"),
         "takyk_isleglerini_duzun":
@@ -308,19 +286,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Türkmenistanyň ähli ýerinden öýden çykman söwda ediň"),
         "tutus_yurt_boyunca_alyjylar": MessageLookupByLibrary.simpleMessage(
             "Tutuş ýurt boýunça müňlerçe alyjylar"),
-<<<<<<< HEAD
-=======
         "udalit_et": MessageLookupByLibrary.simpleMessage("Udalit et"),
->>>>>>> reels
         "ugrat": MessageLookupByLibrary.simpleMessage("Ugrat"),
         "ulanys_duzgunleri":
             MessageLookupByLibrary.simpleMessage("Ulanyş düzgünleri"),
         "ulgamdan_cykdynyz":
             MessageLookupByLibrary.simpleMessage("Ulgamdan çykdyňyz"),
-<<<<<<< HEAD
-=======
         "umumy": MessageLookupByLibrary.simpleMessage("Umumy"),
->>>>>>> reels
         "umumy_ball": MessageLookupByLibrary.simpleMessage("Umumy ball"),
         "unit_kg": MessageLookupByLibrary.simpleMessage("kg"),
         "unit_litr": MessageLookupByLibrary.simpleMessage("litr"),

@@ -1878,8 +1878,6 @@ class S {
       desc: '',
       args: [],
     );
-<<<<<<< HEAD
-=======
   }
 
   /// `SEBEDE GOŞ`
@@ -2000,7 +1998,16 @@ class S {
       desc: '',
       args: [],
     );
->>>>>>> reels
+  }
+
+  /// `Hasabym`
+  String get hasabym {
+    return Intl.message(
+      'Hasabym',
+      name: 'hasabym',
+      desc: '',
+      args: [],
+    );
   }
 }
 
