@@ -10,6 +10,10 @@ class SupportScreen extends StatefulWidget {
 class _SupportScreenState extends State<SupportScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('support')));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('support screen jdfhfsdhfk shfkjshdkf jhsajkdlfhsjkd'),
+      ),
+    );
   }
 }
