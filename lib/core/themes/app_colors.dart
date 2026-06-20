@@ -45,4 +45,5 @@ class AppColors {
   static const Color topFirst = Color(0xffC39B2C);
   static const Color topSecond = Color(0xff757678);
   static const Color topThird = Color(0xff91684F);
+  static const Color balanceTextGrey = Color(0xff7F9290);
 }
