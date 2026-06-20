@@ -164,14 +164,18 @@ class _BalanceScreenState extends State<BalanceScreen> {
                       SettingTile(
                         icon: 'assets/icons/wallet_icon.svg',
                         title: localization.toleg_usullary,
+                        onTap: () {},
                       ),
                       SettingTile(
                         icon: 'assets/icons/account_security.svg',
                         title: localization.shahsyyetini_tassyklamak,
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/verifyAccount'),
                       ),
                       SettingTile(
                         icon: 'assets/icons/help.svg',
                         title: localization.komek_seslenme,
+                        onTap: () {},
                       ),
                     ],
                   ),

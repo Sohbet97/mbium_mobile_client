@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/feature/balance/presentation/pages/account_verified_screen.dart';
 import 'package:mbium_mobile_client/feature/balance/presentation/pages/balance_screen.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_screen.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
@@ -87,6 +88,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const PersonScreen());
     case '/balance':
       return FadeRoute(page: const BalanceScreen());
+    case '/verifyAccount':
+      return FadeRoute(page: const AccountVerifiedScreen());
 
     case '/otpVerify':
       final session = settings.arguments as String;

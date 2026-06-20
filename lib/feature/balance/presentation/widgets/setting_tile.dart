@@ -5,12 +5,18 @@ import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.da
 class SettingTile extends StatelessWidget {
   final String icon;
   final String title;
-
-  const SettingTile({super.key, required this.icon, required this.title});
+  final Function()? onTap;
+  const SettingTile({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: SvgIcon(iconName: icon, color: Colors.white),
       title: Text(
         title,
