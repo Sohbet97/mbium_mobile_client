@@ -89,8 +89,8 @@ class MbiumMenuWidget extends StatelessWidget {
                   Navigator.pushNamed(context, '/cupons');
                 }, null),
 
-                _buildItem('$mainUrl/toleg.svg', localization.tolegler, () {
-                  Navigator.pushNamed(context, '/tolegler');
+                _buildItem('$mainUrl/toleg.svg', localization.balance, () {
+                  Navigator.pushNamed(context, '/balance');
                 }, null),
               ],
             ),

@@ -44,7 +44,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 ThemeMode themeMode = ThemeMode.light;
 bool isDarkTheme = false;
 String systemLanguage = "tm";
-final String myMediaUrl = 'http://172.20.19.99:9000/';
+final String myMediaUrl = 'https://mbium.com/api/';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {

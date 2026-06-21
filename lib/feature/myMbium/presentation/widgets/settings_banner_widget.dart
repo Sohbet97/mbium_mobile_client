@@ -53,7 +53,6 @@ class SettingsBannerWidget extends StatelessWidget {
                   const SizedBox(width: 8),
 
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, '/balance'),
                     //_showModal(context),
                     child: Icon(Icons.arrow_right, color: Colors.grey.shade800),
                   ),
