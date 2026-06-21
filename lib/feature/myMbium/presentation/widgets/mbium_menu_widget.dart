@@ -81,10 +81,6 @@ class MbiumMenuWidget extends StatelessWidget {
                   },
                 ),
 
-                _buildItem('$mainUrl/abuna.svg', localization.hasabym, () {
-                  Navigator.pushNamed(context, '/hasabym');
-                }, null),
-
                 _buildItem('$mainUrl/abuna.svg', localization.abuna, () {
                   Navigator.pushNamed(context, '/abuna');
                 }, null),
@@ -93,7 +89,7 @@ class MbiumMenuWidget extends StatelessWidget {
                   Navigator.pushNamed(context, '/cupons');
                 }, null),
 
-                _buildItem('$mainUrl/toleg.svg', localization.balance, () {
+                _buildItem('$mainUrl/toleg.svg', localization.hasabym, () {
                   Navigator.pushNamed(context, '/balance');
                 }, null),
               ],
