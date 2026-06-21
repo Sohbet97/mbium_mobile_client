@@ -1728,6 +1728,11 @@ class S {
       args: [],
     );
   }
+
+  /// `Hasabym`
+  String get hasabym {
+    return Intl.message('Hasabym', name: 'hasabym', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

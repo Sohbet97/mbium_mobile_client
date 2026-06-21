@@ -108,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "haryt_sany": MessageLookupByLibrary.simpleMessage("Haryt sany"),
     "has_ginisleyin": MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
+    "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
     "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
     "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
     "hokmany": MessageLookupByLibrary.simpleMessage("Hökmany"),

@@ -5,6 +5,7 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_scr
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
+import 'package:mbium_mobile_client/feature/myMbium/presentation/hasabym/hasabym_screen.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/create_new_user_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/otp_verified_screen.dart';
@@ -94,6 +95,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/otpVerify':
       final session = settings.arguments as String;
       return FadeRoute(page: OtpVerifiedScreen(sessionId: session));
+    case '/hasabym':
+      return FadeRoute(page: const HasabymScreen());
 
     default:
       return FadeRoute(
