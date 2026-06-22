@@ -64,28 +64,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Resimler
             ProductDetailImagesWidget(product: widget.product),
             const SizedBox(height: 8),
 
-            // İsim + fiyat + rating + stok
             ProductDetailInfoWidget(product: widget.product),
             const SizedBox(height: 8),
 
-            // Mağaza
             ProductDetailShopWidget(
               product: widget.product,
               onTap: () {
-                // TODO: shop detail
+              
               },
             ),
             const SizedBox(height: 8),
 
-            // Açıklama
             ProductDetailDescriptionWidget(product: widget.product),
             const SizedBox(height: 8),
 
-            // Etiketler
             ProductDetailTagsWidget(product: widget.product),
             const SizedBox(height: 24),
           ],
