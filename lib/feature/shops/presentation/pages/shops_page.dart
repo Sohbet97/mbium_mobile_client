@@ -33,6 +33,7 @@ class _ShopsPageState extends State<ShopsPage> {
   late ProductBloc _productBloc;
 
   FilterModel _productFilter = FilterModel();
+  ShopFilterModel _shopFilterModel = ShopFilterModel();
 
   final List<ProductModel> _products = [];
   final List<ShopModel> _shops = [];
@@ -41,7 +42,7 @@ class _ShopsPageState extends State<ShopsPage> {
   void initState() {
     super.initState();
     _shopBloc = ShopBloc(repository: context.read<ShopRepository>());
-    _shopBloc.add(const LoadShops(ShopFilterModel()));
+    _shopBloc.add(LoadShops(_shopFilterModel));
     _productBloc = ProductBloc(repository: context.read<ProductRepository>());
     _scrollController.addListener(_onScroll);
     _productBloc.add(LoadProducts(_productFilter));
@@ -70,6 +71,15 @@ class _ShopsPageState extends State<ShopsPage> {
         _scrollController.position.maxScrollExtent - 200) {
       _shopBloc.add(const LoadMoreShops());
     }
+  }
+
+  void _resetShops() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+    _shopBloc.add(LoadShops(_shopFilterModel));
   }
 
   @override
@@ -163,7 +173,14 @@ class _ShopsPageState extends State<ShopsPage> {
                     // const ShopsFilterChipsWidget(),
                     const SizedBox(height: 16),
 
-                    ShopsFilterChipsWidget(),
+                    ShopsFilterChipsWidget(
+                      onTypeSelected: (value) {
+                        _shopFilterModel = _shopFilterModel.copyWith(
+                          typeId: value,
+                        );
+                        _resetShops();
+                      },
+                    ),
                   ],
                 ),
               ),

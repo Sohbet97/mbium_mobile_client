@@ -51,3 +51,40 @@ final class ShopError extends ShopState {
   @override
   List<Object?> get props => [message, filter];
 }
+
+final class GetDetailShopDataError extends ShopState {
+  final String message;
+
+  const GetDetailShopDataError({required this.message});
+}
+
+final class GetDetailShopDataProgress extends ShopState {}
+
+final class GetDetailShopDataSuccess extends ShopState {
+  final ShopDetailModel response;
+
+  const GetDetailShopDataSuccess({required this.response});
+
+  @override
+  List<Object?> get props => [response];
+}
+
+final class GetShopTypesError extends ShopState {
+  final String message;
+
+  const GetShopTypesError({required this.message});
+
+  @override
+  List<Object?> get props => [message];
+}
+
+final class GetShopTypesProgress extends ShopState {}
+
+final class GetShopTypesSuccess extends ShopState {
+  final List<ShopTypeModel> shopTypes;
+
+  const GetShopTypesSuccess({required this.shopTypes});
+
+  @override
+  List<Object?> get props => [shopTypes];
+}

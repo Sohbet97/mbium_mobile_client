@@ -23,3 +23,13 @@ final class LoadMoreShops extends ShopEvent {
 final class RefreshShops extends ShopEvent {
   const RefreshShops();
 }
+
+final class GetShopDetailDataEvent extends ShopEvent {
+  final int shopId;
+
+  const GetShopDetailDataEvent({required this.shopId});
+}
+
+final class GetShopTypesEvent extends ShopEvent {
+  const GetShopTypesEvent();
+}

@@ -1,60 +1,121 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import '../../../../generated/l10n.dart';
+import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
+import 'package:mbium_mobile_client/feature/shops/extensions/shop_type_extension.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ShopsFilterChipsWidget extends StatefulWidget {
-  const ShopsFilterChipsWidget({super.key});
+  final ValueChanged<int?>? onTypeSelected;
+
+  const ShopsFilterChipsWidget({super.key, this.onTypeSelected});
 
   @override
   State<ShopsFilterChipsWidget> createState() => _ShopsFilterChipsWidgetState();
 }
 
 class _ShopsFilterChipsWidgetState extends State<ShopsFilterChipsWidget> {
-  int _selected = 0;
+  int? _selectedTypeId;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ShopBloc>().add(const GetShopTypesEvent());
+  }
+
+  void _onSelect(int typeId) {
+    setState(() {
+      _selectedTypeId = _selectedTypeId == typeId ? null : typeId;
+    });
+    widget.onTypeSelected?.call(_selectedTypeId);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context);
+    return BlocBuilder<ShopBloc, ShopState>(
+      builder: (context, state) {
+        if (state is GetShopTypesError) return const SizedBox.shrink();
 
-    final chips = [
-      l10n.obrazesler_boyunca_tayyarlanan,
-      l10n.dalandyrys_sertifikaty_bolan,
-      l10n.giri_mumkin,
-    ];
+        if (state is GetShopTypesSuccess) {
+          final shopTypes = state.shopTypes;
+
+          return SizedBox(
+            height: 36,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: shopTypes.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
+              itemBuilder: (context, i) {
+                final type = shopTypes[i];
+                final isSelected = _selectedTypeId == type.id;
+
+                return GestureDetector(
+                  onTap: type.id == null ? null : () => _onSelect(type.id!),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? AppColors.primaryGreen
+                          : Theme.of(context).colorScheme.surface,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: isSelected
+                            ? AppColors.primaryGreen
+                            : AppColors.navBarGrey,
+                      ),
+                    ),
+                    child: Text(
+                      type.localizedName,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: isSelected
+                            ? Colors.white
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        }
+
+        return const _ShimmerEffect();
+      },
+    );
+  }
+}
+
+class _ShimmerEffect extends StatelessWidget {
+  const _ShimmerEffect();
+
+  @override
+  Widget build(BuildContext context) {
+    final baseColor = Colors.grey.shade300;
+    final highlightColor = Colors.grey.shade100;
 
     return SizedBox(
       height: 36,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: chips.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        itemCount: 4,
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, i) {
-          final isSelected = _selected == i;
-          return GestureDetector(
-            onTap: () => setState(() => _selected = i),
+          return Shimmer.fromColors(
+            baseColor: baseColor,
+            highlightColor: highlightColor,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              width: 90,
+              height: 28,
               decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.primaryGreen
-                    : Theme.of(context).colorScheme.surface,
+                color: baseColor,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: isSelected
-                      ? AppColors.primaryGreen
-                      : AppColors.navBarGrey,
-                ),
-              ),
-              child: Text(
-                chips[i],
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: isSelected
-                      ? Colors.white
-                      : AppColors.lightTextSecondary,
-                ),
               ),
             ),
           );

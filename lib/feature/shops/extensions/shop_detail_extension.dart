@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
 
-import '../model/shop_model.dart';
+import '../model/shop_detail_model.dart';
 
-extension ShopLocalizationExtension on ShopModel {
+extension ShopDetailLocalizationExtension on ShopDetailModel {
   String get localizedName {
     final currentLocale = Intl.shortLocale(Intl.getCurrentLocale());
 

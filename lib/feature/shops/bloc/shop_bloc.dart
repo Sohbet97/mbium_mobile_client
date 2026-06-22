@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mbium_mobile_client/feature/shops/data/shop_repository.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_filter_model.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_type_model.dart';
 
 part 'shop_event.dart';
 part 'shop_state.dart';
@@ -17,12 +21,11 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     on<LoadShops>(_onLoadShops);
     on<LoadMoreShops>(_onLoadMoreShops);
     on<RefreshShops>(_onRefreshShops);
+    on<GetShopDetailDataEvent>(_onGetDetailData);
+    on<GetShopTypesEvent>(_onGetShopTypes);
   }
 
-  Future<void> _onLoadShops(
-    LoadShops event,
-    Emitter<ShopState> emit,
-  ) async {
+  Future<void> _onLoadShops(LoadShops event, Emitter<ShopState> emit) async {
     _cancelToken.cancel();
     _cancelToken = CancelToken();
 
@@ -35,11 +38,13 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
         cancelToken: _cancelToken,
       );
 
-      emit(ShopLoaded(
-        shops: response.shops,
-        hasMore: response.hasMore(filter.page, filter.limit),
-        filter: filter,
-      ));
+      emit(
+        ShopLoaded(
+          shops: response.shops,
+          hasMore: response.hasMore(filter.page, filter.limit),
+          filter: filter,
+        ),
+      );
     } on DioException catch (e) {
       if (e.type == DioExceptionType.cancel) return;
       emit(ShopError(message: _errorMessage(e), filter: event.filter));
@@ -66,12 +71,14 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
         cancelToken: _cancelToken,
       );
 
-      emit(current.copyWith(
-        shops: [...current.shops, ...response.shops],
-        hasMore: response.hasMore(nextFilter.page, nextFilter.limit),
-        isLoadingMore: false,
-        filter: nextFilter,
-      ));
+      emit(
+        current.copyWith(
+          shops: [...current.shops, ...response.shops],
+          hasMore: response.hasMore(nextFilter.page, nextFilter.limit),
+          isLoadingMore: false,
+          filter: nextFilter,
+        ),
+      );
     } on DioException catch (e) {
       if (e.type == DioExceptionType.cancel) return;
       emit(current.copyWith(isLoadingMore: false));
@@ -96,8 +103,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     return switch (e.type) {
       DioExceptionType.connectionError => 'Нет подключения к интернету',
       DioExceptionType.connectionTimeout ||
-      DioExceptionType.receiveTimeout =>
-        'Превышено время ожидания',
+      DioExceptionType.receiveTimeout => 'Превышено время ожидания',
       _ => e.response?.statusMessage ?? 'Ошибка загрузки',
     };
   }
@@ -106,5 +112,32 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   Future<void> close() {
     _cancelToken.cancel();
     return super.close();
+  }
+
+  FutureOr<void> _onGetDetailData(
+    GetShopDetailDataEvent event,
+    Emitter<ShopState> emit,
+  ) async {
+    emit(GetDetailShopDataProgress());
+    try {
+      final id = event.shopId;
+      final response = await repository.getShopDetail(id);
+      emit(GetDetailShopDataSuccess(response: response));
+    } catch (e) {
+      emit(GetDetailShopDataError(message: e.toString()));
+    }
+  }
+
+  FutureOr<void> _onGetShopTypes(
+    GetShopTypesEvent event,
+    Emitter<ShopState> emit,
+  ) async {
+    emit(GetShopTypesProgress());
+    try {
+      final shopTypes = await repository.getShopTypes();
+      emit(GetShopTypesSuccess(shopTypes: shopTypes));
+    } catch (e) {
+      emit(GetShopTypesError(message: e.toString()));
+    }
   }
 }
