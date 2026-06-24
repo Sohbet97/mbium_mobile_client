@@ -46,4 +46,13 @@ class AppColors {
   static const Color topSecond = Color(0xff757678);
   static const Color topThird = Color(0xff91684F);
   static const Color balanceTextGrey = Color(0xff7F9290);
+
+  static const Color starYellow = Color(0xFFFFC107);
+  static const Color featurePurple = Color(0xFF6C63FF);
+  static const Color featureCyan = Color(0xFF00BCD4);
+  static const Color featureGreen = Color(0xFF4CAF50);
+  static const Color featureOrange = Color(0xFFFF5722);
+  static const Color featureBlue = Color(0xFF2196F3);
+  static const Color featureTeal = Color(0xFF009688);
+  static const Color featureGrey = Color(0xFF607D8B);
 }
