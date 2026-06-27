@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
-import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_header_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_info_row_widget.dart';
@@ -89,14 +87,10 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget> {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
-          SliverToBoxAdapter(
-            child: ShopDetailCategoriesWidget(),
-          ),
+          SliverToBoxAdapter(child: ShopDetailCategoriesWidget()),
           const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
-          SliverToBoxAdapter(
-            child: ShopDetailAboutWidget(model: widget.model),
-          ),
+          SliverToBoxAdapter(child: ShopDetailAboutWidget(model: widget.model)),
           const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
           SliverToBoxAdapter(
@@ -104,9 +98,7 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget> {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
-          SliverToBoxAdapter(
-            child: ShopDetailCtaWidget(model: widget.model),
-          ),
+          SliverToBoxAdapter(child: ShopDetailCtaWidget(model: widget.model)),
           const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
           SliverToBoxAdapter(
@@ -116,7 +108,7 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget> {
             ),
           ),
 
-           ShopDetailProductsWidget(
+          ShopDetailProductsWidget(
             productBloc: _productBloc,
             products: _products,
             hasMore: _hasMore,
