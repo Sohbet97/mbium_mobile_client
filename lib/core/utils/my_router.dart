@@ -19,6 +19,7 @@ import 'package:mbium_mobile_client/feature/myMbium/presentation/all_functions_s
 import 'package:mbium_mobile_client/feature/myMbium/presentation/support_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/ulanys_duzgunleri_screen.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/recently_review_screen.dart';
+import 'package:mbium_mobile_client/feature/comments/presentation/product_review_screen.dart';
 import 'package:mbium_mobile_client/feature/settings/presentation/settings_screen.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/product_detail_screen.dart';
@@ -100,7 +101,7 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const HasabymScreen());
     case '/productReview':
       final id = settings.arguments as int;
-      return FadeRoute(page: Scaffold());
+      return FadeRoute(page: ProductReviewScreen(productId: id));
     case '/loginIn':
       return FadeRoute(page: const LoginInScreen());
 

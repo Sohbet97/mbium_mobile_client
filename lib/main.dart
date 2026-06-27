@@ -24,6 +24,8 @@ import 'package:mbium_mobile_client/feature/products/bloc/recently/recently_view
 import 'package:mbium_mobile_client/feature/products/data/recently_viewed_repository.dart';
 import 'package:mbium_mobile_client/feature/brands/bloc/brand_bloc.dart';
 import 'package:mbium_mobile_client/feature/brands/data/brand_repository.dart';
+import 'package:mbium_mobile_client/feature/comments/bloc/comment_bloc.dart';
+import 'package:mbium_mobile_client/feature/comments/data/comment_repository.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -212,6 +214,11 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => BrandRepository(dio: apiClient.dio),
         ),
+
+        // comments
+        RepositoryProvider(
+          create: (context) => CommentRepository(dio: apiClient.dio),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -297,6 +304,12 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 BrandBloc(repository: context.read<BrandRepository>()),
+          ),
+
+          // comments
+          BlocProvider(
+            create: (context) =>
+                CommentBloc(repository: context.read<CommentRepository>()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

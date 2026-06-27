@@ -8,6 +8,7 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/page/cart_pag
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comments_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_images_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_info_widget.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
@@ -77,6 +78,11 @@ class ProductDetailDataScreen extends StatelessWidget {
             ProductDetailImagesWidget(product: model),
             const SizedBox(height: 8),
             ProductDetailInfoWidget(product: model),
+            const SizedBox(height: 8),
+            ProductDetailCommentsWidget(
+              productId: model.id,
+              reviewCount: model.reviewCount,
+            ),
             const SizedBox(height: 8),
           ],
         ),
