@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
     "addresses": MessageLookupByLibrary.simpleMessage("Salgylarym"),
     "ady": MessageLookupByLibrary.simpleMessage("Ady"),
+    "agramy": MessageLookupByLibrary.simpleMessage("Agramy"),
     "agza_bolanlarym": MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),
     "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
     "ai_agendin_mugt_dowri": MessageLookupByLibrary.simpleMessage(
@@ -68,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balkan_lale_shop_name": MessageLookupByLibrary.simpleMessage(
       "Balkan Läle plastik önümleri HK",
     ),
+    "barkode": MessageLookupByLibrary.simpleMessage("Barkod"),
     "basga": MessageLookupByLibrary.simpleMessage("Başga"),
     "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
     "caksiz_osush_ucin": MessageLookupByLibrary.simpleMessage(
@@ -256,6 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ondabaryjy_ondurijiler": MessageLookupByLibrary.simpleMessage(
       "Öndabaryjy öndürijiler",
     ),
+    "onduriji": MessageLookupByLibrary.simpleMessage("Öndüriji"),
     "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
     "orders": MessageLookupByLibrary.simpleMessage("Orders"),
     "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
@@ -357,6 +360,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "telefon_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
       "Telefon belgi arkaly dowam et",
     ),
+    "teswirler": MessageLookupByLibrary.simpleMessage("Teswirler"),
     "toleg_usullary": MessageLookupByLibrary.simpleMessage("Töleg usullary:"),
     "toleg_usuly": MessageLookupByLibrary.simpleMessage("Töleg usuly"),
     "tolegler": MessageLookupByLibrary.simpleMessage("Tölegler"),

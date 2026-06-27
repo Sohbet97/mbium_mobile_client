@@ -10,16 +10,6 @@ class ProductMassonGridItem extends StatelessWidget {
 
   final ProductModel product;
 
-  String get _imageUrl {
-    if (product.productMedia.isNotEmpty) {
-      final media = product.productMedia.first;
-      if (media is Map && media['url'] != null) {
-        return media['url'].toString();
-      }
-    }
-    return '';
-  }
-
   int? get _discountPercent {
     if (product.compareAtPrice != null &&
         product.compareAtPrice! > product.price) {
@@ -59,13 +49,14 @@ class ProductMassonGridItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                _imageUrl.isNotEmpty
+                product.primaryThumbnailUrl != null
                     ? ClipRRect(
                         borderRadius: const BorderRadius.vertical(
                           top: Radius.circular(16),
                         ),
                         child: Image.network(
-                          _imageUrl,
+                          product.primaryThumbnailUrl!,
+
                           width: double.infinity,
                           fit: BoxFit.cover,
                           frameBuilder:

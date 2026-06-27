@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/products_response.dart';
 
 class ProductRepository {
@@ -22,5 +23,21 @@ class ProductRepository {
     }
 
     throw Exception('Failed to load products: ${response.statusCode}');
+  }
+
+  Future<ProductDetailModel> getProductDetail(
+    int id, {
+    CancelToken? cancelToken,
+  }) async {
+    final response = await dio.get(
+      '/catalog/products/$id',
+      cancelToken: cancelToken,
+    );
+
+    if (response.statusCode == 200) {
+      return ProductDetailModel.fromJson(response.data as Map<String, dynamic>);
+    }
+
+    throw Exception('Failed to load product detail: ${response.statusCode}');
   }
 }

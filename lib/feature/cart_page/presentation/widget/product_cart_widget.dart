@@ -11,13 +11,7 @@ class ProductCartWidget extends StatelessWidget {
   final ProductModel product;
 
   String get _imageUrl {
-    if (product.productMedia.isNotEmpty) {
-      final media = product.productMedia.first;
-      if (media is Map && media['url'] != null) {
-        return media['url'].toString();
-      }
-    }
-    return '';
+    return product.primaryThumbnailUrl ?? '';
   }
 
   @override
@@ -109,16 +103,16 @@ class ProductCartWidget extends StatelessWidget {
   }
 
   Widget _placeholder(BuildContext context) => Container(
-        width: double.infinity,
-        height: 180,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Icon(
-          Icons.image_not_supported_outlined,
-          color: AppColors.textLightGrey,
-          size: 36,
-        ),
-      );
+    width: double.infinity,
+    height: 180,
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: const Icon(
+      Icons.image_not_supported_outlined,
+      color: AppColors.textLightGrey,
+      size: 36,
+    ),
+  );
 }

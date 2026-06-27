@@ -97,6 +97,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: OtpVerifiedScreen(sessionId: session));
     case '/hasabym':
       return FadeRoute(page: const HasabymScreen());
+    case '/productReview':
+      final id = settings.arguments as int;
+      return FadeRoute(page: Scaffold());
 
     default:
       return FadeRoute(

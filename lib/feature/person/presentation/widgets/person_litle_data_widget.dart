@@ -33,6 +33,9 @@ class _PersonLittleDataWidgetState extends State<PersonLittleDataWidget> {
 
         if (isGost) {
           return ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/loginIn');
+            },
             contentPadding: EdgeInsets.zero,
             leading: SvgIcon(
               iconName: 'assets/icons/person.svg',

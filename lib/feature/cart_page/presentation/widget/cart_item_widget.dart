@@ -9,14 +9,7 @@ class CartItemWidget extends StatelessWidget {
   final CartModel cartModel;
 
   String get _imageUrl {
-    final media = cartModel.product.productMedia;
-    if (media.isNotEmpty) {
-      final first = media.first;
-      if (first is Map && first['url'] != null) {
-        return first['url'].toString();
-      }
-    }
-    return '';
+    return cartModel.product.primaryThumbnailUrl ?? '';
   }
 
   @override
