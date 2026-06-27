@@ -10,15 +10,7 @@ class ProductHorizontalItem extends StatelessWidget {
   final ProductModel productModel;
   final double width;
 
-  String get _imageUrl {
-    if (productModel.productMedia.isNotEmpty) {
-      final media = productModel.productMedia.first;
-      if (media is Map && media['url'] != null) {
-        return media['url'].toString();
-      }
-    }
-    return '';
-  }
+  String get _imageUrl => productModel.primaryThumbnailUrl ?? '';
 
   int? get _discountPercent {
     if (productModel.compareAtPrice != null &&

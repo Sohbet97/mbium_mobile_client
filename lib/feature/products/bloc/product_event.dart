@@ -23,3 +23,9 @@ final class LoadMoreProducts extends ProductEvent {
 final class RefreshProducts extends ProductEvent {
   const RefreshProducts();
 }
+
+final class GetProductDetailEvent extends ProductEvent {
+  final int id;
+
+  const GetProductDetailEvent({required this.id});
+}

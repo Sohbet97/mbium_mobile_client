@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 
 part 'product_event.dart';
@@ -17,6 +20,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<LoadProducts>(_onLoadProducts);
     on<LoadMoreProducts>(_onLoadMoreProducts);
     on<RefreshProducts>(_onRefreshProducts);
+    on<GetProductDetailEvent>(_onGetDetail);
   }
 
   Future<void> _onLoadProducts(
@@ -35,11 +39,13 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         cancelToken: _cancelToken,
       );
 
-      emit(ProductLoaded(
-        products: response.products,
-        hasMore: response.hasMore(filter.page, filter.limit),
-        filter: filter,
-      ));
+      emit(
+        ProductLoaded(
+          products: response.products,
+          hasMore: response.hasMore(filter.page, filter.limit),
+          filter: filter,
+        ),
+      );
     } on DioException catch (e) {
       if (e.type == DioExceptionType.cancel) return;
       emit(ProductError(message: _errorMessage(e), filter: event.filter));
@@ -53,7 +59,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     Emitter<ProductState> emit,
   ) async {
     final current = state;
-    if (current is! ProductLoaded || !current.hasMore || current.isLoadingMore) {
+    if (current is! ProductLoaded ||
+        !current.hasMore ||
+        current.isLoadingMore) {
       return;
     }
 
@@ -66,12 +74,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         cancelToken: _cancelToken,
       );
 
-      emit(current.copyWith(
-        products: [...current.products, ...response.products],
-        hasMore: response.hasMore(nextFilter.page, nextFilter.limit),
-        isLoadingMore: false,
-        filter: nextFilter,
-      ));
+      emit(
+        current.copyWith(
+          products: [...current.products, ...response.products],
+          hasMore: response.hasMore(nextFilter.page, nextFilter.limit),
+          isLoadingMore: false,
+          filter: nextFilter,
+        ),
+      );
     } on DioException catch (e) {
       if (e.type == DioExceptionType.cancel) return;
       emit(current.copyWith(isLoadingMore: false));
@@ -96,8 +106,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     return switch (e.type) {
       DioExceptionType.connectionError => 'Нет подключения к интернету',
       DioExceptionType.connectionTimeout ||
-      DioExceptionType.receiveTimeout =>
-        'Превышено время ожидания',
+      DioExceptionType.receiveTimeout => 'Превышено время ожидания',
       _ => e.response?.statusMessage ?? 'Ошибка загрузки',
     };
   }
@@ -106,5 +115,18 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   Future<void> close() {
     _cancelToken.cancel();
     return super.close();
+  }
+
+  FutureOr<void> _onGetDetail(
+    GetProductDetailEvent event,
+    Emitter<ProductState> emit,
+  ) async {
+    emit(GetProductDetailProgress());
+    try {
+      final result = await repository.getProductDetail(event.id);
+      emit(GetProductDetailSuccess(detailModel: result));
+    } catch (e) {
+      emit(GetProductDetailError(errorMessage: e.toString()));
+    }
   }
 }

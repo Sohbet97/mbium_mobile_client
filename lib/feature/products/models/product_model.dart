@@ -1,3 +1,5 @@
+import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
+
 class ProductModel {
   final int id;
   final int shopId;
@@ -31,7 +33,7 @@ class ProductModel {
   final DateTime? deletedAt;
   final ProductCategory? category;
   final ProductShop? shop;
-  final List<dynamic> productMedia;
+  final List<ProductMedia> productMedia;
 
   ProductModel({
     required this.id,
@@ -124,7 +126,9 @@ class ProductModel {
           : null,
       shop: json['shop'] != null ? ProductShop.fromJson(json['shop']) : null,
       productMedia: json['productMedia'] != null
-          ? List<dynamic>.from(json['productMedia'])
+          ? (json['productMedia'] as List)
+              .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
+              .toList()
           : [],
     );
   }
@@ -163,8 +167,36 @@ class ProductModel {
       'deletedAt': deletedAt?.toIso8601String(),
       'category': category?.toJson(),
       'shop': shop?.toJson(),
-      'productMedia': productMedia,
+      'productMedia': productMedia.map((m) => {
+        'id': m.id,
+        'product_id': m.productId,
+        'media_id': m.mediaId,
+        'role': m.role,
+        'sort_order': m.sortOrder,
+        'media': {'id': m.media.id, 'url': m.media.url, 'thumbnail_url': m.media.thumbnailUrl},
+      }).toList(),
     };
+  }
+
+  /// URL главного фото (role=primary), иначе первое из списка
+  String? get primaryImageUrl {
+    final primary = productMedia
+        .where((m) => m.role == 'primary')
+        .toList()
+      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    if (primary.isNotEmpty) return primary.first.url;
+    if (productMedia.isNotEmpty) return productMedia.first.url;
+    return null;
+  }
+
+  String? get primaryThumbnailUrl {
+    final primary = productMedia
+        .where((m) => m.role == 'primary')
+        .toList()
+      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    if (primary.isNotEmpty) return primary.first.thumbnailUrl;
+    if (productMedia.isNotEmpty) return productMedia.first.thumbnailUrl;
+    return null;
   }
 }
 

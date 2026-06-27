@@ -51,3 +51,20 @@ final class ProductError extends ProductState {
   @override
   List<Object?> get props => [message];
 }
+
+final class GetProductDetailProgress extends ProductState {}
+
+final class GetProductDetailError extends ProductState {
+  final String errorMessage;
+
+  const GetProductDetailError({required this.errorMessage});
+}
+
+final class GetProductDetailSuccess extends ProductState {
+  final ProductDetailModel detailModel;
+
+  const GetProductDetailSuccess({required this.detailModel});
+
+  @override
+  List<Object?> get props => [detailModel];
+}

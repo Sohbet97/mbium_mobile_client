@@ -21,13 +21,7 @@ class _InMeshgurlarTabWidgetState extends State<InMeshgurlarTabWidget> {
   }
 
   String _getImageUrl(ProductModel product) {
-    if (product.productMedia.isNotEmpty) {
-      final media = product.productMedia.first;
-      if (media is Map && media['url'] != null) {
-        return media['url'].toString();
-      }
-    }
-    return '';
+    return product.primaryThumbnailUrl ?? '';
   }
 
   @override
