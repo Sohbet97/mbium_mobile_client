@@ -1733,6 +1733,26 @@ class S {
   String get hasabym {
     return Intl.message('Hasabym', name: 'hasabym', desc: '', args: []);
   }
+
+  /// `Agramy`
+  String get agramy {
+    return Intl.message('Agramy', name: 'agramy', desc: '', args: []);
+  }
+
+  /// `Barkod`
+  String get barkode {
+    return Intl.message('Barkod', name: 'barkode', desc: '', args: []);
+  }
+
+  /// `Öndüriji`
+  String get onduriji {
+    return Intl.message('Öndüriji', name: 'onduriji', desc: '', args: []);
+  }
+
+  /// `Teswirler`
+  String get teswirler {
+    return Intl.message('Teswirler', name: 'teswirler', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

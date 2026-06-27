@@ -56,6 +56,7 @@ class ProductMassonGridItem extends StatelessWidget {
                         ),
                         child: Image.network(
                           product.primaryThumbnailUrl!,
+
                           width: double.infinity,
                           fit: BoxFit.cover,
                           frameBuilder:
