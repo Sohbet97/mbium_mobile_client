@@ -11,9 +11,13 @@ class PersonRepository {
 
   PersonRepository({required this.dio, required this.preferences});
 
+  // Web client ID from google-services.json (client_type: 3)
+  static const _webClientId =
+      '1021753471406-22kjuhouep58uf0ch8sd5aqq06qniv2q.apps.googleusercontent.com';
+
   Future<void> _ensureGoogleInitialized() async {
     if (_googleInitialized) return;
-    await GoogleSignIn.instance.initialize();
+    await GoogleSignIn.instance.initialize(serverClientId: _webClientId);
     _googleInitialized = true;
   }
 
@@ -21,13 +25,20 @@ class PersonRepository {
     await _ensureGoogleInitialized();
 
     final account = await GoogleSignIn.instance.authenticate();
-    final idToken = account.authentication.idToken;
+    final auth = account.authentication;
+    final idToken = auth.idToken;
     if (idToken == null) throw Exception('Failed to get Google ID token');
 
+    final baseUrl = dio.options.baseUrl;
+
+    final newUrl = baseUrl.replaceAll('/buyer', '');
+
     final response = await dio.post(
-      '/auth/google',
+      '$newUrl/auth/google',
       data: {'id_token': idToken},
     );
+
+    print('response auth: $response');
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = response.data as Map<String, dynamic>;

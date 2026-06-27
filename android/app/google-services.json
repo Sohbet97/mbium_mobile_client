@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021753471406:android:e4088a24878ae9bfe6983f",
+        "android_client_info": {
+          "package_name": "com.example.otp_sms_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021753471406-22kjuhouep58uf0ch8sd5aqq06qniv2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdhkn_XdwTHmOrvFVyz6S7DC33zDWb9Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021753471406-22kjuhouep58uf0ch8sd5aqq06qniv2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

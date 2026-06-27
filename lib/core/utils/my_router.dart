@@ -8,6 +8,7 @@ import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/hasabym/hasabym_screen.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/create_new_user_screen.dart';
+import 'package:mbium_mobile_client/feature/person/presentation/login_in_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/otp_verified_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/person_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/reg_shop_screen.dart';
@@ -100,6 +101,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/productReview':
       final id = settings.arguments as int;
       return FadeRoute(page: Scaffold());
+    case '/loginIn':
+      return FadeRoute(page: const LoginInScreen());
 
     default:
       return FadeRoute(
