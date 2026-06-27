@@ -22,6 +22,8 @@ import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
 import 'package:mbium_mobile_client/feature/shops/data/shop_repository.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/recently/recently_viewed_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/recently_viewed_repository.dart';
+import 'package:mbium_mobile_client/feature/brands/bloc/brand_bloc.dart';
+import 'package:mbium_mobile_client/feature/brands/data/brand_repository.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -205,6 +207,11 @@ class _MyAppState extends State<MyApp> {
             appPreferences: widget.appPreferences,
           ),
         ),
+
+        // brands
+        RepositoryProvider(
+          create: (context) => BrandRepository(dio: apiClient.dio),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -284,6 +291,12 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 ReelsBloc(repository: context.read<ReelsRepository>()),
+          ),
+
+          // brands
+          BlocProvider(
+            create: (context) =>
+                BrandBloc(repository: context.read<BrandRepository>()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(
