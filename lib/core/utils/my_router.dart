@@ -6,6 +6,7 @@ import 'package:mbium_mobile_client/feature/category/presentation/category_scree
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/hasabym/hasabym_screen.dart';
+import 'package:mbium_mobile_client/feature/orders/presentation/security/order_security_screen.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/create_new_user_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/login_in_screen.dart';
