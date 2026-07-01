@@ -178,6 +178,8 @@
   "agramy"  : "Agramy",
   "barkode" : "Barkod",
   "onduriji"  : "Öndüriji",
-  "teswirler" : "Teswirler"
+  "teswirler" : "Teswirler",
+  "shop_empty" : "Dükan tapylmady",
+  "all" : "Ählisi"
   
 }

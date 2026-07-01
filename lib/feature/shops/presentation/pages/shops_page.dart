@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/constants/helpers.dart';
+import 'package:mbium_mobile_client/core/constants/my_empty_widget.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
@@ -164,6 +165,7 @@ class _ShopsPageState extends State<ShopsPage> {
                               );
                       },
                     ),
+
                     // const ShopsHorizontalListWidget(),
                     // ShopsSectionHeaderWidget(
                     //   title: l10n.ondabaryjy_ondurijiler,
@@ -172,7 +174,6 @@ class _ShopsPageState extends State<ShopsPage> {
                     // const ShopsOndabaryjyWidget(),
                     // const ShopsFilterChipsWidget(),
                     const SizedBox(height: 16),
-
                     ShopsFilterChipsWidget(
                       onTypeSelected: (value) {
                         _shopFilterModel = _shopFilterModel.copyWith(
@@ -222,6 +223,20 @@ class _ShopsPageState extends State<ShopsPage> {
                   final isLoadingMore =
                       state is ShopLoaded && state.isLoadingMore;
                   final itemCount = _shops.length + (isLoadingMore ? 1 : 0);
+
+                  if (_shops.isEmpty && state is ShopLoaded) {
+                    return SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 35),
+                        child: MyEmptyWidget(
+                          emptyText: l10n.shop_empty,
+                          onTap: () {
+                            Navigator.pushNamed(context, '/reg_shop');
+                          },
+                        ),
+                      ),
+                    );
+                  }
 
                   return SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {

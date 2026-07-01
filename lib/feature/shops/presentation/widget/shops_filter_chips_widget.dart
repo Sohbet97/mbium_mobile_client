@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
 import 'package:mbium_mobile_client/feature/shops/extensions/shop_type_extension.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_type_model.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../generated/l10n.dart';
 
 class ShopsFilterChipsWidget extends StatefulWidget {
   final ValueChanged<int?>? onTypeSelected;
@@ -23,21 +26,34 @@ class _ShopsFilterChipsWidgetState extends State<ShopsFilterChipsWidget> {
     context.read<ShopBloc>().add(const GetShopTypesEvent());
   }
 
-  void _onSelect(int typeId) {
+  void _onSelect(int? typeId) {
     setState(() {
-      _selectedTypeId = _selectedTypeId == typeId ? null : typeId;
+      _selectedTypeId = typeId;
     });
     widget.onTypeSelected?.call(_selectedTypeId);
   }
 
   @override
   Widget build(BuildContext context) {
+    final localization = S.of(context);
     return BlocBuilder<ShopBloc, ShopState>(
+      buildWhen: (previous, current) =>
+          current is GetShopTypesSuccess || current is GetShopTypesError,
       builder: (context, state) {
         if (state is GetShopTypesError) return const SizedBox.shrink();
 
         if (state is GetShopTypesSuccess) {
-          final shopTypes = state.shopTypes;
+          if (state.shopTypes.isEmpty) return const SizedBox.shrink();
+
+          final shopTypes = [
+            ShopTypeModel(
+              id: null,
+              name: localization.all,
+              nameRu: localization.all,
+              nameEng: localization.all,
+            ),
+            ...state.shopTypes,
+          ];
 
           return SizedBox(
             height: 36,
@@ -51,7 +67,7 @@ class _ShopsFilterChipsWidgetState extends State<ShopsFilterChipsWidget> {
                 final isSelected = _selectedTypeId == type.id;
 
                 return GestureDetector(
-                  onTap: type.id == null ? null : () => _onSelect(type.id!),
+                  onTap: () => _onSelect(type.id),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 14,

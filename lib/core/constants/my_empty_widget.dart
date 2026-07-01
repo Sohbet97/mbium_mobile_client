@@ -60,23 +60,18 @@ class MyEmptyWidget extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              S.of(context).noDataAvailable,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: textSecondary,
-                fontSize: 13,
-              ),
-            ),
+
             if (onTap != null) ...[
               const SizedBox(height: 28),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: onTap,
-                  icon: const Icon(Icons.add, size: 20),
-                  label: Text(buttonText ?? S.of(context).add),
+                  icon: const Icon(Icons.add, size: 20, color: Colors.white),
+                  label: Text(
+                    buttonText ?? S.of(context).add,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],

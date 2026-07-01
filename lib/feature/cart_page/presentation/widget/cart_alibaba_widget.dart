@@ -3,6 +3,7 @@ import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_features_widget.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_payment_methods_widget.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../orders/presentation/security/order_security_screen.dart';
 
 class CartAlibabaWidget extends StatelessWidget {
   const CartAlibabaWidget({super.key});
@@ -10,6 +11,47 @@ class CartAlibabaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+
+    void showSecurityModal(BuildContext context) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (_) => DraggableScrollableSheet(
+          initialChildSize: 0.6,
+          minChildSize: 0.4,
+          maxChildSize: 0.93,
+          expand: false,
+          builder: (_, scrollController) => ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+            child: Scaffold(
+              body: CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Center(
+                      child: Container(
+                        width: 40,
+                        height: 4,
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: SafeArea(child: OrderSecurityScreen()),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     return Container(
       width: double.infinity,
@@ -19,34 +61,37 @@ class CartAlibabaWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 4),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      Text(
-                        l10n.alibaba_sargyt_goragy,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.aiTextBlack,
+            child: InkWell(
+              onTap: () => showSecurityModal(context),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          l10n.alibaba_sargyt_goragy,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.aiTextBlack,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.verified_outlined,
-                        size: 15,
-                        color: AppColors.bonusBannerTextGreen,
-                      ),
-                    ],
+                        const SizedBox(width: 4),
+                        const Icon(
+                          Icons.verified_outlined,
+                          size: 15,
+                          color: AppColors.bonusBannerTextGreen,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 14,
-                  color: AppColors.lightTextSecondary,
-                ),
-              ],
+                  const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 14,
+                    color: AppColors.lightTextSecondary,
+                  ),
+                ],
+              ),
             ),
           ),
           Padding(
