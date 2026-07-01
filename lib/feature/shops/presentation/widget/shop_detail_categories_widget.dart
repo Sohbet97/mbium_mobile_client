@@ -13,12 +13,13 @@ class ShopDetailCategoriesWidget extends StatelessWidget {
     final n = name.toLowerCase();
     if (n.contains('elektron') || n.contains('tech')) return Icons.devices_outlined;
     if (n.contains('egin') || n.contains('fashion') || n.contains('geýim')) return Icons.checkroom_outlined;
-    if (n.contains('öý') || n.contains('home')) return Icons.home_outlined;
+    if (n.contains('öý') || n.contains('home') || n.contains('dom')) return Icons.home_outlined;
     if (n.contains('gözellik') || n.contains('beauty')) return Icons.face_outlined;
     if (n.contains('awtomobil') || n.contains('auto')) return Icons.directions_car_outlined;
     if (n.contains('sport')) return Icons.sports_outlined;
     if (n.contains('kitap') || n.contains('book')) return Icons.book_outlined;
     if (n.contains('oýun') || n.contains('toy')) return Icons.toys_outlined;
+    if (n.contains('azyk') || n.contains('iýmit') || n.contains('produkt')) return Icons.restaurant_outlined;
     return Icons.category_outlined;
   }
 
@@ -41,43 +42,44 @@ class ShopDetailCategoriesWidget extends StatelessWidget {
             children: [
               Text('Kategoriýalar bölümi', style: textStyles.s13w600clBlack),
               const SizedBox(height: 14),
-              SizedBox(
-                height: 80,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  separatorBuilder: (_, __) => const SizedBox(width: 16),
-                  itemBuilder: (context, i) {
-                    final cat = categories[i];
+              IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: categories.take(5).map((cat) {
                     final name = cat.getNameByLanguage(languageCode);
-                    return Column(
-                      children: [
-                        Container(
-                          width: 48,
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: AppColors.lightBg,
-                            borderRadius: BorderRadius.circular(12),
+                    return Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: AppColors.lightBg,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              _getCategoryIcon(name),
+                              color: AppColors.primaryGreen,
+                              size: 26,
+                            ),
                           ),
-                          child: Icon(
-                            _getCategoryIcon(name),
-                            color: AppColors.primaryGreen,
-                            size: 26,
+                          const SizedBox(height: 6),
+                          Text(
+                            name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: AppColors.lightTextSecondary,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          name,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: AppColors.lightTextSecondary,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                        ],
+                      ),
                     );
-                  },
+                  }).toList(),
                 ),
               ),
             ],
