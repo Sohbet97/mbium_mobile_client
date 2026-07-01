@@ -1753,6 +1753,21 @@ class S {
   String get teswirler {
     return Intl.message('Teswirler', name: 'teswirler', desc: '', args: []);
   }
+
+  /// `Dükan tapylmady`
+  String get shop_empty {
+    return Intl.message(
+      'Dükan tapylmady',
+      name: 'shop_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ählisi`
+  String get all {
+    return Intl.message('Ählisi', name: 'all', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

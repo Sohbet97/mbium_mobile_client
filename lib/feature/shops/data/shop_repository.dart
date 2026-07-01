@@ -51,10 +51,7 @@ class ShopRepository {
       return _shopTypes!;
     }
 
-    final response = await dio.get(
-      '/catalog/shop-types',
-      cancelToken: cancelToken,
-    );
+    final response = await dio.get('/shop-types', cancelToken: cancelToken);
 
     if (response.statusCode == 200) {
       final shopTypes = ShopTypesResponse.fromJson(

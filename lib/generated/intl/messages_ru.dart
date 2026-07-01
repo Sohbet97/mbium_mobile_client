@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alibaba_sargyt_goragy_desc": MessageLookupByLibrary.simpleMessage(
       "Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner",
     ),
+    "all": MessageLookupByLibrary.simpleMessage("Ählisi"),
     "all_functions": MessageLookupByLibrary.simpleMessage("Ähli funksiýalar"),
     "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
     "baha_goraglylygy": MessageLookupByLibrary.simpleMessage(
@@ -275,6 +276,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "shahsyyetiniz_tassyklandy": MessageLookupByLibrary.simpleMessage(
       "Şahsyýetiňiz tassyklandy",
     ),
+    "shop_empty": MessageLookupByLibrary.simpleMessage("Dükan tapylmady"),
     "siz_ucin_maslahat": MessageLookupByLibrary.simpleMessage(
       "Siz üçin maslahat beriýär",
     ),

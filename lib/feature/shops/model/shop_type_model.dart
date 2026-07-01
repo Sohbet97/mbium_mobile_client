@@ -37,7 +37,9 @@ class ShopTypeModel {
       name: json['name'] as String?,
       nameRu: json['name_ru'] as String?,
       nameEng: json['name_eng'] as String?,
-      commissionRate: (json['commission_rate'] as num?)?.toDouble(),
+      commissionRate: double.tryParse(
+        json['commission_rate']?.toString() ?? '',
+      ),
       isActive: json['is_active'] as bool?,
     );
   }
