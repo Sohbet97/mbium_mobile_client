@@ -609,10 +609,10 @@ class S {
     );
   }
 
-  /// `MBIUM sargyt goraglylygy`
+  /// `Alibaba.com sargyt goragy`
   String get alibaba_sargyt_goragy {
     return Intl.message(
-      'MBIUM sargyt goraglylygy',
+      'Alibaba.com sargyt goragy',
       name: 'alibaba_sargyt_goragy',
       desc: '',
       args: [],
@@ -1767,6 +1767,566 @@ class S {
   /// `Ählisi`
   String get all {
     return Intl.message('Ählisi', name: 'all', desc: '', args: []);
+  }
+
+  /// `Gorag`
+  String get gorag {
+    return Intl.message('Gorag', name: 'gorag', desc: '', args: []);
+  }
+
+  /// `Sargydyňyzy nädip gorap bilersiňiz`
+  String get sargydynyz_nadip_gorap_bilersiniz {
+    return Intl.message(
+      'Sargydyňyzy nädip gorap bilersiňiz',
+      name: 'sargydynyz_nadip_gorap_bilersiniz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Özüňiz sargyt edeniňizde`
+  String get onuniz_ozuniz_alynyz_goragy {
+    return Intl.message(
+      'Özüňiz sargyt edeniňizde',
+      name: 'onuniz_ozuniz_alynyz_goragy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sizi sargydyňyz haryt sahypasynda «Sargyt et» düwmesine basan pursatyňyzdan goralýar.`
+  String get sargyt_gorag_desc1 {
+    return Intl.message(
+      'Sizi sargydyňyz haryt sahypasynda «Sargyt et» düwmesine basan pursatyňyzdan goralýar.',
+      name: 'sargyt_gorag_desc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Когда поставщик готовит для вас заказ:`
+  String get kogda {
+    return Intl.message(
+      'Когда поставщик готовит для вас заказ:',
+      name: 'kogda',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi "Meniň profilim" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň`
+  String get kogda_desk {
+    return Intl.message(
+      'Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi "Meniň profilim" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň',
+      name: 'kogda_desk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Howpsuz tölegler`
+  String get hopwsuz_toleg {
+    return Intl.message(
+      'Howpsuz tölegler',
+      name: 'hopwsuz_toleg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Halan ýerli töleg usullarňyzdan, walýutalaryňyzdan, bank geçirimleriňizden ýa-da garaşrykly töleg meýilnamalarňyzdan saýlaň`
+  String get hopwsuz_toleg_des {
+    return Intl.message(
+      'Halan ýerli töleg usullarňyzdan, walýutalaryňyzdan, bank geçirimleriňizden ýa-da garaşrykly töleg meýilnamalarňyzdan saýlaň',
+      name: 'hopwsuz_toleg_des',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar`
+  String get hopwsuz_toleg_deskk {
+    return Intl.message(
+      'Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar',
+      name: 'hopwsuz_toleg_deskk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Howpsuz tölegler barada has giňişleýin`
+  String get howpsuz_tolegler_has_ginisleyin {
+    return Intl.message(
+      'Howpsuz tölegler barada has giňişleýin',
+      name: 'howpsuz_tolegler_has_ginisleyin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `что ваш заказ будет отправлен или доставлен в гарантированные сроки.`
+  String get bash_zakaz {
+    return Intl.message(
+      'что ваш заказ будет отправлен или доставлен в гарантированные сроки.',
+      name: 'bash_zakaz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `В редких случаях задержки вы получите компенсацию в размере 10% от общей суммы заказа.`
+  String get redkih {
+    return Intl.message(
+      'В редких случаях задержки вы получите компенсацию в размере 10% от общей суммы заказа.',
+      name: 'redkih',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Подробнее о возврате товаров и средств`
+  String get podrobnoye {
+    return Intl.message(
+      'Подробнее о возврате товаров и средств',
+      name: 'podrobnoye',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Töleg gaýtarmak goragy`
+  String get tolog_gaytarmak_goragy {
+    return Intl.message(
+      'Töleg gaýtarmak goragy',
+      name: 'tolog_gaytarmak_goragy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eger sargydyňyz gowşurylmasa, ýitse ýa-da kemçilikli ýa-da zeperli ýagdaýda gowşurylsa.`
+  String get tolog_gaytarmak_desc {
+    return Intl.message(
+      'Eger sargydyňyz gowşurylmasa, ýitse ýa-da kemçilikli ýa-da zeperli ýagdaýda gowşurylsa.',
+      name: 'tolog_gaytarmak_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Harytlary we serişdeleri gaýtarmak barada has giňişleýin`
+  String get haryt_gaytarmak {
+    return Intl.message(
+      'Harytlary we serişdeleri gaýtarmak barada has giňişleýin',
+      name: 'haryt_gaytarmak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gije-gündizleýin goldaw`
+  String get gije_gundizleyin_goldaw_title {
+    return Intl.message(
+      'Gije-gündizleýin goldaw',
+      name: 'gije_gundizleyin_goldaw_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sargytlar, şikaýatlar ýa-da soraglar bilen baglanyşykly soraglary çözmek üçin biziň gije-gündizleýin wirtual maglumat merkezimizden peýdalanyň ýa-da iş wagtynda işgärlerimiz bilen habarlaşyň.`
+  String get gije_gundizleyin_goldaw_desc {
+    return Intl.message(
+      'Sargytlar, şikaýatlar ýa-da soraglar bilen baglanyşykly soraglary çözmek üçin biziň gije-gündizleýin wirtual maglumat merkezimizden peýdalanyň ýa-da iş wagtynda işgärlerimiz bilen habarlaşyň.',
+      name: 'gije_gundizleyin_goldaw_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maglumatlaryň gizlinligi`
+  String get maglumatlaryn_gizlinligi {
+    return Intl.message(
+      'Maglumatlaryň gizlinligi',
+      name: 'maglumatlaryn_gizlinligi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.`
+  String get maglumatlaryn_gizlinligi_desc {
+    return Intl.message(
+      'Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.',
+      name: 'maglumatlaryn_gizlinligi_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz size nädip kömek edip bileris?`
+  String get biz_size_nadip_komek {
+    return Intl.message(
+      'Biz size nädip kömek edip bileris?',
+      name: 'biz_size_nadip_komek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gözläň ýa-da sorag beriň`
+  String get gozlayish_ya_da_sorag_berin {
+    return Intl.message(
+      'Gözläň ýa-da sorag beriň',
+      name: 'gozlayish_ya_da_sorag_berin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hyzmat haýyşynyň taryhy...`
+  String get hyzmat_hayysyny_taryh {
+    return Intl.message(
+      'Hyzmat haýyşynyň taryhy...',
+      name: 'hyzmat_hayysyny_taryh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maslahat berilýär`
+  String get maslahat_beriyor {
+    return Intl.message(
+      'Maslahat berilýär',
+      name: 'maslahat_beriyor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Harydymy haçan alaryn?`
+  String get harydy_hacan_alaryn {
+    return Intl.message(
+      'Harydymy haçan alaryn?',
+      name: 'harydy_hacan_alaryn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Söwda kepilligi bolan sargydym boýunça jedel nädip açmaly?`
+  String get sowda_kepilligindaki_sargydymy {
+    return Intl.message(
+      'Söwda kepilligi bolan sargydym boýunça jedel nädip açmaly?',
+      name: 'sowda_kepilligindaki_sargydymy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trade Assurance bilen goralýan sargyt jedelini nädip çözmeli?`
+  String get trade_assurance_bilen_goralyan_sargyt {
+    return Intl.message(
+      'Trade Assurance bilen goralýan sargyt jedelini nädip çözmeli?',
+      name: 'trade_assurance_bilen_goralyan_sargyt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bu üpjün edijiniň ýagtybarlylygyny nädip bilip bilerin?`
+  String get bu_ucin_edijilik_yagtybarlylygyny {
+    return Intl.message(
+      'Bu üpjün edijiniň ýagtybarlylygyny nädip bilip bilerin?',
+      name: 'bu_ucin_edijilik_yagtybarlylygyny',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Harytlar bilen baglanyşykly problema ýüze çyksa näme etmeli?`
+  String get haryt_bilen_baglanyshykly_problema {
+    return Intl.message(
+      'Harytlar bilen baglanyşykly problema ýüze çyksa näme etmeli?',
+      name: 'haryt_bilen_baglanyshykly_problema',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `KSS`
+  String get kss {
+    return Intl.message('KSS', name: 'kss', desc: '', args: []);
+  }
+
+  /// `Ählisini görkez`
+  String get ahlisin_gorkez {
+    return Intl.message(
+      'Ählisini görkez',
+      name: 'ahlisin_gorkez',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trade Assurance bilen sargyt nädip etmeli?`
+  String get trade_assurance_bilen_sargyt {
+    return Intl.message(
+      'Trade Assurance bilen sargyt nädip etmeli?',
+      name: 'trade_assurance_bilen_sargyt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maglumat goragy`
+  String get maglumat_goragy {
+    return Intl.message(
+      'Maglumat goragy',
+      name: 'maglumat_goragy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz şahsy maglumatlary diňe anyk, çäklendirilen maksatlar üçin we hereket edýän kanunçylyga laýyklykda işleýäris.`
+  String get maglumat_goragy_desc {
+    return Intl.message(
+      'Biz şahsy maglumatlary diňe anyk, çäklendirilen maksatlar üçin we hereket edýän kanunçylyga laýyklykda işleýäris.',
+      name: 'maglumat_goragy_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz maglumatlary ýygnamagy iň pes derejede saklamaga çalyşýarys we olary saklamak möhletlerini çäklendirýäris, hyzmatlarymyzyň içine gizlinligini gurnaýarys we şahsy maglumatlaryňyzy ulanmakda aýdyňlygy üpjün edýäris.`
+  String get maglumat_desk {
+    return Intl.message(
+      'Biz maglumatlary ýygnamagy iň pes derejede saklamaga çalyşýarys we olary saklamak möhletlerini çäklendirýäris, hyzmatlarymyzyň içine gizlinligini gurnaýarys we şahsy maglumatlaryňyzy ulanmakda aýdyňlygy üpjün edýäris.',
+      name: 'maglumat_desk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Howpsuzlyk çäreleri`
+  String get howpuszlyk_caryaleri {
+    return Intl.message(
+      'Howpsuzlyk çäreleri',
+      name: 'howpuszlyk_caryaleri',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz rugsatsyz girişiň öňüni almak, maglumatlaryň takyklygyny saklamak we bizde saklanýan maglumatlary goramak üçin tehniki we guramaçylyk çärelerini ulanýarys.`
+  String get howpsuzlyk_caryaleri_desc {
+    return Intl.message(
+      'Biz rugsatsyz girişiň öňüni almak, maglumatlaryň takyklygyny saklamak we bizde saklanýan maglumatlary goramak üçin tehniki we guramaçylyk çärelerini ulanýarys.',
+      name: 'howpsuzlyk_caryaleri_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Öz maglumatlarňyzy dolandyryň`
+  String get oz_maglumatlarynyzyn_dolandyryn {
+    return Intl.message(
+      'Öz maglumatlarňyzy dolandyryň',
+      name: 'oz_maglumatlarynyzyn_dolandyryn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Siz öz şahsy maglumatlaryňyza bolan gözegiçligi saklaýarsyňyz. Biz siziň haýyşyňyza dessine we hereket edýän maglumat goragy baradaky kanunlara we kadalara laýyklykda jogap bereris.`
+  String get oz_maglumatlarynyzyn_dolandyryn_desc {
+    return Intl.message(
+      'Siz öz şahsy maglumatlaryňyza bolan gözegiçligi saklaýarsyňyz. Biz siziň haýyşyňyza dessine we hereket edýän maglumat goragy baradaky kanunlara we kadalara laýyklykda jogap bereris.',
+      name: 'oz_maglumatlarynyzyn_dolandyryn_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz bilen gije gündiz habarlaşyň ýa-da yzygiderli täzelenýän maglumat merkezimizden peýdalanyň. Biz elmydama kömek etmäge taýýar.`
+  String get gije_gundizleyin_goldaw_page_title {
+    return Intl.message(
+      'Biz bilen gije gündiz habarlaşyň ýa-da yzygiderli täzelenýän maglumat merkezimizden peýdalanyň. Biz elmydama kömek etmäge taýýar.',
+      name: 'gije_gundizleyin_goldaw_page_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hünärmenleriň islendik wagtlaýyn kömegi`
+  String get hunarmenlerin_islender_wagtlayin_komegi {
+    return Intl.message(
+      'Hünärmenleriň islendik wagtlaýyn kömegi',
+      name: 'hunarmenlerin_islender_wagtlayin_komegi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.`
+  String get hunarmenlerin_islender_desc {
+    return Intl.message(
+      'Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.',
+      name: 'hunarmenlerin_islender_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dürli dillerde jogap berýäris`
+  String get durli_dillerde_jogap_beryaris {
+    return Intl.message(
+      'Dürli dillerde jogap berýäris',
+      name: 'durli_dillerde_jogap_beryaris',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz siziň üçin amatly dilde problemalaryňyzy ynamdar we çalt çözmäge çalyşýarys. Hyzmatlarymyzy 10-dan gowrak dilde hödürleýäris.`
+  String get durli_dillerde_desc {
+    return Intl.message(
+      'Biz siziň üçin amatly dilde problemalaryňyzy ynamdar we çalt çözmäge çalyşýarys. Hyzmatlarymyzy 10-dan gowrak dilde hödürleýäris.',
+      name: 'durli_dillerde_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jedelleri çözmek`
+  String get jedelleri_coz_goldaw {
+    return Intl.message(
+      'Jedelleri çözmek',
+      name: 'jedelleri_coz_goldaw',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.`
+  String get jedelleri_coz_goldaw_desc {
+    return Intl.message(
+      'Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.',
+      name: 'jedelleri_coz_goldaw_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jedelleri çözmek düzgünleri barada has giňişleýin`
+  String get goldaw_has_ginisleyin {
+    return Intl.message(
+      'Jedelleri çözmek düzgünleri barada has giňişleýin',
+      name: 'goldaw_has_ginisleyin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kepillendirilen gowşuryş`
+  String get kepillendirilen_gowsurysh {
+    return Intl.message(
+      'Kepillendirilen gowşuryş',
+      name: 'kepillendirilen_gowsurysh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kämilleşdirilen meýilleşdirme we ätiýaçlygy dolandyrmak üçin, sargydyňyzyň kepillendirilen möhletlerde iberiljekdigini ýa-da gowşuryljakdygyny bilip peýdalanyň. Gijikdirilmeliň seýrek ýagdaýlarynda, sargydyňyzyň umumy bahasynyň 10%-i möçberinde (maksimum 100 ABŞ dollaryna çenli) kompensasiýa alarsyňyz.`
+  String get kepillendirilen_gowsurysh_desc {
+    return Intl.message(
+      'Kämilleşdirilen meýilleşdirme we ätiýaçlygy dolandyrmak üçin, sargydyňyzyň kepillendirilen möhletlerde iberiljekdigini ýa-da gowşuryljakdygyny bilip peýdalanyň. Gijikdirilmeliň seýrek ýagdaýlarynda, sargydyňyzyň umumy bahasynyň 10%-i möçberinde (maksimum 100 ABŞ dollaryna çenli) kompensasiýa alarsyňyz.',
+      name: 'kepillendirilen_gowsurysh_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ynamdar tölegler`
+  String get ynamdar_tolegler {
+    return Intl.message(
+      'Ynamdar tölegler',
+      name: 'ynamdar_tolegler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.`
+  String get ynamdar_tolegler_desc {
+    return Intl.message(
+      'Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.',
+      name: 'ynamdar_tolegler_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.`
+  String get ynamdar_desk {
+    return Intl.message(
+      'Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.',
+      name: 'ynamdar_desk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dürli görnüşli töleg usullary`
+  String get durli_gornushli_tolog_usullary {
+    return Intl.message(
+      'Dürli görnüşli töleg usullary',
+      name: 'durli_gornushli_tolog_usullary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tölegleriňizi kredit/debit kartlary, PayPal, Apple Pay, Google Pay, Afterpay/Clearpay we beýleki meşhur ýe usullar arkaly onlaýn hasaplaşyk panelimizden amala aşyryp bilersiňiz.`
+  String get durli_gornushli_desc {
+    return Intl.message(
+      'Tölegleriňizi kredit/debit kartlary, PayPal, Apple Pay, Google Pay, Afterpay/Clearpay we beýleki meşhur ýe usullar arkaly onlaýn hasaplaşyk panelimizden amala aşyryp bilersiňiz.',
+      name: 'durli_gornushli_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.`
+  String get alternatiw_hokumde {
+    return Intl.message(
+      'Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.',
+      name: 'alternatiw_hokumde',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biz 27-den gowrak pul birliginde geleşikleri goldaýarys, şonuň üçin siz pul çalyşmak üçin sarp`
+  String get pul {
+    return Intl.message(
+      'Biz 27-den gowrak pul birliginde geleşikleri goldaýarys, şonuň üçin siz pul çalyşmak üçin sarp',
+      name: 'pul',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Şertler we kadalar`
+  String get sertler_we_kadalar {
+    return Intl.message(
+      'Şertler we kadalar',
+      name: 'sertler_we_kadalar',
+      desc: '',
+      args: [],
+    );
   }
 }
 

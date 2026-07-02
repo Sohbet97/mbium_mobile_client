@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "agramy": MessageLookupByLibrary.simpleMessage("Agramy"),
     "agza_bolanlarym": MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),
     "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
+    "ahlisin_gorkez": MessageLookupByLibrary.simpleMessage("Ählisini görkez"),
     "ai_agendin_mugt_dowri": MessageLookupByLibrary.simpleMessage(
       "AI agendiň MUGT döwri",
     ),
@@ -47,13 +48,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "akkaundy_blokla": MessageLookupByLibrary.simpleMessage("Akkaundy blokla"),
     "alibaba_sargyt_goragy": MessageLookupByLibrary.simpleMessage(
-      "MBIUM sargyt goraglylygy",
+      "Alibaba.com sargyt goragy",
     ),
     "alibaba_sargyt_goragy_desc": MessageLookupByLibrary.simpleMessage(
       "Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner",
     ),
     "all": MessageLookupByLibrary.simpleMessage("Ählisi"),
     "all_functions": MessageLookupByLibrary.simpleMessage("All Functions"),
+    "alternatiw_hokumde": MessageLookupByLibrary.simpleMessage(
+      "Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
+    ),
     "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
     "ayratynlyklar": MessageLookupByLibrary.simpleMessage("Aýratynlyklar"),
     "baha_goraglylygy": MessageLookupByLibrary.simpleMessage(
@@ -72,7 +76,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "barkode": MessageLookupByLibrary.simpleMessage("Barkod"),
     "basga": MessageLookupByLibrary.simpleMessage("Başga"),
+    "bash_zakaz": MessageLookupByLibrary.simpleMessage(
+      "что ваш заказ будет отправлен или доставлен в гарантированные сроки.",
+    ),
+    "biz_size_nadip_komek": MessageLookupByLibrary.simpleMessage(
+      "Biz size nädip kömek edip bileris?",
+    ),
     "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
+    "bu_ucin_edijilik_yagtybarlylygyny": MessageLookupByLibrary.simpleMessage(
+      "Bu üpjün edijiniň ýagtybarlylygyny nädip bilip bilerin?",
+    ),
     "caksiz_osush_ucin": MessageLookupByLibrary.simpleMessage(
       "Çäksiz ösüş üçin",
     ),
@@ -99,6 +112,18 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "doglan_guni": MessageLookupByLibrary.simpleMessage("Doglan güni"),
     "dowam_et": MessageLookupByLibrary.simpleMessage("Dowam et"),
+    "durli_dillerde_desc": MessageLookupByLibrary.simpleMessage(
+      "Biz siziň üçin amatly dilde problemalaryňyzy ynamdar we çalt çözmäge çalyşýarys. Hyzmatlarymyzy 10-dan gowrak dilde hödürleýäris.",
+    ),
+    "durli_dillerde_jogap_beryaris": MessageLookupByLibrary.simpleMessage(
+      "Dürli dillerde jogap berýäris",
+    ),
+    "durli_gornushli_desc": MessageLookupByLibrary.simpleMessage(
+      "Tölegleriňizi kredit/debit kartlary, PayPal, Apple Pay, Google Pay, Afterpay/Clearpay we beýleki meşhur ýe usullar arkaly onlaýn hasaplaşyk panelimizden amala aşyryp bilersiňiz.",
+    ),
+    "durli_gornushli_tolog_usullary": MessageLookupByLibrary.simpleMessage(
+      "Dürli görnüşli töleg usullary",
+    ),
     "duydurys": MessageLookupByLibrary.simpleMessage("Duýduryş"),
     "e_pocta": MessageLookupByLibrary.simpleMessage("E-poçta"),
     "efirlerden_bayrak_alyn": MessageLookupByLibrary.simpleMessage(
@@ -120,9 +145,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Garaşylýan mukdar TMT",
     ),
     "gech": MessageLookupByLibrary.simpleMessage("Geç"),
+    "gije_gundizleyin_goldaw_desc": MessageLookupByLibrary.simpleMessage(
+      "Sargytlar, şikaýatlar ýa-da soraglar bilen baglanyşykly soraglary çözmek üçin biziň gije-gündizleýin wirtual maglumat merkezimizden peýdalanyň ýa-da iş wagtynda işgärlerimiz bilen habarlaşyň.",
+    ),
+    "gije_gundizleyin_goldaw_page_title": MessageLookupByLibrary.simpleMessage(
+      "Biz bilen gije gündiz habarlaşyň ýa-da yzygiderli täzelenýän maglumat merkezimizden peýdalanyň. Biz elmydama kömek etmäge taýýar.",
+    ),
+    "gije_gundizleyin_goldaw_title": MessageLookupByLibrary.simpleMessage(
+      "Gije-gündizleýin goldaw",
+    ),
     "giri_mumkin": MessageLookupByLibrary.simpleMessage("Giriş mümkin"),
     "goldanylyan_toleg_usullary": MessageLookupByLibrary.simpleMessage(
       "Goldanylýan töleg usullary",
+    ),
+    "goldaw_has_ginisleyin": MessageLookupByLibrary.simpleMessage(
+      "Jedelleri çözmek düzgünleri barada has giňişleýin",
     ),
     "goni_efir": MessageLookupByLibrary.simpleMessage(
       "Göni efirdäki çada başlaň",
@@ -130,9 +167,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "google_dowan_et": MessageLookupByLibrary.simpleMessage(
       "Google bilen dowam et",
     ),
+    "gorag": MessageLookupByLibrary.simpleMessage("Gorag"),
     "goralan": MessageLookupByLibrary.simpleMessage("Goralan"),
     "gorulen_harytlar": MessageLookupByLibrary.simpleMessage(
       "Görülen harytlar",
+    ),
+    "gozlayish_ya_da_sorag_berin": MessageLookupByLibrary.simpleMessage(
+      "Gözläň ýa-da sorag beriň",
     ),
     "gozlege_basanda": MessageLookupByLibrary.simpleMessage("Gözlege basanda"),
     "gozleyji_we_sowgatlar_alyn": MessageLookupByLibrary.simpleMessage(
@@ -144,6 +185,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "habarlary_gozle": MessageLookupByLibrary.simpleMessage(
       "Habarlary ýa-da üpjünçileri gözle",
     ),
+    "harydy_hacan_alaryn": MessageLookupByLibrary.simpleMessage(
+      "Harydymy haçan alaryn?",
+    ),
+    "haryt_bilen_baglanyshykly_problema": MessageLookupByLibrary.simpleMessage(
+      "Harytlar bilen baglanyşykly problema ýüze çyksa näme etmeli?",
+    ),
+    "haryt_gaytarmak": MessageLookupByLibrary.simpleMessage(
+      "Harytlary we serişdeleri gaýtarmak barada has giňişleýin",
+    ),
     "haryt_sany": MessageLookupByLibrary.simpleMessage("Haryt sany"),
     "has_ginisleyin": MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
     "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
@@ -151,10 +201,42 @@ class MessageLookup extends MessageLookupByLibrary {
     "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
     "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
     "hokmany": MessageLookupByLibrary.simpleMessage("Hökmany"),
+    "hopwsuz_toleg": MessageLookupByLibrary.simpleMessage("Howpsuz tölegler"),
+    "hopwsuz_toleg_des": MessageLookupByLibrary.simpleMessage(
+      "Halan ýerli töleg usullarňyzdan, walýutalaryňyzdan, bank geçirimleriňizden ýa-da garaşrykly töleg meýilnamalarňyzdan saýlaň",
+    ),
+    "hopwsuz_toleg_deskk": MessageLookupByLibrary.simpleMessage(
+      "Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar",
+    ),
+    "howpsuz_tolegler_has_ginisleyin": MessageLookupByLibrary.simpleMessage(
+      "Howpsuz tölegler barada has giňişleýin",
+    ),
+    "howpsuzlyk_caryaleri_desc": MessageLookupByLibrary.simpleMessage(
+      "Biz rugsatsyz girişiň öňüni almak, maglumatlaryň takyklygyny saklamak we bizde saklanýan maglumatlary goramak üçin tehniki we guramaçylyk çärelerini ulanýarys.",
+    ),
+    "howpuszlyk_caryaleri": MessageLookupByLibrary.simpleMessage(
+      "Howpsuzlyk çäreleri",
+    ),
+    "hunarmenlerin_islender_desc": MessageLookupByLibrary.simpleMessage(
+      "Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.",
+    ),
+    "hunarmenlerin_islender_wagtlayin_komegi":
+        MessageLookupByLibrary.simpleMessage(
+          "Hünärmenleriň islendik wagtlaýyn kömegi",
+        ),
+    "hyzmat_hayysyny_taryh": MessageLookupByLibrary.simpleMessage(
+      "Hyzmat haýyşynyň taryhy...",
+    ),
     "ibermek_bilen_razylasyarsynyz": MessageLookupByLibrary.simpleMessage(
       "Ibermek bilen, siz MBIUM şertleri we düzgünleri \nbilen razylaşýarsyňyz",
     ),
     "in_meshgurlar": MessageLookupByLibrary.simpleMessage("Iň meşgurlar"),
+    "jedelleri_coz_goldaw": MessageLookupByLibrary.simpleMessage(
+      "Jedelleri çözmek",
+    ),
+    "jedelleri_coz_goldaw_desc": MessageLookupByLibrary.simpleMessage(
+      "Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.",
+    ),
     "jemi": MessageLookupByLibrary.simpleMessage("Jemi"),
     "jikme_jik_talaplary_girizin": MessageLookupByLibrary.simpleMessage(
       "Jikme-jik talaplary giriziň",
@@ -171,11 +253,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "kepillendirilen_eltip_bermek": MessageLookupByLibrary.simpleMessage(
       "Kepillendirilen\neltip bermek",
     ),
+    "kepillendirilen_gowsurysh": MessageLookupByLibrary.simpleMessage(
+      "Kepillendirilen gowşuryş",
+    ),
+    "kepillendirilen_gowsurysh_desc": MessageLookupByLibrary.simpleMessage(
+      "Kämilleşdirilen meýilleşdirme we ätiýaçlygy dolandyrmak üçin, sargydyňyzyň kepillendirilen möhletlerde iberiljekdigini ýa-da gowşuryljakdygyny bilip peýdalanyň. Gijikdirilmeliň seýrek ýagdaýlarynda, sargydyňyzyň umumy bahasynyň 10%-i möçberinde (maksimum 100 ABŞ dollaryna çenli) kompensasiýa alarsyňyz.",
+    ),
     "kes_arassalamak": MessageLookupByLibrary.simpleMessage("Keş arassalamak"),
     "kitaplar": MessageLookupByLibrary.simpleMessage("Kitaplar"),
+    "kogda": MessageLookupByLibrary.simpleMessage(
+      "Когда поставщик готовит для вас заказ:",
+    ),
+    "kogda_desk": MessageLookupByLibrary.simpleMessage(
+      "Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi \"Meniň profilim\" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň",
+    ),
     "komek_seslenme": MessageLookupByLibrary.simpleMessage(
       "Kömek we seslenmeler",
     ),
+    "kss": MessageLookupByLibrary.simpleMessage("KSS"),
     "kupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
     "kuryer_tizligi": MessageLookupByLibrary.simpleMessage("Kurýer tizligi"),
     "language": MessageLookupByLibrary.simpleMessage("Dil"),
@@ -188,14 +283,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "logotypin_gornushi": MessageLookupByLibrary.simpleMessage(
       "Logotyň görnüşi",
     ),
+    "maglumat_desk": MessageLookupByLibrary.simpleMessage(
+      "Biz maglumatlary ýygnamagy iň pes derejede saklamaga çalyşýarys we olary saklamak möhletlerini çäklendirýäris, hyzmatlarymyzyň içine gizlinligini gurnaýarys we şahsy maglumatlaryňyzy ulanmakda aýdyňlygy üpjün edýäris.",
+    ),
+    "maglumat_goragy": MessageLookupByLibrary.simpleMessage("Maglumat goragy"),
+    "maglumat_goragy_desc": MessageLookupByLibrary.simpleMessage(
+      "Biz şahsy maglumatlary diňe anyk, çäklendirilen maksatlar üçin we hereket edýän kanunçylyga laýyklykda işleýäris.",
+    ),
     "maglumatlar_barlanyar": MessageLookupByLibrary.simpleMessage(
       "Maglumatlar barlanýar",
+    ),
+    "maglumatlaryn_gizlinligi": MessageLookupByLibrary.simpleMessage(
+      "Maglumatlaryň gizlinligi",
+    ),
+    "maglumatlaryn_gizlinligi_desc": MessageLookupByLibrary.simpleMessage(
+      "Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.",
     ),
     "maslahat_beriyanler": MessageLookupByLibrary.simpleMessage(
       "Maslahat beriýänler",
     ),
     "maslahat_beriyanler_subtitle": MessageLookupByLibrary.simpleMessage(
       "Saýlanan geýimlere görä harytlarymyz",
+    ),
+    "maslahat_beriyor": MessageLookupByLibrary.simpleMessage(
+      "Maslahat berilýär",
     ),
     "maslahat_beryan_harytlary": MessageLookupByLibrary.simpleMessage(
       "maslahat berýän harytlary",
@@ -261,6 +372,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onduriji": MessageLookupByLibrary.simpleMessage("Öndüriji"),
     "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
+    "onuniz_ozuniz_alynyz_goragy": MessageLookupByLibrary.simpleMessage(
+      "Özüňiz sargyt edeniňizde",
+    ),
     "orders": MessageLookupByLibrary.simpleMessage("Orders"),
     "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
     "oz_bahany_appbar_title": MessageLookupByLibrary.simpleMessage(
@@ -279,10 +393,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "oz_bahany_ugratmak_bilen": MessageLookupByLibrary.simpleMessage(
       "Ugratmak bilen, siz MBIUM",
     ),
+    "oz_maglumatlarynyzyn_dolandyryn": MessageLookupByLibrary.simpleMessage(
+      "Öz maglumatlarňyzy dolandyryň",
+    ),
+    "oz_maglumatlarynyzyn_dolandyryn_desc": MessageLookupByLibrary.simpleMessage(
+      "Siz öz şahsy maglumatlaryňyza bolan gözegiçligi saklaýarsyňyz. Biz siziň haýyşyňyza dessine we hereket edýän maglumat goragy baradaky kanunlara we kadalara laýyklykda jogap bereris.",
+    ),
     "oz_pikirini_yaz": MessageLookupByLibrary.simpleMessage("öz pikiriňi ýaz"),
     "oz_saherimdaki": MessageLookupByLibrary.simpleMessage("Öz şäherimdäkiler"),
     "parol": MessageLookupByLibrary.simpleMessage("Parol"),
     "podpiska": MessageLookupByLibrary.simpleMessage("AI ýazgysy"),
+    "podrobnoye": MessageLookupByLibrary.simpleMessage(
+      "Подробнее о возврате товаров и средств",
+    ),
     "posty_udalit_et": MessageLookupByLibrary.simpleMessage(
       "Posty öňüňden çykmaz ýaly udalit et",
     ),
@@ -290,6 +413,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "products": MessageLookupByLibrary.simpleMessage("Harytlar"),
     "profil": MessageLookupByLibrary.simpleMessage("Profil"),
     "profile_arza_et": MessageLookupByLibrary.simpleMessage("Profile arza et"),
+    "pul": MessageLookupByLibrary.simpleMessage(
+      "Biz 27-den gowrak pul birliginde geleşikleri goldaýarys, şonuň üçin siz pul çalyşmak üçin sarp",
+    ),
+    "redkih": MessageLookupByLibrary.simpleMessage(
+      "В редких случаях задержки вы получите компенсацию в размере 10% от общей суммы заказа.",
+    ),
     "reels": MessageLookupByLibrary.simpleMessage("Reels"),
     "refresh": MessageLookupByLibrary.simpleMessage("Täzele"),
     "register": MessageLookupByLibrary.simpleMessage("Registrasiýa bolmak"),
@@ -300,7 +429,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri",
     ),
     "russkiy": MessageLookupByLibrary.simpleMessage("Русский"),
+    "sargydynyz_nadip_gorap_bilersiniz": MessageLookupByLibrary.simpleMessage(
+      "Sargydyňyzy nädip gorap bilersiňiz",
+    ),
     "sargyt_etmek": MessageLookupByLibrary.simpleMessage("Sargyt etmek"),
+    "sargyt_gorag_desc1": MessageLookupByLibrary.simpleMessage(
+      "Sizi sargydyňyz haryt sahypasynda «Sargyt et» düwmesine basan pursatyňyzdan goralýar.",
+    ),
     "sargyt_goraglylygy": MessageLookupByLibrary.simpleMessage(
       "Sargyt goraglylygy we \n uly arzanladyşlar",
     ),
@@ -324,6 +459,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "sebede_gos": MessageLookupByLibrary.simpleMessage("SEBEDE GOŞ"),
     "sebedinez_bos": MessageLookupByLibrary.simpleMessage("Sebediniz boş"),
     "sebet": MessageLookupByLibrary.simpleMessage("Sebet"),
+    "sertler_we_kadalar": MessageLookupByLibrary.simpleMessage(
+      "Şertler we kadalar",
+    ),
     "settings": MessageLookupByLibrary.simpleMessage("Sazlamalar"),
     "shahsy_maglumatlaryny_iber": MessageLookupByLibrary.simpleMessage(
       "Şahsy maglumatlaryňyzy iberiň",
@@ -340,6 +478,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
     "sorag_bar_bolsa": MessageLookupByLibrary.simpleMessage("Sorag bar bolsa"),
+    "sowda_kepilligindaki_sargydymy": MessageLookupByLibrary.simpleMessage(
+      "Söwda kepilligi bolan sargydym boýunça jedel nädip açmaly?",
+    ),
     "sowda_teklip_sargytlaryn_in_meshgurlary":
         MessageLookupByLibrary.simpleMessage(
           "Söwda teklip sargytlarynyň iň meşgurlary",
@@ -366,10 +507,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "toleg_usullary": MessageLookupByLibrary.simpleMessage("Töleg usullary:"),
     "toleg_usuly": MessageLookupByLibrary.simpleMessage("Töleg usuly"),
     "tolegler": MessageLookupByLibrary.simpleMessage("Tölegler"),
+    "tolog_gaytarmak_desc": MessageLookupByLibrary.simpleMessage(
+      "Eger sargydyňyz gowşurylmasa, ýitse ýa-da kemçilikli ýa-da zeperli ýagdaýda gowşurylsa.",
+    ),
+    "tolog_gaytarmak_goragy": MessageLookupByLibrary.simpleMessage(
+      "Töleg gaýtarmak goragy",
+    ),
     "top": MessageLookupByLibrary.simpleMessage("Top"),
     "top_satyjylar": MessageLookupByLibrary.simpleMessage("Top satyjylar"),
     "toplumyn_sazlamalary": MessageLookupByLibrary.simpleMessage(
       "Toplumyň sazlamalary",
+    ),
+    "trade_assurance_bilen_goralyan_sargyt":
+        MessageLookupByLibrary.simpleMessage(
+          "Trade Assurance bilen goralýan sargyt jedelini nädip çözmeli?",
+        ),
+    "trade_assurance_bilen_sargyt": MessageLookupByLibrary.simpleMessage(
+      "Trade Assurance bilen sargyt nädip etmeli?",
     ),
     "tranzaksiyalar": MessageLookupByLibrary.simpleMessage("Tranzaksiýalar"),
     "turkmence": MessageLookupByLibrary.simpleMessage("Türkmen"),
@@ -411,6 +565,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "welcome": MessageLookupByLibrary.simpleMessage("Hoş geldiňiz"),
     "yer": MessageLookupByLibrary.simpleMessage("Ýer"),
     "yes": MessageLookupByLibrary.simpleMessage("Hawa"),
+    "ynamdar_desk": MessageLookupByLibrary.simpleMessage(
+      "Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.",
+    ),
+    "ynamdar_tolegler": MessageLookupByLibrary.simpleMessage(
+      "Ynamdar tölegler",
+    ),
+    "ynamdar_tolegler_desc": MessageLookupByLibrary.simpleMessage(
+      "Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.",
+    ),
     "ynamly_tolegier": MessageLookupByLibrary.simpleMessage("Ynamly\ntölegler"),
     "yok": MessageLookupByLibrary.simpleMessage("Ýok"),
     "yza_gaytarmak_goragy": MessageLookupByLibrary.simpleMessage(
