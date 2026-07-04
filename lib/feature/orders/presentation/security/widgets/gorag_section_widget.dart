@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
 
 class GoragSectionWidget extends StatelessWidget {
@@ -33,9 +32,7 @@ class GoragSectionWidget extends StatelessWidget {
             children: [
               Icon(icon, color: iconColor, size: 20),
               const SizedBox(width: 8),
-              Expanded(
-                child: Text(title, style: textStyles.s13w600clBlack),
-              ),
+              Expanded(child: Text(title, style: textStyles.s13w600clBlack)),
             ],
           ),
           const SizedBox(height: 12),

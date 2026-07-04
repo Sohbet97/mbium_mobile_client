@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "akkaundy_blokla": MessageLookupByLibrary.simpleMessage("Akkaundy blokla"),
     "alibaba_sargyt_goragy": MessageLookupByLibrary.simpleMessage(
-      "Alibaba.com sargyt goragy",
+      "MBIUM sargyt goraglylygy",
     ),
     "alibaba_sargyt_goragy_desc": MessageLookupByLibrary.simpleMessage(
       "Diňe MBIUM bonuslaryň üsti bilen tölenen we ýerleşdirilen harytlar Mugt goragdan peýdalanyp biliner",
@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "all": MessageLookupByLibrary.simpleMessage("Ählisi"),
     "all_functions": MessageLookupByLibrary.simpleMessage("Ähli funksiýalar"),
     "alternatiw_hokumde": MessageLookupByLibrary.simpleMessage(
-      "Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
+      "Alternatiw hökmünde, siz Mbium.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
     ),
     "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
     "baha_goraglylygy": MessageLookupByLibrary.simpleMessage(
@@ -170,7 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Halan ýerli töleg usullarňyzdan, walýutalaryňyzdan, bank geçirimleriňizden ýa-da garaşrykly töleg meýilnamalarňyzdan saýlaň",
     ),
     "hopwsuz_toleg_deskk": MessageLookupByLibrary.simpleMessage(
-      "Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar",
+      "Mbium.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar",
     ),
     "howpsuz_tolegler_has_ginisleyin": MessageLookupByLibrary.simpleMessage(
       "Howpsuz tölegler barada has giňişleýin",
@@ -182,7 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Howpsuzlyk çäreleri",
     ),
     "hunarmenlerin_islender_desc": MessageLookupByLibrary.simpleMessage(
-      "Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.",
+      "Programmada ýa-da Mbium.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.",
     ),
     "hunarmenlerin_islender_wagtlayin_komegi":
         MessageLookupByLibrary.simpleMessage(
@@ -196,7 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Jedelleri çözmek",
     ),
     "jedelleri_coz_goldaw_desc": MessageLookupByLibrary.simpleMessage(
-      "Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.",
+      "Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Mbium.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.",
     ),
     "jemi": MessageLookupByLibrary.simpleMessage("Jemi"),
     "jikme_jik_talaplary_girizin": MessageLookupByLibrary.simpleMessage(
@@ -223,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Когда поставщик готовит для вас заказ:",
     ),
     "kogda_desk": MessageLookupByLibrary.simpleMessage(
-      "Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi \"Meniň profilim\" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň",
+      "Pöwre size sargyt taýýarlaýarka: Mbium.com-da sargyt üçin tölegi \"Meniň profilim\" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Mbium.com-yň resmi bank hasabyna edilendigine göz ýetiriň",
     ),
     "komek_seslenme": MessageLookupByLibrary.simpleMessage(
       "Kömek we seslenmeler",
@@ -254,7 +254,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Maglumatlaryň gizlinligi",
     ),
     "maglumatlaryn_gizlinligi_desc": MessageLookupByLibrary.simpleMessage(
-      "Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.",
+      "Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Mbium.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.",
     ),
     "maslahat_beriyanler": MessageLookupByLibrary.simpleMessage(
       "Maslahat beriýänler",
@@ -474,13 +474,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "yer": MessageLookupByLibrary.simpleMessage("Ýer"),
     "yes": MessageLookupByLibrary.simpleMessage("Hawa"),
     "ynamdar_desk": MessageLookupByLibrary.simpleMessage(
-      "Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.",
+      "Tölegiňizi goramak üçin elmydama Mbium.com-yň resmi töleg kanallaryndan peýdalanyň.",
     ),
     "ynamdar_tolegler": MessageLookupByLibrary.simpleMessage(
       "Ynamdar tölegler",
     ),
     "ynamdar_tolegler_desc": MessageLookupByLibrary.simpleMessage(
-      "Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.",
+      "Mbium.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.",
     ),
     "ynamly_tolegier": MessageLookupByLibrary.simpleMessage("Ynamly\ntölegler"),
     "yok": MessageLookupByLibrary.simpleMessage("Ýok"),

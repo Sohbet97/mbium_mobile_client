@@ -223,16 +223,15 @@
 
 
 "gorag": "Gorag",
-"alibaba_sargyt_goragy": "Alibaba.com sargyt goragy",
 "sargydynyz_nadip_gorap_bilersiniz": "Sargydyňyzy nädip gorap bilersiňiz",
 "onuniz_ozuniz_alynyz_goragy": "Özüňiz sargyt edeniňizde",
 "sargyt_gorag_desc1": "Sizi sargydyňyz haryt sahypasynda «Sargyt et» düwmesine basan pursatyňyzdan goralýar.",
 "kogda": "Когда поставщик готовит для вас заказ:",
-"kogda_desk": "Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi \"Meniň profilim\" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň", 
+"kogda_desk": "Pöwre size sargyt taýýarlaýarka: Mbium.com-da sargyt üçin tölegi \"Meniň profilim\" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Mbium.com-yň resmi bank hasabyna edilendigine göz ýetiriň", 
 
 "hopwsuz_toleg": "Howpsuz tölegler",
 "hopwsuz_toleg_des": "Halan ýerli töleg usullarňyzdan, walýutalaryňyzdan, bank geçirimleriňizden ýa-da garaşrykly töleg meýilnamalarňyzdan saýlaň",
-"hopwsuz_toleg_deskk": "Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar",
+"hopwsuz_toleg_deskk": "Mbium.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar",
 "howpsuz_tolegler_has_ginisleyin": "Howpsuz tölegler barada has giňişleýin",
 
 "bash_zakaz": "что ваш заказ будет отправлен или доставлен в гарантированные сроки.",
@@ -245,10 +244,9 @@
 
 "gije_gundizleyin_goldaw_title": "Gije-gündizleýin goldaw",
 "gije_gundizleyin_goldaw_desc": "Sargytlar, şikaýatlar ýa-da soraglar bilen baglanyşykly soraglary çözmek üçin biziň gije-gündizleýin wirtual maglumat merkezimizden peýdalanyň ýa-da iş wagtynda işgärlerimiz bilen habarlaşyň.",
-"has_ginisleyin": "Has giňişleýin",
 
 "maglumatlaryn_gizlinligi": "Maglumatlaryň gizlinligi",
-"maglumatlaryn_gizlinligi_desc": "Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.",
+"maglumatlaryn_gizlinligi_desc": "Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Mbium.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.",
 
 "biz_size_nadip_komek": "Biz size nädip kömek edip bileris?",
 "gozlayish_ya_da_sorag_berin": "Gözläň ýa-da sorag beriň",
@@ -275,12 +273,12 @@
 
 "gije_gundizleyin_goldaw_page_title": "Biz bilen gije gündiz habarlaşyň ýa-da yzygiderli täzelenýän maglumat merkezimizden peýdalanyň. Biz elmydama kömek etmäge taýýar.",
 "hunarmenlerin_islender_wagtlayin_komegi": "Hünärmenleriň islendik wagtlaýyn kömegi",
-"hunarmenlerin_islender_desc": "Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.",
+"hunarmenlerin_islender_desc": "Programmada ýa-da Mbium.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.",
 "durli_dillerde_jogap_beryaris": "Dürli dillerde jogap berýäris",
 "durli_dillerde_desc": "Biz siziň üçin amatly dilde problemalaryňyzy ynamdar we çalt çözmäge çalyşýarys. Hyzmatlarymyzy 10-dan gowrak dilde hödürleýäris.",
 
 "jedelleri_coz_goldaw": "Jedelleri çözmek",
-"jedelleri_coz_goldaw_desc": "Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.",
+"jedelleri_coz_goldaw_desc": "Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Mbium.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.",
 "goldaw_has_ginisleyin": "Jedelleri çözmek düzgünleri barada has giňişleýin",
 
 
@@ -288,12 +286,12 @@
 "kepillendirilen_gowsurysh_desc": "Kämilleşdirilen meýilleşdirme we ätiýaçlygy dolandyrmak üçin, sargydyňyzyň kepillendirilen möhletlerde iberiljekdigini ýa-da gowşuryljakdygyny bilip peýdalanyň. Gijikdirilmeliň seýrek ýagdaýlarynda, sargydyňyzyň umumy bahasynyň 10%-i möçberinde (maksimum 100 ABŞ dollaryna çenli) kompensasiýa alarsyňyz.",
 
 "ynamdar_tolegler": "Ynamdar tölegler",
-"ynamdar_tolegler_desc": "Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.",
-"ynamdar_desk": "Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.",
+"ynamdar_tolegler_desc": "Mbium.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.",
+"ynamdar_desk": "Tölegiňizi goramak üçin elmydama Mbium.com-yň resmi töleg kanallaryndan peýdalanyň.",
 
 "durli_gornushli_tolog_usullary": "Dürli görnüşli töleg usullary",
 "durli_gornushli_desc": "Tölegleriňizi kredit/debit kartlary, PayPal, Apple Pay, Google Pay, Afterpay/Clearpay we beýleki meşhur ýe usullar arkaly onlaýn hasaplaşyk panelimizden amala aşyryp bilersiňiz.",
-"alternatiw_hokumde": "Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
+"alternatiw_hokumde": "Alternatiw hökmünde, siz Mbium.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
 "pul": "Biz 27-den gowrak pul birliginde geleşikleri goldaýarys, şonuň üçin siz pul çalyşmak üçin sarp",
 
 "sertler_we_kadalar": "Şertler we kadalar"

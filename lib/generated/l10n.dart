@@ -609,10 +609,10 @@ class S {
     );
   }
 
-  /// `Alibaba.com sargyt goragy`
+  /// `MBIUM sargyt goraglylygy`
   String get alibaba_sargyt_goragy {
     return Intl.message(
-      'Alibaba.com sargyt goragy',
+      'MBIUM sargyt goraglylygy',
       name: 'alibaba_sargyt_goragy',
       desc: '',
       args: [],
@@ -1814,10 +1814,10 @@ class S {
     );
   }
 
-  /// `Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi "Meniň profilim" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň`
+  /// `Pöwre size sargyt taýýarlaýarka: Mbium.com-da sargyt üçin tölegi "Meniň profilim" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Mbium.com-yň resmi bank hasabyna edilendigine göz ýetiriň`
   String get kogda_desk {
     return Intl.message(
-      'Pöwre size sargyt taýýarlaýarka: Alibaba.com-da sargyt üçin tölegi "Meniň profilim" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Alibaba.com-yň resmi bank hasabyna edilendigine göz ýetiriň',
+      'Pöwre size sargyt taýýarlaýarka: Mbium.com-da sargyt üçin tölegi "Meniň profilim" > <<Sargytlar>> bölümine geçip amala aşyryň. Bank geçirim arkaly töläniňizde, geçirim Mbium.com-yň resmi bank hasabyna edilendigine göz ýetiriň',
       name: 'kogda_desk',
       desc: '',
       args: [],
@@ -1844,10 +1844,10 @@ class S {
     );
   }
 
-  /// `Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar`
+  /// `Mbium.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar`
   String get hopwsuz_toleg_deskk {
     return Intl.message(
-      'Alibaba.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar',
+      'Mbium.com arkaly amala aşyrylýan her bir geleşik, maglumat howpsuzlygynyň SSL şifrlemesi we PCI DSS protokollary arkaly goralýar',
       name: 'hopwsuz_toleg_deskk',
       desc: '',
       args: [],
@@ -1954,10 +1954,10 @@ class S {
     );
   }
 
-  /// `Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.`
+  /// `Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Mbium.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.`
   String get maglumatlaryn_gizlinligi_desc {
     return Intl.message(
-      'Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Alibaba.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.',
+      'Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Mbium.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.',
       name: 'maglumatlaryn_gizlinligi_desc',
       desc: '',
       args: [],
@@ -2169,10 +2169,10 @@ class S {
     );
   }
 
-  /// `Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.`
+  /// `Programmada ýa-da Mbium.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.`
   String get hunarmenlerin_islender_desc {
     return Intl.message(
-      'Programmada ýa-da Alibaba.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.',
+      'Programmada ýa-da Mbium.com saýtynda noutbugyňyzda goldaw alyň. Biz professional hünärmenlerimiz siziň zerurlyklarňyzy düşüner we islendik talaplaryny - haçan sazlamanyzdan başlap, satuwdan soňky hyzmatlara çenli, operatiw we hünärmen derejesinde işlär.',
       name: 'hunarmenlerin_islender_desc',
       desc: '',
       args: [],
@@ -2209,10 +2209,10 @@ class S {
     );
   }
 
-  /// `Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.`
+  /// `Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Mbium.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.`
   String get jedelleri_coz_goldaw_desc {
     return Intl.message(
-      'Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Alibaba.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.',
+      'Eger geleşik wagtynda siz şulardan haýsydyr biri bilen ýüzbe-ýüz bolduňyz, mysal üçin, üpjün edijiniň harydy ibermekden ýüz öwürmegi, baha ýokarlandyrma, şertleşilen möhletlerde eltip bermegiň ýerine ýetirilmezligi, ýalan maglumat berilmegi, ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da harydyň sypatnamasyna laýyk gelmezligi ýa-da sypatnamasy, siz jedeli jedel gorag möwritiniň dowamynda Trade Assurance-da açyp bilersiňiz. Mbium.com siziň hukuklaryňyzy we bähbitleriňizi tutuş geleşigiň dowamynda goraýar.',
       name: 'jedelleri_coz_goldaw_desc',
       desc: '',
       args: [],
@@ -2259,20 +2259,20 @@ class S {
     );
   }
 
-  /// `Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.`
+  /// `Mbium.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.`
   String get ynamdar_tolegler_desc {
     return Intl.message(
-      'Alibaba.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.',
+      'Mbium.com-da eden her bir tölegiňiz berk SSL şifrleme we PCI DSS gizlinlik protokollary bilen goralýar, şonuň üçin şahsy maglumatlaryňyz elmydama ygtybarlydyr.',
       name: 'ynamdar_tolegler_desc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.`
+  /// `Tölegiňizi goramak üçin elmydama Mbium.com-yň resmi töleg kanallaryndan peýdalanyň.`
   String get ynamdar_desk {
     return Intl.message(
-      'Tölegiňizi goramak üçin elmydama Alibaba.com-yň resmi töleg kanallaryndan peýdalanyň.',
+      'Tölegiňizi goramak üçin elmydama Mbium.com-yň resmi töleg kanallaryndan peýdalanyň.',
       name: 'ynamdar_desk',
       desc: '',
       args: [],
@@ -2299,10 +2299,10 @@ class S {
     );
   }
 
-  /// `Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.`
+  /// `Alternatiw hökmünde, siz Mbium.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.`
   String get alternatiw_hokumde {
     return Intl.message(
-      'Alternatiw hökmünde, siz Alibaba.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.',
+      'Alternatiw hökmünde, siz Mbium.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.',
       name: 'alternatiw_hokumde',
       desc: '',
       args: [],
