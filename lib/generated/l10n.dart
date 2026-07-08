@@ -2328,6 +2328,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Bildirişler`
+  String get bildirisher {
+    return Intl.message('Bildirişler', name: 'bildirisher', desc: '', args: []);
+  }
+
+  /// `Ýaňy ýakyndakylar`
+  String get yany_yakyndakylar {
+    return Intl.message(
+      'Ýaňy ýakyndakylar',
+      name: 'yany_yakyndakylar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Habarsyz galmaň`
+  String get habarsyz_galman {
+    return Intl.message(
+      'Habarsyz galmaň',
+      name: 'habarsyz_galman',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bildirişleri ýakynly we hiç haçan täze aksiyalary we sargytlary görüň.`
+  String get bildirisleri_yakynyy {
+    return Intl.message(
+      'Bildirişleri ýakynly we hiç haçan täze aksiyalary we sargytlary görüň.',
+      name: 'bildirisleri_yakynyy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `İşlet`
+  String get ishlet {
+    return Intl.message('İşlet', name: 'ishlet', desc: '', args: []);
+  }
+
+  /// `Başga bildirişler`
+  String get basha_bildirisher {
+    return Intl.message(
+      'Başga bildirişler',
+      name: 'basha_bildirisher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Harytlar ýok`
+  String get harytlar_yok {
+    return Intl.message(
+      'Harytlar ýok',
+      name: 'harytlar_yok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

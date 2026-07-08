@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/feature/chats/presentation/notifications_screen.dart';
 import '../../../../generated/l10n.dart';
+import 'package:mbium_mobile_client/feature/chats/presentation/other_notifications_screen.dart';
 
 class ChatsTabWidget extends StatefulWidget {
   final ValueChanged<int>? onTabChanged;
@@ -34,6 +36,22 @@ class _ChatsTabWidgetState extends State<ChatsTabWidget> {
             onTap: () {
               setState(() => _selectedIndex = i);
               widget.onTabChanged?.call(i);
+              if (i == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const NotificationsScreen(),
+                  ),
+                );
+              }
+              if (i == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const OtherNotificationsScreen(),
+                ),
+              );
+            }
             },
             child: Column(
               children: [

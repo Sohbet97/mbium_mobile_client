@@ -79,6 +79,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "bash_zakaz": MessageLookupByLibrary.simpleMessage(
       "что ваш заказ будет отправлен или доставлен в гарантированные сроки.",
     ),
+    "basha_bildirisher": MessageLookupByLibrary.simpleMessage(
+      "Başga bildirişler",
+    ),
+    "bildirisher": MessageLookupByLibrary.simpleMessage("Bildirişler"),
+    "bildirisleri_yakynyy": MessageLookupByLibrary.simpleMessage(
+      "Bildirişleri ýakynly we hiç haçan täze aksiyalary we sargytlary görüň.",
+    ),
     "biz_size_nadip_komek": MessageLookupByLibrary.simpleMessage(
       "Biz size nädip kömek edip bileris?",
     ),
@@ -185,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "habarlary_gozle": MessageLookupByLibrary.simpleMessage(
       "Habarlary ýa-da üpjünçileri gözle",
     ),
+    "habarsyz_galman": MessageLookupByLibrary.simpleMessage("Habarsyz galmaň"),
     "harydy_hacan_alaryn": MessageLookupByLibrary.simpleMessage(
       "Harydymy haçan alaryn?",
     ),
@@ -195,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Harytlary we serişdeleri gaýtarmak barada has giňişleýin",
     ),
     "haryt_sany": MessageLookupByLibrary.simpleMessage("Haryt sany"),
+    "harytlar_yok": MessageLookupByLibrary.simpleMessage("Harytlar ýok"),
     "has_ginisleyin": MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
     "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
     "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
@@ -231,6 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ibermek bilen, siz MBIUM şertleri we düzgünleri \nbilen razylaşýarsyňyz",
     ),
     "in_meshgurlar": MessageLookupByLibrary.simpleMessage("Iň meşgurlar"),
+    "ishlet": MessageLookupByLibrary.simpleMessage("İşlet"),
     "jedelleri_coz_goldaw": MessageLookupByLibrary.simpleMessage(
       "Jedelleri çözmek",
     ),
@@ -563,6 +573,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Welaýatlar boýunça",
     ),
     "welcome": MessageLookupByLibrary.simpleMessage("Hoş geldiňiz"),
+    "yany_yakyndakylar": MessageLookupByLibrary.simpleMessage(
+      "Ýaňy ýakyndakylar",
+    ),
     "yer": MessageLookupByLibrary.simpleMessage("Ýer"),
     "yes": MessageLookupByLibrary.simpleMessage("Hawa"),
     "ynamdar_desk": MessageLookupByLibrary.simpleMessage(
