@@ -38,6 +38,7 @@ class ShopDetailModel {
   final String? verificationNote;
   final String? rating;
   final ShopDetailType? type;
+  final ShopOwner? owner;
   final List<CategoryModel> categories;
 
   const ShopDetailModel({
@@ -66,6 +67,7 @@ class ShopDetailModel {
     this.verificationNote,
     this.rating,
     this.type,
+    this.owner,
     this.categories = const [],
   });
 
@@ -102,6 +104,9 @@ class ShopDetailModel {
       type: json['type'] != null
           ? ShopDetailType.fromJson(json['type'] as Map<String, dynamic>)
           : null,
+      owner: json['owner'] != null
+          ? ShopOwner.fromJson(json['owner'] as Map<String, dynamic>)
+          : null,
       categories: json['categories'] != null
           ? (json['categories'] as List)
                 .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
@@ -137,7 +142,48 @@ class ShopDetailModel {
       'verification_note': verificationNote,
       'rating': rating,
       'type': type?.toJson(),
+      'owner': owner?.toJson(),
       'categories': categories.map((e) => e.toJson()).toList(),
+    };
+  }
+}
+
+class ShopOwner {
+  final String? id;
+  final String? name;
+  final String? surname;
+  final String? phoneNumber;
+  final String? email;
+  final int? status;
+
+  const ShopOwner({
+    this.id,
+    this.name,
+    this.surname,
+    this.phoneNumber,
+    this.email,
+    this.status,
+  });
+
+  factory ShopOwner.fromJson(Map<String, dynamic> json) {
+    return ShopOwner(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      phoneNumber: json['phone_number'] as String?,
+      email: json['email'] as String?,
+      status: json['status'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'surname': surname,
+      'phone_number': phoneNumber,
+      'email': email,
+      'status': status,
     };
   }
 }
