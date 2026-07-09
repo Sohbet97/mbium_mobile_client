@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
+import 'package:mbium_mobile_client/feature/home/extensions/ai_recomendation.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/ai/ai_recommendation_card.dart';
 
 import '../../../../../generated/l10n.dart';
 
 class AiRecommendationsList extends StatefulWidget {
-  const AiRecommendationsList({super.key});
+  const AiRecommendationsList({super.key, this.onSelectPrompt});
+
+  final ValueChanged<String>? onSelectPrompt;
 
   @override
   State<AiRecommendationsList> createState() => _AiRecommendationsListState();
@@ -51,8 +54,13 @@ class _AiRecommendationsListState extends State<AiRecommendationsList> {
                   ],
                 );
               }
+              final recommendation = state.models[index - 1];
+              final prompt = recommendation.prompt ?? recommendation.getTitle(context);
               return AiRecommendationCard(
-                recommendation: state.models[index - 1],
+                recommendation: recommendation,
+                onTap: widget.onSelectPrompt == null || prompt.isEmpty
+                    ? null
+                    : () => widget.onSelectPrompt!(prompt),
               );
             },
             separatorBuilder: (context, index) => SizedBox(height: 8),

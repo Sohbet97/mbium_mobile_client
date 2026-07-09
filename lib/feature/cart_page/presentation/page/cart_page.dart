@@ -211,24 +211,29 @@ class _CartPageState extends State<CartPage> {
                         ),
                         const Spacer(),
 
-                        BlocBuilder<FavoriteBloc, FavoriteState>(
-                          builder: (context, state) {
-                            final count = state is FavoriteLoaded
-                                ? state.favorites.length
-                                : 0;
-                            return Badge(
-                              isLabelVisible: count > 0,
-                              label: Text(
-                                count.toString(),
-
-                                style: const TextStyle(fontSize: 6),
-                              ),
-                              child: const Icon(
-                                Icons.favorite_border_outlined,
-                                color: AppColors.lightTextSecondary,
-                              ),
-                            );
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/favorite');
                           },
+                          child: BlocBuilder<FavoriteBloc, FavoriteState>(
+                            builder: (context, state) {
+                              final count = state is FavoriteLoaded
+                                  ? state.favorites.length
+                                  : 0;
+                              return Badge(
+                                isLabelVisible: count > 0,
+                                label: Text(
+                                  count.toString(),
+
+                                  style: const TextStyle(fontSize: 6),
+                                ),
+                                child: const Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: AppColors.lightTextSecondary,
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),

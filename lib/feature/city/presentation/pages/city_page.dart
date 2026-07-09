@@ -78,13 +78,7 @@ class _CityPageState extends State<CityPage> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: SearchWidget(
-              controller: _searchController,
-              onTapPhoto: () {},
-              onTapAudio: () {},
-              onTapAi: () {},
-              onSubmit: () {},
-            ),
+            child: SearchWidget(controller: _searchController, onSubmit: () {}),
           ),
           const SizedBox(height: 16),
 

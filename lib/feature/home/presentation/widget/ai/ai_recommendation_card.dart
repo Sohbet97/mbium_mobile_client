@@ -7,13 +7,18 @@ import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.da
 
 class AiRecommendationCard extends StatelessWidget {
   final AiRecommendationModel recommendation;
-  const AiRecommendationCard({super.key, required this.recommendation});
+  final VoidCallback? onTap;
+  const AiRecommendationCard({
+    super.key,
+    required this.recommendation,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         borderRadius: BorderRadius.circular(11),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 12),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/balance/presentation/pages/account_verified_screen.dart';
 import 'package:mbium_mobile_client/feature/balance/presentation/pages/balance_screen.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_screen.dart';
@@ -6,7 +7,6 @@ import 'package:mbium_mobile_client/feature/category/presentation/category_scree
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/home_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/hasabym/hasabym_screen.dart';
-import 'package:mbium_mobile_client/feature/orders/presentation/security/order_security_screen.dart';
 import 'package:mbium_mobile_client/feature/oz_bahany/presentation/oz_bahan_rfq_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/create_new_user_screen.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/login_in_screen.dart';
@@ -19,8 +19,13 @@ import 'package:mbium_mobile_client/feature/myMbium/presentation/ai_podpiska_scr
 import 'package:mbium_mobile_client/feature/myMbium/presentation/all_functions_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/support_screen.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/ulanys_duzgunleri_screen.dart';
+import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/mugt_dostawka_screen.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/recently_review_screen.dart';
 import 'package:mbium_mobile_client/feature/comments/presentation/product_review_screen.dart';
+import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
+import 'package:mbium_mobile_client/feature/search/presentation/my_search_screen.dart';
 import 'package:mbium_mobile_client/feature/settings/presentation/settings_screen.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/product_detail_screen.dart';
@@ -105,6 +110,23 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: ProductReviewScreen(productId: id));
     case '/loginIn':
       return FadeRoute(page: const LoginInScreen());
+    case '/searchScreen':
+      final model = settings.arguments as SearchModel;
+      return FadeRoute(
+        page: BlocProvider(
+          create: (context) =>
+              ProductBloc(repository: context.read<ProductRepository>()),
+          child: MySearchScreen(searchModel: model),
+        ),
+      );
+    case '/mugtDostawka':
+      return FadeRoute(
+        page: BlocProvider(
+          create: (context) =>
+              ProductBloc(repository: context.read<ProductRepository>()),
+          child: const MugtDostawkaScreen(),
+        ),
+      );
 
     default:
       return FadeRoute(

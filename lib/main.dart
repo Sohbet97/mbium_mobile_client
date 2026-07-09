@@ -12,6 +12,8 @@ import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
 import 'package:mbium_mobile_client/feature/home/bloc/ai_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/data/ai_repository.dart';
+import 'package:mbium_mobile_client/feature/ai_chat/bloc/ai_chat_bloc.dart';
+import 'package:mbium_mobile_client/feature/ai_chat/data/ai_chat_repository.dart';
 import 'package:mbium_mobile_client/feature/cart_page/bloc/cart_bloc.dart';
 import 'package:mbium_mobile_client/feature/cart_page/data/cart_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
@@ -24,6 +26,8 @@ import 'package:mbium_mobile_client/feature/products/bloc/recently/recently_view
 import 'package:mbium_mobile_client/feature/products/data/recently_viewed_repository.dart';
 import 'package:mbium_mobile_client/feature/brands/bloc/brand_bloc.dart';
 import 'package:mbium_mobile_client/feature/brands/data/brand_repository.dart';
+import 'package:mbium_mobile_client/feature/sizes/bloc/size_bloc.dart';
+import 'package:mbium_mobile_client/feature/sizes/data/size_repository.dart';
 import 'package:mbium_mobile_client/feature/comments/bloc/comment_bloc.dart';
 import 'package:mbium_mobile_client/feature/comments/data/comment_repository.dart';
 
@@ -37,6 +41,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/localization/app_localization_delegates.dart';
 import 'core/network/api_client.dart';
+import 'core/network/interceptors.dart';
 import 'core/storage/app_preferences.dart';
 import 'core/themes/theme.dart';
 import 'core/utils/my_router.dart';
@@ -148,7 +153,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final ApiClient apiClient = ApiClient();
+    final ApiClient apiClient = ApiClient(appPreferences: widget.appPreferences);
 
     return MultiRepositoryProvider(
       providers: [
@@ -171,6 +176,11 @@ class _MyAppState extends State<MyApp> {
             dio: apiClient.dio,
             appPreferences: widget.appPreferences,
           ),
+        ),
+
+        // ai chat
+        RepositoryProvider(
+          create: (context) => AiChatRepository(dio: apiClient.dio),
         ),
 
         // category
@@ -215,6 +225,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => BrandRepository(dio: apiClient.dio),
         ),
 
+        // sizes
+        RepositoryProvider(
+          create: (context) => SizeRepository(dio: apiClient.dio),
+        ),
+
         // comments
         RepositoryProvider(
           create: (context) => CommentRepository(dio: apiClient.dio),
@@ -240,6 +255,13 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 AiBloc(repository: context.read<AiRepository>()),
+          ),
+
+          // ai chat
+          BlocProvider(
+            create: (context) => AiChatBloc(
+              repository: context.read<AiChatRepository>(),
+            )..add(const LoadConversationsEvent()),
           ),
 
           // category
@@ -306,6 +328,12 @@ class _MyAppState extends State<MyApp> {
                 BrandBloc(repository: context.read<BrandRepository>()),
           ),
 
+          // sizes
+          BlocProvider(
+            create: (context) =>
+                SizeBloc(repository: context.read<SizeRepository>()),
+          ),
+
           // comments
           BlocProvider(
             create: (context) =>
@@ -322,6 +350,7 @@ class _MyAppState extends State<MyApp> {
               supportedLocales: appSupportedLocales,
               debugShowCheckedModeBanner: false,
               navigatorKey: navigatorKey,
+              scaffoldMessengerKey: scaffoldMessengerKey,
               navigatorObservers: [routeObserver],
               initialRoute: '/',
               onGenerateRoute: onGenerateRoute,

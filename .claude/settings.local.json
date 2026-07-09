@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(findstr \"equatable\\\\|shared_preferences\\\\|bloc\")"
+      "Bash(findstr \"equatable\\\\|shared_preferences\\\\|bloc\")",
+      "Bash(flutter analyze *)"
     ]
   }
 }

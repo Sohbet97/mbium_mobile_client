@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:mbium_mobile_client/core/network/interceptors.dart';
+import 'package:mbium_mobile_client/core/storage/app_preferences.dart';
 
 class ApiClient {
   final Dio dio;
+  final AppPreferences appPreferences;
   static String baseUrl = 'https://mbium.com/api/buyer';
-  String? token;
 
-  ApiClient()
+  ApiClient({required this.appPreferences})
     : dio = Dio(
         BaseOptions(
           baseUrl: baseUrl,
@@ -24,7 +26,8 @@ class ApiClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          if (token != null && token!.isNotEmpty) {
+          final token = appPreferences.getString('auth_token');
+          if (token != null && token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
           }
 
@@ -32,11 +35,11 @@ class ApiClient {
         },
         onError: (e, handler) {
           if (e.type == DioExceptionType.connectionError) {
-            print("No Internet");
+            showGlobalMessage('Нет подключения к интернету');
           }
 
           if (e.response?.statusCode == 401) {
-            print("Unauthorized");
+            showGlobalMessage('Сессия истекла. Пожалуйста, войдите снова.');
           }
 
           return handler.next(e);

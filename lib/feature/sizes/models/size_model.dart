@@ -1,42 +1,36 @@
-class BrandModel {
+class SizeModel {
   final int id;
   final String name;
   final String nameRu;
-  final String nameEn;
+  final String nameEng;
   final String slug;
   final int? parentId;
-  final String? logoUrl;
-  final String? description;
   final bool isActive;
   final int sortOrder;
   final DateTime createdAt;
-  final List<BrandModel> children;
+  final List<SizeModel> children;
 
-  const BrandModel({
+  const SizeModel({
     required this.id,
     required this.name,
     required this.nameRu,
-    required this.nameEn,
+    required this.nameEng,
     required this.slug,
     this.parentId,
-    this.logoUrl,
-    this.description,
     required this.isActive,
     required this.sortOrder,
     required this.createdAt,
     this.children = const [],
   });
 
-  factory BrandModel.fromJson(Map<String, dynamic> json) {
-    return BrandModel(
+  factory SizeModel.fromJson(Map<String, dynamic> json) {
+    return SizeModel(
       id: json['id'] as int,
       name: json['name'] as String? ?? '',
       nameRu: json['name_ru'] as String? ?? '',
-      nameEn: json['name_en'] as String? ?? '',
+      nameEng: json['name_eng'] as String? ?? '',
       slug: json['slug'] as String? ?? '',
       parentId: json['parent_id'] as int?,
-      logoUrl: json['logo_url'] as String?,
-      description: json['description'] as String?,
       isActive: json['is_active'] as bool? ?? true,
       sortOrder: json['sort_order'] as int? ?? 0,
       createdAt: json['createdAt'] != null
@@ -45,7 +39,7 @@ class BrandModel {
       children: json['children'] != null
           ? (json['children'] as List)
                 .whereType<Map<String, dynamic>>()
-                .map((e) => BrandModel.fromJson(e))
+                .map((e) => SizeModel.fromJson(e))
                 .toList()
           : const [],
     );
@@ -56,11 +50,9 @@ class BrandModel {
       'id': id,
       'name': name,
       'name_ru': nameRu,
-      'name_en': nameEn,
+      'name_eng': nameEng,
       'slug': slug,
       'parent_id': parentId,
-      'logo_url': logoUrl,
-      'description': description,
       'is_active': isActive,
       'sort_order': sortOrder,
       'createdAt': createdAt.toIso8601String(),

@@ -12,6 +12,7 @@ import 'package:mbium_mobile_client/feature/home_products/presentation/widget/se
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/mason_grid_item.dart';
+import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
 
 import '../../../../core/constants/my_empty_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
@@ -101,7 +102,14 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: SearchWidget(
                   controller: _searchController,
-                  onTapPhoto: () {},
+                  onTapPhoto: () {
+                    final model = SearchModel(isImageDetect: true);
+                    Navigator.pushNamed(
+                      context,
+                      '/searchScreen',
+                      arguments: model,
+                    );
+                  },
                   onTapAudio: () {},
                   onTapAi: () {},
                   onSubmit: () {

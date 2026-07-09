@@ -266,6 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "maglumatlaryn_gizlinligi_desc": MessageLookupByLibrary.simpleMessage(
       "Biz siziň razylygyňyz bolmazdan maglumatlaryny hiç haçan üçinji şahslara bermeýäris. Ähli şahsy maglumatlar Mbium.com-yň maglumatlaryň gizlinligi syýasatyna laýyklykda işlenilýär.",
     ),
+    "man_maks": MessageLookupByLibrary.simpleMessage("maks. 300TMT"),
     "maslahat_beriyanler": MessageLookupByLibrary.simpleMessage(
       "Maslahat beriýänler",
     ),
@@ -292,6 +293,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt dastawka"),
     "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
       "Mugt dastawka MBIUM Coin bilen töleseňiz",
+    ),
+    "mugt_eltip_bermek": MessageLookupByLibrary.simpleMessage(
+      "Mugt eltip bermek",
     ),
     "mugt_eltip_bermek_maks": MessageLookupByLibrary.simpleMessage(
       "MUGT ELTIP BERMEK",

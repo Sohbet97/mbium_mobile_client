@@ -39,6 +39,7 @@ class PersonRepository {
     );
 
     print('response auth: $response');
+    print('response auth: ${response.statusCode}');
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = response.data as Map<String, dynamic>;

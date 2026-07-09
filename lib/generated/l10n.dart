@@ -2388,6 +2388,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Mugt eltip bermek`
+  String get mugt_eltip_bermek {
+    return Intl.message(
+      'Mugt eltip bermek',
+      name: 'mugt_eltip_bermek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `maks. 300TMT`
+  String get man_maks {
+    return Intl.message('maks. 300TMT', name: 'man_maks', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

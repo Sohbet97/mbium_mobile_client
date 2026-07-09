@@ -91,13 +91,7 @@ class _ShopsPageState extends State<ShopsPage> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SearchWidget(
-            controller: _searchController,
-            onTapPhoto: () {},
-            onTapAudio: () {},
-            onTapAi: () {},
-            onSubmit: () {},
-          ),
+          child: SearchWidget(controller: _searchController, onSubmit: () {}),
         ),
 
         const SizedBox(height: 10),

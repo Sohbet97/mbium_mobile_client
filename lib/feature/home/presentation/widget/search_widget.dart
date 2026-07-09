@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
+import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -7,16 +8,16 @@ class SearchWidget extends StatelessWidget {
   const SearchWidget({
     super.key,
     required this.controller,
-    required this.onTapPhoto,
-    required this.onTapAudio,
-    required this.onTapAi,
+    this.onTapPhoto,
+    this.onTapAudio,
+    this.onTapAi,
     required this.onSubmit,
   });
 
   final TextEditingController controller;
-  final VoidCallback onTapPhoto;
-  final VoidCallback onTapAudio;
-  final VoidCallback onTapAi;
+  final VoidCallback? onTapPhoto;
+  final VoidCallback? onTapAudio;
+  final VoidCallback? onTapAi;
   final VoidCallback onSubmit;
 
   @override
@@ -37,7 +38,16 @@ class SearchWidget extends StatelessWidget {
         children: [
           const SizedBox(width: 8),
           GestureDetector(
-            onTap: onTapPhoto,
+            onTap:
+                onTapPhoto ??
+                () {
+                  final model = SearchModel(isImageDetect: true);
+                  Navigator.pushNamed(
+                    context,
+                    '/searchScreen',
+                    arguments: model,
+                  );
+                },
             child: const SvgIcon(iconName: 'assets/icons/camera.svg'),
           ),
           const SizedBox(width: 8),
@@ -61,7 +71,16 @@ class SearchWidget extends StatelessWidget {
           ),
 
           GestureDetector(
-            onTap: onTapAudio,
+            onTap:
+                onTapAudio ??
+                () {
+                  final model = SearchModel(isAudioDetact: true);
+                  Navigator.pushNamed(
+                    context,
+                    '/searchScreen',
+                    arguments: model,
+                  );
+                },
             child: const SvgIcon(iconName: 'assets/icons/microphone.svg'),
           ),
           const SizedBox(width: 8),
