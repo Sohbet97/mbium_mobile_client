@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
-import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
+import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 
 class ShopDetailHeaderWidget extends StatelessWidget {
   final ShopDetailModel model;
@@ -13,37 +13,34 @@ class ShopDetailHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyles = context.appTextStyles;
 
-    return Stack(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 180,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: AppColors.primaryGreen,
-            image: model.logo != null && model.logo!.isNotEmpty
-                ? DecorationImage(
-                    image: NetworkImage(model.logo!),
-                    fit: BoxFit.cover,
-                    opacity: 0.3,
-                  )
-                : null,
-          ),
-        ),
-
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 70,
-                height: 70,
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              height: 140,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.primaryGreen,
+                image: model.logo != null && model.logo!.isNotEmpty
+                    ? DecorationImage(
+                        image: NetworkImage(model.logo!),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
+              ),
+            ),
+            Positioned(
+              left: 16,
+              bottom: -30,
+              child: Container(
+                width: 64,
+                height: 64,
                 decoration: BoxDecoration(
                   color: AppColors.navWhite,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                      color: AppColors.navWhite.withValues(alpha: 0.5),
-                      width: 2),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.15),
@@ -60,64 +57,119 @@ class ShopDetailHeaderWidget extends StatelessWidget {
                           errorBuilder: (_, __, ___) => const Icon(
                             Icons.store_outlined,
                             color: AppColors.primaryGreen,
-                            size: 36,
+                            size: 30,
                           ),
                         ),
                       )
                     : const Icon(Icons.store_outlined,
-                        color: AppColors.primaryGreen, size: 36),
+                        color: AppColors.primaryGreen, size: 30),
               ),
-              const SizedBox(height: 10),
-
-              Text(
-                model.localizedName,
-                style: textStyles.s16w600clBlack.copyWith(
-                  color: AppColors.navWhite,
-                  fontSize: 20,
+            ),
+            Positioned(
+              right: 16,
+              bottom: -46,
+              child: Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.08),
+                      blurRadius: 4,
+                    ),
+                  ],
                 ),
+                child: const Icon(Icons.favorite_border,
+                    color: AppColors.lightTextPrimary, size: 18),
               ),
-              const SizedBox(height: 4),
+            ),
+          ],
+        ),
+        const SizedBox(height: 40),
 
-              if (model.type?.name != null)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      model.localizedName,
+                      style: textStyles.s16w600clBlack.copyWith(fontSize: 18),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  if (model.isVerified == true) ...[
+                    const SizedBox(width: 6),
+                    const Icon(Icons.verified,
+                        color: AppColors.bonusBannerTextGreen, size: 18),
+                  ],
+                ],
+              ),
+              if (model.type?.name != null) ...[
+                const SizedBox(height: 4),
                 Text(
                   model.type!.name!,
                   style: const TextStyle(
-                    color: AppColors.navWhite,
                     fontSize: 13,
-                    fontWeight: FontWeight.w400,
+                    color: AppColors.lightTextSecondary,
                   ),
                 ),
-              const SizedBox(height: 6),
+              ],
+              const SizedBox(height: 8),
 
               Row(
                 children: [
-                  if (model.rating != null) ...[
-                    const Icon(Icons.star,
-                        color: AppColors.starYellow, size: 16),
-                    const SizedBox(width: 4),
-                    Text(
-                      model.rating!,
-                      style: const TextStyle(
-                        color: AppColors.navWhite,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                  Expanded(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        if (model.rating != null) ...[
+                          const Icon(Icons.star,
+                              color: AppColors.starYellow, size: 15),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${model.rating}/5',
+                            style: textStyles.s13w600clBlack,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text('·',
+                              style:
+                                  TextStyle(color: AppColors.lightTextSecondary)),
+                          const SizedBox(width: 8),
+                        ],
+                        if (model.address != null && model.address!.isNotEmpty)
+                          Text(
+                            model.address!,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: AppColors.lightTextSecondary,
+                            ),
+                          ),
+                      ],
                     ),
-                    const SizedBox(width: 12),
-                  ],
-                  if (model.isVerified == true) ...[
-                    const Icon(Icons.verified,
-                        color: AppColors.bonusBannerTextGreen, size: 16),
-                    const SizedBox(width: 4),
-                    const Text(
-                      'Verified',
-                      style: TextStyle(
-                        color: AppColors.bonusBannerTextGreen,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
+                  ),
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.chat_bubble_outline, size: 15),
+                    label: const Text('Habarlaş'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.primaryGreen,
+                      side: const BorderSide(color: AppColors.primaryGreen),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
+                      textStyle: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w600),
                     ),
-                  ],
+                  ),
                 ],
               ),
             ],
