@@ -291,7 +291,9 @@ class ShopDetailType {
       name: json['name'] as String?,
       nameRu: json['name_ru'] as String?,
       nameEng: json['name_eng'] as String?,
-      commissionRate: double.parse(json['commission_rate']),
+      commissionRate: json['commission_rate'] is String
+          ? double.tryParse(json['commission_rate'] as String)
+          : (json['commission_rate'] as num?)?.toDouble(),
       isActive: json['is_active'] as bool?,
     );
   }

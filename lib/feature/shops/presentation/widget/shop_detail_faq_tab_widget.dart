@@ -171,7 +171,7 @@ class _ShopMessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyles = context.appTextStyles;
-    final time = DateFormat('HH:mm').format(message.time);
+    final time = DateFormat('HH:mm', 'en').format(message.time);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,7 +231,7 @@ class _MyMessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final time = DateFormat('HH:mm').format(message.time);
+    final time = DateFormat('HH:mm', 'en').format(message.time);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,

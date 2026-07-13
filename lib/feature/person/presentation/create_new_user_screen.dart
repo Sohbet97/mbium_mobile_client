@@ -290,7 +290,7 @@ class _BirthdayPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatted = birthday != null
-        ? DateFormat('dd.MM.yyyy').format(birthday!)
+        ? DateFormat('dd.MM.yyyy', 'en').format(birthday!)
         : null;
 
     return GestureDetector(

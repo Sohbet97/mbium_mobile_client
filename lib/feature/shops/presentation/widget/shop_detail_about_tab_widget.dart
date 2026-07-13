@@ -5,6 +5,7 @@ import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/category/extensions/category_extensions.dart';
 import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
+import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_categories_sheet_widget.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,63 +16,10 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
   const ShopDetailAboutTabWidget({super.key, required this.model});
 
   void _openCategoriesSheet(BuildContext context, String languageCode) {
-    final l10n = S.of(context);
-    final textStyles = context.appTextStyles;
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (sheetContext) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(l10n.kategoriyalar, style: textStyles.s16w600clBlack),
-                const SizedBox(height: 16),
-                if (model.categories.isEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Text(
-                      l10n.kategoriya_yok,
-                      style: const TextStyle(color: AppColors.lightTextSecondary),
-                    ),
-                  )
-                else
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: model.categories.map((cat) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryGreen.withValues(alpha: 0.08),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: AppColors.primaryGreen.withValues(alpha: 0.3)),
-                        ),
-                        child: Text(
-                          cat.getNameByLanguage(languageCode),
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: AppColors.primaryGreen,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                const SizedBox(height: 12),
-              ],
-            ),
-          ),
-        );
-      },
+    ShopDetailCategoriesSheetWidget.show(
+      context,
+      model: model,
+      languageCode: languageCode,
     );
   }
 
@@ -93,17 +41,20 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
 
     final categoriesLabel = model.categories.isEmpty
         ? l10n.kategoriya_yok
-        : model.categories.map((e) => e.getNameByLanguage(languageCode)).join(', ');
+        : model.categories
+              .map((e) => e.getNameByLanguage(languageCode))
+              .join(', ');
 
-    final ownerFullName = [model.owner?.name, model.owner?.surname]
-        .where((e) => e != null && e.isNotEmpty)
-        .join(' ');
-
-    final hasCoordinates = model.coordinates?.lat != null && model.coordinates?.lng != null;
+    final hasCoordinates =
+        model.coordinates?.lat != null && model.coordinates?.lng != null;
 
     final items = <_AboutItem>[
       if (model.address != null && model.address!.isNotEmpty)
-        _AboutItem(icon: Icons.location_on_outlined, label: l10n.yeri, value: model.address!),
+        _AboutItem(
+          icon: Icons.location_on_outlined,
+          label: l10n.yeri,
+          value: model.address!,
+        ),
       if (model.location != null &&
           model.location!.isNotEmpty &&
           model.location != model.address)
@@ -131,11 +82,12 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
         value: categoriesLabel,
         onTap: () => _openCategoriesSheet(context, languageCode),
       ),
-      if (ownerFullName.isNotEmpty)
-        _AboutItem(icon: Icons.person_outline, label: l10n.eyesi, value: ownerFullName),
+
       if (model.isActive != null)
         _AboutItem(
-          icon: model.isActive == true ? Icons.check_circle_outline : Icons.pause_circle_outlined,
+          icon: model.isActive == true
+              ? Icons.check_circle_outline
+              : Icons.pause_circle_outlined,
           label: l10n.iyleyish_yagdayy,
           value: model.isActive == true ? l10n.isleyar : l10n.islemeyar,
         ),
@@ -164,14 +116,17 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: (model.isVerified == true
-                          ? AppColors.bonusBannerTextGreen
-                          : AppColors.lightTextSecondary)
-                      .withValues(alpha: 0.12),
+                  color:
+                      (model.isVerified == true
+                              ? AppColors.bonusBannerTextGreen
+                              : AppColors.lightTextSecondary)
+                          .withValues(alpha: 0.12),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  model.isVerified == true ? Icons.verified : Icons.error_outline,
+                  model.isVerified == true
+                      ? Icons.verified
+                      : Icons.error_outline,
                   color: model.isVerified == true
                       ? AppColors.bonusBannerTextGreen
                       : AppColors.lightTextSecondary,
@@ -194,7 +149,10 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         model.verificationNote!,
-                        style: const TextStyle(fontSize: 12, color: AppColors.lightTextSecondary),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.lightTextSecondary,
+                        ),
                       ),
                     ],
                   ],
@@ -221,7 +179,10 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
                   Text(
                     description,
                     style: const TextStyle(
-                        fontSize: 13, color: AppColors.lightTextSecondary, height: 1.5),
+                      fontSize: 13,
+                      color: AppColors.lightTextSecondary,
+                      height: 1.5,
+                    ),
                   ),
                 ],
               ),
@@ -245,10 +206,17 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
                     onTap: item.onTap,
                     borderRadius: BorderRadius.circular(14),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 14,
+                      ),
                       child: Row(
                         children: [
-                          Icon(item.icon, color: AppColors.lightTextSecondary, size: 20),
+                          Icon(
+                            item.icon,
+                            color: AppColors.lightTextSecondary,
+                            size: 20,
+                          ),
                           const SizedBox(width: 14),
                           Expanded(
                             child: Column(
@@ -257,7 +225,9 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
                                 Text(
                                   item.label,
                                   style: const TextStyle(
-                                      fontSize: 11, color: AppColors.lightTextSecondary),
+                                    fontSize: 11,
+                                    color: AppColors.lightTextSecondary,
+                                  ),
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
@@ -270,13 +240,17 @@ class ShopDetailAboutTabWidget extends StatelessWidget {
                             ),
                           ),
                           if (item.onTap != null)
-                            const Icon(Icons.chevron_right,
-                                color: AppColors.lightTextSecondary, size: 20),
+                            const Icon(
+                              Icons.chevron_right,
+                              color: AppColors.lightTextSecondary,
+                              size: 20,
+                            ),
                         ],
                       ),
                     ),
                   ),
-                  if (!isLast) const Divider(height: 1, indent: 14, endIndent: 14),
+                  if (!isLast)
+                    const Divider(height: 1, indent: 14, endIndent: 14),
                 ],
               );
             }).toList(),
