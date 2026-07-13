@@ -99,12 +99,18 @@ class _ShopDetailProductsTabWidgetState
         Widget option(String label, String? value, IconData icon) {
           final selected = _currentSort == value;
           return ListTile(
-            leading: Icon(icon,
-                color: selected ? AppColors.primaryGreen : AppColors.lightTextSecondary),
+            leading: Icon(
+              icon,
+              color: selected
+                  ? AppColors.primaryGreen
+                  : AppColors.lightTextSecondary,
+            ),
             title: Text(
               label,
               style: selected
-                  ? textStyles.s13w600clBlack.copyWith(color: AppColors.primaryGreen)
+                  ? textStyles.s13w600clBlack.copyWith(
+                      color: AppColors.primaryGreen,
+                    )
                   : textStyles.s13w600clBlack,
             ),
             trailing: selected
@@ -159,7 +165,11 @@ class _ShopDetailProductsTabWidgetState
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.search, color: AppColors.lightTextSecondary, size: 20),
+                      const Icon(
+                        Icons.search,
+                        color: AppColors.lightTextSecondary,
+                        size: 20,
+                      ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: TextField(
@@ -172,7 +182,9 @@ class _ShopDetailProductsTabWidgetState
                           decoration: InputDecoration(
                             hintText: l10n.haryt_gozle,
                             hintStyle: const TextStyle(
-                                fontSize: 13, color: AppColors.lightTextSecondary),
+                              fontSize: 13,
+                              color: AppColors.lightTextSecondary,
+                            ),
                             border: InputBorder.none,
                             isDense: true,
                           ),
@@ -187,8 +199,11 @@ class _ShopDetailProductsTabWidgetState
                             _dispatchFilter();
                             setState(() {});
                           },
-                          child: const Icon(Icons.close,
-                              color: AppColors.lightTextSecondary, size: 18),
+                          child: const Icon(
+                            Icons.close,
+                            color: AppColors.lightTextSecondary,
+                            size: 18,
+                          ),
                         ),
                     ],
                   ),
@@ -206,11 +221,16 @@ class _ShopDetailProductsTabWidgetState
                         : Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                        color: hasActiveSort ? AppColors.primaryGreen : AppColors.navBarGrey),
+                      color: hasActiveSort
+                          ? AppColors.primaryGreen
+                          : AppColors.navBarGrey,
+                    ),
                   ),
                   child: Icon(
                     Icons.tune,
-                    color: hasActiveSort ? AppColors.primaryGreen : AppColors.lightTextPrimary,
+                    color: hasActiveSort
+                        ? AppColors.primaryGreen
+                        : AppColors.lightTextPrimary,
                     size: 20,
                   ),
                 ),
@@ -224,7 +244,10 @@ class _ShopDetailProductsTabWidgetState
             alignment: Alignment.centerLeft,
             child: Text(
               '${widget.products.length}${widget.hasMore ? '+' : ''} ${l10n.haryt}',
-              style: const TextStyle(fontSize: 12, color: AppColors.lightTextSecondary),
+              style: const TextStyle(
+                fontSize: 12,
+                color: AppColors.lightTextSecondary,
+              ),
             ),
           ),
         ),
@@ -242,43 +265,6 @@ class _ShopDetailProductsTabWidgetState
                       isLoadingMore: widget.isLoadingMore,
                     ),
                     const SliverToBoxAdapter(child: SizedBox(height: 70)),
-                  ],
-                ),
-              ),
-              Positioned(
-                left: 16,
-                right: 16,
-                bottom: 12,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: _sendMessage,
-                        icon: const Icon(Icons.chat_bubble_outline, size: 16),
-                        label: Text(l10n.habarlas),
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.surface,
-                          foregroundColor: AppColors.primaryGreen,
-                          side: const BorderSide(color: AppColors.primaryGreen),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _makeCall,
-                        icon: const Icon(Icons.phone_outlined, size: 16),
-                        label: Text(l10n.jan_et),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primaryGreen,
-                          foregroundColor: AppColors.navWhite,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
