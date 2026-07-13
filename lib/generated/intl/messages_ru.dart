@@ -29,7 +29,51 @@ class MessageLookup extends MessageLookupByLibrary {
       "Men şul akkauntyň bir zadyndan närazy",
     ),
     "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
+    "address_add": MessageLookupByLibrary.simpleMessage("Salgy goşmak"),
+    "address_cancel": MessageLookupByLibrary.simpleMessage("Ýatyrmak"),
+    "address_choose_location": MessageLookupByLibrary.simpleMessage(
+      "Kartadan salgy saýlamak",
+    ),
+    "address_city_id": MessageLookupByLibrary.simpleMessage("Şäher ID"),
+    "address_confirm_location": MessageLookupByLibrary.simpleMessage(
+      "Bu ýeri saýla",
+    ),
+    "address_default_badge": MessageLookupByLibrary.simpleMessage("Esasy"),
+    "address_delete_action": MessageLookupByLibrary.simpleMessage("Pozmak"),
+    "address_delete_confirm": MessageLookupByLibrary.simpleMessage(
+      "Bu hereketi yzyna gaýtaryp bolmaz.",
+    ),
+    "address_delete_menu": MessageLookupByLibrary.simpleMessage("Pozmak"),
+    "address_delete_title": MessageLookupByLibrary.simpleMessage(
+      "Salgyny pozmalymy?",
+    ),
+    "address_edit": MessageLookupByLibrary.simpleMessage("Salgyny üýtgetmek"),
+    "address_edit_menu": MessageLookupByLibrary.simpleMessage("Üýtgetmek"),
+    "address_field_hint": MessageLookupByLibrary.simpleMessage("Salgy"),
+    "address_field_required": MessageLookupByLibrary.simpleMessage(
+      "Salgyny giriziň",
+    ),
+    "address_label_hint": MessageLookupByLibrary.simpleMessage(
+      "Ady (öý, iş...)",
+    ),
+    "address_label_required": MessageLookupByLibrary.simpleMessage(
+      "Ady giriziň",
+    ),
+    "address_latitude": MessageLookupByLibrary.simpleMessage("Giňlik"),
+    "address_longitude": MessageLookupByLibrary.simpleMessage("Uzynlyk"),
+    "address_new": MessageLookupByLibrary.simpleMessage("Täze salgy"),
+    "address_pick_on_map": MessageLookupByLibrary.simpleMessage(
+      "Kartadan saýlamak",
+    ),
+    "address_region_id": MessageLookupByLibrary.simpleMessage("Sebit ID"),
+    "address_save": MessageLookupByLibrary.simpleMessage("Ýatda sakla"),
+    "address_set_default": MessageLookupByLibrary.simpleMessage(
+      "Esasy salgy hökmünde belle",
+    ),
     "addresses": MessageLookupByLibrary.simpleMessage("Salgylarym"),
+    "addresses_empty": MessageLookupByLibrary.simpleMessage(
+      "Salgylaryňyz heniz ýok",
+    ),
     "ady": MessageLookupByLibrary.simpleMessage("Ady"),
     "agramy": MessageLookupByLibrary.simpleMessage("Agramy"),
     "agza_bolanlarym": MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),

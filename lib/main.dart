@@ -30,6 +30,12 @@ import 'package:mbium_mobile_client/feature/sizes/bloc/size_bloc.dart';
 import 'package:mbium_mobile_client/feature/sizes/data/size_repository.dart';
 import 'package:mbium_mobile_client/feature/comments/bloc/comment_bloc.dart';
 import 'package:mbium_mobile_client/feature/comments/data/comment_repository.dart';
+import 'package:mbium_mobile_client/feature/cupons/bloc/coin_bloc.dart';
+import 'package:mbium_mobile_client/feature/cupons/data/coin_repository.dart';
+import 'package:mbium_mobile_client/feature/myMbium/bloc/address_bloc.dart';
+import 'package:mbium_mobile_client/feature/myMbium/data/address_repository.dart';
+import 'package:mbium_mobile_client/feature/orders/bloc/order_bloc.dart';
+import 'package:mbium_mobile_client/feature/orders/data/order_repository.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -153,7 +159,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final ApiClient apiClient = ApiClient(appPreferences: widget.appPreferences);
+    final ApiClient apiClient = ApiClient(
+      appPreferences: widget.appPreferences,
+    );
 
     return MultiRepositoryProvider(
       providers: [
@@ -234,6 +242,24 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => CommentRepository(dio: apiClient.dio),
         ),
+
+        // coins
+        RepositoryProvider(
+          create: (context) => CoinRepository(dio: apiClient.dio),
+        ),
+
+        // addresses
+        RepositoryProvider(
+          create: (context) => AddressRepository(dio: apiClient.dio),
+        ),
+
+        // orders
+        RepositoryProvider(
+          create: (context) => OrderRepository(
+            dio: apiClient.dio,
+            preferences: widget.appPreferences,
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -248,7 +274,8 @@ class _MyAppState extends State<MyApp> {
           // person
           BlocProvider(
             create: (context) =>
-                PersonBloc(repository: context.read<PersonRepository>()),
+                PersonBloc(repository: context.read<PersonRepository>())
+                  ..add(IsRegisteredEvent()),
           ),
 
           // ai bloc
@@ -259,9 +286,9 @@ class _MyAppState extends State<MyApp> {
 
           // ai chat
           BlocProvider(
-            create: (context) => AiChatBloc(
-              repository: context.read<AiChatRepository>(),
-            )..add(const LoadConversationsEvent()),
+            create: (context) =>
+                AiChatBloc(repository: context.read<AiChatRepository>())
+                  ..add(const LoadConversationsEvent()),
           ),
 
           // category
@@ -338,6 +365,25 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 CommentBloc(repository: context.read<CommentRepository>()),
+          ),
+
+          // coins
+          BlocProvider(
+            create: (context) =>
+                CoinBloc(repository: context.read<CoinRepository>())
+                  ..add(LoadCoinBalanceEvent()),
+          ),
+
+          // addresses
+          BlocProvider(
+            create: (context) =>
+                AddressBloc(repository: context.read<AddressRepository>()),
+          ),
+
+          // orders
+          BlocProvider(
+            create: (context) =>
+                OrderBloc(repository: context.read<OrderRepository>()),
           ),
         ],
         child: BlocBuilder<MainBloc, MainState>(

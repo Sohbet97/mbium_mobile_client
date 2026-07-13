@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/pages/home_page.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/bottom_nav_widget.dart';
@@ -24,14 +25,40 @@ class _HomeScreenState extends State<HomeScreen> {
     const CartPage(),
     const MyMbiumPage(),
   ];
+
+  DateTime? _lastBackPressTime;
+
+  void _onBackPressed() {
+    final now = DateTime.now();
+    if (_lastBackPressTime == null ||
+        now.difference(_lastBackPressTime!) > const Duration(seconds: 2)) {
+      _lastBackPressTime = now;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Нажмите ещё раз для выхода'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+    SystemNavigator.pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MainBloc, MainState>(
       builder: (context, state) {
         final currentIndex = state.navigationIndex;
-        return Scaffold(
-          body: _pages[currentIndex],
-          bottomNavigationBar: BottomNavWidget(currentIndex: currentIndex),
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) return;
+            _onBackPressed();
+          },
+          child: Scaffold(
+            body: _pages[currentIndex],
+            bottomNavigationBar: BottomNavWidget(currentIndex: currentIndex),
+          ),
         );
       },
     );

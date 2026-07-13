@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
+import 'package:mbium_mobile_client/feature/cupons/bloc/coin_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/presentation/widgets/button_widget.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
@@ -33,6 +34,7 @@ class _LoginInScreenState extends State<LoginInScreen> {
             if (widget.isModal == true) {
               Navigator.pop(context);
             } else {
+              context.read<CoinBloc>().add(LoadCoinBalanceEvent());
               context.read<MainBloc>().add(SetNavigationPageEvent(index: 0));
             }
           }

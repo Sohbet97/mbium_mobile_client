@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mbium_mobile_client/core/storage/app_preferences.dart';
@@ -9,7 +11,19 @@ class PersonRepository {
 
   bool _googleInitialized = false;
 
+  static const _personKey = 'person_data';
+
   PersonRepository({required this.dio, required this.preferences});
+
+  PersonModel? getSavedPerson() {
+    final raw = preferences.getString(_personKey);
+    if (raw == null || raw.isEmpty) return null;
+    try {
+      return PersonModel.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return null;
+    }
+  }
 
   // Web client ID from google-services.json (client_type: 3)
   static const _webClientId =
@@ -47,6 +61,7 @@ class PersonRepository {
       await preferences.saveRegistrationStatus(true);
       await preferences.saveGostUser(false);
       await preferences.setString('auth_token', person.token);
+      await preferences.setString(_personKey, jsonEncode(person.toJson()));
       return person;
     }
 
@@ -61,9 +76,43 @@ class PersonRepository {
     await GoogleSignIn.instance.signOut();
     await preferences.saveRegistrationStatus(false);
     await preferences.setString('auth_token', '');
+    await preferences.setString(_personKey, '');
   }
 
   String? getSavedToken() => preferences.getString('auth_token');
+
+  /// GET /auth/me — refreshes the signed-in user's profile using the saved
+  /// bearer token. Returns null (instead of throwing) on any failure so
+  /// callers can fall back to the locally cached copy.
+  Future<PersonModel?> fetchMe({CancelToken? cancelToken}) async {
+    try {
+      final baseUrl = dio.options.baseUrl;
+      final newUrl = baseUrl.replaceAll('/buyer', '');
+      final response = await dio.get(
+        '$newUrl/auth/me',
+        cancelToken: cancelToken,
+      );
+
+      if (response.statusCode != 200) return null;
+
+      final body = response.data as Map<String, dynamic>;
+      final raw = (body['model'] ?? body) as Map<String, dynamic>;
+      final shop = raw['shop'] as Map<String, dynamic>?;
+
+      final person = PersonModel(
+        id: raw['id']?.toString() ?? '',
+        email: raw['email'] as String? ?? '',
+        name: raw['name'] as String?,
+        surname: raw['surname'] as String?,
+        avatar: raw['avatar'] as String? ?? shop?['logo'] as String?,
+        token: getSavedToken() ?? '',
+      );
+      await preferences.setString(_personKey, jsonEncode(person.toJson()));
+      return person;
+    } catch (_) {
+      return null;
+    }
+  }
 
   Future<String> createNewUser({
     required String phoneNumber,

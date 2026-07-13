@@ -2403,6 +2403,231 @@ class S {
   String get man_maks {
     return Intl.message('maks. 300TMT', name: 'man_maks', desc: '', args: []);
   }
+
+  /// `Salgylaryňyz heniz ýok`
+  String get addresses_empty {
+    return Intl.message(
+      'Salgylaryňyz heniz ýok',
+      name: 'addresses_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salgy goşmak`
+  String get address_add {
+    return Intl.message(
+      'Salgy goşmak',
+      name: 'address_add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Täze salgy`
+  String get address_new {
+    return Intl.message('Täze salgy', name: 'address_new', desc: '', args: []);
+  }
+
+  /// `Salgyny üýtgetmek`
+  String get address_edit {
+    return Intl.message(
+      'Salgyny üýtgetmek',
+      name: 'address_edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ady (öý, iş...)`
+  String get address_label_hint {
+    return Intl.message(
+      'Ady (öý, iş...)',
+      name: 'address_label_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ady giriziň`
+  String get address_label_required {
+    return Intl.message(
+      'Ady giriziň',
+      name: 'address_label_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salgy`
+  String get address_field_hint {
+    return Intl.message(
+      'Salgy',
+      name: 'address_field_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salgyny giriziň`
+  String get address_field_required {
+    return Intl.message(
+      'Salgyny giriziň',
+      name: 'address_field_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Şäher ID`
+  String get address_city_id {
+    return Intl.message(
+      'Şäher ID',
+      name: 'address_city_id',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sebit ID`
+  String get address_region_id {
+    return Intl.message(
+      'Sebit ID',
+      name: 'address_region_id',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Giňlik`
+  String get address_latitude {
+    return Intl.message('Giňlik', name: 'address_latitude', desc: '', args: []);
+  }
+
+  /// `Uzynlyk`
+  String get address_longitude {
+    return Intl.message(
+      'Uzynlyk',
+      name: 'address_longitude',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Esasy salgy hökmünde belle`
+  String get address_set_default {
+    return Intl.message(
+      'Esasy salgy hökmünde belle',
+      name: 'address_set_default',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Esasy`
+  String get address_default_badge {
+    return Intl.message(
+      'Esasy',
+      name: 'address_default_badge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ýatda sakla`
+  String get address_save {
+    return Intl.message(
+      'Ýatda sakla',
+      name: 'address_save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Üýtgetmek`
+  String get address_edit_menu {
+    return Intl.message(
+      'Üýtgetmek',
+      name: 'address_edit_menu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pozmak`
+  String get address_delete_menu {
+    return Intl.message(
+      'Pozmak',
+      name: 'address_delete_menu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salgyny pozmalymy?`
+  String get address_delete_title {
+    return Intl.message(
+      'Salgyny pozmalymy?',
+      name: 'address_delete_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bu hereketi yzyna gaýtaryp bolmaz.`
+  String get address_delete_confirm {
+    return Intl.message(
+      'Bu hereketi yzyna gaýtaryp bolmaz.',
+      name: 'address_delete_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ýatyrmak`
+  String get address_cancel {
+    return Intl.message('Ýatyrmak', name: 'address_cancel', desc: '', args: []);
+  }
+
+  /// `Pozmak`
+  String get address_delete_action {
+    return Intl.message(
+      'Pozmak',
+      name: 'address_delete_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kartadan saýlamak`
+  String get address_pick_on_map {
+    return Intl.message(
+      'Kartadan saýlamak',
+      name: 'address_pick_on_map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bu ýeri saýla`
+  String get address_confirm_location {
+    return Intl.message(
+      'Bu ýeri saýla',
+      name: 'address_confirm_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kartadan salgy saýlamak`
+  String get address_choose_location {
+    return Intl.message(
+      'Kartadan salgy saýlamak',
+      name: 'address_choose_location',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

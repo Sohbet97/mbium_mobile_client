@@ -27,7 +27,16 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     try {
       final result = await repository.preferences.isRegistered();
       final isGost = await repository.preferences.isGostUser();
-      emit(state.copyWith(isRegistered: result, isGostUser: isGost));
+      final person = result && !isGost
+          ? (await repository.fetchMe() ?? repository.getSavedPerson())
+          : null;
+      emit(
+        state.copyWith(
+          isRegistered: result,
+          isGostUser: isGost,
+          personModel: person,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(errorMessage: '$e'));
     }

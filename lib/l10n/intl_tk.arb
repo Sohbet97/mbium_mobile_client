@@ -266,6 +266,31 @@
 "basha_bildirisher": "Başga bildirişler",
 "harytlar_yok": "Harytlar ýok",
 "mugt_eltip_bermek" : "Mugt eltip bermek",
-"man_maks"  : "maks. 300TMT"
-  
+"man_maks"  : "maks. 300TMT",
+
+"addresses_empty": "Salgylaryňyz heniz ýok",
+"address_add": "Salgy goşmak",
+"address_new": "Täze salgy",
+"address_edit": "Salgyny üýtgetmek",
+"address_label_hint": "Ady (öý, iş...)",
+"address_label_required": "Ady giriziň",
+"address_field_hint": "Salgy",
+"address_field_required": "Salgyny giriziň",
+"address_city_id": "Şäher ID",
+"address_region_id": "Sebit ID",
+"address_latitude": "Giňlik",
+"address_longitude": "Uzynlyk",
+"address_set_default": "Esasy salgy hökmünde belle",
+"address_default_badge": "Esasy",
+"address_save": "Ýatda sakla",
+"address_edit_menu": "Üýtgetmek",
+"address_delete_menu": "Pozmak",
+"address_delete_title": "Salgyny pozmalymy?",
+"address_delete_confirm": "Bu hereketi yzyna gaýtaryp bolmaz.",
+"address_cancel": "Ýatyrmak",
+"address_delete_action": "Pozmak",
+"address_pick_on_map": "Kartadan saýlamak",
+"address_confirm_location": "Bu ýeri saýla",
+"address_choose_location": "Kartadan salgy saýlamak"
+
 }

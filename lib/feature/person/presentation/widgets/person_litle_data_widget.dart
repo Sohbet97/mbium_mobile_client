@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/feature/cupons/bloc/coin_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 
@@ -28,7 +29,63 @@ class _PersonLittleDataWidgetState extends State<PersonLittleDataWidget> {
         final isGost = state.isGostUser;
 
         if (person != null) {
-          return Text('person data');
+          final fullName = [
+            person.name,
+            person.surname,
+          ].where((part) => part != null && part.isNotEmpty).join(' ');
+
+          return ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/profil');
+            },
+            contentPadding: EdgeInsets.zero,
+            leading: person.avatar != null
+                ? CircleAvatar(
+                    radius: 19,
+                    backgroundImage: NetworkImage(person.avatar!),
+                  )
+                : SvgIcon(
+                    iconName: 'assets/icons/person.svg',
+                    height: 38,
+                    width: 38,
+                  ),
+            title: Text(
+              fullName.isNotEmpty ? fullName : person.email,
+              maxLines: 1,
+            ),
+            subtitle: BlocBuilder<CoinBloc, CoinState>(
+              builder: (context, coinState) {
+                if (coinState is CoinLoading) {
+                  return const SizedBox(
+                    height: 16,
+                    width: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  );
+                }
+                if (coinState is CoinLoaded) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'assets/images/coin_image.png',
+                        height: 18,
+                        width: 18,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${coinState.coin.balance}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+          );
         }
 
         if (isGost) {
@@ -50,7 +107,7 @@ class _PersonLittleDataWidgetState extends State<PersonLittleDataWidget> {
             ),
           );
         }
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }
