@@ -7,6 +7,7 @@ import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
 import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
+import 'package:mbium_mobile_client/feature/favorite/bloc/shop_favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/Auth/auth_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
@@ -336,6 +337,13 @@ class _MyAppState extends State<MyApp> {
             create: (context) =>
                 FavoriteBloc(appPreferences: widget.appPreferences)
                   ..add(const LoadFavorites()),
+          ),
+
+          // shop favorite
+          BlocProvider(
+            create: (context) =>
+                ShopFavoriteBloc(appPreferences: widget.appPreferences)
+                  ..add(const LoadShopFavorites()),
           ),
 
           // auth

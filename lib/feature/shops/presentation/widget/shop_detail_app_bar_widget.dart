@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
+import 'package:mbium_mobile_client/feature/favorite/presentation/shop_favorite_item.dart';
 import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:share_plus/share_plus.dart';
@@ -45,10 +46,9 @@ void _share() {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.favorite_border,
-                        color: AppColors.lightTextPrimary),
-                    onPressed: () {},
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ShopFavoriteItemWidget(shop: model),
                   ),
                   IconButton(
                     icon: const Icon(Icons.ios_share_outlined,
