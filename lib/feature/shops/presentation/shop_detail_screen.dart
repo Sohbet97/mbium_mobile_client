@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/widgets/my_error_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
-import 'package:mbium_mobile_client/feature/shops/extensions/shop_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_widget.dart';
 
@@ -27,32 +26,32 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.shopModel.localizedName)),
-      body: BlocBuilder<ShopBloc, ShopState>(
-        buildWhen: (previous, current) =>
-            current is GetDetailShopDataError ||
-            current is GetDetailShopDataProgress ||
-            current is GetDetailShopDataSuccess,
-        builder: (context, state) {
-          switch (state) {
-            case GetDetailShopDataProgress():
-              return Center(child: CircularProgressIndicator());
-            case GetDetailShopDataSuccess():
-              return ShopDetailWidget(model: state.response);
-            case GetDetailShopDataError():
-              return MyErrorWidget(
-                message: state.message,
-                onReload: () {
-                  context.read<ShopBloc>().add(
-                    GetShopDetailDataEvent(shopId: widget.shopModel.id ?? 0),
-                  );
-                },
-              );
-
-            default:
-              return SizedBox.shrink();
-          }
-        },
+      body: SafeArea(
+        child: BlocBuilder<ShopBloc, ShopState>(
+          buildWhen: (previous, current) =>
+              current is GetDetailShopDataError ||
+              current is GetDetailShopDataProgress ||
+              current is GetDetailShopDataSuccess,
+          builder: (context, state) {
+            switch (state) {
+              case GetDetailShopDataProgress():
+                return const Center(child: CircularProgressIndicator());
+              case GetDetailShopDataSuccess():
+                return ShopDetailWidget(model: state.response);
+              case GetDetailShopDataError():
+                return MyErrorWidget(
+                  message: state.message,
+                  onReload: () {
+                    context.read<ShopBloc>().add(
+                      GetShopDetailDataEvent(shopId: widget.shopModel.id ?? 0),
+                    );
+                  },
+                );
+              default:
+                return const SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }
