@@ -2628,6 +2628,231 @@ class S {
       args: [],
     );
   }
+
+  /// `Habarlaş`
+  String get habarlas {
+    return Intl.message('Habarlaş', name: 'habarlas', desc: '', args: []);
+  }
+
+  /// `Jaň et`
+  String get jan_et {
+    return Intl.message('Jaň et', name: 'jan_et', desc: '', args: []);
+  }
+
+  /// `Ýeri`
+  String get yeri {
+    return Intl.message('Ýeri', name: 'yeri', desc: '', args: []);
+  }
+
+  /// `Dükanyň görnüşi`
+  String get dukanyn_gornushi {
+    return Intl.message(
+      'Dükanyň görnüşi',
+      name: 'dukanyn_gornushi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kategoriýalar`
+  String get kategoriyalar {
+    return Intl.message(
+      'Kategoriýalar',
+      name: 'kategoriyalar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kategoriýa ýok`
+  String get kategoriya_yok {
+    return Intl.message(
+      'Kategoriýa ýok',
+      name: 'kategoriya_yok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tassyklanan dükan`
+  String get tassyklanan_dukan {
+    return Intl.message(
+      'Tassyklanan dükan',
+      name: 'tassyklanan_dukan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tassyklanmadyk dükan`
+  String get tassyklanmadyk_dukan {
+    return Intl.message(
+      'Tassyklanmadyk dükan',
+      name: 'tassyklanmadyk_dukan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dükan barada`
+  String get dukan_barada {
+    return Intl.message(
+      'Dükan barada',
+      name: 'dukan_barada',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Harytlar`
+  String get harytlar {
+    return Intl.message('Harytlar', name: 'harytlar', desc: '', args: []);
+  }
+
+  /// `haryt`
+  String get haryt {
+    return Intl.message('haryt', name: 'haryt', desc: '', args: []);
+  }
+
+  /// `Haryt gözle...`
+  String get haryt_gozle {
+    return Intl.message(
+      'Haryt gözle...',
+      name: 'haryt_gozle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tertiplemek`
+  String get tertiplemek {
+    return Intl.message('Tertiplemek', name: 'tertiplemek', desc: '', args: []);
+  }
+
+  /// `Iň arzan`
+  String get in_arzan {
+    return Intl.message('Iň arzan', name: 'in_arzan', desc: '', args: []);
+  }
+
+  /// `Iň gymmat`
+  String get in_gymmat {
+    return Intl.message('Iň gymmat', name: 'in_gymmat', desc: '', args: []);
+  }
+
+  /// `Iň täze`
+  String get in_taze {
+    return Intl.message('Iň täze', name: 'in_taze', desc: '', args: []);
+  }
+
+  /// `Teswir ýaz...`
+  String get teswir_yaz {
+    return Intl.message(
+      'Teswir ýaz...',
+      name: 'teswir_yaz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iber`
+  String get iber {
+    return Intl.message('Iber', name: 'iber', desc: '', args: []);
+  }
+
+  /// `Entek teswir ýok`
+  String get teswirler_heniz_yok {
+    return Intl.message(
+      'Entek teswir ýok',
+      name: 'teswirler_heniz_yok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Häzir`
+  String get hazir {
+    return Intl.message('Häzir', name: 'hazir', desc: '', args: []);
+  }
+
+  /// `Ýerleşişi`
+  String get yerleshishi {
+    return Intl.message('Ýerleşişi', name: 'yerleshishi', desc: '', args: []);
+  }
+
+  /// `Kartada görkez`
+  String get kartada_gorkez {
+    return Intl.message(
+      'Kartada görkez',
+      name: 'kartada_gorkez',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eýesi`
+  String get eyesi {
+    return Intl.message('Eýesi', name: 'eyesi', desc: '', args: []);
+  }
+
+  /// `Işleýiş ýagdaýy`
+  String get iyleyish_yagdayy {
+    return Intl.message(
+      'Işleýiş ýagdaýy',
+      name: 'iyleyish_yagdayy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Işleýär`
+  String get isleyar {
+    return Intl.message('Işleýär', name: 'isleyar', desc: '', args: []);
+  }
+
+  /// `Işlemeýär`
+  String get islemeyar {
+    return Intl.message('Işlemeýär', name: 'islemeyar', desc: '', args: []);
+  }
+
+  /// `Sorag-jogap`
+  String get sorag_jogap {
+    return Intl.message('Sorag-jogap', name: 'sorag_jogap', desc: '', args: []);
+  }
+
+  /// `Salam, size nähili kömek edip bileris?`
+  String get salam_komek {
+    return Intl.message(
+      'Salam, size nähili kömek edip bileris?',
+      name: 'salam_komek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bu gün`
+  String get bu_gun {
+    return Intl.message('Bu gün', name: 'bu_gun', desc: '', args: []);
+  }
+
+  /// `Adaty jogap wagty: 5-10 minut`
+  String get adaty_jogap_wagty {
+    return Intl.message(
+      'Adaty jogap wagty: 5-10 minut',
+      name: 'adaty_jogap_wagty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Soragyňyzy ýazyň...`
+  String get soragynyzy_yazyn {
+    return Intl.message(
+      'Soragyňyzy ýazyň...',
+      name: 'soragynyzy_yazyn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

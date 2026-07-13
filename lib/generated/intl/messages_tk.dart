@@ -28,6 +28,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "Men_sul_akkauntdan_narazy": MessageLookupByLibrary.simpleMessage(
       "Men şul akkauntyň bir zadyndan närazy",
     ),
+    "adaty_jogap_wagty": MessageLookupByLibrary.simpleMessage(
+      "Adaty jogap wagty: 5-10 minut",
+    ),
     "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
     "address_add": MessageLookupByLibrary.simpleMessage("Salgy goşmak"),
     "address_cancel": MessageLookupByLibrary.simpleMessage("Ýatyrmak"),
@@ -120,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Biz size nädip kömek edip bileris?",
     ),
     "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
+    "bu_gun": MessageLookupByLibrary.simpleMessage("Bu gün"),
     "bu_ucin_edijilik_yagtybarlylygyny": MessageLookupByLibrary.simpleMessage(
       "Bu üpjün edijiniň ýagtybarlylygyny nädip bilip bilerin?",
     ),
@@ -139,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Dizaýn sazlamalary",
     ),
     "doglan_guni": MessageLookupByLibrary.simpleMessage("Doglan güni"),
+    "dukan_barada": MessageLookupByLibrary.simpleMessage("Dükan barada"),
+    "dukanyn_gornushi": MessageLookupByLibrary.simpleMessage("Dükanyň görnüşi"),
     "durli_dillerde_desc": MessageLookupByLibrary.simpleMessage(
       "Biz siziň üçin amatly dilde problemalaryňyzy ynamdar we çalt çözmäge çalyşýarys. Hyzmatlarymyzy 10-dan gowrak dilde hödürleýäris.",
     ),
@@ -162,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
     "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "eyesi": MessageLookupByLibrary.simpleMessage("Eýesi"),
     "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
     "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
     "garashylyan_mukdar": MessageLookupByLibrary.simpleMessage(
@@ -201,22 +208,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "habarlary_gozle": MessageLookupByLibrary.simpleMessage(
       "Habarlary ýa-da üpjünçileri gözle",
     ),
+    "habarlas": MessageLookupByLibrary.simpleMessage("Habarlaş"),
     "habarsyz_galman": MessageLookupByLibrary.simpleMessage("Habarsyz galmaň"),
     "harydy_hacan_alaryn": MessageLookupByLibrary.simpleMessage(
       "Harydymy haçan alaryn?",
     ),
+    "haryt": MessageLookupByLibrary.simpleMessage("haryt"),
     "haryt_bilen_baglanyshykly_problema": MessageLookupByLibrary.simpleMessage(
       "Harytlar bilen baglanyşykly problema ýüze çyksa näme etmeli?",
     ),
     "haryt_gaytarmak": MessageLookupByLibrary.simpleMessage(
       "Harytlary we serişdeleri gaýtarmak barada has giňişleýin",
     ),
+    "haryt_gozle": MessageLookupByLibrary.simpleMessage("Haryt gözle..."),
     "haryt_sany": MessageLookupByLibrary.simpleMessage("Haryt sany"),
+    "harytlar": MessageLookupByLibrary.simpleMessage("Harytlar"),
     "harytlar_yok": MessageLookupByLibrary.simpleMessage("Harytlar ýok"),
     "has_ginisleyin": MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
     "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
     "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
     "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
+    "hazir": MessageLookupByLibrary.simpleMessage("Häzir"),
     "hokmany": MessageLookupByLibrary.simpleMessage("Hökmany"),
     "hopwsuz_toleg": MessageLookupByLibrary.simpleMessage("Howpsuz tölegler"),
     "hopwsuz_toleg_des": MessageLookupByLibrary.simpleMessage(
@@ -244,8 +256,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "hyzmat_hayysyny_taryh": MessageLookupByLibrary.simpleMessage(
       "Hyzmat haýyşynyň taryhy...",
     ),
+    "iber": MessageLookupByLibrary.simpleMessage("Iber"),
+    "in_arzan": MessageLookupByLibrary.simpleMessage("Iň arzan"),
+    "in_gymmat": MessageLookupByLibrary.simpleMessage("Iň gymmat"),
     "in_meshgurlar": MessageLookupByLibrary.simpleMessage("Iň meşgurlar"),
+    "in_taze": MessageLookupByLibrary.simpleMessage("Iň täze"),
     "ishlet": MessageLookupByLibrary.simpleMessage("İşlet"),
+    "islemeyar": MessageLookupByLibrary.simpleMessage("Işlemeýär"),
+    "isleyar": MessageLookupByLibrary.simpleMessage("Işleýär"),
+    "iyleyish_yagdayy": MessageLookupByLibrary.simpleMessage("Işleýiş ýagdaýy"),
+    "jan_et": MessageLookupByLibrary.simpleMessage("Jaň et"),
     "jedelleri_coz_goldaw": MessageLookupByLibrary.simpleMessage(
       "Jedelleri çözmek",
     ),
@@ -259,6 +279,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "jikme_jik_talaplary_hint": MessageLookupByLibrary.simpleMessage(
       "Üpjünçilerden has takyk söwda tekliplerini almak üçin jikme-jik talaplaryny ýazyň",
     ),
+    "kartada_gorkez": MessageLookupByLibrary.simpleMessage("Kartada görkez"),
+    "kategoriya_yok": MessageLookupByLibrary.simpleMessage("Kategoriýa ýok"),
+    "kategoriyalar": MessageLookupByLibrary.simpleMessage("Kategoriýalar"),
     "kategoriyany_saylan": MessageLookupByLibrary.simpleMessage(
       "Kategoriýany saýlaň",
     ),
@@ -419,6 +442,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri",
     ),
     "russkiy": MessageLookupByLibrary.simpleMessage("Русский"),
+    "salam_komek": MessageLookupByLibrary.simpleMessage(
+      "Salam, size nähili kömek edip bileris?",
+    ),
     "sargydynyz_nadip_gorap_bilersiniz": MessageLookupByLibrary.simpleMessage(
       "Sargydyňyzy nädip gorap bilersiňiz",
     ),
@@ -458,6 +484,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Siz üçin maslahat beriýär",
     ),
     "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
+    "sorag_jogap": MessageLookupByLibrary.simpleMessage("Sorag-jogap"),
+    "soragynyzy_yazyn": MessageLookupByLibrary.simpleMessage(
+      "Soragyňyzy ýazyň...",
+    ),
     "sowda_kepilligindaki_sargydymy": MessageLookupByLibrary.simpleMessage(
       "Söwda kepilligi bolan sargydym boýunça jedel nädip açmaly?",
     ),
@@ -477,7 +507,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "tassyklama_tapgyrlary": MessageLookupByLibrary.simpleMessage(
       "Tassyklama tapgyrlary",
     ),
+    "tassyklanan_dukan": MessageLookupByLibrary.simpleMessage(
+      "Tassyklanan dükan",
+    ),
+    "tassyklanmadyk_dukan": MessageLookupByLibrary.simpleMessage(
+      "Tassyklanmadyk dükan",
+    ),
+    "tertiplemek": MessageLookupByLibrary.simpleMessage("Tertiplemek"),
+    "teswir_yaz": MessageLookupByLibrary.simpleMessage("Teswir ýaz..."),
     "teswirler": MessageLookupByLibrary.simpleMessage("Teswirler"),
+    "teswirler_heniz_yok": MessageLookupByLibrary.simpleMessage(
+      "Entek teswir ýok",
+    ),
     "toleg_usullary": MessageLookupByLibrary.simpleMessage("Töleg usullary:"),
     "toleg_usuly": MessageLookupByLibrary.simpleMessage("Töleg usuly"),
     "tolog_gaytarmak_desc": MessageLookupByLibrary.simpleMessage(
@@ -533,6 +574,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ýaňy ýakyndakylar",
     ),
     "yer": MessageLookupByLibrary.simpleMessage("Ýer"),
+    "yeri": MessageLookupByLibrary.simpleMessage("Ýeri"),
+    "yerleshishi": MessageLookupByLibrary.simpleMessage("Ýerleşişi"),
     "yes": MessageLookupByLibrary.simpleMessage("Hawa"),
     "ynamdar_desk": MessageLookupByLibrary.simpleMessage(
       "Tölegiňizi goramak üçin elmydama Mbium.com-yň resmi töleg kanallaryndan peýdalanyň.",

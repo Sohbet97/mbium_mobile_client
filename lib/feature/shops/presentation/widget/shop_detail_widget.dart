@@ -10,7 +10,7 @@ import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detai
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_tab_bar_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_about_tab_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_products_tab_widget.dart';
-import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_reviews_tab_widget.dart';
+import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_faq_tab_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_fixed_header_delegate.dart';
 
 class ShopDetailWidget extends StatefulWidget {
@@ -25,13 +25,9 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget>
     with TickerProviderStateMixin {
   late final TabController _tabController;
   late final ProductBloc _productBloc;
-  final ScrollController _productsScrollController = ScrollController();
   List<ProductModel> _products = [];
   bool _hasMore = false;
   bool _isLoadingMore = false;
-  bool _isAppBarCollapsed = false;
-
-  static const double _headerScrollThreshold = 170;
 
   @override
   void initState() {
@@ -39,30 +35,15 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget>
     _tabController = TabController(length: 3, vsync: this);
     _productBloc = ProductBloc(repository: context.read<ProductRepository>());
     _productBloc.add(LoadProducts(FilterModel(shopId: widget.model.id)));
-    _productsScrollController.addListener(_onProductsScroll);
   }
 
-  void _onProductsScroll() {
-    if (_productsScrollController.position.pixels >=
-        _productsScrollController.position.maxScrollExtent - 200) {
-      _productBloc.add(LoadMoreProducts());
-    }
-  }
-
-  bool _onOuterScroll(ScrollNotification notification) {
-    if (notification.depth != 0) return false;
-    final offset = notification.metrics.pixels;
-    final collapsed = offset >= _headerScrollThreshold;
-    if (collapsed != _isAppBarCollapsed) {
-      setState(() => _isAppBarCollapsed = collapsed);
-    }
-    return false;
+  void _loadMoreProducts() {
+    _productBloc.add(LoadMoreProducts());
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _productsScrollController.dispose();
     _productBloc.close();
     super.dispose();
   }
@@ -83,48 +64,42 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget>
           setState(() => _isLoadingMore = true);
         }
       },
-      child: NotificationListener<ScrollNotification>(
-        onNotification: _onOuterScroll,
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: ShopDetailFixedHeaderDelegate(
-                  height: 56,
-                  child: ShopDetailAppBarWidget(
-                    model: widget.model,
-                    isCollapsed: _isAppBarCollapsed,
-                  ),
-                ),
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: ShopDetailFixedHeaderDelegate(
+                height: 56,
+                child: ShopDetailAppBarWidget(model: widget.model),
               ),
-              SliverToBoxAdapter(
-                child: ShopDetailHeaderWidget(model: widget.model),
+            ),
+            SliverToBoxAdapter(
+              child: ShopDetailHeaderWidget(model: widget.model),
+            ),
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: ShopDetailFixedHeaderDelegate(
+                height: 48,
+                child: ShopDetailTabBarWidget(controller: _tabController),
               ),
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: ShopDetailFixedHeaderDelegate(
-                  height: 48,
-                  child: ShopDetailTabBarWidget(controller: _tabController),
-                ),
-              ),
-            ];
-          },
-          body: TabBarView(
-            controller: _tabController,
-            children: [
-              ShopDetailAboutTabWidget(model: widget.model),
-              ShopDetailProductsTabWidget(
-                model: widget.model,
-                productBloc: _productBloc,
-                scrollController: _productsScrollController,
-                products: _products,
-                hasMore: _hasMore,
-                isLoadingMore: _isLoadingMore,
-              ),
-              const ShopDetailReviewsTabWidget(),
-            ],
-          ),
+            ),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            ShopDetailAboutTabWidget(model: widget.model),
+            ShopDetailProductsTabWidget(
+              model: widget.model,
+              productBloc: _productBloc,
+              products: _products,
+              hasMore: _hasMore,
+              isLoadingMore: _isLoadingMore,
+              onLoadMore: _loadMoreProducts,
+            ),
+            ShopDetailFaqTabWidget(model: widget.model),
+          ],
         ),
       ),
     );

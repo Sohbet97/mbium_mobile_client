@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/generated/l10n.dart';
 
 class ShopDetailTabBarWidget extends StatelessWidget {
   final TabController controller;
@@ -8,6 +9,7 @@ class ShopDetailTabBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       child: TabBar(
@@ -17,12 +19,11 @@ class ShopDetailTabBarWidget extends StatelessWidget {
         indicatorColor: AppColors.primaryGreen,
         indicatorWeight: 2,
         labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-        unselectedLabelStyle:
-            const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
-        tabs: const [
-          Tab(text: 'Dükan barada'),
-          Tab(text: 'Harytlar'),
-          Tab(text: 'Teswirler'),
+        unselectedLabelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+        tabs: [
+          Tab(text: l10n.dukan_barada),
+          Tab(text: l10n.harytlar),
+          Tab(text: l10n.sorag_jogap),
         ],
       ),
     );
