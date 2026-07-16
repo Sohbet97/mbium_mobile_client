@@ -40,7 +40,7 @@ class _ProductDetailCommentsWidgetState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Header ───────────────────────────────────────────────
+       
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 12, 12),
             child: Row(
@@ -112,7 +112,6 @@ class _ProductDetailCommentsWidgetState
 
           const Divider(height: 1),
 
-          // ── Content ───────────────────────────────────────────────
           BlocBuilder<CommentBloc, CommentState>(
             builder: (context, state) {
               if (state is CommentLoading) {
@@ -179,8 +178,6 @@ class _ProductDetailCommentsWidgetState
   }
 }
 
-// ─── Empty ────────────────────────────────────────────────────────────────────
-
 class _EmptyPreview extends StatelessWidget {
   final int productId;
 
@@ -217,7 +214,6 @@ class _EmptyPreview extends StatelessWidget {
   }
 }
 
-// ─── See all button ───────────────────────────────────────────────────────────
 
 class _SeeAllButton extends StatelessWidget {
   final int productId;
@@ -257,7 +253,6 @@ class _SeeAllButton extends StatelessWidget {
   }
 }
 
-// ─── Preview comment tile ──────────────────────────────────────────────────────
 
 class _PreviewCommentTile extends StatelessWidget {
   final CommentModel comment;
@@ -329,8 +324,6 @@ class _PreviewCommentTile extends StatelessWidget {
     return '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
   }
 }
-
-// ─── Mini avatar ──────────────────────────────────────────────────────────────
 
 class _MiniAvatar extends StatelessWidget {
   final CommentAuthor author;

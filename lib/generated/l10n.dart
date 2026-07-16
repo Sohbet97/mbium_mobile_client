@@ -2873,6 +2873,111 @@ class S {
       args: [],
     );
   }
+
+  /// `Umumy baha`
+  String get umumy_baha {
+    return Intl.message('Umumy baha', name: 'umumy_baha', desc: '', args: []);
+  }
+
+  /// `Hemmesi`
+  String get hemmesi {
+    return Intl.message('Hemmesi', name: 'hemmesi', desc: '', args: []);
+  }
+
+  /// `Tassyklanan satyn alyjy`
+  String get tassyklanan_satyn_alyjy {
+    return Intl.message(
+      'Tassyklanan satyn alyjy',
+      name: 'tassyklanan_satyn_alyjy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `gün öň`
+  String get gun_on {
+    return Intl.message('gün öň', name: 'gun_on', desc: '', args: []);
+  }
+
+  /// `aý öň`
+  String get ay_on {
+    return Intl.message('aý öň', name: 'ay_on', desc: '', args: []);
+  }
+
+  /// `Teswir goşmak`
+  String get teswir_goshmak {
+    return Intl.message(
+      'Teswir goşmak',
+      name: 'teswir_goshmak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Esasy aýratynlyklar`
+  String get esasy_aydatynlyklar {
+    return Intl.message(
+      'Esasy aýratynlyklar',
+      name: 'esasy_aydatynlyklar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Az görkez`
+  String get az_gorkez {
+    return Intl.message('Az görkez', name: 'az_gorkez', desc: '', args: []);
+  }
+
+  /// `Giňişleýin oka`
+  String get ginisleyin_oka {
+    return Intl.message(
+      'Giňişleýin oka',
+      name: 'ginisleyin_oka',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dükan bahalandyrmasy`
+  String get shops_st {
+    return Intl.message(
+      'Dükan bahalandyrmasy',
+      name: 'shops_st',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `satyldy`
+  String get satyldy {
+    return Intl.message('satyldy', name: 'satyldy', desc: '', args: []);
+  }
+
+  /// `Stokda ýok`
+  String get stokda_yok {
+    return Intl.message('Stokda ýok', name: 'stokda_yok', desc: '', args: []);
+  }
+
+  /// `Az galdy`
+  String get az_galdy {
+    return Intl.message('Az galdy', name: 'az_galdy', desc: '', args: []);
+  }
+
+  /// `Stokda bar`
+  String get stokda_bar {
+    return Intl.message('Stokda bar', name: 'stokda_bar', desc: '', args: []);
+  }
+
+  /// `Düşündiriş`
+  String get dushundirish {
+    return Intl.message('Düşündiriş', name: 'dushundirish', desc: '', args: []);
+  }
+
+  /// `Dükana gir`
+  String get dukana_gir {
+    return Intl.message('Dükana gir', name: 'dukana_gir', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

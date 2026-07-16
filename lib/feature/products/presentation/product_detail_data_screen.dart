@@ -8,11 +8,16 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/page/cart_pag
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
-import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comments_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_features_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_images_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_info_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_reviews_preview_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_shop_card_widget.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:mbium_mobile_client/feature/reviews/presentation/screen/product_review_screen.dart';
+
 
 import '../../../generated/l10n.dart';
 import '../extensions/product_extensions.dart';
@@ -31,11 +36,33 @@ class ProductDetailDataScreen extends StatelessWidget {
     final name = model.nameByLang(lang);
     final price = '${model.price.toStringAsFixed(2)} ${model.currency}';
     final url = 'https://mbium.com/products/${model.id}';
-
     final text = '$name\n$price\n$url';
-
     Share.share(text);
   }
+
+  void _openShop(BuildContext context) {
+    if (model.shop == null) return;
+    final shopModel = ShopModel(
+      id: model.shopId,
+      name: model.shop!.name,
+      logo: model.shop!.logo,
+    );
+    Navigator.pushNamed(context, '/shopDetail', arguments: shopModel);
+  }
+
+    void _openReviews(BuildContext context) {
+     Navigator.push(
+    context,
+        MaterialPageRoute(
+      builder: (_) => ProductReviewScreen(
+        productId: model.id,
+        orderId: 0,
+        averageRating: model.rating,
+        reviewCount: model.reviewCount,
+      ),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +97,7 @@ class ProductDetailDataScreen extends StatelessWidget {
         model: model,
         product: litleProductModel,
         localization: localization,
+        onOpenShop: () => _openShop(context),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 16),
@@ -79,9 +107,30 @@ class ProductDetailDataScreen extends StatelessWidget {
             const SizedBox(height: 8),
             ProductDetailInfoWidget(product: model),
             const SizedBox(height: 8),
-            ProductDetailCommentsWidget(
-              productId: model.id,
-              reviewCount: model.reviewCount,
+            ProductDetailFeaturesWidget(product: model),
+            if (model.shop != null) ...[
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: ProductDetailShopCardWidget(
+                  shop: model.shop!,
+                  onOpenShop: () => _openShop(context),
+                  onMessage: () {
+                  
+                  },
+                ),
+              ),
+            ],
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: ProductDetailReviewsPreviewWidget(
+                productId: model.id,
+                orderId: 0,
+                rating: model.rating,
+                reviewCount: model.reviewCount,
+                onSeeAll: () => _openReviews(context),
+              ),
             ),
             const SizedBox(height: 8),
           ],
@@ -91,17 +140,19 @@ class ProductDetailDataScreen extends StatelessWidget {
   }
 }
 
-// ─── Bottom bar ───────────────────────────────────────────────────────────────
+// ─── Bottom bar ─────
 
 class _BottomBar extends StatelessWidget {
   final ProductDetailModel model;
   final ProductModel product;
   final S localization;
+  final VoidCallback onOpenShop;
 
   const _BottomBar({
     required this.model,
     required this.product,
     required this.localization,
+    required this.onOpenShop,
   });
 
   @override
@@ -128,15 +179,8 @@ class _BottomBar extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
           child: Row(
             children: [
-              // ── Отзывы ──────────────────────────────────────────
-              _ReviewButton(
-                count: model.reviewCount,
-                label: localization.teswirler,
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/productReview',
-                  arguments: model.id,
-                ),
+              _ShopButton(
+                onTap: model.shop != null ? onOpenShop : null,
               ),
               const SizedBox(width: 12),
 
@@ -246,18 +290,11 @@ class _BottomBar extends StatelessWidget {
   }
 }
 
-// ─── Review button ────────────────────────────────────────────────────────────
 
-class _ReviewButton extends StatelessWidget {
-  final int count;
-  final String label;
-  final VoidCallback onTap;
+class _ShopButton extends StatelessWidget {
+  final VoidCallback? onTap;
 
-  const _ReviewButton({
-    required this.count,
-    required this.label,
-    required this.onTap,
-  });
+  const _ShopButton({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -265,36 +302,21 @@ class _ReviewButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 52,
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        width: 52,
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.navBarGrey, width: 1.5),
           borderRadius: BorderRadius.circular(14),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.chat_bubble_outline_rounded,
-              color: AppColors.primaryGreen,
-              size: 18,
-            ),
-            const SizedBox(height: 2),
-            Text(
-              '$count',
-              style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                color: AppColors.lightTextPrimary,
-              ),
-            ),
-          ],
+        child: const Icon(
+          Icons.storefront_outlined,
+          color: AppColors.primaryGreen,
+          size: 24,
         ),
       ),
     );
   }
 }
 
-// ─── Add button (qty == 0) ────────────────────────────────────────────────────
 
 class _AddButton extends StatelessWidget {
   final double price;
@@ -330,9 +352,9 @@ class _AddButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.shopping_cart_outlined,
-              color: AppColors.navBarGrey,
+              color: AppColors.navWhite,
               size: 18,
             ),
             const SizedBox(width: 8),
@@ -342,7 +364,7 @@ class _AddButton extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).sebede_gos,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: AppColors.navWhite,
@@ -365,8 +387,6 @@ class _AddButton extends StatelessWidget {
     );
   }
 }
-
-// ─── Stepper button (qty > 0) ─────────────────────────────────────────────────
 
 class _StepperButton extends StatelessWidget {
   final int quantity;
@@ -405,8 +425,6 @@ class _StepperButton extends StatelessWidget {
         children: [
           // Minus
           _StepBtn(icon: Icons.remove, onTap: onDecrement),
-
-          // Quantity + total
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
