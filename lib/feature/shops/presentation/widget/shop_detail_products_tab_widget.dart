@@ -9,7 +9,6 @@ import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_products_widget.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ShopDetailProductsTabWidget extends StatefulWidget {
   final ShopDetailModel model;
@@ -72,18 +71,6 @@ class _ShopDetailProductsTabWidgetState
       widget.onLoadMore();
     }
     return false;
-  }
-
-  Future<void> _makeCall() async {
-    if (widget.model.phone == null || widget.model.phone!.isEmpty) return;
-    final uri = Uri(scheme: 'tel', path: widget.model.phone);
-    if (await canLaunchUrl(uri)) await launchUrl(uri);
-  }
-
-  Future<void> _sendMessage() async {
-    if (widget.model.phone == null || widget.model.phone!.isEmpty) return;
-    final uri = Uri(scheme: 'sms', path: widget.model.phone);
-    if (await canLaunchUrl(uri)) await launchUrl(uri);
   }
 
   Future<void> _openSortSheet() async {
