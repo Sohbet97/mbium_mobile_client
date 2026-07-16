@@ -387,6 +387,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onduriji": MessageLookupByLibrary.simpleMessage("Öndüriji"),
     "ondurijiler": MessageLookupByLibrary.simpleMessage("Öndürijiler"),
+    "onlayn_sowda_sergisi": MessageLookupByLibrary.simpleMessage(
+      "Onlaýn söwda sergisi",
+    ),
     "onuniz_ozuniz_alynyz_goragy": MessageLookupByLibrary.simpleMessage(
       "Özüňiz sargyt edeniňizde",
     ),
@@ -509,6 +512,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tassyklanan_dukan": MessageLookupByLibrary.simpleMessage(
       "Tassyklanan dükan",
+    ),
+    "tassyklanan_hunarmen_ondurji": MessageLookupByLibrary.simpleMessage(
+      "Tassyklanan hünärmen öndüriji",
     ),
     "tassyklanmadyk_dukan": MessageLookupByLibrary.simpleMessage(
       "Tassyklanmadyk dükan",

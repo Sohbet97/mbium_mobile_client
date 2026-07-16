@@ -2853,6 +2853,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Tassyklanan hünärmen öndüriji`
+  String get tassyklanan_hunarmen_ondurji {
+    return Intl.message(
+      'Tassyklanan hünärmen öndüriji',
+      name: 'tassyklanan_hunarmen_ondurji',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Onlaýn söwda sergisi`
+  String get onlayn_sowda_sergisi {
+    return Intl.message(
+      'Onlaýn söwda sergisi',
+      name: 'onlayn_sowda_sergisi',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

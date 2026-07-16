@@ -12,6 +12,7 @@ import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shops_category_tabs_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shops_filter_chips_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shops_menu_widget.dart';
+import 'package:mbium_mobile_client/feature/shops/presentation/widget/shops_quick_badges_widget.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../generated/l10n.dart';
 import '../../../products/data/product_repository.dart';
@@ -105,6 +106,15 @@ class _ShopsPageState extends State<ShopsPage> {
           },
         ),
         const SizedBox(height: 10),
+        ShopsQuickBadgesWidget(
+          onVerifiedTap: () {
+          
+          },
+          onExhibitionTap: () {
+           
+          },
+        ),
+        const SizedBox(height: 10),
 
         Expanded(
           child: CustomScrollView(
@@ -180,7 +190,6 @@ class _ShopsPageState extends State<ShopsPage> {
                 ),
               ),
 
-              // SliverList
               BlocConsumer<ShopBloc, ShopState>(
                 bloc: _shopBloc,
                 listener: (context, state) {
