@@ -61,6 +61,9 @@ class PersonRepository {
       await preferences.saveRegistrationStatus(true);
       await preferences.saveGostUser(false);
       await preferences.setString('auth_token', person.token);
+      if (person.refreshToken != null && person.refreshToken!.isNotEmpty) {
+        await preferences.setString('refresh_token', person.refreshToken!);
+      }
       await preferences.setString(_personKey, jsonEncode(person.toJson()));
       return person;
     }
@@ -76,6 +79,7 @@ class PersonRepository {
     await GoogleSignIn.instance.signOut();
     await preferences.saveRegistrationStatus(false);
     await preferences.setString('auth_token', '');
+    await preferences.setString('refresh_token', '');
     await preferences.setString(_personKey, '');
   }
 

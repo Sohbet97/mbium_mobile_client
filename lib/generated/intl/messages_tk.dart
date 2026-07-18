@@ -232,6 +232,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "habarlas": MessageLookupByLibrary.simpleMessage("Habarlaş"),
     "habarsyz_galman": MessageLookupByLibrary.simpleMessage("Habarsyz galmaň"),
+    "halamak_ucin_giris": MessageLookupByLibrary.simpleMessage(
+      "Halamak üçin ulgama giriň",
+    ),
     "harydy_hacan_alaryn": MessageLookupByLibrary.simpleMessage(
       "Harydymy haçan alaryn?",
     ),

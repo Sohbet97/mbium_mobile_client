@@ -17,9 +17,26 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
+  final _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      context.read<FavoriteBloc>().add(const LoadMoreFavorites());
+    }
   }
 
   @override
@@ -41,29 +58,48 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           children: [
             BlocBuilder<FavoriteBloc, FavoriteState>(
               builder: (context, state) {
+                if (state is FavoriteError) {
+                  return MyEmptyWidget(
+                    emptyText: localization.nasazlyk_yuze_cykdy,
+                    icon: Icons.error_outline,
+                    buttonText: localization.refresh,
+                    onTap: () =>
+                        context.read<FavoriteBloc>().add(const LoadFavorites()),
+                  );
+                }
+
                 if (state is FavoriteLoaded) {
                   if (state.favorites.isEmpty) {
                     return MyEmptyWidget(emptyText: localization.product_empty);
                   }
+                  final isLoadingMore = state.isLoadingMore;
                   return SafeArea(
                     child: CustomScrollView(
+                      controller: _scrollController,
                       slivers: [
                         SliverMasonryGrid.count(
                           crossAxisCount: 2,
                           mainAxisSpacing: 1,
                           crossAxisSpacing: 1,
                           itemBuilder: (context, index) {
-                            final product = state.favorites[index];
-                            return ProductMassonGridItem(product: product);
+                            if (index < state.favorites.length) {
+                              final product = state.favorites[index];
+                              return ProductMassonGridItem(product: product);
+                            }
+                            return const SizedBox(
+                              height: 200,
+                              child: Center(child: CircularProgressIndicator()),
+                            );
                           },
-                          childCount: state.favorites.length,
+                          childCount:
+                              state.favorites.length + (isLoadingMore ? 1 : 0),
                         ),
                       ],
                     ),
                   );
                 }
 
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               },
             ),
             BlocBuilder<ShopFavoriteBloc, ShopFavoriteState>(
@@ -85,7 +121,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   );
                 }
 
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               },
             ),
           ],

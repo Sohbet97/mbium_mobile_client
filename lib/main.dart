@@ -8,6 +8,7 @@ import 'package:mbium_mobile_client/feature/category/repository/category_reposit
 import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/shop_favorite_bloc.dart';
+import 'package:mbium_mobile_client/feature/favorite/data/favorite_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/Auth/auth_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
@@ -249,6 +250,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => CoinRepository(dio: apiClient.dio),
         ),
 
+        // favorite
+        RepositoryProvider(
+          create: (context) => FavoriteRepository(dio: apiClient.dio),
+        ),
+
         // addresses
         RepositoryProvider(
           create: (context) => AddressRepository(dio: apiClient.dio),
@@ -335,7 +341,7 @@ class _MyAppState extends State<MyApp> {
           // favorite
           BlocProvider(
             create: (context) =>
-                FavoriteBloc(appPreferences: widget.appPreferences)
+                FavoriteBloc(repository: context.read<FavoriteRepository>())
                   ..add(const LoadFavorites()),
           ),
 
@@ -394,23 +400,32 @@ class _MyAppState extends State<MyApp> {
                 OrderBloc(repository: context.read<OrderRepository>()),
           ),
         ],
-        child: BlocBuilder<MainBloc, MainState>(
-          builder: (context, state) {
-            return MaterialApp(
-              themeMode: state.themeMode,
-              darkTheme: darkTheme,
-              theme: lightTheme,
-              locale: Locale(state.languageCode),
-              supportedLocales: appSupportedLocales,
-              debugShowCheckedModeBanner: false,
-              navigatorKey: navigatorKey,
-              scaffoldMessengerKey: scaffoldMessengerKey,
-              navigatorObservers: [routeObserver],
-              initialRoute: '/',
-              onGenerateRoute: onGenerateRoute,
-              localizationsDelegates: appLocalizationDelegates,
-            );
+        child: BlocListener<PersonBloc, PersonState>(
+          listenWhen: (previous, current) =>
+              previous.personModel == null && current.personModel != null,
+          listener: (context, state) {
+            // Re-test GET /favorites once GetUserData (/auth/me) has
+            // actually resolved, in case the 401 was an auth-state race.
+            context.read<FavoriteBloc>().add(const LoadFavorites());
           },
+          child: BlocBuilder<MainBloc, MainState>(
+            builder: (context, state) {
+              return MaterialApp(
+                themeMode: state.themeMode,
+                darkTheme: darkTheme,
+                theme: lightTheme,
+                locale: Locale(state.languageCode),
+                supportedLocales: appSupportedLocales,
+                debugShowCheckedModeBanner: false,
+                navigatorKey: navigatorKey,
+                scaffoldMessengerKey: scaffoldMessengerKey,
+                navigatorObservers: [routeObserver],
+                initialRoute: '/',
+                onGenerateRoute: onGenerateRoute,
+                localizationsDelegates: appLocalizationDelegates,
+              );
+            },
+          ),
         ),
       ),
     );

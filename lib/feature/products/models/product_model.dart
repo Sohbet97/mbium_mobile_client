@@ -86,8 +86,10 @@ class ProductModel {
 
     return ProductModel(
       id: json['id'] as int,
-      shopId: json['shop_id'] as int,
-      categoryId: json['category_id'] as int,
+      // Partial payloads (e.g. the nested `product` in GET /favorites) omit
+      // these — default to 0 rather than crashing.
+      shopId: json['shop_id'] as int? ?? 0,
+      categoryId: json['category_id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       nameRu: json['name_ru'] as String? ?? '',
       nameEng: json['name_eng'] as String? ?? '',

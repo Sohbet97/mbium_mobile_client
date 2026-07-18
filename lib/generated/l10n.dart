@@ -3078,6 +3078,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Halamak üçin ulgama giriň`
+  String get halamak_ucin_giris {
+    return Intl.message(
+      'Halamak üçin ulgama giriň',
+      name: 'halamak_ucin_giris',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

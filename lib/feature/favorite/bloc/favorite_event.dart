@@ -11,6 +11,10 @@ final class LoadFavorites extends FavoriteEvent {
   const LoadFavorites();
 }
 
+final class LoadMoreFavorites extends FavoriteEvent {
+  const LoadMoreFavorites();
+}
+
 final class AddFavoriteProduct extends FavoriteEvent {
   final ProductModel product;
 

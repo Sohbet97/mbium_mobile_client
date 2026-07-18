@@ -27,7 +27,11 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     try {
       final result = await repository.preferences.isRegistered();
       final isGost = await repository.preferences.isGostUser();
-      final person = result && !isGost
+      final token = repository.getSavedToken();
+      final hasToken = token != null && token.isNotEmpty;
+      // Gate on the actual saved token (not just the `is_registered` flag)
+      // so /auth/me always runs at startup whenever a session could exist.
+      final person = hasToken && !isGost
           ? (await repository.fetchMe() ?? repository.getSavedPerson())
           : null;
       emit(

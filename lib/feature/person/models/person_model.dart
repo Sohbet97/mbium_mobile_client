@@ -7,6 +7,7 @@ class PersonModel {
   final String? surname;
   final String? avatar;
   final String token;
+  final String? refreshToken;
 
   const PersonModel({
     required this.id,
@@ -15,6 +16,7 @@ class PersonModel {
     this.surname,
     this.avatar,
     required this.token,
+    this.refreshToken,
   });
 
   factory PersonModel.fromJson(Map<String, dynamic> json) {
@@ -25,7 +27,11 @@ class PersonModel {
       name: user['name'] as String?,
       surname: user['surname'] as String?,
       avatar: user['avatar'] as String?,
-      token: json['token'] as String? ?? '',
+      // Login/refresh responses use `accessToken`; older cached copies used
+      // `token` — accept either.
+      token:
+          json['token'] as String? ?? json['accessToken'] as String? ?? '',
+      refreshToken: json['refreshToken'] as String?,
     );
   }
 
@@ -37,6 +43,7 @@ class PersonModel {
       'surname': surname,
       'avatar': avatar,
       'token': token,
+      'refreshToken': refreshToken,
     };
   }
 }

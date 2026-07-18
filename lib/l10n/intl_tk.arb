@@ -349,5 +349,6 @@
 "coin_topup_empty": "Doldurmalar ýok",
 "status_pending": "Garaşylýar",
 "status_approved": "Tassyklandy",
-"status_rejected": "Ret edildi"
+"status_rejected": "Ret edildi",
+"halamak_ucin_giris": "Halamak üçin ulgama giriň"
 }
