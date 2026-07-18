@@ -129,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "basha_bildirisher": MessageLookupByLibrary.simpleMessage(
       "Başga bildirişler",
     ),
+    "belgini_uytget": MessageLookupByLibrary.simpleMessage("Belgini üýtget"),
     "bildirisher": MessageLookupByLibrary.simpleMessage("Bildirişler"),
     "bildirisleri_yakynyy": MessageLookupByLibrary.simpleMessage(
       "Bildirişleri ýakynly we hiç haçan täze aksiyalary we sargytlary görüň.",
@@ -338,6 +339,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "kes_arassalamak": MessageLookupByLibrary.simpleMessage("Keş arassalamak"),
     "kitaplar": MessageLookupByLibrary.simpleMessage("Kitaplar"),
+    "kody_gaytadan_ibermek": MessageLookupByLibrary.simpleMessage(
+      "Kody gaýtadan ibermek",
+    ),
+    "kody_iberdik": MessageLookupByLibrary.simpleMessage(
+      "6 sanly kody şu belgä iberdik",
+    ),
     "kogda": MessageLookupByLibrary.simpleMessage(
       "Когда поставщик готовит для вас заказ:",
     ),
@@ -362,6 +369,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "maglumat_desk": MessageLookupByLibrary.simpleMessage(
       "Biz maglumatlary ýygnamagy iň pes derejede saklamaga çalyşýarys we olary saklamak möhletlerini çäklendirýäris, hyzmatlarymyzyň içine gizlinligini gurnaýarys we şahsy maglumatlaryňyzy ulanmakda aýdyňlygy üpjün edýäris.",
+    ),
+    "maglumat_gorag_astynda": MessageLookupByLibrary.simpleMessage(
+      "Maglumatlaryňyz howpsuzlyk astynda goralýar",
     ),
     "maglumat_goragy": MessageLookupByLibrary.simpleMessage("Maglumat goragy"),
     "maglumat_goragy_desc": MessageLookupByLibrary.simpleMessage(
@@ -564,6 +574,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Siz üçin maslahat beriýär",
     ),
     "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
+    "sms_tassyklama": MessageLookupByLibrary.simpleMessage("SMS tassyklama"),
     "sorag_bar_bolsa": MessageLookupByLibrary.simpleMessage("Sorag bar bolsa"),
     "sorag_jogap": MessageLookupByLibrary.simpleMessage("Sorag-jogap"),
     "soragynyzy_yazyn": MessageLookupByLibrary.simpleMessage(
@@ -588,6 +599,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tassyklama_tapgyrlary": MessageLookupByLibrary.simpleMessage(
       "Tassyklama tapgyrlary",
     ),
+    "tassyklamak": MessageLookupByLibrary.simpleMessage("Tassyklamak"),
     "tassyklanan_dukan": MessageLookupByLibrary.simpleMessage(
       "Tassyklanan dükan",
     ),
@@ -596,6 +608,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tassyklanmadyk_dukan": MessageLookupByLibrary.simpleMessage(
       "Tassyklanmadyk dükan",
+    ),
+    "telefon_arkaly_giris": MessageLookupByLibrary.simpleMessage(
+      "Telefon belgiňiz arkaly giriň",
+    ),
+    "telefon_arkaly_giris_desc": MessageLookupByLibrary.simpleMessage(
+      "Dowam etmek üçin telefon belgiňizi giriziň. Size tassyklama kody bilen SMS ibereris",
     ),
     "telefon_belgi": MessageLookupByLibrary.simpleMessage(
       "Telefon belgiňizi giriziň",

@@ -104,7 +104,11 @@ class _LoginInScreenState extends State<LoginInScreen> {
                 child: ButtonWidget(
                   iconUrl: 'assets/icons/call.svg',
                   title: localization.telefon_bilen_dowam_et,
-                  onTap: state.isLoading ? () {} : () {},
+                  onTap: state.isLoading
+                      ? () {}
+                      : () {
+                          Navigator.pushNamed(context, '/phoneAuth');
+                        },
                 ),
               ),
               const SizedBox(height: 14),

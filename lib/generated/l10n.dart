@@ -2873,6 +2873,81 @@ class S {
       args: [],
     );
   }
+
+  /// `Telefon belgiňiz arkaly giriň`
+  String get telefon_arkaly_giris {
+    return Intl.message(
+      'Telefon belgiňiz arkaly giriň',
+      name: 'telefon_arkaly_giris',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dowam etmek üçin telefon belgiňizi giriziň. Size tassyklama kody bilen SMS ibereris`
+  String get telefon_arkaly_giris_desc {
+    return Intl.message(
+      'Dowam etmek üçin telefon belgiňizi giriziň. Size tassyklama kody bilen SMS ibereris',
+      name: 'telefon_arkaly_giris_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SMS tassyklama`
+  String get sms_tassyklama {
+    return Intl.message(
+      'SMS tassyklama',
+      name: 'sms_tassyklama',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `6 sanly kody şu belgä iberdik`
+  String get kody_iberdik {
+    return Intl.message(
+      '6 sanly kody şu belgä iberdik',
+      name: 'kody_iberdik',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Belgini üýtget`
+  String get belgini_uytget {
+    return Intl.message(
+      'Belgini üýtget',
+      name: 'belgini_uytget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tassyklamak`
+  String get tassyklamak {
+    return Intl.message('Tassyklamak', name: 'tassyklamak', desc: '', args: []);
+  }
+
+  /// `Kody gaýtadan ibermek`
+  String get kody_gaytadan_ibermek {
+    return Intl.message(
+      'Kody gaýtadan ibermek',
+      name: 'kody_gaytadan_ibermek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maglumatlaryňyz howpsuzlyk astynda goralýar`
+  String get maglumat_gorag_astynda {
+    return Intl.message(
+      'Maglumatlaryňyz howpsuzlyk astynda goralýar',
+      name: 'maglumat_gorag_astynda',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
