@@ -21,8 +21,13 @@ class ProductDetailCommentsSummaryWidget extends StatelessWidget {
     final textStyles = context.appTextStyles;
     final maxCount = starCounts.values.fold<int>(1, (a, b) => a > b ? a : b);
 
-    return Padding(
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(14),
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
