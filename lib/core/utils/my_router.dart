@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/balance/presentation/pages/account_verified_screen.dart';
 import 'package:mbium_mobile_client/feature/balance/presentation/pages/balance_screen.dart';
+import 'package:mbium_mobile_client/feature/brands/models/brand_model.dart';
+import 'package:mbium_mobile_client/feature/brands/presentation/brand_detail_screen.dart';
+import 'package:mbium_mobile_client/feature/brands/presentation/brands_screen.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/sargyt_et_screen.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/category_screen.dart';
 import 'package:mbium_mobile_client/feature/cupons/presentation/my_cupons_screen.dart';
@@ -130,6 +133,11 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       );
     case '/phoneAuth':
       return FadeRoute(page: const LoginByPhoneScreen());
+    case '/brands':
+      return FadeRoute(page: const BrandsScreen());
+    case '/brandDetail':
+      final brandModel = settings.arguments as BrandModel;
+      return FadeRoute(page: BrandDetailScreen(brandModel: brandModel));
 
     default:
       return FadeRoute(

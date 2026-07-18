@@ -76,11 +76,6 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
     }
   }
 
-  void _setProductFilterCategory(int id) {
-    _filter = FilterModel(categoryId: id);
-    _productBloc.add(LoadProducts(_filter));
-  }
-
   @override
   void dispose() {
     _searchController.dispose();

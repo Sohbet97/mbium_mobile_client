@@ -4,6 +4,7 @@ class FilterModel {
   final String? text;
   final int? categoryId;
   final int? shopId;
+  final int? brandId;
   final double? minPrice;
   final double? maxPrice;
   final String? sort;
@@ -14,6 +15,7 @@ class FilterModel {
     this.text,
     this.categoryId,
     this.shopId,
+    this.brandId,
     this.minPrice,
     this.maxPrice,
     this.sort,
@@ -25,12 +27,14 @@ class FilterModel {
     String? text,
     int? categoryId,
     int? shopId,
+    int? brandId,
     double? minPrice,
     double? maxPrice,
     String? sort,
     bool clearText = false,
     bool clearCategory = false,
     bool clearShop = false,
+    bool clearBrand = false,
     bool clearMinPrice = false,
     bool clearMaxPrice = false,
     bool clearSort = false,
@@ -41,6 +45,7 @@ class FilterModel {
       text: clearText ? null : (text ?? this.text),
       categoryId: clearCategory ? null : (categoryId ?? this.categoryId),
       shopId: clearShop ? null : (shopId ?? this.shopId),
+      brandId: clearBrand ? null : (brandId ?? this.brandId),
       minPrice: clearMinPrice ? null : (minPrice ?? this.minPrice),
       maxPrice: clearMaxPrice ? null : (maxPrice ?? this.maxPrice),
       sort: clearSort ? null : (sort ?? this.sort),
@@ -56,6 +61,7 @@ class FilterModel {
       if (text != null && text!.isNotEmpty) 'text': text,
       if (categoryId != null) 'category_id': categoryId,
       if (shopId != null) 'shop_id': shopId,
+      if (brandId != null) 'brand_id': brandId,
       if (minPrice != null) 'min_price': minPrice,
       if (maxPrice != null) 'max_price': maxPrice,
       if (sort != null) 'sort': sort,
@@ -71,6 +77,7 @@ class FilterModel {
           other.text == text &&
           other.categoryId == categoryId &&
           other.shopId == shopId &&
+          other.brandId == brandId &&
           other.minPrice == minPrice &&
           other.maxPrice == maxPrice &&
           other.sort == sort;
@@ -82,6 +89,7 @@ class FilterModel {
     text,
     categoryId,
     shopId,
+    brandId,
     minPrice,
     maxPrice,
     sort,

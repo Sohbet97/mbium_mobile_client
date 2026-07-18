@@ -2948,6 +2948,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Brendler`
+  String get brands {
+    return Intl.message('Brendler', name: 'brands', desc: '', args: []);
+  }
+
+  /// `Brend tapylmady`
+  String get brand_empty {
+    return Intl.message(
+      'Brend tapylmady',
+      name: 'brand_empty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

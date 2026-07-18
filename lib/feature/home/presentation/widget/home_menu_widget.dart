@@ -33,8 +33,8 @@ class HomeMenuWidget extends StatelessWidget {
             subTitle: localization.satys,
             color: !isDark ? Colors.white : Colors.grey.shade800,
             onTap: () {
-             Navigator.pushNamed(context, '/top-products');
-            }
+              Navigator.pushNamed(context, '/top-products');
+            },
           ),
 
           const SizedBox(width: 8),
@@ -45,6 +45,18 @@ class HomeMenuWidget extends StatelessWidget {
             subTitle: localization.satys,
             color: !isDark ? Colors.white : Colors.grey.shade800,
             onTap: () {},
+          ),
+
+          const SizedBox(width: 8),
+
+          _buildItem(
+            iconUrl: 'assets/icons/group.svg',
+            title: localization.brands,
+            subTitle: localization.boyunca,
+            color: !isDark ? Colors.white : Colors.grey.shade800,
+            onTap: () {
+              Navigator.pushNamed(context, '/brands');
+            },
           ),
 
           const SizedBox(width: 8),

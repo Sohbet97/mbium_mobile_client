@@ -124,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Biz size nädip kömek edip bileris?",
     ),
     "boyunca": MessageLookupByLibrary.simpleMessage("boýunça"),
+    "brand_empty": MessageLookupByLibrary.simpleMessage("Brend tapylmady"),
+    "brands": MessageLookupByLibrary.simpleMessage("Brendler"),
     "bu_gun": MessageLookupByLibrary.simpleMessage("Bu gün"),
     "bu_ucin_edijilik_yagtybarlylygyny": MessageLookupByLibrary.simpleMessage(
       "Bu üpjün edijiniň ýagtybarlylygyny nädip bilip bilerin?",
