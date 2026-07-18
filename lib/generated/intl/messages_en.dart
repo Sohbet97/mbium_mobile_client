@@ -275,6 +275,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
     "hazir": MessageLookupByLibrary.simpleMessage("Häzir"),
     "hemmesi": MessageLookupByLibrary.simpleMessage("Hemmesi"),
+    "hemmesini_gorkez": MessageLookupByLibrary.simpleMessage(
+      "Hemmesini görkez",
+    ),
     "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
     "hokmany": MessageLookupByLibrary.simpleMessage("Hökmany"),
     "hopwsuz_toleg": MessageLookupByLibrary.simpleMessage("Howpsuz tölegler"),
@@ -623,6 +626,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tertiplemek": MessageLookupByLibrary.simpleMessage("Tertiplemek"),
     "teswir_goshmak": MessageLookupByLibrary.simpleMessage("Teswir goşmak"),
+    "teswir_san": MessageLookupByLibrary.simpleMessage("teswir"),
     "teswir_yaz": MessageLookupByLibrary.simpleMessage("Teswir ýaz..."),
     "teswirler": MessageLookupByLibrary.simpleMessage("Teswirler"),
     "teswirler_heniz_yok": MessageLookupByLibrary.simpleMessage(

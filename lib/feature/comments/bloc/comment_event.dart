@@ -23,3 +23,12 @@ final class LoadMoreCommentsEvent extends CommentEvent {
 final class RefreshCommentsEvent extends CommentEvent {
   const RefreshCommentsEvent();
 }
+
+final class SubmitCommentEvent extends CommentEvent {
+  final CreateCommentRequest request;
+
+  const SubmitCommentEvent(this.request);
+
+  @override
+  List<Object?> get props => [request];
+}

@@ -3,17 +3,16 @@ import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
 
-class ReviewSummaryWidget extends StatelessWidget {
-  final double averageRating;
-  final int totalCount;
-  
+class ProductDetailCommentsSummaryWidget extends StatelessWidget {
+  final double rating;
+  final int reviewCount;
   final Map<int, int> starCounts;
 
-  const ReviewSummaryWidget({
+  const ProductDetailCommentsSummaryWidget({
     super.key,
-    required this.averageRating,
-    required this.totalCount,
-    required this.starCounts,
+    required this.rating,
+    required this.reviewCount,
+    this.starCounts = const {},
   });
 
   @override
@@ -22,13 +21,8 @@ class ReviewSummaryWidget extends StatelessWidget {
     final textStyles = context.appTextStyles;
     final maxCount = starCounts.values.fold<int>(1, (a, b) => a > b ? a : b);
 
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+    return Padding(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -40,7 +34,7 @@ class ReviewSummaryWidget extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                averageRating.toStringAsFixed(1),
+                rating.toStringAsFixed(1),
                 style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
@@ -51,7 +45,7 @@ class ReviewSummaryWidget extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(5, (i) {
-                  final filled = i < averageRating.round();
+                  final filled = i < rating.round();
                   return Icon(
                     filled ? Icons.star : Icons.star_border,
                     color: AppColors.starYellow,
@@ -61,7 +55,7 @@ class ReviewSummaryWidget extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                '$totalCount ${l10n.teswirler}',
+                '$reviewCount ${l10n.teswir_san}',
                 style: const TextStyle(fontSize: 11, color: AppColors.lightTextSecondary),
               ),
             ],
@@ -98,8 +92,7 @@ class ReviewSummaryWidget extends StatelessWidget {
                         child: Text(
                           '$count',
                           textAlign: TextAlign.end,
-                          style: const TextStyle(
-                              fontSize: 11, color: AppColors.lightTextSecondary),
+                          style: const TextStyle(fontSize: 11, color: AppColors.lightTextSecondary),
                         ),
                       ),
                     ],

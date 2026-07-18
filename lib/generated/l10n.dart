@@ -2978,6 +2978,51 @@ class S {
   String get dukana_gir {
     return Intl.message('Dükana gir', name: 'dukana_gir', desc: '', args: []);
   }
+
+  /// `teswir`
+  String get teswir_san {
+    return Intl.message('teswir', name: 'teswir_san', desc: '', args: []);
+  }
+
+  /// `Hemmesini görkez`
+  String get hemmesini_gorkez {
+    return Intl.message(
+      'Hemmesini görkez',
+      name: 'hemmesini_gorkez',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teswirleri görmek üçin ulgama giriň`
+  String get teswir_giris_gerek {
+    return Intl.message(
+      'Teswirleri görmek üçin ulgama giriň',
+      name: 'teswir_giris_gerek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teswirler ýüklenmedi`
+  String get teswir_yuklenmedi {
+    return Intl.message(
+      'Teswirler ýüklenmedi',
+      name: 'teswir_yuklenmedi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teswir goşuldy`
+  String get teswir_goshuldy {
+    return Intl.message(
+      'Teswir goşuldy',
+      name: 'teswir_goshuldy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

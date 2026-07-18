@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/comments/bloc/comment_bloc.dart';
-import 'package:mbium_mobile_client/feature/comments/models/comment_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comment_item_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comments_empty_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comments_summary_widget.dart';
+import 'package:mbium_mobile_client/generated/l10n.dart';
 
 class ProductDetailCommentsWidget extends StatefulWidget {
   final int productId;
+  final double rating;
   final int reviewCount;
 
   const ProductDetailCommentsWidget({
     super.key,
     required this.productId,
+    required this.rating,
     required this.reviewCount,
   });
 
@@ -24,13 +30,14 @@ class _ProductDetailCommentsWidgetState
   @override
   void initState() {
     super.initState();
-    context.read<CommentBloc>().add(
-      LoadCommentsEvent(productId: widget.productId),
-    );
+    context.read<CommentBloc>().add(LoadCommentsEvent(productId: widget.productId));
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
+    final textStyles = context.appTextStyles;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
@@ -40,46 +47,19 @@ class _ProductDetailCommentsWidgetState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-       
+          ProductDetailCommentsSummaryWidget(
+            rating: widget.rating,
+            reviewCount: widget.reviewCount,
+          ),
+          const Divider(height: 1),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 12, 12),
+            padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
             child: Row(
               children: [
-                const Icon(
-                  Icons.chat_bubble_outline_rounded,
-                  size: 18,
-                  color: AppColors.primaryGreen,
-                ),
+                const Icon(Icons.chat_bubble_outline_rounded,
+                    size: 18, color: AppColors.primaryGreen),
                 const SizedBox(width: 8),
-                Text(
-                  'Teswirler',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.lightTextPrimary,
-                  ),
-                ),
-                if (widget.reviewCount > 0) ...[
-                  const SizedBox(width: 6),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 7,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryGreen.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      '${widget.reviewCount}',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: AppColors.primaryGreen,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ],
+                Text(l10n.teswirler, style: textStyles.s13w600clBlack),
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.pushNamed(
@@ -87,66 +67,57 @@ class _ProductDetailCommentsWidgetState
                     '/productReview',
                     arguments: widget.productId,
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
-                        'Hemmesi',
-                        style: TextStyle(
+                        l10n.hemmesi,
+                        style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.primaryGreen,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(width: 2),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 12,
-                        color: AppColors.primaryGreen,
-                      ),
+                      const SizedBox(width: 2),
+                      const Icon(Icons.arrow_forward_ios_rounded,
+                          size: 12, color: AppColors.primaryGreen),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-
           const Divider(height: 1),
-
           BlocBuilder<CommentBloc, CommentState>(
             builder: (context, state) {
               if (state is CommentLoading) {
                 return const Padding(
                   padding: EdgeInsets.symmetric(vertical: 32),
                   child: Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryGreen,
-                      strokeWidth: 2,
-                    ),
+                    child: CircularProgressIndicator(color: AppColors.primaryGreen, strokeWidth: 2),
                   ),
                 );
               }
 
-              if (state is CommentError) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: Center(
-                    child: Text(
-                      'Ýüklenip bilinmedi',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade400,
-                      ),
-                    ),
-                  ),
-                );
-              }
+             if (state is CommentError) {
+            final isAuthError = state.errorMessage.contains('401');
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Center(
+                child: Text(
+                  isAuthError ? l10n.teswir_giris_gerek : l10n.teswir_yuklenmedi,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 13, color: Colors.grey.shade400),
+                ),
+              ),
+            );
+          }
 
               if (state is CommentLoaded) {
                 if (state.comments.isEmpty) {
-                  return _EmptyPreview(productId: widget.productId);
+                  return const ProductDetailCommentsEmptyWidget();
                 }
 
-                final preview = state.comments.take(10).toList();
+                final preview = state.comments.take(3).toList();
 
                 return Column(
                   children: [
@@ -160,10 +131,38 @@ class _ProductDetailCommentsWidgetState
                         child: Divider(height: 1),
                       ),
                       itemBuilder: (context, index) =>
-                          _PreviewCommentTile(comment: preview[index]),
+                          ProductDetailCommentItemWidget(comment: preview[index]),
                     ),
-                    if (state.hasMore || widget.reviewCount > 10)
-                      _SeeAllButton(productId: widget.productId),
+                    if (state.comments.length > 3 || state.hasMore)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                        child: GestureDetector(
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            '/productReview',
+                            arguments: widget.productId,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: AppColors.primaryGreen.withValues(alpha: 0.4),
+                                  width: 1.5),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Center(
+                              child: Text(
+                                l10n.hemmesini_gorkez,
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: AppColors.primaryGreen,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     const SizedBox(height: 4),
                   ],
                 );
@@ -175,191 +174,5 @@ class _ProductDetailCommentsWidgetState
         ],
       ),
     );
-  }
-}
-
-class _EmptyPreview extends StatelessWidget {
-  final int productId;
-
-  const _EmptyPreview({required this.productId});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
-      child: Column(
-        children: [
-          Icon(
-            Icons.chat_bubble_outline_rounded,
-            size: 40,
-            color: Colors.grey.shade300,
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'Entek teswir ýok',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey.shade400,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Ilkinji teswiri siz ýazyň!',
-            style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class _SeeAllButton extends StatelessWidget {
-  final int productId;
-
-  const _SeeAllButton({required this.productId});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(
-        context,
-        '/productReview',
-        arguments: productId,
-      ),
-      child: Container(
-        margin: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.primaryGreen.withValues(alpha: 0.4),
-            width: 1.5,
-          ),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Center(
-          child: Text(
-            'Hemmesini görkez',
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.primaryGreen,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class _PreviewCommentTile extends StatelessWidget {
-  final CommentModel comment;
-
-  const _PreviewCommentTile({required this.comment});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _MiniAvatar(author: comment.author),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    comment.author.fullName,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    _formatDate(comment.createdAt),
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: AppColors.lightTextSecondary,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Text(
-                comment.body,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: AppColors.lightTextSecondary,
-                  height: 1.4,
-                ),
-              ),
-              if (comment.replies.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    '${comment.replies.length} jogap',
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: AppColors.primaryGreen,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
-  }
-}
-
-class _MiniAvatar extends StatelessWidget {
-  final CommentAuthor author;
-
-  const _MiniAvatar({required this.author});
-
-  @override
-  Widget build(BuildContext context) {
-    final initials = _initials(author.fullName);
-
-    if (author.thumbnail != null && author.thumbnail!.isNotEmpty) {
-      return CircleAvatar(
-        radius: 16,
-        backgroundImage: NetworkImage(author.thumbnail!),
-        onBackgroundImageError: (_, __) {},
-      );
-    }
-
-    return CircleAvatar(
-      radius: 16,
-      backgroundColor: AppColors.primaryGreen.withValues(alpha: 0.12),
-      child: Text(
-        initials,
-        style: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          color: AppColors.primaryGreen,
-        ),
-      ),
-    );
-  }
-
-  String _initials(String name) {
-    final parts = name.trim().split(' ');
-    if (parts.length >= 2) return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
-    if (parts.isNotEmpty && parts[0].isNotEmpty) return parts[0][0].toUpperCase();
-    return '?';
   }
 }

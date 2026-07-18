@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
 
-class ReviewFilterChipsWidget extends StatelessWidget {
+class ProductDetailCommentFilterChipsWidget extends StatelessWidget {
   final int? selectedRating;
   final ValueChanged<int?> onSelect;
-  final VoidCallback onFilterTap;
+  final VoidCallback onMoreFiltersTap;
 
-  const ReviewFilterChipsWidget({
+  const ProductDetailCommentFilterChipsWidget({
     super.key,
     required this.selectedRating,
     required this.onSelect,
-    required this.onFilterTap,
+    required this.onMoreFiltersTap,
   });
 
   @override
@@ -24,11 +24,7 @@ class ReviewFilterChipsWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
-          _Chip(
-            label: l10n.hemmesi,
-            selected: selectedRating == null,
-            onTap: () => onSelect(null),
-          ),
+          _Chip(label: l10n.hemmesi, selected: selectedRating == null, onTap: () => onSelect(null)),
           const SizedBox(width: 8),
           for (final star in [5, 4, 3])
             Padding(
@@ -39,8 +35,12 @@ class ReviewFilterChipsWidget extends StatelessWidget {
                 onTap: () => onSelect(star),
               ),
             ),
+          // Bellik: backend-de surat maglumaty ýok (rewiýu modelinde
+          // haryt suraty saklanmaýar), şonuň üçin "Suratly" filtri
+          // heniz hakyky maglumat bilen işlänok — diňe UI ýerleşdirildi.
+          const SizedBox(width: 8),
           GestureDetector(
-            onTap: onFilterTap,
+            onTap: onMoreFiltersTap,
             child: Container(
               width: 36,
               height: 36,

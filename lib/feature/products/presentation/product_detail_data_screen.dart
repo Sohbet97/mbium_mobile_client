@@ -8,16 +8,14 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/page/cart_pag
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comments_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_features_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_images_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_info_widget.dart';
-import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_reviews_preview_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_shop_card_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:mbium_mobile_client/feature/reviews/presentation/screen/product_review_screen.dart';
-
 
 import '../../../generated/l10n.dart';
 import '../extensions/product_extensions.dart';
@@ -36,8 +34,7 @@ class ProductDetailDataScreen extends StatelessWidget {
     final name = model.nameByLang(lang);
     final price = '${model.price.toStringAsFixed(2)} ${model.currency}';
     final url = 'https://mbium.com/products/${model.id}';
-    final text = '$name\n$price\n$url';
-    Share.share(text);
+    Share.share('$name\n$price\n$url');
   }
 
   void _openShop(BuildContext context) {
@@ -50,26 +47,10 @@ class ProductDetailDataScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/shopDetail', arguments: shopModel);
   }
 
-    void _openReviews(BuildContext context) {
-     Navigator.push(
-    context,
-        MaterialPageRoute(
-      builder: (_) => ProductReviewScreen(
-        productId: model.id,
-        orderId: 0,
-        averageRating: model.rating,
-        reviewCount: model.reviewCount,
-      ),
-    ),
-  );
-}
-
   @override
   Widget build(BuildContext context) {
     final localization = S.of(context);
-    final lang = AppLanguage.fromCode(
-      context.read<MainBloc>().state.languageCode,
-    );
+    final lang = AppLanguage.fromCode(context.read<MainBloc>().state.languageCode);
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -116,22 +97,17 @@ class ProductDetailDataScreen extends StatelessWidget {
                   shop: model.shop!,
                   onOpenShop: () => _openShop(context),
                   onMessage: () {
-                  
+                    // 
                   },
                 ),
               ),
             ],
             const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: ProductDetailReviewsPreviewWidget(
-                productId: model.id,
-                orderId: 0,
-                rating: model.rating,
-                reviewCount: model.reviewCount,
-                onSeeAll: () => _openReviews(context),
-              ),
-            ),
+            ProductDetailCommentsWidget(
+            productId: model.id,
+            rating: model.rating,
+            reviewCount: model.reviewCount,
+          ),
             const SizedBox(height: 8),
           ],
         ),
@@ -140,7 +116,7 @@ class ProductDetailDataScreen extends StatelessWidget {
   }
 }
 
-// ─── Bottom bar ─────
+
 
 class _BottomBar extends StatelessWidget {
   final ProductDetailModel model;
@@ -179,12 +155,8 @@ class _BottomBar extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
           child: Row(
             children: [
-              _ShopButton(
-                onTap: model.shop != null ? onOpenShop : null,
-              ),
+              _ShopButton(onTap: model.shop != null ? onOpenShop : null),
               const SizedBox(width: 12),
-
-              // ── Корзина ─────────────────────────────────────────
               Expanded(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 280),
@@ -202,13 +174,10 @@ class _BottomBar extends StatelessWidget {
                           key: const ValueKey('add'),
                           price: model.price,
                           currency: model.currency,
-                          outOfStock:
-                              model.stock == 0 && !model.sellWhenOutOfStock,
+                          outOfStock: model.stock == 0 && !model.sellWhenOutOfStock,
                           onTap: () {
                             HapticFeedback.lightImpact();
-                            context.read<CartBloc>().add(
-                              AddToCartEvent(product),
-                            );
+                            context.read<CartBloc>().add(AddToCartEvent(product));
                           },
                         )
                       : _StepperButton(
@@ -219,19 +188,16 @@ class _BottomBar extends StatelessWidget {
                           onDecrement: () {
                             HapticFeedback.lightImpact();
                             context.read<CartBloc>().add(
-                              UpdateQuantityEvent(product.id, qty - 1),
-                            );
+                                UpdateQuantityEvent(product.id, qty - 1));
                           },
                           onIncrement: () {
                             HapticFeedback.lightImpact();
                             context.read<CartBloc>().add(
-                              UpdateQuantityEvent(product.id, qty + 1),
-                            );
+                                UpdateQuantityEvent(product.id, qty + 1));
                           },
                         ),
                 ),
               ),
-
               if (qty > 0) ...[
                 const SizedBox(width: 10),
                 _CartPageButton(
@@ -245,9 +211,7 @@ class _BottomBar extends StatelessWidget {
                       maxChildSize: 0.93,
                       expand: false,
                       builder: (_, scrollController) => ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(20),
-                        ),
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
                         child: Scaffold(
                           body: CustomScrollView(
                             controller: scrollController,
@@ -255,10 +219,7 @@ class _BottomBar extends StatelessWidget {
                               SliverToBoxAdapter(
                                 child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 10,
-                                      bottom: 4,
-                                    ),
+                                    padding: const EdgeInsets.only(top: 10, bottom: 4),
                                     child: Container(
                                       width: 40,
                                       height: 4,
@@ -290,7 +251,6 @@ class _BottomBar extends StatelessWidget {
   }
 }
 
-
 class _ShopButton extends StatelessWidget {
   final VoidCallback? onTap;
 
@@ -307,16 +267,11 @@ class _ShopButton extends StatelessWidget {
           border: Border.all(color: AppColors.navBarGrey, width: 1.5),
           borderRadius: BorderRadius.circular(14),
         ),
-        child: const Icon(
-          Icons.storefront_outlined,
-          color: AppColors.primaryGreen,
-          size: 24,
-        ),
+        child: const Icon(Icons.storefront_outlined, color: AppColors.primaryGreen, size: 24),
       ),
     );
   }
 }
-
 
 class _AddButton extends StatelessWidget {
   final double price;
@@ -352,11 +307,7 @@ class _AddButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.shopping_cart_outlined,
-              color: AppColors.navWhite,
-              size: 18,
-            ),
+            const Icon(Icons.shopping_cart_outlined, color: AppColors.navWhite, size: 18),
             const SizedBox(width: 8),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -423,7 +374,6 @@ class _StepperButton extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Minus
           _StepBtn(icon: Icons.remove, onTap: onDecrement),
           Expanded(
             child: Column(
@@ -462,8 +412,6 @@ class _StepperButton extends StatelessWidget {
               ],
             ),
           ),
-
-          // Plus
           _StepBtn(icon: Icons.add, onTap: onIncrement),
         ],
       ),
@@ -485,17 +433,11 @@ class _StepBtn extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(14),
         splashColor: Colors.white24,
-        child: SizedBox(
-          width: 48,
-          height: 52,
-          child: Icon(icon, color: AppColors.navWhite, size: 20),
-        ),
+        child: SizedBox(width: 48, height: 52, child: Icon(icon, color: AppColors.navWhite, size: 20)),
       ),
     );
   }
 }
-
-// ─── Cart page button ─────────────────────────────────────────────────────────
 
 class _CartPageButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -512,16 +454,9 @@ class _CartPageButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.primaryGreen.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.primaryGreen.withValues(alpha: 0.3),
-            width: 1.5,
-          ),
+          border: Border.all(color: AppColors.primaryGreen.withValues(alpha: 0.3), width: 1.5),
         ),
-        child: const Icon(
-          Icons.shopping_bag_outlined,
-          color: AppColors.primaryGreen,
-          size: 22,
-        ),
+        child: const Icon(Icons.shopping_bag_outlined, color: AppColors.primaryGreen, size: 22),
       ),
     );
   }
