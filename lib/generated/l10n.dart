@@ -2963,6 +2963,121 @@ class S {
       args: [],
     );
   }
+
+  /// `MBIUM Coin balansy`
+  String get coin_balance_title {
+    return Intl.message(
+      'MBIUM Coin balansy',
+      name: 'coin_balance_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taryhy`
+  String get coin_history_tab {
+    return Intl.message('Taryhy', name: 'coin_history_tab', desc: '', args: []);
+  }
+
+  /// `Doldurmalar`
+  String get coin_topup_tab {
+    return Intl.message(
+      'Doldurmalar',
+      name: 'coin_topup_tab',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balansy doldurmak`
+  String get balans_doldurmak {
+    return Intl.message(
+      'Balansy doldurmak',
+      name: 'balans_doldurmak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Möçberi (TMT)`
+  String get coin_amount_tmt {
+    return Intl.message(
+      'Möçberi (TMT)',
+      name: 'coin_amount_tmt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kwitansiýa salgysy (URL)`
+  String get coin_receipt_url {
+    return Intl.message(
+      'Kwitansiýa salgysy (URL)',
+      name: 'coin_receipt_url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doldurmak baradaky haýyşyňyz iberildi`
+  String get coin_topup_success {
+    return Intl.message(
+      'Doldurmak baradaky haýyşyňyz iberildi',
+      name: 'coin_topup_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taryh entek ýok`
+  String get coin_history_empty {
+    return Intl.message(
+      'Taryh entek ýok',
+      name: 'coin_history_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doldurmalar ýok`
+  String get coin_topup_empty {
+    return Intl.message(
+      'Doldurmalar ýok',
+      name: 'coin_topup_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Garaşylýar`
+  String get status_pending {
+    return Intl.message(
+      'Garaşylýar',
+      name: 'status_pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tassyklandy`
+  String get status_approved {
+    return Intl.message(
+      'Tassyklandy',
+      name: 'status_approved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ret edildi`
+  String get status_rejected {
+    return Intl.message(
+      'Ret edildi',
+      name: 'status_rejected',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

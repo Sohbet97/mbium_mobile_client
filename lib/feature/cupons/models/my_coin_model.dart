@@ -1,7 +1,9 @@
+import 'coin_number_parsing.dart';
+
 class MyCoinModel {
-  final int balance;
-  final int totalEarned;
-  final int totalSpent;
+  final double balance;
+  final double totalEarned;
+  final double totalSpent;
 
   const MyCoinModel({
     required this.balance,
@@ -11,9 +13,9 @@ class MyCoinModel {
 
   factory MyCoinModel.fromJson(Map<String, dynamic> json) {
     return MyCoinModel(
-      balance: json['balance'] as int? ?? 0,
-      totalEarned: json['total_earned'] as int? ?? 0,
-      totalSpent: json['total_spent'] as int? ?? 0,
+      balance: parseCoinDouble(json['balance']),
+      totalEarned: parseCoinDouble(json['total_earned']),
+      totalSpent: parseCoinDouble(json['total_spent']),
     );
   }
 }

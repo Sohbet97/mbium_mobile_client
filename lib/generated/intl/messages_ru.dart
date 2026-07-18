@@ -107,6 +107,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Bal satyn alnyşy",
     ),
     "balance": MessageLookupByLibrary.simpleMessage("Balans"),
+    "balans_doldurmak": MessageLookupByLibrary.simpleMessage(
+      "Balansy doldurmak",
+    ),
     "balkan_lale_shop_desc": MessageLookupByLibrary.simpleMessage(
       "Sertifikatlaşdyrylan. 150 işçi+100000 zakaz ýerine ýetirilen",
     ),
@@ -144,6 +147,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Içki kategoriýa ýok",
     ),
     "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
+    "coin_amount_tmt": MessageLookupByLibrary.simpleMessage("Möçberi (TMT)"),
+    "coin_balance_title": MessageLookupByLibrary.simpleMessage(
+      "MBIUM Coin balansy",
+    ),
+    "coin_history_empty": MessageLookupByLibrary.simpleMessage(
+      "Taryh entek ýok",
+    ),
+    "coin_history_tab": MessageLookupByLibrary.simpleMessage("Taryhy"),
+    "coin_receipt_url": MessageLookupByLibrary.simpleMessage(
+      "Kwitansiýa salgysy (URL)",
+    ),
+    "coin_topup_empty": MessageLookupByLibrary.simpleMessage("Doldurmalar ýok"),
+    "coin_topup_success": MessageLookupByLibrary.simpleMessage(
+      "Doldurmak baradaky haýyşyňyz iberildi",
+    ),
+    "coin_topup_tab": MessageLookupByLibrary.simpleMessage("Doldurmalar"),
     "cupons": MessageLookupByLibrary.simpleMessage("Kuponlar"),
     "currency": MessageLookupByLibrary.simpleMessage("Pul birligi"),
     "dalandyrys_sertifikaty_bolan": MessageLookupByLibrary.simpleMessage(
@@ -531,6 +550,9 @@ class MessageLookup extends MessageLookupByLibrary {
           "Söwda teklip sargytlarynyň iň meşgurlary",
         ),
     "sowgat_ber": MessageLookupByLibrary.simpleMessage("SOWGAT BER"),
+    "status_approved": MessageLookupByLibrary.simpleMessage("Tassyklandy"),
+    "status_pending": MessageLookupByLibrary.simpleMessage("Garaşylýar"),
+    "status_rejected": MessageLookupByLibrary.simpleMessage("Ret edildi"),
     "sul_akkaunda_degisli_wideo_gorkezme": MessageLookupByLibrary.simpleMessage(
       "Şul akkaunda degişli hiç bir wideo görkezme",
     ),

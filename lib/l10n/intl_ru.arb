@@ -347,6 +347,18 @@
 "kody_gaytadan_ibermek": "Kody gaýtadan ibermek",
 "maglumat_gorag_astynda": "Maglumatlaryňyz howpsuzlyk astynda goralýar",
 "brands": "Brendler",
-"brand_empty": "Brend tapylmady"
+"brand_empty": "Brend tapylmady",
+"coin_balance_title": "MBIUM Coin balansy",
+"coin_history_tab": "Taryhy",
+"coin_topup_tab": "Doldurmalar",
+"balans_doldurmak": "Balansy doldurmak",
+"coin_amount_tmt": "Möçberi (TMT)",
+"coin_receipt_url": "Kwitansiýa salgysy (URL)",
+"coin_topup_success": "Doldurmak baradaky haýyşyňyz iberildi",
+"coin_history_empty": "Taryh entek ýok",
+"coin_topup_empty": "Doldurmalar ýok",
+"status_pending": "Garaşylýar",
+"status_approved": "Tassyklandy",
+"status_rejected": "Ret edildi"
 
 }
