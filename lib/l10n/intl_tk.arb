@@ -363,7 +363,14 @@
 "orders_empty": "Sargytlaryňyz heniz ýok",
 "order_cancel_title": "Sargydy ýatyrmak?",
 "order_cancel_confirm": "Bu sargydy ýatyrmak isleýäňizmi?",
-"order_cancel_button": "Ýatyrmak"
+"order_cancel_button": "Ýatyrmak",
+"checkout_manual_address": "Elde girizmek",
+"checkout_select_address_error": "Eltip bermek salgysyny saýlaň",
+"checkout_enter_address_error": "Eltip bermek salgysyny giriziň",
+"checkout_order_success": "Sargyt üstünlikli döredildi",
+"checkout_order_failed_prefix": "Sargyt döredilmedi: ",
+"checkout_note_hint": "Bellik (hökman däl)",
+"checkout_shop_fallback_prefix": "Dükan #"
 
 
 }

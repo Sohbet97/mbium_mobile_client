@@ -3128,6 +3128,146 @@ class S {
   String get add_to_cart {
     return Intl.message('Sebede goş', name: 'add_to_cart', desc: '', args: []);
   }
+
+  /// `Order #`
+  String get order_number_prefix {
+    return Intl.message(
+      'Order #',
+      name: 'order_number_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status: `
+  String get order_status_prefix {
+    return Intl.message(
+      'Status: ',
+      name: 'order_status_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note: `
+  String get order_note_prefix {
+    return Intl.message(
+      'Note: ',
+      name: 'order_note_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no orders yet`
+  String get orders_empty {
+    return Intl.message(
+      'You have no orders yet',
+      name: 'orders_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel order?`
+  String get order_cancel_title {
+    return Intl.message(
+      'Cancel order?',
+      name: 'order_cancel_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel this order?`
+  String get order_cancel_confirm {
+    return Intl.message(
+      'Are you sure you want to cancel this order?',
+      name: 'order_cancel_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get order_cancel_button {
+    return Intl.message(
+      'Cancel',
+      name: 'order_cancel_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter manually`
+  String get checkout_manual_address {
+    return Intl.message(
+      'Enter manually',
+      name: 'checkout_manual_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a delivery address`
+  String get checkout_select_address_error {
+    return Intl.message(
+      'Please select a delivery address',
+      name: 'checkout_select_address_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a delivery address`
+  String get checkout_enter_address_error {
+    return Intl.message(
+      'Please enter a delivery address',
+      name: 'checkout_enter_address_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order placed successfully`
+  String get checkout_order_success {
+    return Intl.message(
+      'Order placed successfully',
+      name: 'checkout_order_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order failed: `
+  String get checkout_order_failed_prefix {
+    return Intl.message(
+      'Order failed: ',
+      name: 'checkout_order_failed_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note (optional)`
+  String get checkout_note_hint {
+    return Intl.message(
+      'Note (optional)',
+      name: 'checkout_note_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shop #`
+  String get checkout_shop_fallback_prefix {
+    return Intl.message(
+      'Shop #',
+      name: 'checkout_shop_fallback_prefix',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

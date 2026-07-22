@@ -402,8 +402,14 @@
 "orders_empty": "You have no orders yet",
 "order_cancel_title": "Cancel order?",
 "order_cancel_confirm": "Are you sure you want to cancel this order?",
-"order_cancel_button": "Cancel"
-
+"order_cancel_button": "Cancel",
+"checkout_manual_address": "Enter manually",
+"checkout_select_address_error": "Please select a delivery address",
+"checkout_enter_address_error": "Please enter a delivery address",
+"checkout_order_success": "Order placed successfully",
+"checkout_order_failed_prefix": "Order failed: ",
+"checkout_note_hint": "Note (optional)",
+"checkout_shop_fallback_prefix": "Shop #"
 
 
 

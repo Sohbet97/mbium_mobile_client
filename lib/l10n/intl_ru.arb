@@ -373,8 +373,14 @@
 "orders_empty": "У вас пока нет заказов",
 "order_cancel_title": "Отменить заказ?",
 "order_cancel_confirm": "Вы уверены, что хотите отменить этот заказ?",
-"order_cancel_button": "Отменить"
-
+"order_cancel_button": "Отменить",
+"checkout_manual_address": "Ввести вручную",
+"checkout_select_address_error": "Выберите адрес доставки",
+"checkout_enter_address_error": "Введите адрес доставки",
+"checkout_order_success": "Заказ успешно оформлен",
+"checkout_order_failed_prefix": "Заказ не оформлен: ",
+"checkout_note_hint": "Заметка (необязательно)",
+"checkout_shop_fallback_prefix": "Магазин #"
 
 
 

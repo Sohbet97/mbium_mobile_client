@@ -110,14 +110,15 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
   }
 
   Future<void> _submit(List<CartModel> items) async {
+    final localization = S.of(context);
     final deliveryAddress = _useManualAddress
         ? _manualAddressController.text.trim()
         : _selectedAddress?.address ?? '';
     if (deliveryAddress.isEmpty) {
       showGlobalMessage(
         _useManualAddress
-            ? 'Eltip bermek salgysyny giriziň'
-            : 'Eltip bermek salgysyny saýlaň',
+            ? localization.checkout_enter_address_error
+            : localization.checkout_select_address_error,
       );
       return;
     }
@@ -149,7 +150,8 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
         await orderRepository.createOrders(payload);
       } catch (e) {
         failedShops.add(
-          shopItems.first.product.shop?.name ?? 'Shop #${entry.key}',
+          shopItems.first.product.shop?.name ??
+              '${localization.checkout_shop_fallback_prefix}${entry.key}',
         );
       }
     }
@@ -159,11 +161,11 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
 
     if (failedShops.isEmpty) {
       context.read<CartBloc>().add(const ClearCartEvent());
-      showGlobalMessage('Sargyt üstünlikli döredildi', isError: false);
+      showGlobalMessage(localization.checkout_order_success, isError: false);
       Navigator.of(context).pushReplacementNamed('/orders');
     } else {
       showGlobalMessage(
-        'Sargyt döredilmedi: ${failedShops.join(', ')}',
+        '${localization.checkout_order_failed_prefix}${failedShops.join(', ')}',
       );
     }
   }
@@ -224,7 +226,7 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
             ),
             const SizedBox(width: 8),
             ChoiceChip(
-              label: const Text('Elde girizmek'),
+              label: Text(S.of(context).checkout_manual_address),
               selected: _useManualAddress,
               onSelected: (_) => setState(() => _useManualAddress = true),
               selectedColor: AppColors.primaryGreen,
@@ -318,7 +320,7 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
       controller: _noteController,
       maxLines: 3,
       decoration: InputDecoration(
-        hintText: 'Bellik (hökman däl)',
+        hintText: S.of(context).checkout_note_hint,
         filled: true,
         fillColor: Theme.of(context).cardColor,
         border: OutlineInputBorder(
@@ -330,7 +332,8 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
   }
 
   Widget _buildShopGroup(int shopId, List<CartModel> shopItems) {
-    final shopName = shopItems.first.product.shop?.name ?? 'Dükan #$shopId';
+    final shopName = shopItems.first.product.shop?.name ??
+        '${S.of(context).checkout_shop_fallback_prefix}$shopId';
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(14),

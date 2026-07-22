@@ -142,6 +142,27 @@ class MessageLookup extends MessageLookupByLibrary {
       "Içki kategoriýa ýok",
     ),
     "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
+    "checkout_enter_address_error": MessageLookupByLibrary.simpleMessage(
+      "Eltip bermek salgysyny giriziň",
+    ),
+    "checkout_manual_address": MessageLookupByLibrary.simpleMessage(
+      "Elde girizmek",
+    ),
+    "checkout_note_hint": MessageLookupByLibrary.simpleMessage(
+      "Bellik (hökman däl)",
+    ),
+    "checkout_order_failed_prefix": MessageLookupByLibrary.simpleMessage(
+      "Sargyt döredilmedi: ",
+    ),
+    "checkout_order_success": MessageLookupByLibrary.simpleMessage(
+      "Sargyt üstünlikli döredildi",
+    ),
+    "checkout_select_address_error": MessageLookupByLibrary.simpleMessage(
+      "Eltip bermek salgysyny saýlaň",
+    ),
+    "checkout_shop_fallback_prefix": MessageLookupByLibrary.simpleMessage(
+      "Dükan #",
+    ),
     "coin_amount_tmt": MessageLookupByLibrary.simpleMessage("Möçberi (TMT)"),
     "coin_balance_title": MessageLookupByLibrary.simpleMessage(
       "MBIUM Coin balansy",
@@ -430,7 +451,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "onuniz_ozuniz_alynyz_goragy": MessageLookupByLibrary.simpleMessage(
       "Özüňiz sargyt edeniňizde",
     ),
+    "order_cancel_button": MessageLookupByLibrary.simpleMessage("Ýatyrmak"),
+    "order_cancel_confirm": MessageLookupByLibrary.simpleMessage(
+      "Bu sargydy ýatyrmak isleýäňizmi?",
+    ),
+    "order_cancel_title": MessageLookupByLibrary.simpleMessage(
+      "Sargydy ýatyrmak?",
+    ),
+    "order_note_prefix": MessageLookupByLibrary.simpleMessage("Bellik: "),
+    "order_number_prefix": MessageLookupByLibrary.simpleMessage("Sargyt №"),
+    "order_status_prefix": MessageLookupByLibrary.simpleMessage("Ýagdaý: "),
     "orders": MessageLookupByLibrary.simpleMessage("Sargytlarym"),
+    "orders_empty": MessageLookupByLibrary.simpleMessage(
+      "Sargytlaryňyz heniz ýok",
+    ),
     "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
     "oz_bahany_appbar_title": MessageLookupByLibrary.simpleMessage(
       "Öz bahaň we islegleriňe görä sargyt",

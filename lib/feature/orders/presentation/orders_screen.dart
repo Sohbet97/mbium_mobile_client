@@ -43,19 +43,23 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Future<void> _confirmCancel(int id) async {
+    final localization = S.of(context);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Sargydy ýatyrmak?'),
-        content: const Text('Bu sargydy ýatyrmak isleýäňizmi?'),
+        title: Text(localization.order_cancel_title),
+        content: Text(localization.order_cancel_confirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text('Ýok'),
+            child: Text(localization.no),
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: const Text('Hawa', style: TextStyle(color: AppColors.errorRed)),
+            child: Text(
+              localization.yes,
+              style: const TextStyle(color: AppColors.errorRed),
+            ),
           ),
         ],
       ),
@@ -104,8 +108,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
           final loaded = state as OrderLoaded;
           if (loaded.orders.isEmpty) {
-            return const MyEmptyWidget(
-              emptyText: 'Sargytlaryňyz heniz ýok',
+            return MyEmptyWidget(
+              emptyText: S.of(context).orders_empty,
               icon: Icons.receipt_long_outlined,
             );
           }
@@ -152,8 +156,9 @@ class _OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localization = S.of(context);
     final dateStr = order.createdAt != null
-        ? DateFormat('dd.MM.yyyy HH:mm').format(order.createdAt!.toLocal())
+        ? DateFormat('dd.MM.yyyy HH:mm, en').format(order.createdAt!.toLocal())
         : '';
     final itemsSummary = order.items.isNotEmpty
         ? order.items.map((i) => '${i.productName} x${i.quantity}').join(', ')
@@ -183,12 +188,15 @@ class _OrderCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Sargyt №${order.id}',
+                    '${localization.order_number_prefix}${order.id}',
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.primaryGreen.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(20),
@@ -197,7 +205,7 @@ class _OrderCard extends StatelessWidget {
                     // NOTE: order.status codes aren't confirmed against a real
                     // status table yet — showing the raw code until we have
                     // one to map against.
-                    'Ýagdaý: ${order.status}',
+                    '${localization.order_status_prefix}${order.status}',
                     style: const TextStyle(
                       color: AppColors.primaryGreen,
                       fontSize: 11,
@@ -211,7 +219,10 @@ class _OrderCard extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 dateStr,
-                style: TextStyle(color: AppColors.lightTextSecondary, fontSize: 12),
+                style: TextStyle(
+                  color: AppColors.lightTextSecondary,
+                  fontSize: 12,
+                ),
               ),
             ],
             const SizedBox(height: 8),
@@ -227,7 +238,10 @@ class _OrderCard extends StatelessWidget {
               order.deliveryAddress,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 12, color: AppColors.lightTextSecondary),
+              style: TextStyle(
+                fontSize: 12,
+                color: AppColors.lightTextSecondary,
+              ),
             ),
             const SizedBox(height: 10),
             Row(
@@ -243,8 +257,10 @@ class _OrderCard extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: onCancel,
-                  style: TextButton.styleFrom(foregroundColor: AppColors.errorRed),
-                  child: const Text('Ýatyrmak'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.errorRed,
+                  ),
+                  child: Text(localization.order_cancel_button),
                 ),
               ],
             ),
@@ -265,19 +281,26 @@ class _OrderDetailSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OrderBloc, OrderState>(
       builder: (context, state) {
+        final localization = S.of(context);
         final loaded = state is OrderLoaded ? state : null;
         final order =
-            (loaded?.selectedOrder?.id == orderId ? loaded!.selectedOrder : null) ??
-                fallback;
+            (loaded?.selectedOrder?.id == orderId
+                ? loaded!.selectedOrder
+                : null) ??
+            fallback;
         final isLoading = loaded?.isLoadingDetail ?? false;
 
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
           child: Container(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
             ),
             child: SafeArea(
               top: false,
@@ -297,15 +320,18 @@ class _OrderDetailSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Sargyt №${order.id}',
-                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                    '${localization.order_number_prefix}${order.id}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(order.deliveryAddress),
                   if (order.note.isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text(
-                      'Bellik: ${order.note}',
+                      '${localization.order_note_prefix}${order.note}',
                       style: TextStyle(color: AppColors.lightTextSecondary),
                     ),
                   ],
@@ -324,12 +350,16 @@ class _OrderDetailSheet extends StatelessWidget {
                             Expanded(child: Text(item.productName)),
                             Text(
                               'x${item.quantity}',
-                              style: TextStyle(color: AppColors.lightTextSecondary),
+                              style: TextStyle(
+                                color: AppColors.lightTextSecondary,
+                              ),
                             ),
                             const SizedBox(width: 8),
                             Text(
                               '${item.totalPrice.toStringAsFixed(2)} ${order.currency}',
-                              style: const TextStyle(fontWeight: FontWeight.w600),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                         ),
@@ -339,7 +369,10 @@ class _OrderDetailSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Jemi', style: TextStyle(fontWeight: FontWeight.w700)),
+                      Text(
+                        localization.jemi,
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
                       Text(
                         '${order.totalPrice.toStringAsFixed(2)} ${order.currency}',
                         style: const TextStyle(
