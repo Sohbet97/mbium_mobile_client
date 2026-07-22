@@ -430,7 +430,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "onuniz_ozuniz_alynyz_goragy": MessageLookupByLibrary.simpleMessage(
       "Özüňiz sargyt edeniňizde",
     ),
+    "order_cancel_button": MessageLookupByLibrary.simpleMessage("Ýatyrmak"),
+    "order_cancel_confirm": MessageLookupByLibrary.simpleMessage(
+      "Bu sargydy ýatyrmak isleýäňizmi?",
+    ),
+    "order_cancel_title": MessageLookupByLibrary.simpleMessage(
+      "Sargydy ýatyrmak?",
+    ),
+    "order_note_prefix": MessageLookupByLibrary.simpleMessage("Bellik: "),
+    "order_number_prefix": MessageLookupByLibrary.simpleMessage("Sargyt №"),
+    "order_status_prefix": MessageLookupByLibrary.simpleMessage("Ýagdaý: "),
     "orders": MessageLookupByLibrary.simpleMessage("Sargytlarym"),
+    "orders_empty": MessageLookupByLibrary.simpleMessage(
+      "Sargytlaryňyz heniz ýok",
+    ),
     "oyuncaklar": MessageLookupByLibrary.simpleMessage("Oýnawaçlar"),
     "oz_bahany_appbar_title": MessageLookupByLibrary.simpleMessage(
       "Öz bahaň we islegleriňe görä sargyt",

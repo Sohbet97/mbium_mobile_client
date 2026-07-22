@@ -395,8 +395,14 @@
 "stoc"  : "Sklatda bary",
 "korzinada" : "Sebetde:",
 "delete_from_cart"  : "Sebetden pozmak",
-"add_to_cart" : "Sebede goş"
-
+"add_to_cart" : "Sebede goş",
+"order_number_prefix": "Order #",
+"order_status_prefix": "Status: ",
+"order_note_prefix": "Note: ",
+"orders_empty": "You have no orders yet",
+"order_cancel_title": "Cancel order?",
+"order_cancel_confirm": "Are you sure you want to cancel this order?",
+"order_cancel_button": "Cancel"
 
 
 

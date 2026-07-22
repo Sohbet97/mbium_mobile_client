@@ -3128,6 +3128,76 @@ class S {
   String get add_to_cart {
     return Intl.message('Sebede goş', name: 'add_to_cart', desc: '', args: []);
   }
+
+  /// `Order #`
+  String get order_number_prefix {
+    return Intl.message(
+      'Order #',
+      name: 'order_number_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status: `
+  String get order_status_prefix {
+    return Intl.message(
+      'Status: ',
+      name: 'order_status_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note: `
+  String get order_note_prefix {
+    return Intl.message(
+      'Note: ',
+      name: 'order_note_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no orders yet`
+  String get orders_empty {
+    return Intl.message(
+      'You have no orders yet',
+      name: 'orders_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel order?`
+  String get order_cancel_title {
+    return Intl.message(
+      'Cancel order?',
+      name: 'order_cancel_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel this order?`
+  String get order_cancel_confirm {
+    return Intl.message(
+      'Are you sure you want to cancel this order?',
+      name: 'order_cancel_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get order_cancel_button {
+    return Intl.message(
+      'Cancel',
+      name: 'order_cancel_button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
