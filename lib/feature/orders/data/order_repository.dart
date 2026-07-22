@@ -37,9 +37,11 @@ class OrderRepository {
     }
   }
 
-  /// POST /orders/ — creates order(s) from the given payload (eg. cart
-  /// checkout). The backend can split a single checkout into several orders
-  /// (one per shop), so it returns a list, mirroring the GET list shape.
+  /// POST /orders/ — creates one order from the given payload (a single
+  /// shop_id + its items, eg. one shop's slice of a cart checkout). The
+  /// response wraps a single order under `model`, not a `data` list — this
+  /// also tolerates a `data` list shape defensively in case that ever
+  /// changes.
   Future<List<OrderModel>> createOrders(
     Map<String, dynamic> payload, {
     CancelToken? cancelToken,
@@ -56,10 +58,13 @@ class OrderRepository {
       }
 
       final body = response.data as Map<String, dynamic>;
-      final data = body['data'] as List;
-      return data
-          .map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      if (body['data'] is List) {
+        return (body['data'] as List)
+            .map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }
+      final raw = body['model'] as Map<String, dynamic>?;
+      return raw != null ? [OrderModel.fromJson(raw)] : const [];
     } on DioException catch (e) {
       if (CancelToken.isCancel(e)) rethrow;
       throw Exception('Error creating order: $e');

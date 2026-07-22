@@ -14,6 +14,7 @@ void showGlobalMessage(String message, {bool isError = true}) {
     ..showSnackBar(
       SnackBar(
         content: Text(message),
+        showCloseIcon: true,
         backgroundColor: isError ? Colors.red.shade700 : null,
       ),
     );
