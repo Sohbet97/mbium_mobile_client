@@ -356,7 +356,14 @@
 "stoc"  : "Sklatda bary",
 "korzinada" : "Sebetde:",
 "delete_from_cart"  : "Sebetden pozmak",
-"add_to_cart" : "Sebede goş"
+"add_to_cart" : "Sebede goş",
+"order_number_prefix": "Sargyt №",
+"order_status_prefix": "Ýagdaý: ",
+"order_note_prefix": "Bellik: ",
+"orders_empty": "Sargytlaryňyz heniz ýok",
+"order_cancel_title": "Sargydy ýatyrmak?",
+"order_cancel_confirm": "Bu sargydy ýatyrmak isleýäňizmi?",
+"order_cancel_button": "Ýatyrmak"
 
 
 }

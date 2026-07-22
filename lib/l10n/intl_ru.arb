@@ -366,8 +366,14 @@
 "stoc"  : "Sklatda bary",
 "korzinada" : "Sebetde:",
 "delete_from_cart"  : "Удалить из корзины",
-"add_to_cart" : "Добавить в корзину"
-
+"add_to_cart" : "Добавить в корзину",
+"order_number_prefix": "Заказ №",
+"order_status_prefix": "Статус: ",
+"order_note_prefix": "Заметка: ",
+"orders_empty": "У вас пока нет заказов",
+"order_cancel_title": "Отменить заказ?",
+"order_cancel_confirm": "Вы уверены, что хотите отменить этот заказ?",
+"order_cancel_button": "Отменить"
 
 
 
