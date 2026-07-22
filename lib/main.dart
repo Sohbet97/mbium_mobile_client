@@ -218,7 +218,7 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => CartRepository(
             dio: apiClient.dio,
-            appPreferences: widget.appPreferences,
+            productRepository: context.read<ProductRepository>(),
           ),
         ),
 

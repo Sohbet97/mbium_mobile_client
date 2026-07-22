@@ -1,20 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Добавлено для HapticFeedback
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/core/network/interceptors.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/cart_page/bloc/cart_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/data/product_repository.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/variant_picker_sheet.dart';
 
-class CartControlWidget extends StatelessWidget {
+class CartControlWidget extends StatefulWidget {
   const CartControlWidget({super.key, required this.product});
 
   final ProductModel product;
 
   @override
+  State<CartControlWidget> createState() => _CartControlWidgetState();
+}
+
+class _CartControlWidgetState extends State<CartControlWidget> {
+  // Grid cards only carry ProductModel (no variants), so whether this
+  // product has variants is unknown until we fetch its detail — cached here
+  // so repeated taps on the same card don't re-fetch.
+  ProductDetailModel? _cachedDetail;
+  bool _loading = false;
+
+  @override
+  void didUpdateWidget(covariant CartControlWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.product.id != widget.product.id) {
+      _cachedDetail = null;
+      _loading = false;
+    }
+  }
+
+  Future<void> _handleAddTap() async {
+    if (_loading) return;
+    HapticFeedback.lightImpact();
+
+    final cached = _cachedDetail;
+    if (cached != null) {
+      if (cached.variants.isNotEmpty) {
+        showVariantPickerSheet(context, model: cached);
+      } else {
+        context.read<CartBloc>().add(AddToCartEvent(widget.product));
+      }
+      return;
+    }
+
+    setState(() => _loading = true);
+    try {
+      final detail = await context.read<ProductRepository>().getProductDetail(
+        widget.product.id,
+      );
+      if (!mounted) return;
+      _cachedDetail = detail;
+      if (detail.variants.isNotEmpty) {
+        await showVariantPickerSheet(context, model: detail);
+      } else {
+        context.read<CartBloc>().add(AddToCartEvent(widget.product));
+      }
+    } catch (_) {
+      showGlobalMessage('Не удалось загрузить товар');
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final qty = context.select<CartBloc, int>((bloc) {
+    final plainQty = context.select<CartBloc, int>((bloc) {
       final s = bloc.state;
-      return s is CartLoaded ? s.quantityOf(product.id) : 0;
+      return s is CartLoaded ? s.quantityOf(widget.product.id) : 0;
+    });
+    final totalQty = context.select<CartBloc, int>((bloc) {
+      final s = bloc.state;
+      return s is CartLoaded
+          ? s.totalQuantityOfProduct(widget.product.id)
+          : 0;
     });
 
     // Премиальный подход: используем AnimatedSwitcher для плавного перехода между состояниями
@@ -31,69 +94,129 @@ class CartControlWidget extends StatelessWidget {
           ),
         );
       },
-      child: qty == 0
-          ? _PremiumAddButton(
-              key: const ValueKey('add_btn'),
-              onTap: () {
-                HapticFeedback.lightImpact(); // Дорогой тактильный отклик
-                context.read<CartBloc>().add(AddToCartEvent(product));
-              },
-            )
-          : _PremiumStepper(
+      child: _loading
+          ? const _PremiumLoadingButton(key: ValueKey('loading_btn'))
+          : plainQty > 0
+          // Only a plain (no-variant) line exists — safe to mutate directly,
+          // no need to know whether the product has variants.
+          ? _PremiumStepper(
               key: const ValueKey('stepper'),
-              quantity: qty,
+              quantity: plainQty,
               onDecrement: () {
                 HapticFeedback.lightImpact();
                 context.read<CartBloc>().add(
-                  UpdateQuantityEvent(product.id, qty - 1),
+                  UpdateQuantityEvent(widget.product.id, plainQty - 1),
                 );
               },
               onIncrement: () {
                 HapticFeedback.lightImpact();
                 context.read<CartBloc>().add(
-                  UpdateQuantityEvent(product.id, qty + 1),
+                  UpdateQuantityEvent(widget.product.id, plainQty + 1),
                 );
               },
+            )
+          // Quantity exists only via variant line(s) added elsewhere (e.g.
+          // the product page) — show a badge so the card reflects it's in
+          // the cart; tapping re-opens the picker rather than guessing which
+          // variant line to mutate.
+          : _PremiumAddButton(
+              key: const ValueKey('add_btn'),
+              badgeCount: totalQty,
+              onTap: _handleAddTap,
             ),
     );
   }
 }
 
-class _PremiumAddButton extends StatelessWidget {
-  const _PremiumAddButton({super.key, required this.onTap});
-
-  final VoidCallback onTap;
+class _PremiumLoadingButton extends StatelessWidget {
+  const _PremiumLoadingButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:
-          36, // Чуть увеличили для лучшего UX (минимальный размер тач-зоны Apple/Google ~44, но в сетке 36 выглядит аккуратнее)
+      width: 36,
       height: 36,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColors.primaryGreen,
         shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryGreen.withOpacity(0.25),
-            blurRadius: 8,
-            offset: const Offset(
-              0,
-              3,
-            ), // Мягкая тень под кнопкой добавляет глубины
+      ),
+      padding: const EdgeInsets.all(9),
+      child: const CircularProgressIndicator(
+        strokeWidth: 2,
+        color: Colors.white,
+      ),
+    );
+  }
+}
+
+class _PremiumAddButton extends StatelessWidget {
+  const _PremiumAddButton({
+    super.key,
+    required this.onTap,
+    this.badgeCount = 0,
+  });
+
+  final VoidCallback onTap;
+  final int badgeCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          width:
+              36, // Чуть увеличили для лучшего UX (минимальный размер тач-зоны Apple/Google ~44, но в сетке 36 выглядит аккуратнее)
+          height: 36,
+          decoration: BoxDecoration(
+            color: AppColors.primaryGreen,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primaryGreen.withOpacity(0.25),
+                blurRadius: 8,
+                offset: const Offset(
+                  0,
+                  3,
+                ), // Мягкая тень под кнопкой добавляет глубины
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          customBorder: const CircleBorder(),
-          onTap: onTap,
-          splashColor: Colors.white24,
-          highlightColor: Colors.white12,
-          child: const Icon(Icons.add, color: Colors.white, size: 20),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: onTap,
+              splashColor: Colors.white24,
+              highlightColor: Colors.white12,
+              child: const Icon(Icons.add, color: Colors.white, size: 20),
+            ),
+          ),
         ),
-      ),
+        if (badgeCount > 0)
+          Positioned(
+            top: -4,
+            right: -4,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+              constraints: const BoxConstraints(minWidth: 18),
+              decoration: BoxDecoration(
+                color: AppColors.errorRed,
+                borderRadius: BorderRadius.circular(9),
+                border: Border.all(color: Colors.white, width: 1.5),
+              ),
+              child: Text(
+                '$badgeCount',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

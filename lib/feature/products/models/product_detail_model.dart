@@ -1,3 +1,5 @@
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+
 class ProductDetailModel {
   final int id;
   final int shopId;
@@ -177,6 +179,56 @@ class ProductDetailModel {
     if (result.isEmpty) return productMedia;
     return result;
   }
+
+  /// Maps to the lightweight [ProductModel] shape used by cart/favorites/grid
+  /// widgets. When [variant]/[size] are given, price/compareAtPrice/media are
+  /// overridden with the variant's own values where present, falling back to
+  /// the base product's otherwise.
+  ProductModel toProductModel({ProductVariant? variant, ProductVariantSize? size}) {
+    final effectivePrice = size?.price ?? variant?.price ?? price;
+    final effectiveCompareAtPrice =
+        size?.compareAtPrice ?? variant?.compareAtPrice ?? compareAtPrice;
+    final effectiveMedia =
+        variant != null && variant.media.isNotEmpty ? variant.media : productMedia;
+
+    return ProductModel(
+      id: id,
+      shopId: shopId,
+      categoryId: categoryId,
+      name: name,
+      nameRu: nameRu,
+      nameEng: nameEng,
+      description: description,
+      price: effectivePrice,
+      currency: currency,
+      compareAtPrice: effectiveCompareAtPrice,
+      sku: size?.sku ?? variant?.sku ?? sku,
+      barcode: size?.barcode ?? variant?.barcode ?? barcode,
+      weight: weight,
+      stock: size?.stock ?? variant?.stock ?? stock,
+      tags: tags,
+      handle: handle,
+      seoTitle: seoTitle,
+      seoDescription: seoDescription,
+      rating: rating,
+      reviewCount: reviewCount,
+      status: status,
+      costPrice: costPrice,
+      isPhysical: isPhysical,
+      trackInventory: trackInventory,
+      sellWhenOutOfStock: sellWhenOutOfStock,
+      isActive: isActive,
+      createdBy: createdBy,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      deletedAt: deletedAt,
+      category: category != null
+          ? ProductCategory(id: category!.id, name: category!.name)
+          : null,
+      shop: shop != null ? ProductShop(id: shop!.id, name: shop!.name) : null,
+      productMedia: effectiveMedia,
+    );
+  }
 }
 
 class ProductDetailCategory {
@@ -233,6 +285,8 @@ class ProductVariant {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? deletedAt;
+  final List<ProductVariantSize> sizes;
+  final List<ProductMedia> media;
 
   const ProductVariant({
     required this.id,
@@ -248,6 +302,8 @@ class ProductVariant {
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,
+    this.sizes = const [],
+    this.media = const [],
   });
 
   factory ProductVariant.fromJson(Map<String, dynamic> json) {
@@ -277,6 +333,118 @@ class ProductVariant {
       deletedAt: json['deletedAt'] != null
           ? DateTime.parse(json['deletedAt'])
           : null,
+      sizes: json['sizes'] != null
+          ? (json['sizes'] as List)
+              .map((e) => ProductVariantSize.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
+      media: json['media'] != null
+          ? (json['media'] as List)
+              .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
+    );
+  }
+
+  String? get primaryImageUrl {
+    if (media.isEmpty) return null;
+    final primary = media.where((m) => m.role == 'primary').toList()
+      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    return primary.isNotEmpty ? primary.first.url : media.first.url;
+  }
+
+  List<ProductVariantSize> get availableSizes =>
+      sizes.where((s) => s.isActive && s.stock > 0).toList();
+}
+
+/// A specific size of a [ProductVariant] — its `id` is the `variant_size_id`
+/// used when adding this exact variant+size combo to the cart.
+class ProductVariantSize {
+  final int id;
+  final int variantId;
+  final int sizeId;
+  final String? sku;
+  final String? barcode;
+  final double? price;
+  final double? compareAtPrice;
+  final int stock;
+  final bool isActive;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
+  final ProductSizeInfo? size;
+
+  const ProductVariantSize({
+    required this.id,
+    required this.variantId,
+    required this.sizeId,
+    this.sku,
+    this.barcode,
+    this.price,
+    this.compareAtPrice,
+    required this.stock,
+    required this.isActive,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    this.size,
+  });
+
+  factory ProductVariantSize.fromJson(Map<String, dynamic> json) {
+    double? parseOptionalDouble(dynamic v) {
+      if (v == null) return null;
+      if (v is num) return v.toDouble();
+      return double.tryParse(v.toString());
+    }
+
+    return ProductVariantSize(
+      id: json['id'] as int,
+      variantId: json['variant_id'] as int,
+      sizeId: json['size_id'] as int,
+      sku: json['sku'] as String?,
+      barcode: json['barcode'] as String?,
+      price: parseOptionalDouble(json['price']),
+      compareAtPrice: parseOptionalDouble(json['compare_at_price']),
+      stock: json['stock'] as int? ?? 0,
+      isActive: json['is_active'] as bool? ?? true,
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'])
+          : DateTime.now(),
+      updatedAt: json['updatedAt'] != null
+          ? DateTime.parse(json['updatedAt'])
+          : DateTime.now(),
+      deletedAt: json['deletedAt'] != null
+          ? DateTime.parse(json['deletedAt'])
+          : null,
+      size: json['size'] != null
+          ? ProductSizeInfo.fromJson(json['size'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class ProductSizeInfo {
+  final int id;
+  final String name;
+  final String nameRu;
+  final String nameEng;
+  final String? slug;
+
+  const ProductSizeInfo({
+    required this.id,
+    required this.name,
+    required this.nameRu,
+    required this.nameEng,
+    this.slug,
+  });
+
+  factory ProductSizeInfo.fromJson(Map<String, dynamic> json) {
+    return ProductSizeInfo(
+      id: json['id'] as int,
+      name: json['name'] as String? ?? '',
+      nameRu: json['name_ru'] as String? ?? '',
+      nameEng: json['name_eng'] as String? ?? '',
+      slug: json['slug'] as String?,
     );
   }
 }
@@ -285,6 +453,7 @@ class ProductMedia {
   final int id;
   final int productId;
   final String mediaId;
+  final int? variantId;
   final String role;
   final int sortOrder;
   final MediaModel media;
@@ -293,6 +462,7 @@ class ProductMedia {
     required this.id,
     required this.productId,
     required this.mediaId,
+    this.variantId,
     required this.role,
     required this.sortOrder,
     required this.media,
@@ -303,6 +473,7 @@ class ProductMedia {
       id: json['id'] as int,
       productId: json['product_id'] as int,
       mediaId: json['media_id'] as String,
+      variantId: json['variant_id'] as int?,
       role: json['role'] as String? ?? 'gallery',
       sortOrder: json['sort_order'] as int? ?? 0,
       media: MediaModel.fromJson(json['media'] as Map<String, dynamic>),

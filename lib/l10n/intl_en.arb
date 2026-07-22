@@ -389,6 +389,18 @@
 "status_pending": "Garaşylýar",
 "status_approved": "Tassyklandy",
 "status_rejected": "Ret edildi",
-"halamak_ucin_giris": "Halamak üçin ulgama giriň"
+"halamak_ucin_giris": "Halamak üçin ulgama giriň",
+"variants" :  "Haryt görnüşleri",
+"sizes" : "Ölçegler",
+"stoc"  : "Sklatda bary",
+"korzinada" : "Sebetde:",
+"delete_from_cart"  : "Sebetden pozmak",
+"add_to_cart" : "Sebede goş"
+
+
+
+
+
+
 
 }

@@ -18,11 +18,16 @@ class CartItemWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dismissible(
-      key: ValueKey(product.id),
+      key: ValueKey('${product.id}_${cartModel.variantId}_${cartModel.variantSizeId}'),
       direction: DismissDirection.endToStart,
       background: _buildDismissBackground(),
-      onDismissed: (_) =>
-          context.read<CartBloc>().add(RemoveFromCartEvent(product.id)),
+      onDismissed: (_) => context.read<CartBloc>().add(
+        RemoveFromCartEvent(
+          product.id,
+          variantId: cartModel.variantId,
+          variantSizeId: cartModel.variantSizeId,
+        ),
+      ),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
@@ -59,10 +64,18 @@ class CartItemWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        _buildDeleteButton(context, product.id),
+                        _buildDeleteButton(context),
                       ],
                     ),
-                    if (product.category != null) ...[
+                    if (cartModel.variantLabel != null) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        cartModel.variantLabel!,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ] else if (product.category != null) ...[
                       const SizedBox(height: 2),
                       Text(
                         product.category!.name,
@@ -165,11 +178,17 @@ class CartItemWidget extends StatelessWidget {
                   UpdateQuantityEvent(
                     cartModel.product.id,
                     cartModel.quantity - 1,
+                    variantId: cartModel.variantId,
+                    variantSizeId: cartModel.variantSizeId,
                   ),
                 );
               } else {
                 context.read<CartBloc>().add(
-                  RemoveFromCartEvent(cartModel.product.id),
+                  RemoveFromCartEvent(
+                    cartModel.product.id,
+                    variantId: cartModel.variantId,
+                    variantSizeId: cartModel.variantSizeId,
+                  ),
                 );
               }
             },
@@ -189,7 +208,12 @@ class CartItemWidget extends StatelessWidget {
           _QuantityButton(
             icon: Icons.add,
             onTap: () => context.read<CartBloc>().add(
-              UpdateQuantityEvent(cartModel.product.id, cartModel.quantity + 1),
+              UpdateQuantityEvent(
+                cartModel.product.id,
+                cartModel.quantity + 1,
+                variantId: cartModel.variantId,
+                variantSizeId: cartModel.variantSizeId,
+              ),
             ),
           ),
         ],
@@ -197,9 +221,15 @@ class CartItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDeleteButton(BuildContext context, int productId) {
+  Widget _buildDeleteButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.read<CartBloc>().add(RemoveFromCartEvent(productId)),
+      onTap: () => context.read<CartBloc>().add(
+        RemoveFromCartEvent(
+          cartModel.product.id,
+          variantId: cartModel.variantId,
+          variantSizeId: cartModel.variantSizeId,
+        ),
+      ),
       child: const Padding(
         padding: EdgeInsets.only(left: 8),
         child: Icon(

@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Adaty jogap wagty: 5-10 minut",
     ),
     "add": MessageLookupByLibrary.simpleMessage("Goşmak"),
+    "add_to_cart": MessageLookupByLibrary.simpleMessage("Добавить в корзину"),
     "address_add": MessageLookupByLibrary.simpleMessage("Salgy goşmak"),
     "address_cancel": MessageLookupByLibrary.simpleMessage("Ýatyrmak"),
     "address_choose_location": MessageLookupByLibrary.simpleMessage(
@@ -167,6 +168,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "currency": MessageLookupByLibrary.simpleMessage("Pul birligi"),
     "dalandyrys_sertifikaty_bolan": MessageLookupByLibrary.simpleMessage(
       "Dalandyryş sertifikaty bolan",
+    ),
+    "delete_from_cart": MessageLookupByLibrary.simpleMessage(
+      "Удалить из корзины",
     ),
     "delete_user": MessageLookupByLibrary.simpleMessage("Ulanyjyny pozmak"),
     "derejani_galdyr": MessageLookupByLibrary.simpleMessage("Derejäni galdyr"),
@@ -346,6 +350,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "komek_seslenme": MessageLookupByLibrary.simpleMessage(
       "Kömek we seslenmeler",
     ),
+    "korzinada": MessageLookupByLibrary.simpleMessage("Sebetde:"),
     "kss": MessageLookupByLibrary.simpleMessage("KSS"),
     "kuryer_tizligi": MessageLookupByLibrary.simpleMessage("Kurýer tizligi"),
     "language": MessageLookupByLibrary.simpleMessage("Dil ru"),
@@ -539,6 +544,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "siz_ucin_maslahat": MessageLookupByLibrary.simpleMessage(
       "Siz üçin maslahat beriýär",
     ),
+    "sizes": MessageLookupByLibrary.simpleMessage("Ölçegler"),
     "sizin_ucin": MessageLookupByLibrary.simpleMessage("Siziň üçin"),
     "sms_tassyklama": MessageLookupByLibrary.simpleMessage("SMS tassyklama"),
     "sorag_jogap": MessageLookupByLibrary.simpleMessage("Sorag-jogap"),
@@ -556,6 +562,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "status_approved": MessageLookupByLibrary.simpleMessage("Tassyklandy"),
     "status_pending": MessageLookupByLibrary.simpleMessage("Garaşylýar"),
     "status_rejected": MessageLookupByLibrary.simpleMessage("Ret edildi"),
+    "stoc": MessageLookupByLibrary.simpleMessage("Sklatda bary"),
     "sul_akkaunda_degisli_wideo_gorkezme": MessageLookupByLibrary.simpleMessage(
       "Şul akkaunda degişli hiç bir wideo görkezme",
     ),
@@ -632,6 +639,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "us_a_eltip_bermek": MessageLookupByLibrary.simpleMessage(
       "US-a eltip bermek",
     ),
+    "variants": MessageLookupByLibrary.simpleMessage("Haryt görnüşleri"),
     "version": MessageLookupByLibrary.simpleMessage("Wersiýa"),
     "we_gizlilik_syyyasatyna": MessageLookupByLibrary.simpleMessage(
       "we gizlilik syýasatyna razy bolýarsyňyz.",

@@ -11,6 +11,7 @@ import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comments_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_images_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_info_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/variant_picker_sheet.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -162,9 +163,13 @@ class _BottomBar extends StatelessWidget {
                               model.stock == 0 && !model.sellWhenOutOfStock,
                           onTap: () {
                             HapticFeedback.lightImpact();
-                            context.read<CartBloc>().add(
-                              AddToCartEvent(product),
-                            );
+                            if (model.variants.isNotEmpty) {
+                              showVariantPickerSheet(context, model: model);
+                            } else {
+                              context.read<CartBloc>().add(
+                                AddToCartEvent(product),
+                              );
+                            }
                           },
                         )
                       : _StepperButton(

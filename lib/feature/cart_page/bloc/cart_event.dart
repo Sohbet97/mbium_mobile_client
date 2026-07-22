@@ -13,27 +13,52 @@ class LoadCartEvent extends CartEvent {
 
 class AddToCartEvent extends CartEvent {
   final ProductModel product;
-  const AddToCartEvent(this.product);
+  final int? variantId;
+  final int? variantSizeId;
+  final String? variantLabel;
+
+  /// Units to add on top of whatever quantity is already in the cart for
+  /// this line (not an absolute value).
+  final int quantity;
+
+  const AddToCartEvent(
+    this.product, {
+    this.variantId,
+    this.variantSizeId,
+    this.variantLabel,
+    this.quantity = 1,
+  });
 
   @override
-  List<Object> get props => [product.id];
+  List<Object> get props => [product.id, variantId ?? 0, variantSizeId ?? 0];
 }
 
 class RemoveFromCartEvent extends CartEvent {
   final int productId;
-  const RemoveFromCartEvent(this.productId);
+  final int? variantId;
+  final int? variantSizeId;
+
+  const RemoveFromCartEvent(this.productId, {this.variantId, this.variantSizeId});
 
   @override
-  List<Object> get props => [productId];
+  List<Object> get props => [productId, variantId ?? 0, variantSizeId ?? 0];
 }
 
 class UpdateQuantityEvent extends CartEvent {
   final int productId;
   final int quantity;
-  const UpdateQuantityEvent(this.productId, this.quantity);
+  final int? variantId;
+  final int? variantSizeId;
+
+  const UpdateQuantityEvent(
+    this.productId,
+    this.quantity, {
+    this.variantId,
+    this.variantSizeId,
+  });
 
   @override
-  List<Object> get props => [productId, quantity];
+  List<Object> get props => [productId, quantity, variantId ?? 0, variantSizeId ?? 0];
 }
 
 class ClearCartEvent extends CartEvent {

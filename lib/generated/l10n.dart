@@ -3088,6 +3088,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Haryt görnüşleri`
+  String get variants {
+    return Intl.message(
+      'Haryt görnüşleri',
+      name: 'variants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ölçegler`
+  String get sizes {
+    return Intl.message('Ölçegler', name: 'sizes', desc: '', args: []);
+  }
+
+  /// `Sklatda bary`
+  String get stoc {
+    return Intl.message('Sklatda bary', name: 'stoc', desc: '', args: []);
+  }
+
+  /// `Sebetde:`
+  String get korzinada {
+    return Intl.message('Sebetde:', name: 'korzinada', desc: '', args: []);
+  }
+
+  /// `Sebetden pozmak`
+  String get delete_from_cart {
+    return Intl.message(
+      'Sebetden pozmak',
+      name: 'delete_from_cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sebede goş`
+  String get add_to_cart {
+    return Intl.message('Sebede goş', name: 'add_to_cart', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

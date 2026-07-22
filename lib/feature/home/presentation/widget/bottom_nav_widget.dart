@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/feature/cart_page/bloc/cart_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 
@@ -45,11 +46,25 @@ class BottomNavWidget extends StatelessWidget {
             ),
 
             BottomNavigationBarItem(
-              icon: SvgIcon(
-                iconName: 'assets/icons/cart_icon.svg',
-                color: state.navigationIndex == 3
-                    ? Theme.of(context).colorScheme.tertiary
-                    : Theme.of(context).colorScheme.secondary,
+              icon: BlocBuilder<CartBloc, CartState>(
+                builder: (context, cartState) {
+                  final count = cartState is CartLoaded
+                      ? cartState.itemCount
+                      : 0;
+                  return Badge(
+                    isLabelVisible: count > 0,
+                    label: Text(
+                      '$count',
+                      style: const TextStyle(fontSize: 6),
+                    ),
+                    child: SvgIcon(
+                      iconName: 'assets/icons/cart_icon.svg',
+                      color: state.navigationIndex == 3
+                          ? Theme.of(context).colorScheme.tertiary
+                          : Theme.of(context).colorScheme.secondary,
+                    ),
+                  );
+                },
               ),
               label: localilzation.card,
             ),
