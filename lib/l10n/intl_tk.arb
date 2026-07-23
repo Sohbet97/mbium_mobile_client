@@ -370,7 +370,12 @@
 "checkout_order_success": "Sargyt üstünlikli döredildi",
 "checkout_order_failed_prefix": "Sargyt döredilmedi: ",
 "checkout_note_hint": "Bellik (hökman däl)",
-"checkout_shop_fallback_prefix": "Dükan #"
+"checkout_shop_fallback_prefix": "Dükan #",
+"ai_dialog_history": "Gepleşik taryhy",
+"ai_new_dialog": "Täze gepleşik",
+"ai_no_saved_dialogs": "Entek ýatda saklanan gepleşik ýok",
+"ai_prompt_hint": "Öz islegiňiz beýan ediň...",
+"ai_copied_to_clipboard": "Nusgalandy"
 
 
 }

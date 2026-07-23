@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/feature/home/presentation/widget/ai/ai_prompt_action_buttons.dart';
 
 class AiInputFieldFab extends StatelessWidget {
   final TextEditingController? controller;
-  final VoidCallback? onCameraPressed;
-  final VoidCallback? onMicPressed;
   final ValueChanged<String>? onSubmitted;
   final String hintText;
 
   const AiInputFieldFab({
     super.key,
     this.controller,
-    this.onCameraPressed,
-    this.onMicPressed,
     this.onSubmitted,
-    this.hintText = 'Öz islegiňiz beýan ediň...',
+    this.hintText = '',
   });
+
+  void _onMicResult(String text) {
+    final target = controller;
+    if (target == null) return;
+    target.text = text;
+    target.selection = TextSelection.fromPosition(
+      TextPosition(offset: target.text.length),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,29 +77,64 @@ class AiInputFieldFab extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildIconButton(
-                icon: Icons.camera_alt_outlined,
-                onTap: onCameraPressed,
+              Row(
+                children: [
+                  const AiCameraButton(),
+                  const SizedBox(width: 10),
+                  AiMicButton(onResult: _onMicResult),
+                ],
               ),
-              _buildIconButton(
-                icon: Icons.mic_none_rounded,
-                onTap: onMicPressed,
-              ),
+              _SendButton(controller: controller, onSubmitted: onSubmitted),
             ],
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildIconButton({required IconData icon, VoidCallback? onTap}) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey.shade300, width: 1),
+class _SendButton extends StatelessWidget {
+  const _SendButton({required this.controller, required this.onSubmitted});
+
+  final TextEditingController? controller;
+  final ValueChanged<String>? onSubmitted;
+
+  void _submit() {
+    final text = controller?.text ?? '';
+    if (text.trim().isEmpty) return;
+    onSubmitted?.call(text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final listenable = controller;
+    if (listenable == null) {
+      return _buildButton(enabled: true);
+    }
+    return ValueListenableBuilder<TextEditingValue>(
+      valueListenable: listenable,
+      builder: (context, value, _) {
+        return _buildButton(enabled: value.text.trim().isNotEmpty);
+      },
+    );
+  }
+
+  Widget _buildButton({required bool enabled}) {
+    return GestureDetector(
+      onTap: enabled ? _submit : null,
+      child: Container(
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: enabled ? AppColors.primaryGreen : Colors.grey.shade300,
+        ),
+        child: Icon(
+          Icons.arrow_upward_rounded,
+          size: 18,
+          color: enabled ? Colors.white : Colors.grey.shade500,
+        ),
       ),
-      child: GestureDetector(onTap: onTap, child: Icon(icon, size: 18)),
     );
   }
 }

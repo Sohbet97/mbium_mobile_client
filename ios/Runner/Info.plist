@@ -32,6 +32,8 @@
 	<string>Доступ к галерее нужен для поиска товаров по фото</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Микрофон используется для голосового поиска</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Распознавание речи используется для голосового ввода запроса</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Геолокация используется для выбора адреса доставки на карте</string>
 	<key>UIApplicationSceneManifest</key>

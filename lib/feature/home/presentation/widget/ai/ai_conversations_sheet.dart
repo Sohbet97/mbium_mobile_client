@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/ai_chat/models/ai_conversation_model.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class AiConversationsSheet extends StatelessWidget {
   const AiConversationsSheet({
     super.key,
@@ -18,6 +20,8 @@ class AiConversationsSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localization = S.of(context);
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
@@ -36,9 +40,9 @@ class AiConversationsSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'История диалогов',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            Text(
+              localization.ai_dialog_history,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
             ),
             const SizedBox(height: 12),
             ListTile(
@@ -47,7 +51,7 @@ class AiConversationsSheet extends StatelessWidget {
                 Icons.add_comment_outlined,
                 color: AppColors.primaryGreen,
               ),
-              title: const Text('Новый диалог'),
+              title: Text(localization.ai_new_dialog),
               onTap: () {
                 Navigator.of(context).pop();
                 onStartNew();
@@ -61,12 +65,12 @@ class AiConversationsSheet extends StatelessWidget {
                       child: Center(child: CircularProgressIndicator()),
                     )
                   : conversations.isEmpty
-                  ? const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
                       child: Center(
                         child: Text(
-                          'Пока нет сохранённых диалогов',
-                          style: TextStyle(color: Colors.grey),
+                          localization.ai_no_saved_dialogs,
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ),
                     )

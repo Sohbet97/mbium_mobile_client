@@ -90,6 +90,7 @@ class _AiAgetntPageState extends State<AiAgetntPage> {
           floatingActionButton: AiInputFieldFab(
             controller: _promptController,
             onSubmitted: _sendPrompt,
+            hintText: localization.ai_prompt_hint,
           ),
           body: BlocConsumer<AiChatBloc, AiChatState>(
             listener: (context, chatState) {

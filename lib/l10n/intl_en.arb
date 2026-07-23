@@ -409,7 +409,12 @@
 "checkout_order_success": "Order placed successfully",
 "checkout_order_failed_prefix": "Order failed: ",
 "checkout_note_hint": "Note (optional)",
-"checkout_shop_fallback_prefix": "Shop #"
+"checkout_shop_fallback_prefix": "Shop #",
+"ai_dialog_history": "Conversation history",
+"ai_new_dialog": "New conversation",
+"ai_no_saved_dialogs": "No saved conversations yet",
+"ai_prompt_hint": "Describe your request...",
+"ai_copied_to_clipboard": "Copied"
 
 
 

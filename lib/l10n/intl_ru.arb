@@ -380,7 +380,12 @@
 "checkout_order_success": "Заказ успешно оформлен",
 "checkout_order_failed_prefix": "Заказ не оформлен: ",
 "checkout_note_hint": "Заметка (необязательно)",
-"checkout_shop_fallback_prefix": "Магазин #"
+"checkout_shop_fallback_prefix": "Магазин #",
+"ai_dialog_history": "История диалогов",
+"ai_new_dialog": "Новый диалог",
+"ai_no_saved_dialogs": "Пока нет сохранённых диалогов",
+"ai_prompt_hint": "Опишите свой запрос...",
+"ai_copied_to_clipboard": "Скопировано"
 
 
 

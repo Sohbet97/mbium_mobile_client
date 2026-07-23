@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:mbium_mobile_client/feature/ai_chat/models/ai_chat_message.dart';
 import 'package:mbium_mobile_client/feature/ai_chat/models/ai_conversation_model.dart';
@@ -27,6 +29,14 @@ class AiChatRepository {
       }
 
       final body = response.data;
+
+      // The server streams the reply as Server-Sent Events (`data: {...}`
+      // lines terminated by `data: [DONE]`) rather than a single JSON
+      // object, so dio hands it back as a raw String.
+      if (body is String) {
+        return AiChatMessage(role: 'assistant', content: _parseSseText(body));
+      }
+
       final raw = body is Map<String, dynamic> && body['data'] is Map
           ? body['data'] as Map<String, dynamic>
           : body as Map<String, dynamic>;
@@ -35,6 +45,27 @@ class AiChatRepository {
       if (CancelToken.isCancel(e)) rethrow;
       throw Exception('Error sending chat message: $e');
     }
+  }
+
+  String _parseSseText(String raw) {
+    final buffer = StringBuffer();
+    for (final line in raw.split('\n')) {
+      final trimmed = line.trim();
+      if (!trimmed.startsWith('data:')) continue;
+
+      final payload = trimmed.substring(5).trim();
+      if (payload.isEmpty || payload == '[DONE]') continue;
+
+      try {
+        final decoded = jsonDecode(payload);
+        if (decoded is Map && decoded['text'] is String) {
+          buffer.write(decoded['text'] as String);
+        }
+      } catch (_) {
+        // Skip malformed chunks instead of failing the whole reply.
+      }
+    }
+    return buffer.toString();
   }
 
   /// GET /ai/conversations — list of saved conversations (no messages).

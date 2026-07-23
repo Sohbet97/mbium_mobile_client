@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/ai_chat/models/ai_chat_message.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../../../../generated/l10n.dart';
 
 class AiChatMessagesList extends StatelessWidget {
   const AiChatMessagesList({
@@ -35,6 +39,15 @@ class _MessageBubble extends StatelessWidget {
 
   final AiChatMessage message;
 
+  void _copy(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: message.content));
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(S.of(context).ai_copied_to_clipboard)));
+  }
+
+  void _share() => Share.share(message.content);
+
   @override
   Widget build(BuildContext context) {
     final isUser = message.isUser;
@@ -55,14 +68,62 @@ class _MessageBubble extends StatelessWidget {
           ),
           border: isUser ? null : Border.all(color: Colors.grey.shade200),
         ),
-        child: Text(
-          message.content,
-          style: TextStyle(
-            color: isUser ? Colors.white : AppColors.aiTextBlack,
-            fontSize: 14,
-            height: 1.4,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            isUser
+                ? Text(
+                    message.content,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      height: 1.4,
+                    ),
+                  )
+                : SelectableText(
+                    message.content,
+                    style: const TextStyle(
+                      color: AppColors.aiTextBlack,
+                      fontSize: 14,
+                      height: 1.4,
+                    ),
+                  ),
+            if (!isUser) ...[
+              const SizedBox(height: 6),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _ActionButton(
+                    icon: Icons.copy_outlined,
+                    onTap: () => _copy(context),
+                  ),
+                  const SizedBox(width: 12),
+                  _ActionButton(icon: Icons.share_outlined, onTap: _share),
+                ],
+              ),
+            ],
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  const _ActionButton({required this.icon, required this.onTap});
+
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(6),
+      child: Padding(
+        padding: const EdgeInsets.all(2),
+        child: Icon(icon, size: 15, color: AppColors.textLightGrey),
       ),
     );
   }
