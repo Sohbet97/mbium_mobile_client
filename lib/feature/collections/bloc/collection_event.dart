@@ -8,3 +8,12 @@ sealed class CollectionEvent extends Equatable {
 }
 
 final class LoadAllCollectionEvent extends CollectionEvent {}
+
+final class LoadCollectionProductsEvent extends CollectionEvent {
+  final int collectionId;
+
+  const LoadCollectionProductsEvent({required this.collectionId});
+
+  @override
+  List<Object> get props => [collectionId];
+}

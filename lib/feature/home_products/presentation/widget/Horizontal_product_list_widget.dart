@@ -5,13 +5,8 @@ import '../../../products/models/product_model.dart';
 
 class HorizontalProductListWidget extends StatelessWidget {
   final List<ProductModel> products;
-  final VoidCallback? onProductTap;
 
-  const HorizontalProductListWidget({
-    super.key,
-    required this.products,
-    this.onProductTap,
-  });
+  const HorizontalProductListWidget({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +20,14 @@ class HorizontalProductListWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final product = products[index];
           return ProductCardWidget(
-            imageUrl: product.currency,
-            price: product.price.toString(),
+            imageUrl: product.primaryImageUrl ?? '',
+            price: '${product.price.toStringAsFixed(0)} ${product.currency}',
             name: product.name,
-            onTap: onProductTap,
+            onTap: () => Navigator.pushNamed(
+              context,
+              '/productDetail',
+              arguments: product,
+            ),
           );
         },
       ),

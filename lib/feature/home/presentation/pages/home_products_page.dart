@@ -5,10 +5,9 @@ import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/home_menu_widget.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/category_tabs_widget.dart';
+import 'package:mbium_mobile_client/feature/home_products/presentation/widget/collections_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/delivery_coin_banner_widget.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/product_section_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/promo_banner_widget.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/section_header_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/mason_grid_item.dart';
@@ -17,35 +16,6 @@ import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
 import '../../../../core/constants/my_empty_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../generated/l10n.dart';
-import '../../../products/models/product_model.dart';
-
-final _mockProducts = List.generate(
-  10,
-  (i) => ProductModel(
-    description: 'https://picsum.photos/seed/${i + 1}/200/220',
-    price: 100 + i * 10,
-    name: 'NIKE sport hudisi',
-    id: i,
-    shopId: 1,
-    categoryId: 1,
-    nameRu: '',
-    nameEng: '',
-    currency: '',
-    sku: '',
-    stock: 10,
-    tags: [],
-    rating: 4.5,
-    reviewCount: 20,
-    status: 1,
-    isPhysical: true,
-    trackInventory: true,
-    sellWhenOutOfStock: true,
-    isActive: true,
-    createdAt: DateTime.now(),
-    updatedAt: DateTime.now(),
-    productMedia: [],
-  ),
-);
 
 class HomeProductsPage extends StatefulWidget {
   const HomeProductsPage({super.key});
@@ -84,8 +54,6 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context);
-
     return CustomScrollView(
       controller: _scrollController,
       slivers: [
@@ -130,29 +98,27 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 16),
-                ProductSectionWidget(
-                  banner: const PromoBannerWidget(),
-                  products: _mockProducts,
-                ),
+                const PromoBannerWidget(),
+
+                const SizedBox(height: 16),
+
+                const ProductCollectionsWidget(),
+
                 const SizedBox(height: 20),
                 CategoryTabsWidget(
                   onCategorySelected: (int p1) {
-                    // TODO selected category
+                    setState(() {
+                      p1 == 0
+                          ? _filter = FilterModel(categoryId: null)
+                          : _filter = FilterModel(categoryId: p1);
+                      _productBloc.add(LoadProducts(_filter));
+                    });
                   },
                 ),
-                const SizedBox(height: 16),
-                SectionHeaderWidget(
-                  title: l10n.maslahat_beriyanler,
-                  subtitle: l10n.maslahat_beriyanler_subtitle,
-                  onSeeAll: () {},
-                ),
+
                 const SizedBox(height: 10),
-                ProductSectionWidget(products: _mockProducts),
-                const SizedBox(height: 20),
-                ProductSectionWidget(
-                  banner: const DeliveryCoinBannerWidget(),
-                  products: _mockProducts,
-                ),
+                // ProductSectionWidget(products: _mockProducts),
+                const DeliveryCoinBannerWidget(),
               ],
             ),
           ),

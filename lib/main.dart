@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
 import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dart';
+import 'package:mbium_mobile_client/feature/collections/data/collection_repository.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/shop_favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/favorite/data/favorite_repository.dart';
@@ -235,6 +236,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => BrandRepository(dio: apiClient.dio),
         ),
 
+        // collections
+        RepositoryProvider(
+          create: (context) => CollectionRepository(dio: apiClient.dio),
+        ),
+
         // sizes
         RepositoryProvider(
           create: (context) => SizeRepository(dio: apiClient.dio),
@@ -320,7 +326,7 @@ class _MyAppState extends State<MyApp> {
           // collections
           BlocProvider(
             create: (context) =>
-                CollectionBloc(dio: apiClient.dio)
+                CollectionBloc(repository: context.read<CollectionRepository>())
                   ..add(LoadAllCollectionEvent()),
           ),
 
