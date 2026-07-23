@@ -6,7 +6,9 @@
       "Bash(flutter pub *)",
       "Bash(find / -maxdepth 6 -iname \"flutter_map-7*\" -type d)",
       "Bash(find 'C:\\\\Users\\\\Admin/AppData/Local/Pub/Cache/hosted/pub.dev' -maxdepth 1 -iname flutter_map-*)",
-      "Bash(find 'C:\\\\Users\\\\Admin/AppData/Local/Pub/Cache/hosted/pub.dev' -maxdepth 1 -iname geolocator-*)"
+      "Bash(find 'C:\\\\Users\\\\Admin/AppData/Local/Pub/Cache/hosted/pub.dev' -maxdepth 1 -iname geolocator-*)",
+      "Bash(git checkout *)",
+      "Bash(git merge *)"
     ]
   }
 }
