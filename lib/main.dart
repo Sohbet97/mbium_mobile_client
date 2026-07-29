@@ -225,10 +225,7 @@ class _MyAppState extends State<MyApp> {
 
         // reels
         RepositoryProvider(
-          create: (context) => ReelsRepository(
-            dio: apiClient.dio,
-            appPreferences: widget.appPreferences,
-          ),
+          create: (context) => ReelsRepository(dio: apiClient.dio),
         ),
 
         // brands

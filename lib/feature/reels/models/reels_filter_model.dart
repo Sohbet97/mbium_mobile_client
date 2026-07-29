@@ -1,31 +1,38 @@
 import 'package:equatable/equatable.dart';
 
+enum ReelsSort {
+  newest,
+  oldest,
+  popular;
+
+  String get value => name;
+}
+
 class ReelsFilterModel extends Equatable {
   final int page;
   final int limit;
-  final String? text;
-  final bool? isLive;
+  final int? shopId;
+  final ReelsSort sort;
 
   const ReelsFilterModel({
     this.page = 1,
     this.limit = 20,
-    this.text,
-    this.isLive,
+    this.shopId,
+    this.sort = ReelsSort.newest,
   });
 
   ReelsFilterModel copyWith({
     int? page,
     int? limit,
-    String? text,
-    bool? isLive,
-    bool clearText = false,
-    bool clearIsLive = false,
+    int? shopId,
+    ReelsSort? sort,
+    bool clearShopId = false,
   }) {
     return ReelsFilterModel(
       page: page ?? this.page,
       limit: limit ?? this.limit,
-      text: clearText ? null : (text ?? this.text),
-      isLive: clearIsLive ? null : (isLive ?? this.isLive),
+      shopId: clearShopId ? null : (shopId ?? this.shopId),
+      sort: sort ?? this.sort,
     );
   }
 
@@ -35,11 +42,11 @@ class ReelsFilterModel extends Equatable {
     return {
       'page': page,
       'limit': limit,
-      if (text != null && text!.isNotEmpty) 'text': text,
-      if (isLive != null) 'is_live': isLive! ? 1 : 0,
+      if (shopId != null) 'shop_id': shopId,
+      'sort': sort.value,
     };
   }
 
   @override
-  List<Object?> get props => [page, limit, text, isLive];
+  List<Object?> get props => [page, limit, shopId, sort];
 }

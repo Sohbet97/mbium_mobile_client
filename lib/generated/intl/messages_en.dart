@@ -502,7 +502,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nasazlyk_yuze_cykdy": MessageLookupByLibrary.simpleMessage(
       "Näsazlyk ýüze çykdy",
     ),
-    "no": MessageLookupByLibrary.simpleMessage("Ýok"),
+    "no": MessageLookupByLibrary.simpleMessage("No"),
     "noDataAvailable": MessageLookupByLibrary.simpleMessage("Maglumat ýok"),
     "notifications": MessageLookupByLibrary.simpleMessage("Bildirişler"),
     "obrazesler_boyunca_tayyarlanan": MessageLookupByLibrary.simpleMessage(
@@ -768,7 +768,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "yer": MessageLookupByLibrary.simpleMessage("Ýer"),
     "yeri": MessageLookupByLibrary.simpleMessage("Ýeri"),
     "yerleshishi": MessageLookupByLibrary.simpleMessage("Ýerleşişi"),
-    "yes": MessageLookupByLibrary.simpleMessage("Hawa"),
+    "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "ynamdar_desk": MessageLookupByLibrary.simpleMessage(
       "Tölegiňizi goramak üçin elmydama Mbium.com-yň resmi töleg kanallaryndan peýdalanyň.",
     ),

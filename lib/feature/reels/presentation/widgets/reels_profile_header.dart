@@ -6,8 +6,7 @@ import 'package:mbium_mobile_client/generated/l10n.dart';
 
 class ReelsProfileHeader extends StatelessWidget {
   final ReelsModel reel;
-  ReelsProfileHeader({super.key, required this.reel});
-  final String _currentUserName = 'Kadyr Otuzow';
+  const ReelsProfileHeader({super.key, required this.reel});
 
   void _showReelsMenu(BuildContext context) {
     showModalBottomSheet(
@@ -21,30 +20,39 @@ class ReelsProfileHeader extends StatelessWidget {
     );
   }
 
-  final s10w500 = TextStyle(
+  void _openShop(BuildContext context) {
+    Navigator.pushNamed(context, '/shopDetail', arguments: reel.shop.toShopModel());
+  }
+
+  final s10w500 = const TextStyle(
     color: Colors.white,
     fontSize: 10,
     fontWeight: FontWeight.w500,
   );
+
   @override
   Widget build(BuildContext context) {
+    final logo = reel.shop.logo;
     return Row(
       children: [
-        const CircleAvatar(
-          radius: 20,
-          backgroundColor: Colors.white70,
-          // backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+        GestureDetector(
+          onTap: () => _openShop(context),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.white70,
+            backgroundImage: logo != null && logo.isNotEmpty
+                ? NetworkImage(logo)
+                : null,
+          ),
         ),
         const SizedBox(width: 5),
-        Text(_currentUserName, style: s10w500.copyWith(fontSize: 14)),
+        GestureDetector(
+          onTap: () => _openShop(context),
+          child: Text(reel.shop.name, style: s10w500.copyWith(fontSize: 14)),
+        ),
         const SizedBox(width: 5),
 
         _buildGiftButton(context),
-        if (reel.isLive)
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: _buildLiveTag(context),
-          ),
         const SizedBox(width: 5),
         GestureDetector(
           onTap: () {
@@ -69,23 +77,6 @@ class ReelsProfileHeader extends StatelessWidget {
           const Icon(Icons.card_giftcard, color: Colors.white, size: 14),
           const SizedBox(width: 4),
           Text(S.of(context).sowgat_ber, style: s10w500),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLiveTag(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.red.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.wifi, color: Colors.white, size: 14),
-          const SizedBox(width: 4),
-          Text(S.of(context).live, style: s10w500),
         ],
       ),
     );

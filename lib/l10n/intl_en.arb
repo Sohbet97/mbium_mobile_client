@@ -1,8 +1,8 @@
 ﻿{
   "@@locale": "en",
   "AppName": "Mbium",
-  "yes": "Hawa",
-  "no": "Ýok",
+  "yes": "Yes",
+  "no": "No",
   "add": "Goşmak",
   "noDataAvailable": "Maglumat ýok",
   "camera": "Kamera",
@@ -415,9 +415,4 @@
 "ai_no_saved_dialogs": "No saved conversations yet",
 "ai_prompt_hint": "Describe your request...",
 "ai_copied_to_clipboard": "Copied"
-
-
-
-
-
 }

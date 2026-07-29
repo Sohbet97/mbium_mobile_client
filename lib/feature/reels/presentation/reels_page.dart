@@ -7,11 +7,14 @@ import 'package:mbium_mobile_client/feature/home/presentation/widget/svg_icon.da
 import 'package:mbium_mobile_client/feature/reels/bloc/reels_bloc.dart';
 import 'package:mbium_mobile_client/feature/reels/models/reels_filter_model.dart';
 import 'package:mbium_mobile_client/feature/reels/models/reels_model.dart';
+import 'package:mbium_mobile_client/feature/reels/player/reel_player_pool.dart';
+import 'package:mbium_mobile_client/feature/reels/player/reel_preload_manager.dart';
+import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reel_player_view.dart';
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reels_comment_input.dart';
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reels_profile_header.dart';
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reels_tab_bar.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
-import 'package:video_player/video_player.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ReelsPage extends StatefulWidget {
   const ReelsPage({super.key});
@@ -25,9 +28,11 @@ class _ReelsPageState extends State<ReelsPage>
   late TabController _tabController;
   final PageController _pageController = PageController();
   final TextEditingController textEditingController = TextEditingController();
-  final Map<int, VideoPlayerController> _controllers = {};
+  final ReelPlayerPool _playerPool = ReelPlayerPool();
+  late final ReelPreloadManager _preloadManager;
   int _currentIndex = 0;
-  final Map<int, bool> _paused = {};
+  bool _initialFocusRequested = false;
+  List<ReelsModel> _currentReels = const [];
 
   @override
   void initState() {
@@ -40,73 +45,59 @@ class _ReelsPageState extends State<ReelsPage>
       }
     });
     context.read<ReelsBloc>().add(LoadReels(const ReelsFilterModel()));
+
+    _preloadManager = ReelPreloadManager(
+      pageController: _pageController,
+      playerPool: _playerPool,
+      videoUrlsProvider: () => _currentReels.map((r) => r.video.url).toList(),
+    );
   }
 
   @override
   void dispose() {
     _tabController.dispose();
+    _preloadManager.dispose();
     _pageController.dispose();
-    for (final c in _controllers.values) {
-      c.dispose();
-    }
+    _playerPool.dispose();
+    textEditingController.dispose();
     super.dispose();
   }
 
   void _onTabChanged() {
+    _playerPool.reset();
     setState(() {
       _currentIndex = 0;
-      for (final c in _controllers.values) {
-        c.dispose();
-      }
-      _controllers.clear();
-      _paused.clear();
-
-      if (_pageController.hasClients) {
-        _pageController.jumpToPage(0);
-      }
+      _initialFocusRequested = false;
     });
-  }
 
-  Future<void> _initVideo(int index, ReelsModel reel) async {
-    if (_controllers.containsKey(index)) return;
-
-    final controller = VideoPlayerController.networkUrl(
-      Uri.parse(reel.videoUrl),
-    );
-
-    _controllers[index] = controller;
-    _paused[index] = false;
-
-    try {
-      await controller.initialize();
-      controller.setLooping(true);
-
-      if (index == _currentIndex && _paused[index] != true) {
-        controller.play();
-      }
-
-      if (mounted) setState(() {});
-    } catch (e) {
-      debugPrint("Video init error: $e");
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(0);
     }
   }
 
   void _onPageChanged(int index, List<ReelsModel> reels) {
     setState(() => _currentIndex = index);
-
-    _controllers.forEach((i, c) {
-      if (i != index) {
-        c.pause();
-      } else {
-        if (_paused[i] != true) {
-          c.play();
-        }
-      }
-    });
+    _preloadManager.onPageSettleCandidate(index);
 
     if (index >= reels.length - 2) {
       context.read<ReelsBloc>().add(const LoadMoreReels());
     }
+  }
+
+  void _openProduct(ReelProduct product) {
+    Navigator.pushNamed(
+      context,
+      '/productDetail',
+      arguments: product.toProductModel(),
+    );
+  }
+
+  void _openShop(ReelShop shop) {
+    Navigator.pushNamed(context, '/shopDetail', arguments: shop.toShopModel());
+  }
+
+  void _shareReel(ReelsModel reel) {
+    Share.share('${reel.caption}\n${reel.video.url}');
   }
 
   @override
@@ -137,6 +128,8 @@ class _ReelsPageState extends State<ReelsPage>
             }
 
             final reels = state.reels;
+            _currentReels = reels;
+
             if (reels.isEmpty) {
               return Stack(
                 children: [
@@ -155,96 +148,79 @@ class _ReelsPageState extends State<ReelsPage>
                 ],
               );
             }
-            return PageView.builder(
-              controller: _pageController,
-              scrollDirection: Axis.vertical,
-              onPageChanged: (i) => _onPageChanged(i, reels),
-              itemCount: reels.length,
-              itemBuilder: (context, index) {
-                final reel = reels[index];
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  _initVideo(index, reel);
-                });
-                final controller = _controllers[index];
 
-                return Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    controller != null && controller.value.isInitialized
-                        ? FittedBox(
-                            fit: BoxFit.cover,
-                            child: SizedBox(
-                              width: controller.value.size.width,
-                              height: controller.value.size.height,
-                              child: VideoPlayer(controller),
-                            ),
-                          )
-                        : const Center(child: CircularProgressIndicator()),
+            if (!_initialFocusRequested) {
+              _initialFocusRequested = true;
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                _playerPool.focus(
+                  _currentIndex,
+                  reels.map((r) => r.video.url).toList(),
+                );
+              });
+            }
 
-                    Container(color: Colors.black26),
+            return ListenableBuilder(
+              listenable: _playerPool,
+              builder: (context, _) {
+                return PageView.builder(
+                  controller: _pageController,
+                  scrollDirection: Axis.vertical,
+                  onPageChanged: (i) => _onPageChanged(i, reels),
+                  itemCount: reels.length,
+                  itemBuilder: (context, index) {
+                    final reel = reels[index];
 
-                    Positioned.fill(
-                      child: GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          final c = _controllers[index];
-                          if (c == null) return;
-
-                          setState(() {
-                            if (c.value.isPlaying) {
-                              c.pause();
-                              _paused[index] = true;
-                            } else {
-                              c.play();
-                              _paused[index] = false;
-                            }
-                          });
-                        },
-                      ),
-                    ),
-
-                    Positioned(
-                      top: topPadding,
-                      left: 11,
-                      right: 11,
-                      child: ReelsTabBar(tabController: _tabController),
-                    ),
-
-                    Positioned(
-                      top: topPadding + 60,
-                      left: 11,
-                      right: 11,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ReelsProfileHeader(reel: reel),
-                          const SizedBox(height: 12),
-                          _buildDescription(reel),
-                          const SizedBox(height: 8),
-                          Row(children: [_buildAddToBasketButton()]),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      right: 11,
-                      bottom: 85,
-                      child: _buildRightActions(reel),
-                    ),
-                    Positioned(
-                      left: 11,
-                      right: 11,
-                      bottom: 15,
-                      child: SafeArea(
-                        top: false,
-                        child: ReelsCommentInput(
-                          controller: textEditingController,
-                          onSubmit: () {},
+                    return Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ReelPlayerView(
+                          reel: reel,
+                          player: _playerPool.wrapperFor(index),
                         ),
-                      ),
-                    ),
-                    //
-                  ],
+
+                        Positioned(
+                          top: topPadding,
+                          left: 11,
+                          right: 11,
+                          child: ReelsTabBar(tabController: _tabController),
+                        ),
+
+                        Positioned(
+                          top: topPadding + 60,
+                          left: 11,
+                          right: 11,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ReelsProfileHeader(reel: reel),
+                              const SizedBox(height: 12),
+                              _buildDescription(reel),
+                              const SizedBox(height: 8),
+                              Row(children: [_buildAddToBasketButton(reel)]),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          right: 11,
+                          bottom: 85,
+                          child: _buildRightActions(reel),
+                        ),
+                        Positioned(
+                          left: 11,
+                          right: 11,
+                          bottom: 15,
+                          child: SafeArea(
+                            top: false,
+                            child: ReelsCommentInput(
+                              controller: textEditingController,
+                              onSubmit: () {},
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 );
               },
             );
@@ -255,8 +231,9 @@ class _ReelsPageState extends State<ReelsPage>
   }
 
   Widget _buildDescription(ReelsModel reel) {
+    if (reel.caption.isEmpty) return const SizedBox.shrink();
     return Text(
-      reel.titleTm ?? '',
+      reel.caption,
       style: const TextStyle(
         color: Colors.white,
         fontSize: 16,
@@ -265,58 +242,78 @@ class _ReelsPageState extends State<ReelsPage>
     );
   }
 
-  Widget _buildAddToBasketButton() {
+  Widget _buildAddToBasketButton(ReelsModel reel) {
+    final product = reel.product;
+    if (product == null) return const SizedBox.shrink();
+
     final localization = S.of(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: AppColors.primaryGreen.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.secondaryGreen),
-      ),
-      child: Row(
-        children: [
-          SvgIcon(
-            iconName: 'assets/icons/shopping_basket.svg',
-            height: 14,
-            width: 14,
-            color: Colors.white,
-          ),
-          const SizedBox(width: 4),
-          Text(
-            localization.sebede_gos,
-            style: const TextStyle(
+    return GestureDetector(
+      onTap: () => _openProduct(product),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: AppColors.primaryGreen.withValues(alpha: 0.5),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.secondaryGreen),
+        ),
+        child: Row(
+          children: [
+            SvgIcon(
+              iconName: 'assets/icons/shopping_basket.svg',
+              height: 14,
+              width: 14,
               color: Colors.white,
-              fontSize: 10,
-              fontWeight: FontWeight.w500,
             ),
-          ),
-        ],
+            const SizedBox(width: 4),
+            Text(
+              localization.sebede_gos,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildRightActions(ReelsModel reel) {
+    final product = reel.product;
     return Column(
       children: [
-        _iconButton(Icons.star, reel.starCount),
+        _iconButton(Icons.visibility_outlined, count: reel.viewCount),
         const SizedBox(height: 10),
-        _iconButton(Icons.comment, reel.commentCount),
+        _iconButton(Icons.share_sharp, onTap: () => _shareReel(reel)),
         const SizedBox(height: 10),
-        _iconButton(Icons.bookmark_border, reel.favoriteCount),
-        const SizedBox(height: 10),
-        _iconButton(Icons.reply, reel.shareCount),
+        if (product != null) ...[
+          _iconButton(
+            Icons.shopping_bag_outlined,
+            onTap: () => _openProduct(product),
+          ),
+          const SizedBox(height: 10),
+        ],
+        _iconButton(
+          Icons.storefront_outlined,
+          onTap: () => _openShop(reel.shop),
+        ),
       ],
     );
   }
 
-  Widget _iconButton(IconData icon, int count) {
-    return Column(
-      children: [
-        Icon(icon, color: Colors.white, size: 28),
-        const SizedBox(height: 4),
-        Text('$count', style: const TextStyle(color: Colors.white)),
-      ],
+  Widget _iconButton(IconData icon, {int? count, VoidCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.white, size: 28),
+          if (count != null) ...[
+            const SizedBox(height: 4),
+            Text('$count', style: const TextStyle(color: Colors.white)),
+          ],
+        ],
+      ),
     );
   }
 }

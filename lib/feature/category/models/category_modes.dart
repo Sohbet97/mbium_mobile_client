@@ -6,6 +6,7 @@ class CategoryModel {
   final String nameEng;
   final String slug;
   final String? icon;
+  final String? image;
   final int order;
   final String? seoTitle;
   final String? seoDescription;
@@ -14,7 +15,7 @@ class CategoryModel {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? deletedAt;
-  final List<CategoryModel> children;
+  List<CategoryModel> children;
 
   CategoryModel({
     required this.id,
@@ -24,6 +25,7 @@ class CategoryModel {
     required this.nameEng,
     required this.slug,
     this.icon,
+    this.image,
     required this.order,
     this.seoTitle,
     this.seoDescription,
@@ -32,8 +34,8 @@ class CategoryModel {
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,
-    this.children = const [],
-  });
+    List<CategoryModel>? children,
+  }) : children = children ?? [];
 
   // JSON-dan model döretmek üçin factory constructor
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
@@ -45,6 +47,7 @@ class CategoryModel {
       nameEng: json['name_eng'] as String? ?? '',
       slug: json['slug'] as String? ?? '',
       icon: json['icon'] as String?,
+      image: json['image'] as String?,
       order: json['order'] as int? ?? 0,
       seoTitle: json['seo_title'] as String?,
       seoDescription: json['seo_description'] as String?,
@@ -77,6 +80,7 @@ class CategoryModel {
       'name_eng': nameEng,
       'slug': slug,
       'icon': icon,
+      'image': image,
       'order': order,
       'seo_title': seoTitle,
       'seo_description': seoDescription,
@@ -87,5 +91,31 @@ class CategoryModel {
       'deletedAt': deletedAt?.toIso8601String(),
       'children': children.map((e) => e.toJson()).toList(),
     };
+  }
+
+  // Ýapyk sanawdan (flat list) parent_id/id baglanyşygy arkaly agaç (tree) gurmak
+  static List<CategoryModel> buildTree(List<CategoryModel> flatList) {
+    final byId = {for (final category in flatList) category.id: category};
+    final roots = <CategoryModel>[];
+
+    for (final category in flatList) {
+      category.children = [];
+    }
+
+    for (final category in flatList) {
+      final parent = byId[category.parentId];
+      if (parent != null) {
+        parent.children.add(category);
+      } else {
+        roots.add(category);
+      }
+    }
+
+    for (final category in flatList) {
+      category.children.sort((a, b) => a.order.compareTo(b.order));
+    }
+    roots.sort((a, b) => a.order.compareTo(b.order));
+
+    return roots;
   }
 }

@@ -59,14 +59,14 @@ class S {
     return Intl.message('Mbium', name: 'AppName', desc: '', args: []);
   }
 
-  /// `Hawa`
+  /// `Yes`
   String get yes {
-    return Intl.message('Hawa', name: 'yes', desc: '', args: []);
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
   }
 
-  /// `Ýok`
+  /// `No`
   String get no {
-    return Intl.message('Ýok', name: 'no', desc: '', args: []);
+    return Intl.message('No', name: 'no', desc: '', args: []);
   }
 
   /// `Goşmak`

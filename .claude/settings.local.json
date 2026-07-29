@@ -8,7 +8,10 @@
       "Bash(find 'C:\\\\Users\\\\Admin/AppData/Local/Pub/Cache/hosted/pub.dev' -maxdepth 1 -iname flutter_map-*)",
       "Bash(find 'C:\\\\Users\\\\Admin/AppData/Local/Pub/Cache/hosted/pub.dev' -maxdepth 1 -iname geolocator-*)",
       "Bash(git checkout *)",
-      "Bash(git merge *)"
+      "Bash(git merge *)",
+      "Bash(sed -n '1,60p' lib/feature/products/models/filter_model.dart)",
+      "Bash(sed -n '1,80p' lib/feature/products/bloc/product_bloc.dart)",
+      "Bash(flutter --version)"
     ]
   }
 }

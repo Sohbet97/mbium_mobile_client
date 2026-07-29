@@ -14,10 +14,13 @@ class CategoryRepository {
     }
 
     try {
-      final response = await dio.get('/catalog/categories/tree');
+      final response = await dio.get('/catalog/categories/');
       if (response.statusCode == 200) {
         final data = response.data['data'] as List;
-        _categories = data.map((json) => CategoryModel.fromJson(json)).toList();
+        final flatCategories = data
+            .map((json) => CategoryModel.fromJson(json))
+            .toList();
+        _categories = CategoryModel.buildTree(flatCategories);
         return _categories!;
       } else {
         throw Exception('Failed to load categories');
