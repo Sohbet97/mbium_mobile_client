@@ -1,3 +1,4 @@
+import 'package:mbium_mobile_client/feature/brands/models/brand_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 
 class ProductDetailModel {
@@ -29,6 +30,7 @@ class ProductDetailModel {
   final bool sellWhenOutOfStock;
   final bool isActive;
   final int? brandId;
+  final BrandModel? brand;
   final int? supplierId;
   final bool isPublished;
   final DateTime? scheduledAt;
@@ -40,6 +42,8 @@ class ProductDetailModel {
   final ProductDetailShop? shop;
   final List<ProductVariant> variants;
   final List<ProductMedia> productMedia;
+  final List<ProductMedia> models3d;
+  final List<DeliveryType> deliveryTypes;
 
   const ProductDetailModel({
     required this.id,
@@ -70,6 +74,7 @@ class ProductDetailModel {
     required this.sellWhenOutOfStock,
     required this.isActive,
     this.brandId,
+    this.brand,
     this.supplierId,
     required this.isPublished,
     this.scheduledAt,
@@ -81,6 +86,8 @@ class ProductDetailModel {
     this.shop,
     required this.variants,
     required this.productMedia,
+    this.models3d = const [],
+    this.deliveryTypes = const [],
   });
 
   factory ProductDetailModel.fromJson(Map<String, dynamic> json) {
@@ -127,6 +134,9 @@ class ProductDetailModel {
       sellWhenOutOfStock: data['sell_when_out_of_stock'] as bool? ?? false,
       isActive: data['is_active'] as bool? ?? true,
       brandId: data['brand_id'] as int?,
+      brand: data['brand'] != null
+          ? BrandModel.fromJson(data['brand'] as Map<String, dynamic>)
+          : null,
       supplierId: data['supplier_id'] as int?,
       isPublished: data['is_published'] as bool? ?? false,
       scheduledAt: data['scheduled_at'] != null
@@ -158,8 +168,21 @@ class ProductDetailModel {
               .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
               .toList()
           : [],
+      models3d: data['models3d'] != null
+          ? (data['models3d'] as List)
+              .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
+      deliveryTypes: data['deliveryTypes'] != null
+          ? (data['deliveryTypes'] as List)
+              .map((e) => DeliveryType.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
     );
   }
+
+  /// URL 3D-модели товара (.glb), если она есть
+  String? get model3dUrl => models3d.isNotEmpty ? models3d.first.url : null;
 
   List<ProductMedia> get primaryMedia =>
       productMedia.where((m) => m.role == 'primary').toList()
@@ -227,6 +250,38 @@ class ProductDetailModel {
           : null,
       shop: shop != null ? ProductShop(id: shop!.id, name: shop!.name) : null,
       productMedia: effectiveMedia,
+    );
+  }
+}
+
+class DeliveryType {
+  final int id;
+  final String name;
+  final String nameRu;
+  final String nameEn;
+  final String code;
+  final bool isActive;
+  final int sortOrder;
+
+  const DeliveryType({
+    required this.id,
+    required this.name,
+    required this.nameRu,
+    required this.nameEn,
+    required this.code,
+    required this.isActive,
+    required this.sortOrder,
+  });
+
+  factory DeliveryType.fromJson(Map<String, dynamic> json) {
+    return DeliveryType(
+      id: json['id'] as int,
+      name: json['name'] as String? ?? '',
+      nameRu: json['name_ru'] as String? ?? '',
+      nameEn: json['name_en'] as String? ?? '',
+      code: json['code'] as String? ?? '',
+      isActive: json['is_active'] as bool? ?? true,
+      sortOrder: json['sort_order'] as int? ?? 0,
     );
   }
 }

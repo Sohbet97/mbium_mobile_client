@@ -11,7 +11,10 @@
       "Bash(git merge *)",
       "Bash(sed -n '1,60p' lib/feature/products/models/filter_model.dart)",
       "Bash(sed -n '1,80p' lib/feature/products/bloc/product_bloc.dart)",
-      "Bash(flutter --version)"
+      "Bash(flutter --version)",
+      "Bash(nslookup dl.google.com)",
+      "Bash(ping -n 2 dl.google.com)",
+      "Bash(nslookup google.com)"
     ]
   }
 }

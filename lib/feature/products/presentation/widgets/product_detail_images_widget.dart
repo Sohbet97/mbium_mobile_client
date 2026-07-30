@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/product_3d_view_screen.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_full_screen_images.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_spin_view_widget.dart';
 
@@ -22,6 +23,7 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
   List<ProductMedia> get _displayMedia => widget.product.displayMedia;
   List<ProductMedia> get _spinMedia => widget.product.spinMedia;
   bool get _hasSpin => _spinMedia.isNotEmpty;
+  String? get _model3dUrl => widget.product.model3dUrl;
 
   @override
   void dispose() {
@@ -41,6 +43,20 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
     );
   }
 
+  void _open3dView() {
+    final url = _model3dUrl;
+    if (url == null) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => Product3dViewScreen(
+          modelUrl: url,
+          title: widget.product.name,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,11 +64,19 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Переключатель — только если есть spin
-          if (_hasSpin) ...[
-            _ModeToggle(
-              is360: _is360Mode,
-              onToggle: (v) => setState(() => _is360Mode = v),
+          // Переключатель (spin) + кнопка 3D-просмотра
+          if (_hasSpin || _model3dUrl != null) ...[
+            Row(
+              children: [
+                if (_hasSpin)
+                  _ModeToggle(
+                    is360: _is360Mode,
+                    onToggle: (v) => setState(() => _is360Mode = v),
+                  ),
+                const Spacer(),
+                if (_model3dUrl != null)
+                  _View3dChip(onTap: _open3dView),
+              ],
             ),
             const SizedBox(height: 8),
           ],
@@ -154,6 +178,47 @@ class _ToggleChip extends StatelessWidget {
                 color: selected
                     ? AppColors.navWhite
                     : AppColors.lightTextSecondary,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── 3D view chip ─────────────────────────────────────────────────────────────
+
+class _View3dChip extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _View3dChip({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: AppColors.navBarGrey,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(
+              Icons.view_in_ar_outlined,
+              size: 14,
+              color: AppColors.lightTextSecondary,
+            ),
+            SizedBox(width: 4),
+            Text(
+              '3D',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.lightTextSecondary,
               ),
             ),
           ],
