@@ -202,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "doglan_guni": MessageLookupByLibrary.simpleMessage("Doglan güni"),
     "dukan_barada": MessageLookupByLibrary.simpleMessage("Dükan barada"),
+    "dukanlar": MessageLookupByLibrary.simpleMessage("Dükanlar"),
     "dukanyn_gornushi": MessageLookupByLibrary.simpleMessage("Dükanyň görnüşi"),
     "durli_dillerde_desc": MessageLookupByLibrary.simpleMessage(
       "Biz siziň üçin amatly dilde problemalaryňyzy ynamdar we çalt çözmäge çalyşýarys. Hyzmatlarymyzy 10-dan gowrak dilde hödürleýäris.",
@@ -577,6 +578,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "soragynyzy_yazyn": MessageLookupByLibrary.simpleMessage(
       "Soragyňyzy ýazyň...",
     ),
+    "sort_newest": MessageLookupByLibrary.simpleMessage("Täze"),
+    "sort_price_asc": MessageLookupByLibrary.simpleMessage(
+      "Arzanladan gymmada",
+    ),
+    "sort_price_desc": MessageLookupByLibrary.simpleMessage("Gymmatdan arzana"),
     "sowda_kepilligindaki_sargydymy": MessageLookupByLibrary.simpleMessage(
       "Söwda kepilligi bolan sargydym boýunça jedel nädip açmaly?",
     ),

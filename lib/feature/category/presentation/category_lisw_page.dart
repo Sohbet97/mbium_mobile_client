@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/models/category_modes.dart';
+import 'package:mbium_mobile_client/feature/category/presentation/category_detail_screen.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_breadcrumb_widget.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_focus_panel_widget.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_siblings_list_widget.dart';
@@ -59,6 +60,10 @@ class _CategoryListPageState extends State<CategoryListPage> {
 
   // Çep sanawdan saýlama - şol bir derejede çalyşma
   void _selectSibling(CategoryModel category) {
+    if (category.children.isEmpty) {
+      _openCategoryDetail(category);
+      return;
+    }
     setState(() {
       _path = _path.isEmpty
           ? [category]
@@ -69,8 +74,22 @@ class _CategoryListPageState extends State<CategoryListPage> {
 
   // Sag sanawa basmak - has çuňňur derejä geçmek (agaç boýunça aşak düşmek)
   void _drillInto(CategoryModel category) {
+    if (category.children.isEmpty) {
+      _openCategoryDetail(category);
+      return;
+    }
     setState(() => _path = [..._path, category]);
     _loadProductsForCategory(category);
+  }
+
+  // Iň soňky (leaf) kategoriýa üçin aýratyn ekrana geçmek
+  void _openCategoryDetail(CategoryModel category) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CategoryDetailScreen(category: category),
+      ),
+    );
   }
 
   void _jumpToBreadcrumb(int index) {
@@ -110,6 +129,15 @@ class _CategoryListPageState extends State<CategoryListPage> {
                 child: Row(
                   children: [
                     Flexible(
+                      flex: 30,
+                      child: CategorySiblingsListWidget(
+                        categories: _siblings,
+                        selected: focus,
+                        onTap: _selectSibling,
+                      ),
+                    ),
+
+                    Flexible(
                       flex: 70,
                       child: focus == null
                           ? const SizedBox.shrink()
@@ -119,20 +147,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
                               scrollController: _scrollController,
                               onChildTap: _drillInto,
                             ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: 2,
-                      margin: const EdgeInsets.only(right: 2),
-                      color: Colors.grey.shade300,
-                    ),
-                    Flexible(
-                      flex: 33,
-                      child: CategorySiblingsListWidget(
-                        categories: _siblings,
-                        selected: focus,
-                        onTap: _selectSibling,
-                      ),
                     ),
                   ],
                 ),

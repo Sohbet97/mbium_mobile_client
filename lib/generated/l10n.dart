@@ -679,6 +679,31 @@ class S {
     return Intl.message('Siziň üçin', name: 'sizin_ucin', desc: '', args: []);
   }
 
+  /// `Arzanladan gymmada`
+  String get sort_price_asc {
+    return Intl.message(
+      'Arzanladan gymmada',
+      name: 'sort_price_asc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gymmatdan arzana`
+  String get sort_price_desc {
+    return Intl.message(
+      'Gymmatdan arzana',
+      name: 'sort_price_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Täze`
+  String get sort_newest {
+    return Intl.message('Täze', name: 'sort_newest', desc: '', args: []);
+  }
+
   /// `Töleg usullary:`
   String get toleg_usullary {
     return Intl.message(
@@ -2707,6 +2732,11 @@ class S {
   /// `Harytlar`
   String get harytlar {
     return Intl.message('Harytlar', name: 'harytlar', desc: '', args: []);
+  }
+
+  /// `Dükanlar`
+  String get dukanlar {
+    return Intl.message('Dükanlar', name: 'dukanlar', desc: '', args: []);
   }
 
   /// `haryt`

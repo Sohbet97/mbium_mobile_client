@@ -18,32 +18,37 @@ class CategoryGridItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(6),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(child: _buildPreview()),
-              const SizedBox(height: 3),
-              Text(
-                model.getNameByLanguage(languageCode),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 11),
+      child: Padding(
+        padding: const EdgeInsets.all(6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: _buildPreview(),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              model.getNameByLanguage(languageCode),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 11),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildPreview() {
+    print('image: ${model.image}');
     if (model.image != null) {
       return Image.network(
         model.image!,
-        fit: BoxFit.contain,
+        fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) => _buildIconFallback(),
       );
     }
