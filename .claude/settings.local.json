@@ -14,7 +14,12 @@
       "Bash(flutter --version)",
       "Bash(nslookup dl.google.com)",
       "Bash(ping -n 2 dl.google.com)",
-      "Bash(nslookup google.com)"
+      "Bash(nslookup google.com)",
+      "WebSearch",
+      "Bash(gh api *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.wanna.fashion)",
+      "WebFetch(domain:docs.vyking.io)"
     ]
   }
 }
