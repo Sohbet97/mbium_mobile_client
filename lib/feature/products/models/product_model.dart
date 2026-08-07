@@ -21,6 +21,7 @@ class ProductModel {
   final String? seoDescription;
   final double rating;
   final int reviewCount;
+  final int soldCount;
   final int status;
   final double? costPrice;
   final bool isPhysical;
@@ -56,6 +57,7 @@ class ProductModel {
     this.seoDescription,
     required this.rating,
     required this.reviewCount,
+    this.soldCount = 0,
     required this.status,
     this.costPrice,
     required this.isPhysical,
@@ -107,6 +109,7 @@ class ProductModel {
       seoDescription: json['seo_description'] as String?,
       rating: parseDouble(json['rating']),
       reviewCount: json['review_count'] as int? ?? 0,
+      soldCount: json['sold_count'] as int? ?? 0,
       status: json['status'] as int? ?? 0,
       costPrice: parseOptionalDouble(json['cost_price']),
       isPhysical: json['is_physical'] as bool? ?? true,
@@ -157,6 +160,7 @@ class ProductModel {
       'seo_description': seoDescription,
       'rating': rating.toStringAsFixed(2),
       'review_count': reviewCount,
+      'sold_count': soldCount,
       'status': status,
       'cost_price': costPrice,
       'is_physical': isPhysical,
@@ -221,15 +225,21 @@ class ProductCategory {
 class ProductShop {
   final int id;
   final String name;
+  final bool? isVerified;
 
-  ProductShop({required this.id, required this.name});
+  ProductShop({required this.id, required this.name, this.isVerified});
 
   factory ProductShop.fromJson(Map<String, dynamic> json) {
     return ProductShop(
       id: json['id'] as int,
       name: json['name'] as String? ?? '',
+      isVerified: json['is_verified'] as bool?,
     );
   }
 
-  Map<String, dynamic> toJson() => {'id': id, 'name': name};
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'is_verified': isVerified,
+  };
 }

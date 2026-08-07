@@ -55,4 +55,7 @@ class AppColors {
   static const Color featureBlue = Color(0xFF2196F3);
   static const Color featureTeal = Color(0xFF009688);
   static const Color featureGrey = Color(0xFF607D8B);
+
+  // Alibaba-style product card accent
+  static const Color alibabaOrange = Color(0xFFFF6A00);
 }

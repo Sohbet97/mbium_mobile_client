@@ -48,12 +48,11 @@ class _ShopItemCardState extends State<ShopItemCard> {
   Widget build(BuildContext context) {
     final isShow = widget.isShowProducts;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 1, vertical: 8),
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.navBarGrey),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

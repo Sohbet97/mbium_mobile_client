@@ -5,58 +5,47 @@ class ProductGridPriceRowWidget extends StatelessWidget {
   final double price;
   final double? compareAtPrice;
   final String currency;
-  final String? shopName;
 
   const ProductGridPriceRowWidget({
     super.key,
     required this.price,
     required this.currency,
     this.compareAtPrice,
-    this.shopName,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: [
-        if (compareAtPrice != null) ...[
-          Text(
-            '${compareAtPrice!.toStringAsFixed(0)} $currency',
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: Colors.black.withOpacity(0.35),
-              decoration: TextDecoration.lineThrough,
+        Flexible(
+          child: Text(
+            '${price.toStringAsFixed(0)} $currency',
+            style: const TextStyle(
+              fontSize: 19,
+              fontWeight: FontWeight.w800,
+              color: AppColors.alibabaOrange,
+              letterSpacing: -0.4,
             ),
-          ),
-          const SizedBox(height: 1),
-        ],
-        Text(
-          '${price.toStringAsFixed(0)} $currency',
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-            color: AppColors.primaryGreen,
-            letterSpacing: -0.3,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        if (shopName != null && shopName!.isNotEmpty) ...[
-          const SizedBox(height: 2),
-          Row(
-            children: [
-              const Icon(Icons.storefront_outlined, size: 11, color: AppColors.lightTextSecondary),
-              const SizedBox(width: 3),
-              Expanded(
-                child: Text(
-                  shopName!,
-                  style: const TextStyle(fontSize: 10, color: AppColors.lightTextSecondary),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+        if (compareAtPrice != null) ...[
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              '${compareAtPrice!.toStringAsFixed(0)} $currency',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: Colors.black.withOpacity(0.35),
+                decoration: TextDecoration.lineThrough,
               ),
-            ],
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ],

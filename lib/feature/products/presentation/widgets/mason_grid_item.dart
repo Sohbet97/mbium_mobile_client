@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_control_widget.dart';
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
@@ -8,8 +7,8 @@ import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_image_carousel_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_price_row_widget.dart';
-import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_rating_badge_widget.dart';
-import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_stock_overlay_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_shop_row_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_stats_row_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_tag_chip_widget.dart';
 
 class ProductMassonGridItem extends StatefulWidget {
@@ -27,20 +26,24 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
   ProductModel get product => widget.product;
 
   int? get _discountPercent {
-    if (product.compareAtPrice != null && product.compareAtPrice! > product.price) {
-      final discount = ((product.compareAtPrice! - product.price) / product.compareAtPrice!) * 100;
+    if (product.compareAtPrice != null &&
+        product.compareAtPrice! > product.price) {
+      final discount =
+          ((product.compareAtPrice! - product.price) /
+              product.compareAtPrice!) *
+          100;
       return discount.round();
     }
     return null;
   }
 
-  bool get _isOutOfStock => product.stock == 0 && !product.sellWhenOutOfStock;
-
   List<ProductMedia> get _displayMedia {
-    final primary = product.productMedia.where((m) => m.role == 'primary').toList()
-      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
-    final gallery = product.productMedia.where((m) => m.role == 'gallery').toList()
-      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    final primary =
+        product.productMedia.where((m) => m.role == 'primary').toList()
+          ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    final gallery =
+        product.productMedia.where((m) => m.role == 'gallery').toList()
+          ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
     final combined = [...primary, ...gallery];
     return combined.isNotEmpty ? combined : product.productMedia;
   }
@@ -59,7 +62,6 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
     final textStyles = context.appTextStyles;
     final discount = _discountPercent;
     final color = Theme.of(context).cardColor;
-    final outOfStock = _isOutOfStock;
     final media = _displayMedia;
     final hasMultipleImages = media.length > 1;
 
@@ -92,8 +94,11 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
               children: [
                 Stack(
                   children: [
-                    ProductGridImageCarouselWidget(media: media, currentIndex: _currentIndex),
-                    if (outOfStock) const ProductGridStockOverlayWidget(),
+                    ProductGridImageCarouselWidget(
+                      media: media,
+                      currentIndex: _currentIndex,
+                    ),
+                    // if (outOfStock) const ProductGridStockOverlayWidget(),
                     Positioned(
                       top: 8,
                       left: 8,
@@ -114,15 +119,6 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         ],
                       ),
                     ),
-                    if (product.reviewCount > 0)
-                      Positioned(
-                        bottom: 8,
-                        right: 8,
-                        child: ProductGridRatingBadgeWidget(
-                          rating: product.rating,
-                          reviewCount: product.reviewCount,
-                        ),
-                      ),
                   ],
                 ),
                 Padding(
@@ -130,6 +126,11 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      ProductGridPriceRowWidget(
+                        price: product.price,
+                        compareAtPrice: product.compareAtPrice,
+                        currency: product.currency,
+                      ),
                       if (product.category?.name != null) ...[
                         ProductGridTagChipWidget(label: product.category!.name),
                         const SizedBox(height: 6),
@@ -144,18 +145,23 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 8),
+                      ProductGridStatsRowWidget(
+                        rating: product.rating,
+                        reviewCount: product.reviewCount,
+                        soldCount: product.soldCount,
+                      ),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Expanded(
-                            child: ProductGridPriceRowWidget(
-                              price: product.price,
-                              compareAtPrice: product.compareAtPrice,
-                              currency: product.currency,
-                              shopName: product.shop?.name,
-                            ),
-                          ),
+                          if (product.shop?.name != null)
+                            Expanded(
+                              child: ProductGridShopRowWidget(
+                                shopName: product.shop!.name,
+                                isVerified: product.shop?.isVerified == true,
+                              ),
+                            )
+                          else
+                            const Spacer(),
                           CartControlWidget(product: product),
                         ],
                       ),
@@ -198,7 +204,11 @@ class _ArrowZone extends StatelessWidget {
   final bool visible;
   final VoidCallback onTap;
 
-  const _ArrowZone({required this.icon, required this.visible, required this.onTap});
+  const _ArrowZone({
+    required this.icon,
+    required this.visible,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
