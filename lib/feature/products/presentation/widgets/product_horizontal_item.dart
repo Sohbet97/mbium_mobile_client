@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
 
 class ProductHorizontalItem extends StatelessWidget {
   const ProductHorizontalItem({
@@ -68,77 +70,59 @@ class ProductHorizontalItem extends StatelessWidget {
                   Positioned(
                     top: 6,
                     left: 6,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 5,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFF4747),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        '-$discount%',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w700,
-                          height: 1.2,
-                        ),
-                      ),
-                    ),
+                    child: ProductGridDiscountBadgeWidget(discount: discount),
                   ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ).copyWith(top: 8),
-              child: Text(
-                productModel.name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: textStyles.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ).copyWith(top: 4, bottom: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
+              padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Flexible(
-                    child: Text(
-                      '${productModel.price.toStringAsFixed(2)} ${productModel.currency}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: textStyles.bodyMedium?.copyWith(
-                        color: discount != null
-                            ? const Color(0xFFFF4747)
-                            : null,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  if (discount != null) ...[
-                    const SizedBox(width: 4),
-                    Flexible(
-                      child: Text(
-                        '${productModel.compareAtPrice!.toStringAsFixed(2)} ${productModel.currency}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: textStyles.bodySmall?.copyWith(
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                          decorationColor: Colors.grey,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          '${productModel.price.toStringAsFixed(0)} ${productModel.currency}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.alibabaOrange,
+                            letterSpacing: -0.3,
+                          ),
                         ),
                       ),
+                      if (productModel.compareAtPrice != null) ...[
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            productModel.compareAtPrice!.toStringAsFixed(0),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.black.withValues(alpha: 0.35),
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    productModel.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: textStyles.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w500,
                     ),
-                  ],
+                  ),
                 ],
               ),
             ),

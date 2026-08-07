@@ -3348,6 +3348,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Stokda ýok`
+  String get stokda_yok {
+    return Intl.message('Stokda ýok', name: 'stokda_yok', desc: '', args: []);
+  }
+
+  /// `Tassyklanan`
+  String get tassyklanan {
+    return Intl.message('Tassyklanan', name: 'tassyklanan', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

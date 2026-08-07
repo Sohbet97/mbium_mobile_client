@@ -616,6 +616,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "status_pending": MessageLookupByLibrary.simpleMessage("Garaşylýar"),
     "status_rejected": MessageLookupByLibrary.simpleMessage("Ret edildi"),
     "stoc": MessageLookupByLibrary.simpleMessage("Sklatda bary"),
+    "stokda_yok": MessageLookupByLibrary.simpleMessage("Stokda ýok"),
     "sul_akkaunda_degisli_wideo_gorkezme": MessageLookupByLibrary.simpleMessage(
       "Şul akkaunda degişli hiç bir wideo görkezme",
     ),
@@ -628,6 +629,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tassyklama tapgyrlary",
     ),
     "tassyklamak": MessageLookupByLibrary.simpleMessage("Tassyklamak"),
+    "tassyklanan": MessageLookupByLibrary.simpleMessage("Tassyklanan"),
     "tassyklanan_dukan": MessageLookupByLibrary.simpleMessage(
       "Tassyklanan dükan",
     ),

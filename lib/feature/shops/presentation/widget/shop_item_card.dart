@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_horizontal_item.dart';
@@ -47,7 +48,12 @@ class _ShopItemCardState extends State<ShopItemCard> {
   Widget build(BuildContext context) {
     final isShow = widget.isShowProducts;
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 1, vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(14),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -76,20 +82,24 @@ class _ShopItemCardState extends State<ShopItemCard> {
               },
               builder: (context, state) {
                 return _products.isEmpty
-                    ? SizedBox.shrink()
-                    : SizedBox(
-                        height: 180,
-                        child: ListView.builder(
-                          controller: _scrollController,
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount: _products.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ProductHorizontalItem(
-                              productModel: _products[index],
-                              width: 120,
-                            );
-                          },
+                    ? const SizedBox.shrink()
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: SizedBox(
+                          height: 180,
+                          child: ListView.builder(
+                            controller: _scrollController,
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            itemCount: _products.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ProductHorizontalItem(
+                                productModel: _products[index],
+                                width: 120,
+                              );
+                            },
+                          ),
                         ),
                       );
               },
