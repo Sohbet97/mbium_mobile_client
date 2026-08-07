@@ -106,16 +106,16 @@ class _ShopsPageState extends State<ShopsPage> {
           },
         ),
         const SizedBox(height: 10),
-        ShopsQuickBadgesWidget(
-          onVerifiedTap: () {
-          
-          },
-          onExhibitionTap: () {
-           
-          },
-        ),
-        const SizedBox(height: 10),
 
+        // ShopsQuickBadgesWidget(
+        //   onVerifiedTap: () {
+
+        //   },
+        //   onExhibitionTap: () {
+
+        //   },
+        // ),
+        // const SizedBox(height: 10),
         Expanded(
           child: CustomScrollView(
             controller: _scrollController,

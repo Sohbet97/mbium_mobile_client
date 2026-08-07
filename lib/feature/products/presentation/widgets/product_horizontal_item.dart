@@ -66,20 +66,25 @@ class ProductHorizontalItem extends StatelessWidget {
                 ),
                 if (discount != null)
                   Positioned(
-                    top: 8,
-                    left: 8,
+                    top: 6,
+                    left: 6,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 6,
+                        horizontal: 5,
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.redAccent,
-                        borderRadius: BorderRadius.circular(12),
+                        color: const Color(0xFFFF4747),
+                        borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         '-$discount%',
-                        style: textStyles.displaySmall?.copyWith(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          height: 1.2,
+                        ),
                       ),
                     ),
                   ),
@@ -101,11 +106,40 @@ class ProductHorizontalItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8.0,
-              ).copyWith(top: 4),
-              child: Text(
-                '${productModel.price.toStringAsFixed(2)} ${productModel.currency}',
-                maxLines: 1,
-                style: textStyles.bodyMedium?.copyWith(),
+              ).copyWith(top: 4, bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Flexible(
+                    child: Text(
+                      '${productModel.price.toStringAsFixed(2)} ${productModel.currency}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: textStyles.bodyMedium?.copyWith(
+                        color: discount != null
+                            ? const Color(0xFFFF4747)
+                            : null,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  if (discount != null) ...[
+                    const SizedBox(width: 4),
+                    Flexible(
+                      child: Text(
+                        '${productModel.compareAtPrice!.toStringAsFixed(2)} ${productModel.currency}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: textStyles.bodySmall?.copyWith(
+                          color: Colors.grey,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
           ],

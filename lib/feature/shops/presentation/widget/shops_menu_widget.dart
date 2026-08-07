@@ -35,6 +35,27 @@ class ShopsMenuWidget extends StatelessWidget {
             },
           ),
           const SizedBox(width: 8),
+
+          _buildItem(
+            iconUrl: 'assets/icons/star_efir.svg',
+            title: l10n.tassyklanan_hunarmen_ondurji,
+            subTitle: '',
+            color: color,
+            onTap: () {},
+          ),
+
+          const SizedBox(width: 8),
+
+          _buildItem(
+            iconUrl: 'assets/icons/video_efir.svg',
+            title: l10n.onlayn_sowda_sergisi,
+            subTitle: '',
+            color: color,
+            onTap: () {},
+          ),
+
+          const SizedBox(width: 8),
+
           _buildItem(
             iconUrl: 'assets/icons/top.svg',
             title: l10n.top,
@@ -77,6 +98,8 @@ class ShopsMenuWidget extends StatelessWidget {
                 children: [
                   Text(
                     title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 11,
