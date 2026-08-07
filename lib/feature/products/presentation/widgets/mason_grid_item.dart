@@ -3,23 +3,55 @@ import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_control_widget.dart';
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_image_carousel_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_price_row_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_rating_badge_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_stock_overlay_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_tag_chip_widget.dart';
 
-class ProductMassonGridItem extends StatelessWidget {
+class ProductMassonGridItem extends StatefulWidget {
   const ProductMassonGridItem({super.key, required this.product});
 
   final ProductModel product;
 
+  @override
+  State<ProductMassonGridItem> createState() => _ProductMassonGridItemState();
+}
+
+class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
+  int _currentIndex = 0;
+
+  ProductModel get product => widget.product;
+
   int? get _discountPercent {
-    if (product.compareAtPrice != null &&
-        product.compareAtPrice! > product.price) {
-      final discount =
-          ((product.compareAtPrice! - product.price) /
-              product.compareAtPrice!) *
-          100;
+    if (product.compareAtPrice != null && product.compareAtPrice! > product.price) {
+      final discount = ((product.compareAtPrice! - product.price) / product.compareAtPrice!) * 100;
       return discount.round();
     }
     return null;
+  }
+
+  bool get _isOutOfStock => product.stock == 0 && !product.sellWhenOutOfStock;
+
+  List<ProductMedia> get _displayMedia {
+    final primary = product.productMedia.where((m) => m.role == 'primary').toList()
+      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    final gallery = product.productMedia.where((m) => m.role == 'gallery').toList()
+      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    final combined = [...primary, ...gallery];
+    return combined.isNotEmpty ? combined : product.productMedia;
+  }
+
+  void _goTo(int index, int mediaLength) {
+    if (index < 0 || index >= mediaLength) return;
+    setState(() => _currentIndex = index);
+  }
+
+  void _openDetail() {
+    Navigator.pushNamed(context, '/productDetail', arguments: product);
   }
 
   @override
@@ -27,209 +59,167 @@ class ProductMassonGridItem extends StatelessWidget {
     final textStyles = context.appTextStyles;
     final discount = _discountPercent;
     final color = Theme.of(context).cardColor;
-    return GestureDetector(
-      onTap: () =>
-          Navigator.pushNamed(context, '/productDetail', arguments: product),
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey.withOpacity(0.12), width: 1),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+    final outOfStock = _isOutOfStock;
+    final media = _displayMedia;
+    final hasMultipleImages = media.length > 1;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey.withOpacity(0.12), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      // Bellik: Ok düwmeleri (arrow) şu daşky Stack-de "gardaş" hökmünde
+      // ýerleşdirilýär (GestureDetector-yň içinde DÄL) — Flutter-de Stack
+      // içindäki iň ýokarky element basylanda aşakdaky elemente asla
+      // geçmeýär, şonuň üçin "detaile gir" bilen "surat çalyş" arasynda
+      // çaknyşyk bolmaýar.
+      child: Stack(
+        children: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: _openDetail,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                product.primaryThumbnailUrl != null
-                    ? ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(16),
-                        ),
-                        child: Image.network(
-                          product.primaryThumbnailUrl!,
-
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          frameBuilder:
-                              (context, child, frame, wasSynchronouslyLoaded) {
-                                if (wasSynchronouslyLoaded) return child;
-                                return AnimatedOpacity(
-                                  opacity: frame == null ? 0 : 1,
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeOut,
-                                  child: child,
-                                );
-                              },
-                          errorBuilder: (_, __, ___) => _placeholder(),
-                        ),
-                      )
-                    : _placeholder(),
-
-                Positioned(
-                  top: 8,
-                  left: 8,
-                  right: 8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      if (discount != null)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFF4B4B),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            '-$discount%',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: -0.2,
-                            ),
-                          ),
-                        )
-                      else
-                        const SizedBox.shrink(),
-
-                      FavoriteItemWidget(
-                        product: product,
-                        size: 18,
-                        padding: const EdgeInsets.all(6),
-                        withBackground: true,
-                      ),
-                    ],
-                  ),
-                ),
-
-                if (product.reviewCount > 0)
-                  Positioned(
-                    bottom: 8,
-                    left: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 6,
-                        vertical: 3,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
+                Stack(
+                  children: [
+                    ProductGridImageCarouselWidget(media: media, currentIndex: _currentIndex),
+                    if (outOfStock) const ProductGridStockOverlayWidget(),
+                    Positioned(
+                      top: 8,
+                      left: 8,
+                      right: 8,
                       child: Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(
-                            Icons.star_rounded,
-                            color: Color(0xFFFFB000),
-                            size: 14,
-                          ),
-                          const SizedBox(width: 2),
-                          Text(
-                            product.rating.toStringAsFixed(1),
-                            style: const TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          Text(
-                            ' (${product.reviewCount})',
-                            style: TextStyle(
-                              fontSize: 9,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black.withOpacity(0.5),
-                            ),
+                          if (discount != null)
+                            ProductGridDiscountBadgeWidget(discount: discount)
+                          else
+                            const SizedBox.shrink(),
+                          FavoriteItemWidget(
+                            product: product,
+                            size: 18,
+                            padding: const EdgeInsets.all(6),
+                            withBackground: true,
                           ),
                         ],
                       ),
                     ),
-                  ),
-              ],
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name,
-                    style: textStyles.s13w600clBlack.copyWith(
-                      fontSize: 13,
-                      height: 1.25,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-
-                  const SizedBox(height: 8),
-
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (product.compareAtPrice != null) ...[
-                              Text(
-                                '${product.compareAtPrice!.toStringAsFixed(0)} ${product.currency}',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black.withOpacity(0.35),
-                                  decoration: TextDecoration.lineThrough,
-                                ),
-                              ),
-                              const SizedBox(height: 1),
-                            ],
-                            Text(
-                              '${product.price.toStringAsFixed(0)} ${product.currency}',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.primaryGreen,
-                                letterSpacing: -0.3,
-                              ),
-                            ),
-                          ],
+                    if (product.reviewCount > 0)
+                      Positioned(
+                        bottom: 8,
+                        right: 8,
+                        child: ProductGridRatingBadgeWidget(
+                          rating: product.rating,
+                          reviewCount: product.reviewCount,
                         ),
                       ),
-
-                      CartControlWidget(product: product),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (product.category?.name != null) ...[
+                        ProductGridTagChipWidget(label: product.category!.name),
+                        const SizedBox(height: 6),
+                      ],
+                      Text(
+                        product.name,
+                        style: textStyles.s13w600clBlack.copyWith(
+                          fontSize: 13,
+                          height: 1.25,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: ProductGridPriceRowWidget(
+                              price: product.price,
+                              compareAtPrice: product.compareAtPrice,
+                              currency: product.currency,
+                              shopName: product.shop?.name,
+                            ),
+                          ),
+                          CartControlWidget(product: product),
+                        ],
+                      ),
                     ],
                   ),
-                ],
+                ),
+              ],
+            ),
+          ),
+          if (hasMultipleImages) ...[
+            Positioned(
+              left: 0,
+              top: 0,
+              height: 136,
+              child: _ArrowZone(
+                icon: Icons.chevron_left,
+                visible: _currentIndex > 0,
+                onTap: () => _goTo(_currentIndex - 1, media.length),
+              ),
+            ),
+            Positioned(
+              right: 0,
+              top: 0,
+              height: 136,
+              child: _ArrowZone(
+                icon: Icons.chevron_right,
+                visible: _currentIndex < media.length - 1,
+                onTap: () => _goTo(_currentIndex + 1, media.length),
               ),
             ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+class _ArrowZone extends StatelessWidget {
+  final IconData icon;
+  final bool visible;
+  final VoidCallback onTap;
+
+  const _ArrowZone({required this.icon, required this.visible, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    if (!visible) return const SizedBox(width: 26);
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        width: 26,
+        alignment: Alignment.center,
+        color: Colors.transparent,
+        child: Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.35),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, color: Colors.white, size: 16),
         ),
       ),
     );
   }
-
-  Widget _placeholder() => Container(
-    height: 160,
-    width: double.infinity,
-    color: const Color.fromARGB(255, 216, 217, 219),
-    child: const Icon(
-      Icons.image_not_supported_outlined,
-      color: AppColors.textLightGrey,
-      size: 32,
-    ),
-  );
 }

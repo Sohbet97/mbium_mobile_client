@@ -375,7 +375,9 @@
 "ai_new_dialog": "Täze gepleşik",
 "ai_no_saved_dialogs": "Entek ýatda saklanan gepleşik ýok",
 "ai_prompt_hint": "Öz islegiňiz beýan ediň...",
-"ai_copied_to_clipboard": "Nusgalandy"
+"ai_copied_to_clipboard": "Nusgalandy",
+"stokda_yok": "Stokda ýok",
+"tassyklanan": "Tassyklanan"
 
 
 }
