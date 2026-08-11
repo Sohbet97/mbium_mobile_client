@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/brands/models/brand_model.dart';
@@ -86,10 +87,10 @@ class _BrandLogo extends StatelessWidget {
           ? Icon(Icons.storefront_outlined, color: Colors.grey.shade400, size: 30)
           : ClipRRect(
               borderRadius: BorderRadius.circular(14),
-              child: Image.network(
-                logoUrl!,
+              child: CachedNetworkImage(
+                imageUrl: logoUrl!,
                 fit: BoxFit.contain,
-                errorBuilder: (_, _, _) => Icon(
+                errorWidget: (_, _, _) => Icon(
                   Icons.storefront_outlined,
                   color: Colors.grey.shade400,
                   size: 30,

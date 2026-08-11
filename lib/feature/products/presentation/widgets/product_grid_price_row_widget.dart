@@ -20,10 +20,11 @@ class ProductGridPriceRowWidget extends StatelessWidget {
       textBaseline: TextBaseline.alphabetic,
       children: [
         Flexible(
+          flex: 3,
           child: Text(
             '${price.toStringAsFixed(0)} $currency',
             style: const TextStyle(
-              fontSize: 19,
+              fontSize: 17,
               fontWeight: FontWeight.w800,
               color: AppColors.alibabaOrange,
               letterSpacing: -0.4,
@@ -33,10 +34,11 @@ class ProductGridPriceRowWidget extends StatelessWidget {
           ),
         ),
         if (compareAtPrice != null) ...[
-          const SizedBox(width: 6),
+          const SizedBox(width: 4),
           Flexible(
+            flex: 2,
             child: Text(
-              '${compareAtPrice!.toStringAsFixed(0)} $currency',
+              compareAtPrice!.toStringAsFixed(0),
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,

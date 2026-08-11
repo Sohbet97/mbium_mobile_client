@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
@@ -28,12 +29,12 @@ class ShopFavoriteListItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: shop.logo != null && shop.logo!.isNotEmpty
-                  ? Image.network(
-                      shop.logo!,
+                  ? CachedNetworkImage(
+                      imageUrl: shop.logo!,
                       width: 56,
                       height: 56,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => _PlaceholderLogo(),
+                      errorWidget: (_, _, _) => _PlaceholderLogo(),
                     )
                   : _PlaceholderLogo(),
             ),

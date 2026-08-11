@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
@@ -110,12 +111,12 @@ class CartItemWidget extends StatelessWidget {
         bottomLeft: Radius.circular(16),
       ),
       child: _imageUrl.isNotEmpty
-          ? Image.network(
-              _imageUrl,
+          ? CachedNetworkImage(
+              imageUrl: _imageUrl,
               width: 90,
               height: 110,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => _imagePlaceholder(),
+              errorWidget: (_, _, _) => _imagePlaceholder(),
             )
           : _imagePlaceholder(),
     );

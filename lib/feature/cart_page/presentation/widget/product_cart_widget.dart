@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
@@ -30,12 +31,12 @@ class ProductCartWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: _imageUrl.isNotEmpty
-                    ? Image.network(
-                        _imageUrl,
+                    ? CachedNetworkImage(
+                        imageUrl: _imageUrl,
                         width: double.infinity,
                         height: 180,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => _placeholder(context),
+                        errorWidget: (_, _, _) => _placeholder(context),
                       )
                     : _placeholder(context),
               ),

@@ -15,8 +15,6 @@ class ProductGridStatsRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (reviewCount <= 0 && soldCount <= 0) return const SizedBox.shrink();
-
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -30,22 +28,22 @@ class ProductGridStatsRowWidget extends StatelessWidget {
             color: AppColors.lightTextSecondary,
           ),
         ),
-
-        const SizedBox(width: 6),
-        Text(
-          '·',
-          style: TextStyle(fontSize: 11, color: Colors.black.withOpacity(0.3)),
-        ),
-        const SizedBox(width: 6),
-
-        Text(
-          '$soldCount+ satyldy',
-          style: const TextStyle(
-            fontSize: 11,
-            fontWeight: FontWeight.w500,
-            color: AppColors.lightTextSecondary,
+        if (soldCount > 0) ...[
+          const SizedBox(width: 6),
+          Text(
+            '·',
+            style: TextStyle(fontSize: 11, color: Colors.black.withOpacity(0.3)),
           ),
-        ),
+          const SizedBox(width: 6),
+          Text(
+            '$soldCount+ satyldy',
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              color: AppColors.lightTextSecondary,
+            ),
+          ),
+        ],
       ],
     );
   }

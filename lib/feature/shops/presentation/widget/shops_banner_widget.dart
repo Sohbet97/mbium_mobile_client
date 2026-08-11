@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
@@ -40,10 +41,10 @@ class ShopsBannerWidget extends StatelessWidget {
                     )
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(9),
-                      child: Image.network(
-                        shop.logo!,
+                      child: CachedNetworkImage(
+                        imageUrl: shop.logo!,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => const Icon(
+                        errorWidget: (context, url, error) => const Icon(
                           Icons.local_shipping_outlined,
                           color: AppColors.bonusBannerTextGreen,
                           size: 26,

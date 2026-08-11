@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/category/extensions/category_extensions.dart';
 import 'package:mbium_mobile_client/feature/category/models/category_modes.dart';
@@ -46,10 +47,10 @@ class CategoryGridItemWidget extends StatelessWidget {
   Widget _buildPreview() {
     print('image: ${model.image}');
     if (model.image != null) {
-      return Image.network(
-        model.image!,
+      return CachedNetworkImage(
+        imageUrl: model.image!,
         fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => _buildIconFallback(),
+        errorWidget: (context, url, error) => _buildIconFallback(),
       );
     }
     return _buildIconFallback();

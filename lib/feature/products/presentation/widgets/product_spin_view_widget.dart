@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
@@ -88,10 +89,10 @@ class _ProductSpinViewWidgetState extends State<ProductSpinViewWidget> {
               ...List.generate(_frames.length, (i) {
                 return Offstage(
                   offstage: i != _frameIndex,
-                  child: Image.network(
-                    _frames[i].url,
+                  child: CachedNetworkImage(
+                    imageUrl: _frames[i].url,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                    errorWidget: (_, _, _) => const SizedBox.shrink(),
                   ),
                 );
               }),
@@ -306,10 +307,10 @@ class _ProductSpinFullScreenState extends State<ProductSpinFullScreen> {
             ...List.generate(_frames.length, (i) {
               return Offstage(
                 offstage: i != _frameIndex,
-                child: Image.network(
-                  _frames[i].url,
+                child: CachedNetworkImage(
+                  imageUrl: _frames[i].url,
                   fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                  errorWidget: (_, _, _) => const SizedBox.shrink(),
                 ),
               );
             }),

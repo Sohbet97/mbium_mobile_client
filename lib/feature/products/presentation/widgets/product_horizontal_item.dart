@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_3d_badge_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_shipping_chip_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_turbo_badge_widget.dart';
 
 class ProductHorizontalItem extends StatelessWidget {
@@ -60,10 +63,10 @@ class ProductHorizontalItem extends StatelessWidget {
               children: [
                 AspectRatio(
                   aspectRatio: 1,
-                  child: Image.network(
-                    _imageUrl,
+                  child: CachedNetworkImage(
+                    imageUrl: _imageUrl,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
+                    errorWidget: (context, url, error) =>
                         Container(color: Colors.grey[200]),
                   ),
                 ),
@@ -82,6 +85,12 @@ class ProductHorizontalItem extends StatelessWidget {
                           ProductGridDiscountBadgeWidget(discount: discount),
                       ],
                     ),
+                  ),
+                if (productModel.has3dModel)
+                  const Positioned(
+                    bottom: 6,
+                    right: 6,
+                    child: ProductGrid3dBadgeWidget(),
                   ),
               ],
             ),
@@ -125,6 +134,12 @@ class ProductHorizontalItem extends StatelessWidget {
                       ],
                     ],
                   ),
+                  if (productModel.deliveryTypes.isNotEmpty) ...[
+                    const SizedBox(height: 3),
+                    ProductGridShippingChipWidget(
+                      label: productModel.deliveryTypes.first.name,
+                    ),
+                  ],
                   const SizedBox(height: 3),
                   Text(
                     productModel.name,

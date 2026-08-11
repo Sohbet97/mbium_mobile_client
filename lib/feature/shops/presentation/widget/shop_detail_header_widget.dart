@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
@@ -40,10 +41,10 @@ class ShopDetailHeaderWidget extends StatelessWidget {
                 child: model.logo != null && model.logo!.isNotEmpty
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(14),
-                        child: Image.network(
-                          myMediaUrl + model.logo!,
+                        child: CachedNetworkImage(
+                          imageUrl: myMediaUrl + model.logo!,
                           fit: BoxFit.cover,
-                          errorBuilder: (_, _, _) => const Icon(
+                          errorWidget: (_, _, _) => const Icon(
                             Icons.store_outlined,
                             color: AppColors.primaryGreen,
                             size: 30,
@@ -199,18 +200,11 @@ class _ShopDetailBannerWidgetState extends State<_ShopDetailBannerWidget> {
           Container(
             color: AppColors.primaryGreen,
             child: model.logo != null && model.logo!.isNotEmpty
-                ? Image.network(
-                    myMediaUrl + model.logo!,
+                ? CachedNetworkImage(
+                    imageUrl: myMediaUrl + model.logo!,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) => const SizedBox.shrink(),
-                    frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                      if (wasSynchronouslyLoaded) return child;
-                      return AnimatedOpacity(
-                        opacity: frame == null ? 0 : 1,
-                        duration: const Duration(milliseconds: 250),
-                        child: child,
-                      );
-                    },
+                    fadeInDuration: const Duration(milliseconds: 250),
+                    errorWidget: (_, _, _) => const SizedBox.shrink(),
                   )
                 : null,
           ),

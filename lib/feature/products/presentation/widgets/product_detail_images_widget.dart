@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
@@ -507,25 +508,23 @@ class ProductNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (url.isEmpty) return _placeholder();
 
-    return Image.network(
-      url,
+    return CachedNetworkImage(
+      imageUrl: url,
       width: width,
       height: height,
       fit: fit,
-      loadingBuilder: (_, child, progress) => progress == null
-          ? child
-          : Container(
-              width: width,
-              height: height,
-              color: AppColors.navBarGrey,
-              child: const Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: AppColors.primaryGreen,
-                ),
-              ),
-            ),
-      errorBuilder: (_, __, ___) => _placeholder(),
+      placeholder: (_, _) => Container(
+        width: width,
+        height: height,
+        color: AppColors.navBarGrey,
+        child: const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            color: AppColors.primaryGreen,
+          ),
+        ),
+      ),
+      errorWidget: (_, _, _) => _placeholder(),
     );
   }
 

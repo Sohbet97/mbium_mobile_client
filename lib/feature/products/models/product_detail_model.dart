@@ -254,6 +254,8 @@ class ProductDetailModel {
           : null,
       shop: shop != null ? ProductShop(id: shop!.id, name: shop!.name) : null,
       productMedia: effectiveMedia,
+      models3d: models3d,
+      deliveryTypes: deliveryTypes,
     );
   }
 }

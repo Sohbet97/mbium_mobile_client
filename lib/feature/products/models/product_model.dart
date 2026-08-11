@@ -45,6 +45,8 @@ class ProductModel {
   final ProductCategory? category;
   final ProductShop? shop;
   final List<ProductMedia> productMedia;
+  final List<ProductMedia> models3d;
+  final List<DeliveryType> deliveryTypes;
 
   ProductModel({
     required this.id,
@@ -91,6 +93,8 @@ class ProductModel {
     this.category,
     this.shop,
     required this.productMedia,
+    this.models3d = const [],
+    this.deliveryTypes = const [],
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -171,6 +175,16 @@ class ProductModel {
               .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
               .toList()
           : [],
+      models3d: json['models3d'] != null
+          ? (json['models3d'] as List)
+              .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
+      deliveryTypes: json['deliveryTypes'] != null
+          ? (json['deliveryTypes'] as List)
+              .map((e) => DeliveryType.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
     );
   }
 
@@ -227,6 +241,14 @@ class ProductModel {
         'sort_order': m.sortOrder,
         'media': {'id': m.media.id, 'url': m.media.url, 'thumbnail_url': m.media.thumbnailUrl},
       }).toList(),
+      'models3d': models3d.map((m) => {
+        'id': m.id,
+        'product_id': m.productId,
+        'media_id': m.mediaId,
+        'role': m.role,
+        'sort_order': m.sortOrder,
+        'media': {'id': m.media.id, 'url': m.media.url, 'thumbnail_url': m.media.thumbnailUrl},
+      }).toList(),
     };
   }
 
@@ -249,6 +271,22 @@ class ProductModel {
     if (primary.isNotEmpty) return primary.first.thumbnailUrl;
     if (productMedia.isNotEmpty) return productMedia.first.thumbnailUrl;
     return null;
+  }
+
+  /// Есть ли у товара 3D-модель. Бэкенд отдаёт её отдельным списком
+  /// `models3d` (как в /products/:id), но на случай если она попадёт
+  /// в общий `productMedia` — проверяем ещё и тип/расширение файла там.
+  bool get has3dModel =>
+      models3d.isNotEmpty || productMedia.any(_is3dMedia);
+
+  bool _is3dMedia(ProductMedia m) {
+    final type = m.media.type.toLowerCase();
+    final url = m.media.url.toLowerCase();
+    return type == '3d' ||
+        type == 'model' ||
+        type == '3d_model' ||
+        url.endsWith('.glb') ||
+        url.endsWith('.usdz');
   }
 }
 

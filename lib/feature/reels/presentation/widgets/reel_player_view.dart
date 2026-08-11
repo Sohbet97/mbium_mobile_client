@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -63,7 +64,7 @@ class _ReelPlayerViewState extends State<ReelPlayerView> {
         fit: StackFit.expand,
         children: [
           if (thumbnailUrl != null && thumbnailUrl.isNotEmpty)
-            Image.network(thumbnailUrl, fit: BoxFit.cover)
+            CachedNetworkImage(imageUrl: thumbnailUrl, fit: BoxFit.cover)
           else
             const ColoredBox(color: Colors.black),
           if (isReady)

@@ -4,9 +4,11 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_c
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_3d_badge_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_image_carousel_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_price_row_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_shipping_chip_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_shop_row_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_stats_row_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_tag_chip_widget.dart';
@@ -128,6 +130,12 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         ],
                       ),
                     ),
+                    if (product.has3dModel)
+                      const Positioned(
+                        bottom: 8,
+                        right: 8,
+                        child: ProductGrid3dBadgeWidget(),
+                      ),
                   ],
                 ),
                 Padding(
@@ -140,6 +148,13 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         compareAtPrice: product.compareAtPrice,
                         currency: product.currency,
                       ),
+                      if (product.deliveryTypes.isNotEmpty) ...[
+                        const SizedBox(height: 3),
+                        ProductGridShippingChipWidget(
+                          label: product.deliveryTypes.first.name,
+                        ),
+                        const SizedBox(height: 3),
+                      ],
                       if (product.category?.name != null) ...[
                         ProductGridTagChipWidget(label: product.category!.name),
                         const SizedBox(height: 6),

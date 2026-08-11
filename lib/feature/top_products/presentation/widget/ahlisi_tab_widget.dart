@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
@@ -76,11 +77,11 @@ class _AhlisiTabWidgetState extends State<AhlisiTabWidget> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: imageUrl.isNotEmpty
-                              ? Image.network(
-                                  imageUrl,
+                              ? CachedNetworkImage(
+                                  imageUrl: imageUrl,
                                   width: double.infinity,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) =>
+                                  errorWidget: (_, _, _) =>
                                       _placeholder(context),
                                 )
                               : _placeholder(context),

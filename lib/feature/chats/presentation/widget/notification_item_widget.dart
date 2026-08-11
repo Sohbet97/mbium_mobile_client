@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
@@ -85,12 +86,12 @@ class NotificationItemWidget extends StatelessWidget {
             const SizedBox(height: 10),
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                imageUrl!,
+              child: CachedNetworkImage(
+                imageUrl: imageUrl!,
                 width: double.infinity,
                 height: 140,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
+                errorWidget: (_, _, _) => Container(
                   height: 140,
                   color: AppColors.navBarGrey,
                   child: const Icon(Icons.image_not_supported_outlined,

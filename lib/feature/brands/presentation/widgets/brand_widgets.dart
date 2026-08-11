@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/brands/models/brand_model.dart';
@@ -63,19 +64,11 @@ class _BrandLogo extends StatelessWidget {
     }
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
-      child: Image.network(
-        logoUrl!,
+      child: CachedNetworkImage(
+        imageUrl: logoUrl!,
         fit: BoxFit.contain,
-        frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-          if (wasSynchronouslyLoaded) return child;
-          return AnimatedOpacity(
-            opacity: frame == null ? 0 : 1,
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeOut,
-            child: child,
-          );
-        },
-        errorBuilder: (_, _, _) => _placeholder(),
+        fadeInDuration: const Duration(milliseconds: 250),
+        errorWidget: (_, _, _) => _placeholder(),
       ),
     );
   }

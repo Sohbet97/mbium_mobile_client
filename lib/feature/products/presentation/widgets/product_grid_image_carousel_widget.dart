@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
@@ -30,22 +31,13 @@ class ProductGridImageCarouselWidget extends StatelessWidget {
                 ? _placeholder()
                 : AnimatedSwitcher(
                     duration: const Duration(milliseconds: 200),
-                    child: Image.network(
-                      url,
+                    child: CachedNetworkImage(
+                      imageUrl: url,
                       key: ValueKey(url),
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      frameBuilder:
-                          (context, child, frame, wasSynchronouslyLoaded) {
-                            if (wasSynchronouslyLoaded) return child;
-                            return AnimatedOpacity(
-                              opacity: frame == null ? 0 : 1,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeOut,
-                              child: child,
-                            );
-                          },
-                      errorBuilder: (_, __, ___) => _placeholder(),
+                      fadeInDuration: const Duration(milliseconds: 300),
+                      errorWidget: (_, _, _) => _placeholder(),
                     ),
                   ),
           ),
