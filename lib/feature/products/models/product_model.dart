@@ -28,6 +28,16 @@ class ProductModel {
   final bool trackInventory;
   final bool sellWhenOutOfStock;
   final bool isActive;
+  final int? brandId;
+  final int? supplierId;
+  final bool isPublished;
+  final DateTime? scheduledAt;
+  final int? moderationStatus;
+  final String? moderationNote;
+  final DateTime? moderatedAt;
+  final String? moderatedBy;
+  final bool turboActive;
+  final DateTime? turboBoostedAt;
   final String? createdBy;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -64,6 +74,16 @@ class ProductModel {
     required this.trackInventory,
     required this.sellWhenOutOfStock,
     required this.isActive,
+    this.brandId,
+    this.supplierId,
+    this.isPublished = false,
+    this.scheduledAt,
+    this.moderationStatus,
+    this.moderationNote,
+    this.moderatedAt,
+    this.moderatedBy,
+    this.turboActive = false,
+    this.turboBoostedAt,
     this.createdBy,
     required this.createdAt,
     required this.updatedAt,
@@ -116,6 +136,22 @@ class ProductModel {
       trackInventory: json['track_inventory'] as bool? ?? true,
       sellWhenOutOfStock: json['sell_when_out_of_stock'] as bool? ?? false,
       isActive: json['is_active'] as bool? ?? true,
+      brandId: json['brand_id'] as int?,
+      supplierId: json['supplier_id'] as int?,
+      isPublished: json['is_published'] as bool? ?? false,
+      scheduledAt: json['scheduled_at'] != null
+          ? DateTime.parse(json['scheduled_at'])
+          : null,
+      moderationStatus: json['moderation_status'] as int?,
+      moderationNote: json['moderation_note'] as String?,
+      moderatedAt: json['moderated_at'] != null
+          ? DateTime.parse(json['moderated_at'])
+          : null,
+      moderatedBy: json['moderated_by'] as String?,
+      turboActive: json['turbo_active'] as bool? ?? false,
+      turboBoostedAt: json['turbo_boosted_at'] != null
+          ? DateTime.parse(json['turbo_boosted_at'])
+          : null,
       createdBy: json['createdBy'] as String?,
       createdAt: json['createdAt'] != null
           ? DateTime.parse(json['createdAt'])
@@ -167,6 +203,16 @@ class ProductModel {
       'track_inventory': trackInventory,
       'sell_when_out_of_stock': sellWhenOutOfStock,
       'is_active': isActive,
+      'brand_id': brandId,
+      'supplier_id': supplierId,
+      'is_published': isPublished,
+      'scheduled_at': scheduledAt?.toIso8601String(),
+      'moderation_status': moderationStatus,
+      'moderation_note': moderationNote,
+      'moderated_at': moderatedAt?.toIso8601String(),
+      'moderated_by': moderatedBy,
+      'turbo_active': turboActive,
+      'turbo_boosted_at': turboBoostedAt?.toIso8601String(),
       'createdBy': createdBy,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),

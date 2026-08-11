@@ -106,11 +106,6 @@ class _ShopsPageState extends State<ShopsPage> {
           },
         ),
         const SizedBox(height: 10),
-<<<<<<< HEAD
-=======
-        ShopsQuickBadgesWidget(onVerifiedTap: () {}, onExhibitionTap: () {}),
-        const SizedBox(height: 10),
->>>>>>> feature/product-design
 
         // ShopsQuickBadgesWidget(
         //   onVerifiedTap: () {

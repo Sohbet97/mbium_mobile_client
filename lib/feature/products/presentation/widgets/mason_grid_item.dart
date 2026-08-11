@@ -10,6 +10,7 @@ import 'package:mbium_mobile_client/feature/products/presentation/widgets/produc
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_shop_row_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_stats_row_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_tag_chip_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_turbo_badge_widget.dart';
 
 class ProductMassonGridItem extends StatefulWidget {
   const ProductMassonGridItem({super.key, required this.product});
@@ -105,11 +106,19 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                       right: 8,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (discount != null)
-                            ProductGridDiscountBadgeWidget(discount: discount)
-                          else
-                            const SizedBox.shrink(),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (product.turboActive) ...[
+                                const ProductGridTurboBadgeWidget(),
+                                if (discount != null) const SizedBox(height: 4),
+                              ],
+                              if (discount != null)
+                                ProductGridDiscountBadgeWidget(discount: discount),
+                            ],
+                          ),
                           FavoriteItemWidget(
                             product: product,
                             size: 18,

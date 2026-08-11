@@ -55,9 +55,7 @@ class ApiClient {
             if (refreshed) {
               response.requestOptions.extra['retried'] = true;
               try {
-                final retryResponse = await dio.fetch(
-                  response.requestOptions,
-                );
+                final retryResponse = await dio.fetch(response.requestOptions);
                 return handler.resolve(retryResponse);
               } catch (_) {
                 // fall through to the expired-session handling below
@@ -98,18 +96,26 @@ class ApiClient {
         data: {'refreshToken': refreshToken},
       );
 
-      if (response.statusCode != 200) return false;
+      if (response.statusCode != 200) {
+        final token = appPreferences.getString('auth_token');
 
-      final body = response.data as Map<String, dynamic>;
-      final newAccessToken = body['accessToken'] as String?;
-      final newRefreshToken = body['refreshToken'] as String?;
-      if (newAccessToken == null || newAccessToken.isEmpty) return false;
+        final url = dio.options.baseUrl.replaceAll('/buyer', '');
+        final response = await dio.post('$url/auth/logout', data: {});
 
-      await appPreferences.setString('auth_token', newAccessToken);
-      if (newRefreshToken != null && newRefreshToken.isNotEmpty) {
-        await appPreferences.setString('refresh_token', newRefreshToken);
+        print('auth: ${response.statusCode}');
+        return false;
+      } else {
+        final body = response.data as Map<String, dynamic>;
+        final newAccessToken = body['accessToken'] as String?;
+        final newRefreshToken = body['refreshToken'] as String?;
+        if (newAccessToken == null || newAccessToken.isEmpty) return false;
+
+        await appPreferences.setString('auth_token', newAccessToken);
+        if (newRefreshToken != null && newRefreshToken.isNotEmpty) {
+          await appPreferences.setString('refresh_token', newRefreshToken);
+        }
+        return true;
       }
-      return true;
     } catch (_) {
       return false;
     }

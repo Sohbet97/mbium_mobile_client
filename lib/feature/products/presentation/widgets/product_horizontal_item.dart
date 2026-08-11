@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_turbo_badge_widget.dart';
 
 class ProductHorizontalItem extends StatelessWidget {
   const ProductHorizontalItem({
@@ -66,11 +67,21 @@ class ProductHorizontalItem extends StatelessWidget {
                         Container(color: Colors.grey[200]),
                   ),
                 ),
-                if (discount != null)
+                if (productModel.turboActive || discount != null)
                   Positioned(
                     top: 6,
                     left: 6,
-                    child: ProductGridDiscountBadgeWidget(discount: discount),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (productModel.turboActive) ...[
+                          const ProductGridTurboBadgeWidget(),
+                          if (discount != null) const SizedBox(height: 4),
+                        ],
+                        if (discount != null)
+                          ProductGridDiscountBadgeWidget(discount: discount),
+                      ],
+                    ),
                   ),
               ],
             ),
