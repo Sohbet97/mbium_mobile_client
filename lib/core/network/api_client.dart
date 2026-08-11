@@ -97,8 +97,6 @@ class ApiClient {
       );
 
       if (response.statusCode != 200) {
-        final token = appPreferences.getString('auth_token');
-
         final url = dio.options.baseUrl.replaceAll('/buyer', '');
         final response = await dio.post('$url/auth/logout', data: {});
 
