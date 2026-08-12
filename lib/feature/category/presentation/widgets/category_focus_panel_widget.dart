@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/constants/my_empty_widget.dart';
 import 'package:mbium_mobile_client/core/widgets/loading_widget.dart';
+import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
+import 'package:mbium_mobile_client/feature/banners/presentation/category_banner_strip_widget.dart';
+import 'package:mbium_mobile_client/feature/banners/presentation/category_top_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/category/models/category_modes.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_grid_item_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/list_product_item.dart';
 
 import '../../../../generated/l10n.dart';
@@ -26,12 +30,21 @@ class CategoryFocusPanelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final children = focus.children;
+    final bannerState = context.watch<BannerBloc>().state;
+    final hasCategoryBanners =
+        bannerState is BannerLoaded &&
+        bannerState.bannersByType('category').any((b) => b.isCurrentlyActive);
 
     return Container(
       color: Colors.white,
       child: CustomScrollView(
         controller: scrollController,
         slivers: [
+          if (hasCategoryBanners)
+            SliverToBoxAdapter(
+              child: CategoryTopBannerWidget(categoryId: focus.id),
+            ),
+
           if (children.isNotEmpty)
             SliverGrid.builder(
               itemCount: children.length,
@@ -83,18 +96,28 @@ class CategoryFocusPanelWidget extends StatelessWidget {
                     ),
                   );
                 }
+
+                final entries = _buildCategoryListEntries(
+                  products: state.products,
+                  hasCategoryBanners: hasCategoryBanners,
+                  pageSize: state.filter.limit,
+                );
+
                 return SliverList.builder(
-                  itemCount:
-                      state.products.length + (state.isLoadingMore ? 1 : 0),
+                  itemCount: entries.length + (state.isLoadingMore ? 1 : 0),
                   itemBuilder: (context, index) {
-                    if (index == state.products.length) {
+                    if (index == entries.length) {
                       return const Padding(
                         padding: EdgeInsets.symmetric(vertical: 16),
                         child: MyLoadingWidget(),
                       );
                     }
-                    final product = state.products[index];
-                    return ListProductItem(model: product);
+                    final entry = entries[index];
+                    return entry.bannerInsertionIndex != null
+                        ? CategoryBannerStripWidget(
+                            insertionIndex: entry.bannerInsertionIndex!,
+                          )
+                        : ListProductItem(model: entry.product!);
                   },
                 );
               }
@@ -117,4 +140,37 @@ class CategoryFocusPanelWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+List<_CategoryListEntry> _buildCategoryListEntries({
+  required List<ProductModel> products,
+  required bool hasCategoryBanners,
+  required int pageSize,
+}) {
+  if (pageSize <= 0 || !hasCategoryBanners) {
+    return products.map(_CategoryListEntry.product).toList();
+  }
+
+  final entries = <_CategoryListEntry>[];
+  var insertionIndex = 0;
+  for (var chunkStart = 0; chunkStart < products.length; chunkStart += pageSize) {
+    entries.add(_CategoryListEntry.bannerStrip(insertionIndex));
+    insertionIndex++;
+
+    final chunkEnd = (chunkStart + pageSize).clamp(0, products.length);
+    for (var i = chunkStart; i < chunkEnd; i++) {
+      entries.add(_CategoryListEntry.product(products[i]));
+    }
+  }
+  return entries;
+}
+
+class _CategoryListEntry {
+  final ProductModel? product;
+  final int? bannerInsertionIndex;
+
+  const _CategoryListEntry.product(this.product) : bannerInsertionIndex = null;
+
+  const _CategoryListEntry.bannerStrip(this.bannerInsertionIndex)
+    : product = null;
 }

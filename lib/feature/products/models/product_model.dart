@@ -47,6 +47,10 @@ class ProductModel {
   final List<ProductMedia> productMedia;
   final List<ProductMedia> models3d;
   final List<DeliveryType> deliveryTypes;
+  // Not returned by the list endpoint today (single price/compareAtPrice
+  // only) — parsed defensively so price-range/MOQ cards light up on their
+  // own once the backend starts including it.
+  final List<ProductVariant> variants;
 
   ProductModel({
     required this.id,
@@ -95,6 +99,7 @@ class ProductModel {
     required this.productMedia,
     this.models3d = const [],
     this.deliveryTypes = const [],
+    this.variants = const [],
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -183,6 +188,11 @@ class ProductModel {
       deliveryTypes: json['deliveryTypes'] != null
           ? (json['deliveryTypes'] as List)
               .map((e) => DeliveryType.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
+      variants: json['variants'] != null
+          ? (json['variants'] as List)
+              .map((e) => ProductVariant.fromJson(e as Map<String, dynamic>))
               .toList()
           : [],
     );
@@ -278,6 +288,32 @@ class ProductModel {
   /// в общий `productMedia` — проверяем ещё и тип/расширение файла там.
   bool get has3dModel =>
       models3d.isNotEmpty || productMedia.any(_is3dMedia);
+
+  double get minPrice {
+    if (variants.isEmpty) return price;
+    return variants
+        .map((v) => v.price ?? price)
+        .reduce((a, b) => a < b ? a : b);
+  }
+
+  double get maxPrice {
+    if (variants.isEmpty) return price;
+    return variants
+        .map((v) => v.price ?? price)
+        .reduce((a, b) => a > b ? a : b);
+  }
+
+  bool get hasPriceRange => minPrice != maxPrice;
+
+  int? get minOrderQuantity {
+    final values = variants.map((v) => v.minOrderQuantity).whereType<int>();
+    return values.isEmpty ? null : values.reduce((a, b) => a < b ? a : b);
+  }
+
+  int? get maxOrderQuantity {
+    final values = variants.map((v) => v.maxOrderQuantity).whereType<int>();
+    return values.isEmpty ? null : values.reduce((a, b) => a > b ? a : b);
+  }
 
   bool _is3dMedia(ProductMedia m) {
     final type = m.media.type.toLowerCase();

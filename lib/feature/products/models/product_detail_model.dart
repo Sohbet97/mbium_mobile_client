@@ -256,6 +256,9 @@ class ProductDetailModel {
       productMedia: effectiveMedia,
       models3d: models3d,
       deliveryTypes: deliveryTypes,
+      // Once a specific variant is picked the model represents that one
+      // concrete item — a price range no longer applies.
+      variants: variant == null ? variants : const [],
     );
   }
 }
@@ -348,6 +351,10 @@ class ProductVariant {
   final DateTime? deletedAt;
   final List<ProductVariantSize> sizes;
   final List<ProductMedia> media;
+  // Not yet returned by the API — parsed defensively so a min/max order-qty
+  // block can light up on product cards as soon as the backend adds it.
+  final int? minOrderQuantity;
+  final int? maxOrderQuantity;
 
   const ProductVariant({
     required this.id,
@@ -365,6 +372,8 @@ class ProductVariant {
     this.deletedAt,
     this.sizes = const [],
     this.media = const [],
+    this.minOrderQuantity,
+    this.maxOrderQuantity,
   });
 
   factory ProductVariant.fromJson(Map<String, dynamic> json) {
@@ -404,6 +413,8 @@ class ProductVariant {
               .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
               .toList()
           : [],
+      minOrderQuantity: json['min_order_quantity'] as int?,
+      maxOrderQuantity: json['max_order_quantity'] as int?,
     );
   }
 

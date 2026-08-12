@@ -4,21 +4,25 @@ import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_3d_badge_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_discount_badge_widget.dart';
-import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_shipping_chip_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_turbo_badge_widget.dart';
 
+/// Minimalist premium product tile for horizontal rails.
 class ProductHorizontalItem extends StatelessWidget {
   const ProductHorizontalItem({
     super.key,
     required this.productModel,
-    this.width = 90,
+    this.width = 140,
+    this.height = 210,
   });
+
   final ProductModel productModel;
   final double width;
+  final double height;
 
   String get _imageUrl => productModel.primaryThumbnailUrl ?? '';
 
   int? get _discountPercent {
+    if (productModel.hasPriceRange) return null;
     if (productModel.compareAtPrice != null &&
         productModel.compareAtPrice! > productModel.price) {
       final discount =
@@ -30,131 +34,216 @@ class ProductHorizontalItem extends StatelessWidget {
     return null;
   }
 
+  Widget? get _secondary {
+    final minQty = productModel.minOrderQuantity;
+    final maxQty = productModel.maxOrderQuantity;
+    if (minQty != null || maxQty != null) {
+      return _InfoChip(
+        icon: Icons.inventory_2_outlined,
+        label: minQty != null && maxQty != null && minQty != maxQty
+            ? 'MOQ $minQty-$maxQty'
+            : 'MOQ ${minQty ?? maxQty}',
+      );
+    }
+    if (productModel.deliveryTypes.isNotEmpty) {
+      return _InfoChip(
+        icon: Icons.local_shipping_outlined,
+        label: productModel.deliveryTypes.first.name,
+      );
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final textStyles = Theme.of(context).textTheme;
     final discount = _discountPercent;
-    final color = Theme.of(context).cardColor;
+    final secondary = _secondary;
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/productDetail', arguments: productModel);
       },
       child: Container(
         width: width,
+        height: height,
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(
-          color: color,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey.withOpacity(0.12), width: 1),
+          border: Border.all(color: Colors.grey.shade100, width: 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
-            Stack(
-              children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: CachedNetworkImage(
-                    imageUrl: _imageUrl,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) =>
-                        Container(color: Colors.grey[200]),
-                  ),
-                ),
-                if (productModel.turboActive || discount != null)
-                  Positioned(
-                    top: 6,
-                    left: 6,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (productModel.turboActive) ...[
-                          const ProductGridTurboBadgeWidget(),
-                          if (discount != null) const SizedBox(height: 4),
-                        ],
-                        if (discount != null)
-                          ProductGridDiscountBadgeWidget(discount: discount),
-                      ],
+            // --- TOP: PRODUCT IMAGE WITH BADGES ---
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    color: Colors.grey.shade50,
+                    child: CachedNetworkImage(
+                      imageUrl: _imageUrl,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.grey[100],
+                        child: Icon(
+                          Icons.image_not_supported_outlined,
+                          color: Colors.grey[400],
+                          size: 20,
+                        ),
+                      ),
                     ),
                   ),
-                if (productModel.has3dModel)
-                  const Positioned(
-                    bottom: 6,
-                    right: 6,
-                    child: ProductGrid3dBadgeWidget(),
-                  ),
-              ],
+                  if (productModel.turboActive || discount != null)
+                    Positioned(
+                      top: 8,
+                      left: 8,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (productModel.turboActive) ...[
+                            const ProductGridTurboBadgeWidget(),
+                            if (discount != null) const SizedBox(height: 4),
+                          ],
+                          if (discount != null)
+                            ProductGridDiscountBadgeWidget(discount: discount),
+                        ],
+                      ),
+                    ),
+                  if (productModel.has3dModel)
+                    const Positioned(
+                      top: 8,
+                      right: 8,
+                      child: ProductGrid3dBadgeWidget(),
+                    ),
+                ],
+              ),
             ),
+
+            // --- BOTTOM: PRODUCT INFO ---
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          '${productModel.price.toStringAsFixed(0)} ${productModel.currency}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.alibabaOrange,
-                            letterSpacing: -0.3,
-                          ),
-                        ),
-                      ),
-                      if (productModel.compareAtPrice != null) ...[
-                        const SizedBox(width: 4),
-                        Flexible(
-                          child: Text(
-                            productModel.compareAtPrice!.toStringAsFixed(0),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.black.withValues(alpha: 0.35),
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                  if (productModel.deliveryTypes.isNotEmpty) ...[
-                    const SizedBox(height: 3),
-                    ProductGridShippingChipWidget(
-                      label: productModel.deliveryTypes.first.name,
-                    ),
-                  ],
-                  const SizedBox(height: 3),
                   Text(
                     productModel.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: textStyles.bodySmall?.copyWith(
+                    style: const TextStyle(
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
+                      color: Color(0xFF1F2937),
+                      height: 1.2,
                     ),
                   ),
+                  const SizedBox(height: 6),
+                  _PriceRow(productModel: productModel),
+                  if (secondary != null) ...[
+                    const SizedBox(height: 6),
+                    secondary,
+                  ],
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _PriceRow extends StatelessWidget {
+  final ProductModel productModel;
+
+  const _PriceRow({required this.productModel});
+
+  @override
+  Widget build(BuildContext context) {
+    if (productModel.hasPriceRange) {
+      return Text(
+        '${productModel.minPrice.toStringAsFixed(0)}-'
+        '${productModel.maxPrice.toStringAsFixed(0)} ${productModel.currency}',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w700,
+          color: AppColors.alibabaOrange,
+        ),
+      );
+    }
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        Flexible(
+          child: Text(
+            '${productModel.price.toStringAsFixed(0)} ${productModel.currency}',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: AppColors.alibabaOrange,
+            ),
+          ),
+        ),
+        if (productModel.compareAtPrice != null) ...[
+          const SizedBox(width: 4),
+          Text(
+            productModel.compareAtPrice!.toStringAsFixed(0),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 10,
+              color: Colors.grey.shade400,
+              decoration: TextDecoration.lineThrough,
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _InfoChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _InfoChip({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 11, color: Colors.grey.shade500),
+        const SizedBox(width: 3),
+        Flexible(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey.shade600,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }

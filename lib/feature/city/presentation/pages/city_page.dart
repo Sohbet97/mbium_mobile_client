@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/feature/banners/presentation/sidebar_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
@@ -80,6 +81,9 @@ class _CityPageState extends State<CityPage> {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SearchWidget(controller: _searchController, onSubmit: () {}),
           ),
+          const SizedBox(height: 16),
+
+          const SidebarBannerWidget(),
           const SizedBox(height: 16),
 
           BlocBuilder<ProductBloc, ProductState>(

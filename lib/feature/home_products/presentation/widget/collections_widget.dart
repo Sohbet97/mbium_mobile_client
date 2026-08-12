@@ -4,10 +4,10 @@ import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dar
 import 'package:mbium_mobile_client/feature/collections/data/collection_model.dart';
 import 'package:mbium_mobile_client/feature/collections/extensions/collection_extensions.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/Horizontal_product_list_widget.dart';
+import 'package:mbium_mobile_client/feature/home_products/presentation/widget/Section_header_widget.dart';
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../core/themes/app_colors.dart';
 import '../../../../generated/l10n.dart';
 
 class ProductCollectionsWidget extends StatefulWidget {
@@ -101,26 +101,17 @@ class _CollectionSectionState extends State<_CollectionSection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
-                onTap: () => Navigator.pushNamed(
+              SectionHeaderWidget(
+                title: widget.collection.collectionNameByLanguage(languageCode),
+                subtitle:
+                    "${localization.jemi}: ${widget.collection.productCount}",
+                onSeeAll: () => Navigator.pushNamed(
                   context,
                   '/collectionDetail',
                   arguments: widget.collection,
                 ),
-                title: Text(
-                  widget.collection.collectionNameByLanguage(languageCode),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                trailing: const Icon(
-                  Icons.arrow_forward,
-                  size: 20,
-                  color: AppColors.primaryGreen,
-                ),
-                subtitle: Text(
-                  "${localization.jemi}: ${widget.collection.productCount}",
-                  style: TextStyle(fontSize: 11),
-                ),
               ),
+              const SizedBox(height: 10),
               HorizontalProductListWidget(products: products),
             ],
           ),
@@ -157,7 +148,7 @@ class _CollectionSectionShimmer extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: 155,
+            height: 180,
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               scrollDirection: Axis.horizontal,
@@ -167,10 +158,10 @@ class _CollectionSectionShimmer extends StatelessWidget {
                   baseColor: Colors.grey.shade300,
                   highlightColor: Colors.grey.shade100,
                   child: Container(
-                    width: 100,
-                    margin: const EdgeInsets.only(right: 10),
+                    width: 140,
+                    margin: const EdgeInsets.only(right: 12),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(14),
                       color: Colors.white,
                     ),
                   ),

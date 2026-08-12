@@ -3,6 +3,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
+import 'package:mbium_mobile_client/feature/banners/data/banner_repository.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/category/repository/category_repository.dart';
 import 'package:mbium_mobile_client/feature/collections/bloc/collection_bloc.dart';
@@ -238,6 +240,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => CollectionRepository(dio: apiClient.dio),
         ),
 
+        // banners
+        RepositoryProvider(
+          create: (context) => BannerRepository(dio: apiClient.dio),
+        ),
+
         // sizes
         RepositoryProvider(
           create: (context) => SizeRepository(dio: apiClient.dio),
@@ -325,6 +332,13 @@ class _MyAppState extends State<MyApp> {
             create: (context) =>
                 CollectionBloc(repository: context.read<CollectionRepository>())
                   ..add(LoadAllCollectionEvent()),
+          ),
+
+          // banners
+          BlocProvider(
+            create: (context) =>
+                BannerBloc(repository: context.read<BannerRepository>())
+                  ..add(const LoadBannersEvent()),
           ),
 
           // cart

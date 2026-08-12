@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
+import 'package:mbium_mobile_client/feature/banners/presentation/home_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/home_menu_widget.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
@@ -10,6 +12,7 @@ import 'package:mbium_mobile_client/feature/home_products/presentation/widget/de
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/promo_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/mason_grid_item.dart';
 import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
 
@@ -167,15 +170,30 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
                 );
               }
 
+              final bannerState = context.watch<BannerBloc>().state;
+              final hasHomeBanners =
+                  bannerState is BannerLoaded &&
+                  bannerState
+                      .bannersByType('home_hero')
+                      .any((b) => b.isCurrentlyActive);
+
+              final entries = _buildHomeGridEntries(
+                products: products,
+                hasHomeBanners: hasHomeBanners,
+                pageSize: state.filter.limit,
+              );
+
               return SliverMasonryGrid.count(
                 crossAxisCount: 2,
                 mainAxisSpacing: 1,
                 crossAxisSpacing: 1,
                 itemBuilder: (context, index) {
-                  final product = products[index];
-                  return ProductMassonGridItem(product: product);
+                  final entry = entries[index];
+                  return entry.carouselIndex != null
+                      ? HomeBannerWidget(insertionIndex: entry.carouselIndex!)
+                      : ProductMassonGridItem(product: entry.product!);
                 },
-                childCount: products.length,
+                childCount: entries.length,
               );
             }
             return SliverToBoxAdapter();
@@ -184,4 +202,36 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
       ],
     );
   }
+}
+
+List<_HomeGridEntry> _buildHomeGridEntries({
+  required List<ProductModel> products,
+  required bool hasHomeBanners,
+  required int pageSize,
+}) {
+  if (pageSize <= 0 || !hasHomeBanners) {
+    return products.map(_HomeGridEntry.product).toList();
+  }
+
+  final entries = <_HomeGridEntry>[];
+  var insertionIndex = 0;
+  for (var chunkStart = 0; chunkStart < products.length; chunkStart += pageSize) {
+    entries.add(_HomeGridEntry.banner(insertionIndex));
+    insertionIndex++;
+
+    final chunkEnd = (chunkStart + pageSize).clamp(0, products.length);
+    for (var i = chunkStart; i < chunkEnd; i++) {
+      entries.add(_HomeGridEntry.product(products[i]));
+    }
+  }
+  return entries;
+}
+
+class _HomeGridEntry {
+  final ProductModel? product;
+  final int? carouselIndex;
+
+  const _HomeGridEntry.product(this.product) : carouselIndex = null;
+
+  const _HomeGridEntry.banner(this.carouselIndex) : product = null;
 }
