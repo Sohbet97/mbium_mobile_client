@@ -23,4 +23,13 @@ class ReelsRepository {
 
     return ReelsResponse.fromJson(response.data as Map<String, dynamic>);
   }
+
+  Future<void> likeReel(int id, {CancelToken? cancelToken}) async {
+    try {
+      await dio.post('/reels/$id/like', cancelToken: cancelToken);
+    } on DioException catch (e) {
+      if (CancelToken.isCancel(e)) rethrow;
+      throw Exception('Error liking reel: $e');
+    }
+  }
 }

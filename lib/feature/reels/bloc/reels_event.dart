@@ -23,3 +23,12 @@ final class LoadMoreReels extends ReelsEvent {
 final class RefreshReels extends ReelsEvent {
   const RefreshReels();
 }
+
+final class LikeReel extends ReelsEvent {
+  final int reelId;
+
+  const LikeReel(this.reelId);
+
+  @override
+  List<Object?> get props => [reelId];
+}

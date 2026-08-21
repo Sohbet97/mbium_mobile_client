@@ -5,28 +5,48 @@ import 'package:mbium_mobile_client/core/constants/helpers.dart';
 import 'package:mbium_mobile_client/core/utils/FadeRouter.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/reels/bloc/reels_bloc.dart';
+import 'package:mbium_mobile_client/feature/reels/data/reels_repository.dart';
 import 'package:mbium_mobile_client/feature/reels/models/reels_filter_model.dart';
 import 'package:mbium_mobile_client/feature/reels/models/reels_model.dart';
 import 'package:mbium_mobile_client/feature/reels/player/reel_player_pool.dart';
 import 'package:mbium_mobile_client/feature/reels/player/reel_preload_manager.dart';
-import 'package:mbium_mobile_client/feature/reels/presentation/shop_reels_screen.dart';
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reel_feed_item.dart';
-import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reels_tab_bar.dart';
+import 'package:mbium_mobile_client/feature/shops/presentation/shop_detail_screen.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
+import 'package:mbium_mobile_client/main.dart';
 import 'package:share_plus/share_plus.dart';
 
-class ReelsPage extends StatefulWidget {
-  const ReelsPage({super.key});
+/// TikTok-style vertical feed of a single shop's reels, reached by tapping
+/// the shop avatar in the main reels feed — replaces the old jump straight
+/// into [ShopDetailScreen].
+class ShopReelsScreen extends StatelessWidget {
+  const ShopReelsScreen({super.key, required this.shop});
+
+  final ReelShop shop;
 
   @override
-  State<ReelsPage> createState() => _ReelsPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>
+          ReelsBloc(repository: context.read<ReelsRepository>())
+            ..add(LoadReels(ReelsFilterModel(shopId: shop.id))),
+      child: _ShopReelsView(shop: shop),
+    );
+  }
 }
 
-class _ReelsPageState extends State<ReelsPage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _ShopReelsView extends StatefulWidget {
+  const _ShopReelsView({required this.shop});
+
+  final ReelShop shop;
+
+  @override
+  State<_ShopReelsView> createState() => _ShopReelsViewState();
+}
+
+class _ShopReelsViewState extends State<_ShopReelsView> {
   final PageController _pageController = PageController();
-  final TextEditingController textEditingController = TextEditingController();
+  final TextEditingController _commentController = TextEditingController();
   final ReelPlayerPool _playerPool = ReelPlayerPool();
   late final ReelPreloadManager _preloadManager;
   int _currentIndex = 0;
@@ -37,15 +57,6 @@ class _ReelsPageState extends State<ReelsPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this, initialIndex: 2);
-
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        _onTabChanged();
-      }
-    });
-    context.read<ReelsBloc>().add(LoadReels(const ReelsFilterModel()));
-
     _preloadManager = ReelPreloadManager(
       pageController: _pageController,
       playerPool: _playerPool,
@@ -55,24 +66,11 @@ class _ReelsPageState extends State<ReelsPage>
 
   @override
   void dispose() {
-    _tabController.dispose();
     _preloadManager.dispose();
     _pageController.dispose();
     _playerPool.dispose();
-    textEditingController.dispose();
+    _commentController.dispose();
     super.dispose();
-  }
-
-  void _onTabChanged() {
-    _playerPool.reset();
-    setState(() {
-      _currentIndex = 0;
-      _initialFocusRequested = false;
-    });
-
-    if (_pageController.hasClients) {
-      _pageController.jumpToPage(0);
-    }
   }
 
   void _onPageChanged(int index, List<ReelsModel> reels) {
@@ -92,8 +90,11 @@ class _ReelsPageState extends State<ReelsPage>
     );
   }
 
-  void _openShop(ReelShop shop) {
-    Navigator.push(context, FadeRoute(page: ShopReelsScreen(shop: shop)));
+  void _openShopProfile() {
+    Navigator.push(
+      context,
+      FadeRoute(page: ShopDetailScreen(shopModel: widget.shop.toShopModel())),
+    );
   }
 
   void _shareReel(ReelsModel reel) {
@@ -110,7 +111,6 @@ class _ReelsPageState extends State<ReelsPage>
     });
   }
 
-  // Double tap on the video only ever likes, never un-likes — same as TikTok.
   void _onDoubleTapLike(ReelsModel reel) {
     if (_likedReelIds.add(reel.id)) {
       setState(() {});
@@ -129,6 +129,7 @@ class _ReelsPageState extends State<ReelsPage>
   Widget build(BuildContext context) {
     final localization = S.of(context);
     final topPadding = MediaQuery.of(context).padding.top;
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
@@ -136,7 +137,7 @@ class _ReelsPageState extends State<ReelsPage>
         resizeToAvoidBottomInset: true,
         body: BlocBuilder<ReelsBloc, ReelsState>(
           builder: (context, state) {
-            if (state is ReelsLoading) {
+            if (state is ReelsLoading || state is ReelsInitial) {
               return const Center(child: CircularProgressIndicator());
             }
 
@@ -149,7 +150,7 @@ class _ReelsPageState extends State<ReelsPage>
             }
 
             if (state is! ReelsLoaded) {
-              return const SizedBox();
+              return _buildHeaderOverlay(topPadding);
             }
 
             final reels = state.reels;
@@ -160,16 +161,11 @@ class _ReelsPageState extends State<ReelsPage>
                 children: [
                   const Center(
                     child: Text(
-                      "Reels tapylmady",
+                      'Reels tapylmady',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  Positioned(
-                    top: 60,
-                    left: 16,
-                    right: 16,
-                    child: ReelsTabBar(tabController: _tabController),
-                  ),
+                  _buildHeaderOverlay(topPadding),
                 ],
               );
             }
@@ -200,15 +196,18 @@ class _ReelsPageState extends State<ReelsPage>
                       reel: reel,
                       player: _playerPool.wrapperFor(index),
                       topPadding: topPadding,
-                      topBar: ReelsTabBar(tabController: _tabController),
+                      topBar: _ShopReelsHeader(
+                        shop: widget.shop,
+                        onOpenShopProfile: _openShopProfile,
+                      ),
                       isLiked: isLiked,
                       likeCount: reel.likeCount + (isLiked ? 1 : 0),
                       onDoubleTapLike: () => _onDoubleTapLike(reel),
                       onToggleLike: () => _toggleLike(reel),
                       onOpenProduct: _openProduct,
-                      onOpenShop: () => _openShop(reel.shop),
+                      onOpenShop: _openShopProfile,
                       onShare: () => _shareReel(reel),
-                      commentController: textEditingController,
+                      commentController: _commentController,
                       onCommentSubmit: () {},
                     );
                   },
@@ -218,6 +217,71 @@ class _ReelsPageState extends State<ReelsPage>
           },
         ),
       ),
+    );
+  }
+
+  Widget _buildHeaderOverlay(double topPadding) {
+    return Stack(
+      children: [
+        Positioned(
+          top: topPadding,
+          left: 11,
+          right: 11,
+          child: _ShopReelsHeader(
+            shop: widget.shop,
+            onOpenShopProfile: _openShopProfile,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Back button + shop identity — shown in place of the main feed's tab bar
+/// so the account this reels list belongs to is always visible.
+class _ShopReelsHeader extends StatelessWidget {
+  const _ShopReelsHeader({required this.shop, required this.onOpenShopProfile});
+
+  final ReelShop shop;
+  final VoidCallback onOpenShopProfile;
+
+  @override
+  Widget build(BuildContext context) {
+    final logo = shop.logo;
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(Icons.arrow_back, color: Colors.white, size: 26),
+        ),
+        const SizedBox(width: 10),
+        GestureDetector(
+          onTap: onOpenShopProfile,
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 16,
+                backgroundColor: Colors.white70,
+                backgroundImage: logo != null && logo.isNotEmpty
+                    ? NetworkImage(myMediaUrl + logo)
+                    : null,
+                child: logo == null || logo.isEmpty
+                    ? const Icon(Icons.storefront, size: 16)
+                    : null,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                shop.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

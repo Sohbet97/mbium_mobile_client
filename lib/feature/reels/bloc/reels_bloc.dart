@@ -17,12 +17,10 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     on<LoadReels>(_onLoadReels);
     on<LoadMoreReels>(_onLoadMoreReels);
     on<RefreshReels>(_onRefreshReels);
+    on<LikeReel>(_onLikeReel);
   }
 
-  Future<void> _onLoadReels(
-    LoadReels event,
-    Emitter<ReelsState> emit,
-  ) async {
+  Future<void> _onLoadReels(LoadReels event, Emitter<ReelsState> emit) async {
     _cancelToken.cancel();
     _cancelToken = CancelToken();
 
@@ -35,11 +33,13 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
         cancelToken: _cancelToken,
       );
 
-      emit(ReelsLoaded(
-        reels: response.reels,
-        hasMore: response.hasMore(filter.page, filter.limit),
-        filter: filter,
-      ));
+      emit(
+        ReelsLoaded(
+          reels: response.reels,
+          hasMore: response.hasMore(filter.page, filter.limit),
+          filter: filter,
+        ),
+      );
     } on DioException catch (e) {
       if (e.type == DioExceptionType.cancel) return;
       emit(ReelsError(message: _errorMessage(e), filter: event.filter));
@@ -66,12 +66,14 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
         cancelToken: _cancelToken,
       );
 
-      emit(current.copyWith(
-        reels: [...current.reels, ...response.reels],
-        hasMore: response.hasMore(nextFilter.page, nextFilter.limit),
-        isLoadingMore: false,
-        filter: nextFilter,
-      ));
+      emit(
+        current.copyWith(
+          reels: [...current.reels, ...response.reels],
+          hasMore: response.hasMore(nextFilter.page, nextFilter.limit),
+          isLoadingMore: false,
+          filter: nextFilter,
+        ),
+      );
     } on DioException catch (e) {
       if (e.type == DioExceptionType.cancel) return;
       emit(current.copyWith(isLoadingMore: false));
@@ -92,12 +94,20 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     add(LoadReels(filter));
   }
 
+  // Fire-and-forget: the UI already applied the like optimistically (and
+  // never rolls it back — there's no unlike endpoint), so a failed request
+  // here just means the server count is briefly out of sync.
+  Future<void> _onLikeReel(LikeReel event, Emitter<ReelsState> emit) async {
+    try {
+      await repository.likeReel(event.reelId);
+    } catch (_) {}
+  }
+
   String _errorMessage(DioException e) {
     return switch (e.type) {
       DioExceptionType.connectionError => 'Нет подключения к интернету',
       DioExceptionType.connectionTimeout ||
-      DioExceptionType.receiveTimeout =>
-        'Превышено время ожидания',
+      DioExceptionType.receiveTimeout => 'Превышено время ожидания',
       _ => e.response?.statusMessage ?? 'Ошибка загрузки',
     };
   }

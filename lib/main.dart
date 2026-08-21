@@ -23,7 +23,9 @@ import 'package:mbium_mobile_client/feature/cart_page/bloc/cart_bloc.dart';
 import 'package:mbium_mobile_client/feature/cart_page/data/cart_repository.dart';
 import 'package:mbium_mobile_client/feature/person/bloc/person_bloc.dart';
 import 'package:mbium_mobile_client/feature/person/data/person_repository.dart';
+import 'package:mbium_mobile_client/feature/reels/bloc/gift_bloc.dart';
 import 'package:mbium_mobile_client/feature/reels/bloc/reels_bloc.dart';
+import 'package:mbium_mobile_client/feature/reels/data/gift_repository.dart';
 import 'package:mbium_mobile_client/feature/reels/data/reels_repository.dart';
 import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
 import 'package:mbium_mobile_client/feature/shops/data/shop_repository.dart';
@@ -64,7 +66,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 ThemeMode themeMode = ThemeMode.light;
 bool isDarkTheme = false;
 String systemLanguage = "tm";
-final String myMediaUrl = 'https://mbium.com';
+final String myMediaUrl = 'https://mbium.com/api';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -229,6 +231,9 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => ReelsRepository(dio: apiClient.dio),
         ),
+        RepositoryProvider(
+          create: (context) => GiftRepository(dio: apiClient.dio),
+        ),
 
         // brands
         RepositoryProvider(
@@ -378,6 +383,10 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 ReelsBloc(repository: context.read<ReelsRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                GiftBloc(repository: context.read<GiftRepository>()),
           ),
 
           // brands
