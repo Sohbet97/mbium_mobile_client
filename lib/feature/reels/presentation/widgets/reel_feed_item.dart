@@ -111,7 +111,10 @@ class _ReelFeedItemState extends State<ReelFeedItem>
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      builder: (_) => GiftPickerSheet(reelId: widget.reel.id),
+      builder: (_) => GiftPickerSheet(
+        reelId: widget.reel.id,
+        onPause: () => widget.player?.pause(),
+      ),
     );
     if (gift == null || !mounted) return;
 

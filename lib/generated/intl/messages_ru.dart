@@ -117,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Baha goraglylygy",
     ),
     "bahalandyrmak": MessageLookupByLibrary.simpleMessage("Bahalandyrmak"),
+    "bal_al": MessageLookupByLibrary.simpleMessage("MBIUM bal al"),
+    "bal_galyndy": MessageLookupByLibrary.simpleMessage("MBIUM bal galyndy"),
     "bal_satyn_alnyshy": MessageLookupByLibrary.simpleMessage(
       "Bal satyn alnyşy",
     ),
@@ -130,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balkan_lale_shop_name": MessageLookupByLibrary.simpleMessage(
       "Balkan Läle plastik önümleri HK",
     ),
+    "bank_karty": MessageLookupByLibrary.simpleMessage("Bank karty"),
     "barkode": MessageLookupByLibrary.simpleMessage("Barkod"),
     "basga": MessageLookupByLibrary.simpleMessage("Başga"),
     "bash_zakaz": MessageLookupByLibrary.simpleMessage(
@@ -451,10 +454,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "mugt_eltip_bermek_maks": MessageLookupByLibrary.simpleMessage(
       "MUGT ELTIP BERMEK",
     ),
+    "mukdary": MessageLookupByLibrary.simpleMessage("Mukdary (coin)"),
     "musderi_baha_reyting": MessageLookupByLibrary.simpleMessage(
       "Müşderi baha reýting",
     ),
     "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
+    "nagt": MessageLookupByLibrary.simpleMessage("Nagt"),
     "nasazlyk_yuze_cykdy": MessageLookupByLibrary.simpleMessage(
       "Näsazlyk ýüze çykdy",
     ),

@@ -13,10 +13,14 @@ import 'package:mbium_mobile_client/feature/reels/models/gift_model.dart';
 /// (`ReelFeedItem`) uses that to play the flying-gift animation only once
 /// this sheet is actually gone, instead of racing it underneath the sheet.
 class GiftPickerSheet extends StatefulWidget {
-  const GiftPickerSheet({super.key, required this.reelId});
+  const GiftPickerSheet({
+    super.key,
+    required this.reelId,
+    required this.onPause,
+  });
 
   final int reelId;
-
+  final VoidCallback onPause;
   @override
   State<GiftPickerSheet> createState() => _GiftPickerSheetState();
 }
@@ -24,7 +28,7 @@ class GiftPickerSheet extends StatefulWidget {
 class _GiftPickerSheetState extends State<GiftPickerSheet> {
   int? _sendingGiftTypeId;
   GiftModel? _confirmedGift;
-
+  double? _balance;
   @override
   void initState() {
     super.initState();
@@ -33,7 +37,12 @@ class _GiftPickerSheetState extends State<GiftPickerSheet> {
     context.read<CoinBloc>().add(LoadCoinBalanceEvent());
   }
 
-  void _send(GiftTypeModel giftType) {
+  void _send(GiftTypeModel giftType, BuildContext context) {
+    if (_balance != null && giftType.priceCoin > _balance!) {
+      Navigator.pushNamed(context, '/cupons');
+      widget.onPause();
+      return;
+    }
     if (_sendingGiftTypeId != null) return;
     setState(() => _sendingGiftTypeId = giftType.id);
     context.read<GiftBloc>().add(
@@ -150,6 +159,7 @@ class _GiftPickerSheetState extends State<GiftPickerSheet> {
           BlocBuilder<CoinBloc, CoinState>(
             builder: (context, state) {
               final balance = state is CoinLoaded ? state.coin.balance : null;
+              _balance = balance;
               return Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
@@ -232,7 +242,7 @@ class _GiftPickerSheetState extends State<GiftPickerSheet> {
               giftType: giftType,
               isSending: isSending,
               isDisabled: isDisabled,
-              onTap: () => _send(giftType),
+              onTap: () => _send(giftType, context),
             );
           },
         );

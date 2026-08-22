@@ -3353,6 +3353,36 @@ class S {
   String get tassyklanan {
     return Intl.message('Tassyklanan', name: 'tassyklanan', desc: '', args: []);
   }
+
+  /// `MBIUM bal al`
+  String get bal_al {
+    return Intl.message('MBIUM bal al', name: 'bal_al', desc: '', args: []);
+  }
+
+  /// `MBIUM bal galyndy`
+  String get bal_galyndy {
+    return Intl.message(
+      'MBIUM bal galyndy',
+      name: 'bal_galyndy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mukdary (coin)`
+  String get mukdary {
+    return Intl.message('Mukdary (coin)', name: 'mukdary', desc: '', args: []);
+  }
+
+  /// `Nagt`
+  String get nagt {
+    return Intl.message('Nagt', name: 'nagt', desc: '', args: []);
+  }
+
+  /// `Bank karty`
+  String get bank_karty {
+    return Intl.message('Bank karty', name: 'bank_karty', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

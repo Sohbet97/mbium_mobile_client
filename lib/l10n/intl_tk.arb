@@ -381,7 +381,15 @@
 "ai_prompt_hint": "Öz islegiňiz beýan ediň...",
 "ai_copied_to_clipboard": "Nusgalandy",
 "stokda_yok": "Stokda ýok",
-"tassyklanan": "Tassyklanan"
+"tassyklanan": "Tassyklanan",
+"bal_al"  : "MBIUM bal al",
+"bal_galyndy" : "MBIUM bal galyndy",
+"mukdary" : "Mukdary (coin)",
+"nagt"  : "Nagt",
+"bank_karty"  : "Bank karty"
+
+
+
 
 
 }

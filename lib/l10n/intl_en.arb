@@ -420,5 +420,10 @@
 "ai_prompt_hint": "Describe your request...",
 "ai_copied_to_clipboard": "Copied",
 "stokda_yok": "Stokda ýok",
-"tassyklanan": "Tassyklanan"
+"tassyklanan": "Tassyklanan",
+"bal_al"  : "MBIUM bal al",
+"bal_galyndy" : "MBIUM bal galyndy",
+"mukdary" : "Mukdary (coin)",
+"nagt"  : "Nagt",
+"bank_karty"  : "Bank karty"
 }
