@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/constants/my_empty_widget.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/widgets/loading_widget.dart';
 import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
 import 'package:mbium_mobile_client/feature/banners/presentation/category_banner_strip_widget.dart';
@@ -47,16 +48,27 @@ class CategoryFocusPanelWidget extends StatelessWidget {
 
           if (children.isNotEmpty)
             SliverGrid.builder(
-              itemCount: children.length,
+              itemCount: children.length + 1,
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 90,
               ),
               itemBuilder: (context, index) {
+                if (index == children.length) {
+                  return Padding(
+                    padding: const EdgeInsets.all(13.0),
+                    child: CircleAvatar(
+                      radius: 18,
+                      backgroundColor: AppColors.bonusCoinGrey.withOpacity(0.4),
+                      child: Icon(Icons.category_outlined, color: Colors.white),
+                    ),
+                  );
+                }
                 final model = children[index];
                 return CategoryGridItemWidget(
                   model: model,
                   languageCode: languageCode,
-                  onTap: () => onChildTap(model),
+                  // onTap: () => onChildTap(model),
+                  onTap: () {},
                 );
               },
             ),
@@ -153,7 +165,11 @@ List<_CategoryListEntry> _buildCategoryListEntries({
 
   final entries = <_CategoryListEntry>[];
   var insertionIndex = 0;
-  for (var chunkStart = 0; chunkStart < products.length; chunkStart += pageSize) {
+  for (
+    var chunkStart = 0;
+    chunkStart < products.length;
+    chunkStart += pageSize
+  ) {
     entries.add(_CategoryListEntry.bannerStrip(insertionIndex));
     insertionIndex++;
 

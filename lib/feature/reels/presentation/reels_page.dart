@@ -25,63 +25,22 @@ class ReelsPage extends StatefulWidget {
 class _ReelsPageState extends State<ReelsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final PageController _pageController = PageController();
   final TextEditingController textEditingController = TextEditingController();
-  final ReelPlayerPool _playerPool = ReelPlayerPool();
-  late final ReelPreloadManager _preloadManager;
-  int _currentIndex = 0;
-  bool _initialFocusRequested = false;
-  List<ReelsModel> _currentReels = const [];
   final Set<int> _likedReelIds = {};
+  bool _commentsOpen = false;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this, initialIndex: 2);
-
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        _onTabChanged();
-      }
-    });
     context.read<ReelsBloc>().add(LoadReels(const ReelsFilterModel()));
-
-    _preloadManager = ReelPreloadManager(
-      pageController: _pageController,
-      playerPool: _playerPool,
-      videoUrlsProvider: () => _currentReels.map((r) => r.video.url).toList(),
-    );
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _preloadManager.dispose();
-    _pageController.dispose();
-    _playerPool.dispose();
     textEditingController.dispose();
     super.dispose();
-  }
-
-  void _onTabChanged() {
-    _playerPool.reset();
-    setState(() {
-      _currentIndex = 0;
-      _initialFocusRequested = false;
-    });
-
-    if (_pageController.hasClients) {
-      _pageController.jumpToPage(0);
-    }
-  }
-
-  void _onPageChanged(int index, List<ReelsModel> reels) {
-    setState(() => _currentIndex = index);
-    _preloadManager.onPageSettleCandidate(index);
-
-    if (index >= reels.length - 2) {
-      context.read<ReelsBloc>().add(const LoadMoreReels());
-    }
   }
 
   void _openProduct(ReelProduct product) {
@@ -153,71 +112,198 @@ class _ReelsPageState extends State<ReelsPage>
             }
 
             final reels = state.reels;
-            _currentReels = reels;
 
-            if (reels.isEmpty) {
-              return Stack(
-                children: [
-                  const Center(
-                    child: Text(
-                      "Reels tapylmady",
-                      style: TextStyle(color: Colors.white),
+            return Stack(
+              children: [
+                // Horizontal finger-swipe between tabs — each tab keeps its
+                // own vertical feed/scroll/player state (below), so swiping
+                // away and back doesn't reset where you were.
+                TabBarView(
+                  controller: _tabController,
+                  children: List.generate(
+                    3,
+                    (tabIndex) => _ReelsFeedView(
+                      tabIndex: tabIndex,
+                      tabController: _tabController,
+                      reels: reels,
+                      topPadding: topPadding,
+                      likedReelIds: _likedReelIds,
+                      onDoubleTapLike: _onDoubleTapLike,
+                      onToggleLike: _toggleLike,
+                      onOpenProduct: _openProduct,
+                      onOpenShop: _openShop,
+                      onShare: _shareReel,
+                      commentController: textEditingController,
+                      onLoadMore: () =>
+                          context.read<ReelsBloc>().add(const LoadMoreReels()),
+                      onCommentsOpenChanged: (open) =>
+                          setState(() => _commentsOpen = open),
                     ),
                   ),
+                ),
+                // Rendered once here, not per feed item — it's the same tab
+                // bar regardless of which reel/tab is on screen. Hidden
+                // while a reel's comments panel is open, same as the
+                // per-item chrome inside ReelFeedItem.
+                if (!_commentsOpen)
                   Positioned(
-                    top: 60,
-                    left: 16,
-                    right: 16,
+                    top: topPadding,
+                    left: 11,
+                    right: 11,
                     child: ReelsTabBar(tabController: _tabController),
                   ),
-                ],
-              );
-            }
-
-            if (!_initialFocusRequested) {
-              _initialFocusRequested = true;
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                _playerPool.focus(
-                  _currentIndex,
-                  reels.map((r) => r.video.url).toList(),
-                );
-              });
-            }
-
-            return ListenableBuilder(
-              listenable: _playerPool,
-              builder: (context, _) {
-                return PageView.builder(
-                  controller: _pageController,
-                  scrollDirection: Axis.vertical,
-                  onPageChanged: (i) => _onPageChanged(i, reels),
-                  itemCount: reels.length,
-                  itemBuilder: (context, index) {
-                    final reel = reels[index];
-                    final isLiked = _likedReelIds.contains(reel.id);
-
-                    return ReelFeedItem(
-                      reel: reel,
-                      player: _playerPool.wrapperFor(index),
-                      topPadding: topPadding,
-                      topBar: ReelsTabBar(tabController: _tabController),
-                      isLiked: isLiked,
-                      likeCount: reel.likeCount + (isLiked ? 1 : 0),
-                      onDoubleTapLike: () => _onDoubleTapLike(reel),
-                      onToggleLike: () => _toggleLike(reel),
-                      onOpenProduct: _openProduct,
-                      onOpenShop: () => _openShop(reel.shop),
-                      onShare: () => _shareReel(reel),
-                      commentController: textEditingController,
-                      onCommentSubmit: () {},
-                    );
-                  },
-                );
-              },
+              ],
             );
           },
         ),
       ),
+    );
+  }
+}
+
+/// One tab's vertical reel feed. Each tab owns its own [PageController] /
+/// [ReelPlayerPool] so [TabBarView] can keep all three built for instant
+/// horizontal swiping without their video players fighting each other —
+/// only the currently active tab actually plays anything.
+class _ReelsFeedView extends StatefulWidget {
+  const _ReelsFeedView({
+    required this.tabIndex,
+    required this.tabController,
+    required this.reels,
+    required this.topPadding,
+    required this.likedReelIds,
+    required this.onDoubleTapLike,
+    required this.onToggleLike,
+    required this.onOpenProduct,
+    required this.onOpenShop,
+    required this.onShare,
+    required this.commentController,
+    required this.onLoadMore,
+    required this.onCommentsOpenChanged,
+  });
+
+  final int tabIndex;
+  final TabController tabController;
+  final List<ReelsModel> reels;
+  final double topPadding;
+  final Set<int> likedReelIds;
+  final void Function(ReelsModel reel) onDoubleTapLike;
+  final void Function(ReelsModel reel) onToggleLike;
+  final void Function(ReelProduct product) onOpenProduct;
+  final void Function(ReelShop shop) onOpenShop;
+  final void Function(ReelsModel reel) onShare;
+  final TextEditingController commentController;
+  final VoidCallback onLoadMore;
+  final ValueChanged<bool> onCommentsOpenChanged;
+
+  @override
+  State<_ReelsFeedView> createState() => _ReelsFeedViewState();
+}
+
+class _ReelsFeedViewState extends State<_ReelsFeedView> {
+  final PageController _pageController = PageController();
+  final ReelPlayerPool _playerPool = ReelPlayerPool();
+  late final ReelPreloadManager _preloadManager;
+  int _currentIndex = 0;
+  bool _wasActive = false;
+
+  bool get _isActive => widget.tabController.index == widget.tabIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.tabController.addListener(_onTabControllerChanged);
+
+    _preloadManager = ReelPreloadManager(
+      pageController: _pageController,
+      playerPool: _playerPool,
+      videoUrlsProvider: () => widget.reels.map((r) => r.video.url).toList(),
+    );
+
+    _wasActive = _isActive;
+    if (_wasActive) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _focusCurrent());
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.tabController.removeListener(_onTabControllerChanged);
+    _preloadManager.dispose();
+    _pageController.dispose();
+    _playerPool.dispose();
+    super.dispose();
+  }
+
+  // Fires continuously while a swipe/animation is in flight — only act when
+  // this tab actually crosses into/out of being the active one.
+  void _onTabControllerChanged() {
+    final isActive = _isActive;
+    if (isActive == _wasActive) return;
+    _wasActive = isActive;
+
+    if (isActive) {
+      _focusCurrent();
+    } else {
+      _playerPool.reset();
+    }
+  }
+
+  void _focusCurrent() {
+    if (widget.reels.isEmpty) return;
+    _playerPool.focus(
+      _currentIndex,
+      widget.reels.map((r) => r.video.url).toList(),
+    );
+  }
+
+  void _onPageChanged(int index) {
+    setState(() => _currentIndex = index);
+    _preloadManager.onPageSettleCandidate(index);
+
+    if (index >= widget.reels.length - 2) {
+      widget.onLoadMore();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.reels.isEmpty) {
+      return const Center(
+        child: Text('Reels tapylmady', style: TextStyle(color: Colors.white)),
+      );
+    }
+
+    return ListenableBuilder(
+      listenable: _playerPool,
+      builder: (context, _) {
+        return PageView.builder(
+          controller: _pageController,
+          scrollDirection: Axis.vertical,
+          onPageChanged: _onPageChanged,
+          itemCount: widget.reels.length,
+          itemBuilder: (context, index) {
+            final reel = widget.reels[index];
+            final isLiked = widget.likedReelIds.contains(reel.id);
+
+            return ReelFeedItem(
+              reel: reel,
+              player: _playerPool.wrapperFor(index),
+              topPadding: widget.topPadding,
+              isLiked: isLiked,
+              likeCount: reel.likeCount + (isLiked ? 1 : 0),
+              onDoubleTapLike: () => widget.onDoubleTapLike(reel),
+              onToggleLike: () => widget.onToggleLike(reel),
+              onOpenProduct: widget.onOpenProduct,
+              onOpenShop: () => widget.onOpenShop(reel.shop),
+              onShare: () => widget.onShare(reel),
+              commentController: widget.commentController,
+              onCommentSubmit: () {},
+              onCommentsOpenChanged: widget.onCommentsOpenChanged,
+            );
+          },
+        );
+      },
     );
   }
 }

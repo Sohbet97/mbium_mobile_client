@@ -83,7 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "agramy": MessageLookupByLibrary.simpleMessage("Agramy"),
     "agza_bolanlarym": MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),
     "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
-    "ahlisin_gorkez": MessageLookupByLibrary.simpleMessage("Ählisini görkez"),
+    "ahlisin_gorkez": MessageLookupByLibrary.simpleMessage("Doly"),
     "ai_agendin_mugt_dowri": MessageLookupByLibrary.simpleMessage(
       "AI agendiň MUGT döwri",
     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
 
 class ReelsTabBar extends StatelessWidget {
@@ -26,7 +27,7 @@ class ReelsTabBar extends StatelessWidget {
               fontSize: 15,
               fontWeight: FontWeight.w400,
             ),
-            indicatorColor: AppColors.selectedTabGreen,
+            indicatorColor: AppColors.navWhite,
             indicatorWeight: 1,
             indicatorSize: TabBarIndicatorSize.label,
             dividerColor: Colors.transparent,
@@ -40,7 +41,14 @@ class ReelsTabBar extends StatelessWidget {
             ],
           ),
         ),
-        const Icon(Icons.search, color: Colors.white, size: 28),
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(
+            context,
+            '/searchScreen',
+            arguments: SearchModel(),
+          ),
+          child: const Icon(Icons.search, color: Colors.white, size: 28),
+        ),
       ],
     );
   }

@@ -446,16 +446,18 @@ class _GiftTile extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(
-                    Icons.monetization_on,
-                    color: Colors.amber,
-                    size: 12,
+                  Image.asset(
+                    'assets/images/coin_image.png',
+                    height: 17,
+                    width: 17,
+                    fit: BoxFit.cover,
                   ),
+
                   const SizedBox(width: 2),
                   Text(
                     '${giftType.priceCoin}',
                     style: const TextStyle(
-                      color: AppColors.secondaryGreen,
+                      color: AppColors.navBarGrey,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),

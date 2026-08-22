@@ -2084,14 +2084,9 @@ class S {
     return Intl.message('KSS', name: 'kss', desc: '', args: []);
   }
 
-  /// `Ählisini görkez`
+  /// `Doly`
   String get ahlisin_gorkez {
-    return Intl.message(
-      'Ählisini görkez',
-      name: 'ahlisin_gorkez',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Doly', name: 'ahlisin_gorkez', desc: '', args: []);
   }
 
   /// `Trade Assurance bilen sargyt nädip etmeli?`

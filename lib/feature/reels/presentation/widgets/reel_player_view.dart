@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reel_bottom_scrim.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../models/reels_model.dart';
@@ -15,14 +16,32 @@ class ReelPlayerView extends StatefulWidget {
     required this.reel,
     required this.player,
     this.onDoubleTapLike,
+    this.onScreenTap,
+    this.fit = BoxFit.cover,
+    this.showProgressBar = true,
   });
 
   final ReelsModel reel;
   final ReelPlayerWrapper? player;
 
+  /// `cover` (default) fills the frame edge-to-edge, cropping overflow —
+  /// the normal full-screen reel. `contain` shows the whole video
+  /// letterboxed — used while the comments panel has shrunk the video, so
+  /// TikTok-style you see the full frame rather than a cropped-in zoom.
+  final BoxFit fit;
+
+  /// Hidden while the comments panel is open — not useful (or roomy enough)
+  /// alongside it.
+  final bool showProgressBar;
+
   /// Called once per double-tap-to-like gesture (never on the "un-like" path
   /// — mirrors TikTok, where double tap only ever likes).
   final VoidCallback? onDoubleTapLike;
+
+  /// Called on a single tap before the play/pause toggle runs. Return true
+  /// to consume the tap (e.g. the caption was expanded and should just
+  /// collapse) — the toggle is then skipped for that tap.
+  final bool Function()? onScreenTap;
 
   @override
   State<ReelPlayerView> createState() => _ReelPlayerViewState();
@@ -129,6 +148,8 @@ class _ReelPlayerViewState extends State<ReelPlayerView>
   }
 
   void _togglePlayback() {
+    if (widget.onScreenTap?.call() ?? false) return;
+
     final player = widget.player;
     if (player == null || player.controller == null) return;
 
@@ -214,57 +235,100 @@ class _ReelPlayerViewState extends State<ReelPlayerView>
     final isReady = controller != null && controller.value.isInitialized;
     final thumbnailUrl = widget.reel.thumbnail?.thumbnailUrl;
 
-    return GestureDetector(
-      onTap: _togglePlayback,
-      onDoubleTapDown: _onDoubleTapDown,
-      onDoubleTap: _onDoubleTap,
-      onLongPressStart: (_) => _startFastForward(),
-      onLongPressEnd: (_) => _stopFastForward(),
-      onLongPressCancel: _stopFastForward,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          if (thumbnailUrl != null && thumbnailUrl.isNotEmpty)
-            CachedNetworkImage(imageUrl: thumbnailUrl, fit: BoxFit.cover)
-          else
-            const ColoredBox(color: Colors.black),
-          if (isReady)
-            FittedBox(
-              fit: BoxFit.cover,
-              child: SizedBox(
-                width: controller.value.size.width,
-                height: controller.value.size.height,
-                child: VideoPlayer(controller),
+    return Column(
+      children: [
+        Expanded(
+          // Scoped to just the video area so it never fights the progress
+          // bar's own drag/tap-to-seek gestures below for the same pointer.
+          child: GestureDetector(
+            onTap: _togglePlayback,
+            onDoubleTapDown: _onDoubleTapDown,
+            onDoubleTap: _onDoubleTap,
+            onLongPressStart: (_) => _startFastForward(),
+            onLongPressEnd: (_) => _stopFastForward(),
+            onLongPressCancel: _stopFastForward,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (thumbnailUrl != null && thumbnailUrl.isNotEmpty)
+                  CachedNetworkImage(imageUrl: thumbnailUrl, fit: widget.fit)
+                else
+                  const ColoredBox(color: Colors.black),
+                if (isReady)
+                  FittedBox(
+                    fit: widget.fit,
+                    child: SizedBox(
+                      width: controller.value.size.width,
+                      height: controller.value.size.height,
+                      child: VideoPlayer(controller),
+                    ),
+                  ),
+                if (player?.state == ReelPlayerLifecycleState.initializing)
+                  const Center(child: CircularProgressIndicator()),
+                if (player?.state == ReelPlayerLifecycleState.error)
+                  const Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      color: Colors.white,
+                      size: 48,
+                    ),
+                  ),
+                if (_heartPosition != null) _buildDoubleTapHeart(),
+                _buildPlayPauseIcon(),
+                _buildSpeedBadge(),
+              ],
+            ),
+          ),
+        ),
+        const ReelBottomScrim(),
+        if (isReady && widget.showProgressBar) _buildProgressBar(controller),
+      ],
+    );
+  }
+
+  void _seekProgressTo(
+    VideoPlayerController controller,
+    double dx,
+    double width,
+  ) {
+    if (!controller.value.isInitialized || width <= 0) return;
+    final duration = controller.value.duration;
+    if (duration == Duration.zero) return;
+
+    final fraction = (dx / width).clamp(0.0, 1.0);
+    controller.seekTo(duration * fraction);
+  }
+
+  /// [VideoProgressIndicator]'s own scrub gesture only covers its thin
+  /// render box — too small to reliably grab with a finger — so scrubbing
+  /// is driven here instead, over a properly sized 24px touch target, with
+  /// the indicator itself left purely visual (`allowScrubbing: false`).
+  Widget _buildProgressBar(VideoPlayerController controller) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapDown: (details) =>
+              _seekProgressTo(controller, details.localPosition.dx, width),
+          onHorizontalDragUpdate: (details) =>
+              _seekProgressTo(controller, details.localPosition.dx, width),
+          child: Container(
+            height: 24,
+            alignment: Alignment.center,
+            child: VideoProgressIndicator(
+              controller,
+              allowScrubbing: false,
+              padding: EdgeInsets.zero,
+              colors: const VideoProgressColors(
+                playedColor: Colors.white,
+                bufferedColor: Colors.white38,
+                backgroundColor: Colors.white12,
               ),
             ),
-          if (player?.state == ReelPlayerLifecycleState.initializing)
-            const Center(child: CircularProgressIndicator()),
-          if (player?.state == ReelPlayerLifecycleState.error)
-            const Center(
-              child: Icon(Icons.error_outline, color: Colors.white, size: 48),
-            ),
-          Container(color: Colors.black26),
-          if (isReady)
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: VideoProgressIndicator(
-                controller,
-                allowScrubbing: true,
-                padding: EdgeInsets.zero,
-                colors: const VideoProgressColors(
-                  playedColor: Colors.white,
-                  bufferedColor: Colors.white38,
-                  backgroundColor: Colors.white12,
-                ),
-              ),
-            ),
-          if (_heartPosition != null) _buildDoubleTapHeart(),
-          _buildPlayPauseIcon(),
-          _buildSpeedBadge(),
-        ],
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -361,7 +425,7 @@ class _ReelPlayerViewState extends State<ReelPlayerView>
   }
 
   Widget _buildDoubleTapHeart() {
-    const size = 100.0;
+    const size = 70.0;
     final position = _heartPosition!;
 
     return Positioned(
@@ -377,8 +441,8 @@ class _ReelPlayerViewState extends State<ReelPlayerView>
             );
           },
           child: const Icon(
-            Icons.favorite,
-            color: Color(0xFFFE2C55),
+            Icons.star,
+            color: Color.fromARGB(255, 233, 178, 29),
             size: size,
             shadows: [Shadow(color: Colors.black38, blurRadius: 12)],
           ),

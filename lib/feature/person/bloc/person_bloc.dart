@@ -91,6 +91,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   }
 
   FutureOr<void> _logOut(LogOutEvent event, Emitter<PersonState> emit) async {
+    await repository.signOut();
     await repository.preferences.clearAll();
     emit(
       state.copyWith(

@@ -75,6 +75,11 @@ class PersonRepository {
   }
 
   Future<void> signOut() async {
+    final baseUrl = dio.options.baseUrl;
+
+    final newUrl = baseUrl.replaceAll('/buyer', '');
+
+    await dio.post('$newUrl/auth/logout');
     await _ensureGoogleInitialized();
     await GoogleSignIn.instance.signOut();
     await preferences.saveRegistrationStatus(false);
