@@ -31,48 +31,22 @@ class ProductDetailDeliveryWidget extends StatelessWidget {
     if (deliveryTypes.isEmpty) return const SizedBox.shrink();
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.grey.shade100),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: deliveryTypes
-            .where((t) => t.isActive)
-            .map(
-              (t) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-                decoration: BoxDecoration(
-                  color: AppColors.bonusBannerGreen,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: AppColors.bonusBannerBorderGreen.withValues(alpha: 0.4),
-                  ),
-                ),
+      height: 30,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(14)),
+      child: deliveryTypes.length == 1
+          ? Expanded(
+              child: Container(
+                color: AppColors.primaryGreen.withOpacity(0.2),
+                height: 30,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
-                      Icons.local_shipping_outlined,
-                      size: 15,
-                      color: AppColors.bonusBannerTextGreen,
-                    ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 8),
+                    Icon(Icons.delivery_dining_outlined),
+                    const SizedBox(width: 4),
                     Text(
-                      _nameByLang(t),
+                      _nameByLang(deliveryTypes[0]),
                       style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: AppColors.aiTextBlack,
                       ),
@@ -81,8 +55,49 @@ class ProductDetailDeliveryWidget extends StatelessWidget {
                 ),
               ),
             )
-            .toList(),
-      ),
+          : ListView.builder(
+              itemCount: deliveryTypes.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 7,
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 3),
+                  decoration: BoxDecoration(
+                    color: AppColors.bonusBannerGreen,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: AppColors.bonusBannerBorderGreen.withValues(
+                        alpha: 0.4,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.local_shipping_outlined,
+                        size: 12,
+                        color: AppColors.bonusBannerTextGreen,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        _nameByLang(deliveryTypes[index]),
+                        style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.aiTextBlack,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
     );
   }
 }

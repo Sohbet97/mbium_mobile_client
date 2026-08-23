@@ -24,6 +24,11 @@ class _ProductFullScreenImagesState extends State<ProductFullScreenImages> {
   late int _currentIndex;
   late PageController _pageController;
   bool _showUI = true;
+  // True while the current photo is zoomed in. Toggled once per completed
+  // zoom gesture (not per-frame) — arena membership for a touch is decided
+  // the moment it lands, so this has to reflect state *before* the next
+  // touch starts rather than react mid-gesture.
+  bool _pagingLocked = false;
 
   @override
   void initState() {
@@ -41,6 +46,11 @@ class _ProductFullScreenImagesState extends State<ProductFullScreenImages> {
   }
 
   void _toggleUI() => setState(() => _showUI = !_showUI);
+
+  void _setPagingLocked(bool locked) {
+    if (locked == _pagingLocked) return;
+    setState(() => _pagingLocked = locked);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +73,15 @@ class _ProductFullScreenImagesState extends State<ProductFullScreenImages> {
             children: [
               PageView.builder(
                 controller: _pageController,
+                physics: _pagingLocked
+                    ? const NeverScrollableScrollPhysics()
+                    : const PageScrollPhysics(),
                 itemCount: widget.media.length,
                 onPageChanged: (i) => setState(() => _currentIndex = i),
                 itemBuilder: (_, i) => _MediaPageItem(
                   media: widget.media[i],
                   isActive: i == _currentIndex,
+                  onLockPaging: _setPagingLocked,
                 ),
               ),
               AnimatedOpacity(
@@ -106,16 +120,34 @@ class _ProductFullScreenImagesState extends State<ProductFullScreenImages> {
 class _MediaPageItem extends StatefulWidget {
   final ProductMedia media;
   final bool isActive;
+  final ValueChanged<bool> onLockPaging;
 
-  const _MediaPageItem({required this.media, required this.isActive});
+  const _MediaPageItem({
+    required this.media,
+    required this.isActive,
+    required this.onLockPaging,
+  });
 
   @override
   State<_MediaPageItem> createState() => _MediaPageItemState();
 }
 
-class _MediaPageItemState extends State<_MediaPageItem> {
+class _MediaPageItemState extends State<_MediaPageItem>
+    with SingleTickerProviderStateMixin {
   VideoPlayerController? _controller;
   bool _initialized = false;
+  final _transformController = TransformationController();
+  late final AnimationController _zoomAnimController;
+  Offset? _doubleTapPosition;
+  // Whether the image is currently zoomed past 1x. Drives both
+  // [InteractiveViewer.panEnabled] (only pan the photo once zoomed in — at
+  // 1x a single-finger drag is left free for the gallery's own page swipe)
+  // and the gallery's [PageView] physics (locked out while zoomed, so
+  // panning around a zoomed photo doesn't also flip pages). Both need this
+  // decided *before* the next touch lands — toggling mid-gesture is too
+  // late, since gesture-arena membership for a pointer is fixed the moment
+  // it goes down.
+  bool _isZoomed = false;
 
   bool get _isVideo => widget.media.media.type == 'video';
 
@@ -123,6 +155,10 @@ class _MediaPageItemState extends State<_MediaPageItem> {
   void initState() {
     super.initState();
     if (_isVideo) _initVideo();
+    _zoomAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
   }
 
   @override
@@ -146,19 +182,79 @@ class _MediaPageItemState extends State<_MediaPageItem> {
   @override
   void dispose() {
     _controller?.dispose();
+    _transformController.dispose();
+    _zoomAnimController.dispose();
     super.dispose();
+  }
+
+  void _setZoomed(bool zoomed) {
+    if (zoomed == _isZoomed) return;
+    setState(() => _isZoomed = zoomed);
+    widget.onLockPaging(zoomed);
+  }
+
+  void _onImageInteractionEnd(ScaleEndDetails details) {
+    final scale = _transformController.value.getMaxScaleOnAxis();
+    _setZoomed(scale > 1.01);
+  }
+
+  void _onDoubleTapDown(TapDownDetails details) {
+    _doubleTapPosition = details.localPosition;
+  }
+
+  void _onDoubleTap() {
+    final position = _doubleTapPosition;
+    if (position == null) return;
+
+    final zoomingIn = !_isZoomed;
+    final endMatrix = zoomingIn
+        ? (Matrix4.identity()
+            ..translateByDouble(position.dx, position.dy, 0, 1)
+            ..scaleByDouble(3.0, 3.0, 3.0, 1)
+            ..translateByDouble(-position.dx, -position.dy, 0, 1))
+        : Matrix4.identity();
+
+    final animation =
+        Matrix4Tween(begin: _transformController.value, end: endMatrix).animate(
+          CurvedAnimation(parent: _zoomAnimController, curve: Curves.easeOut),
+        );
+    void listener() => _transformController.value = animation.value;
+    animation.addListener(listener);
+    _zoomAnimController
+      ..reset()
+      ..forward().whenCompleteOrCancel(
+        () => animation.removeListener(listener),
+      );
+
+    _setZoomed(zoomingIn);
   }
 
   @override
   Widget build(BuildContext context) {
     if (!_isVideo) {
-      return InteractiveViewer(
-        minScale: 1.0,
-        maxScale: 4.0,
-        child: Center(
-          child: ProductNetworkImage(
-            url: widget.media.url,
-            fit: BoxFit.contain,
+      return GestureDetector(
+        onDoubleTapDown: _onDoubleTapDown,
+        onDoubleTap: _onDoubleTap,
+        child: InteractiveViewer(
+          transformationController: _transformController,
+          minScale: 1.0,
+          maxScale: 4.0,
+          // panEnabled is deliberately left at its default (true): setting
+          // it to false still makes InteractiveViewer consume the gesture
+          // (its own docs say onInteractionEnd fires "even if disabled"),
+          // it just applies no transform — so at 1x that dead-ends the
+          // touch instead of releasing it to the gallery's PageView, which
+          // is what broke plain swiping. Left at true, a swipe at 1x has
+          // nowhere to pan to (boundaryMargin is zero) and falls through
+          // to the PageView as before; only once actually zoomed in does
+          // panning have real bounds to consume the drag.
+          onInteractionEnd: _onImageInteractionEnd,
+          child: Center(
+            child: ProductNetworkImage(
+              url: widget.media.url,
+              fit: BoxFit.contain,
+              backgroundColor: Colors.black,
+            ),
           ),
         ),
       );
@@ -172,6 +268,7 @@ class _MediaPageItemState extends State<_MediaPageItem> {
             ProductNetworkImage(
               url: widget.media.thumbnailUrl,
               fit: BoxFit.contain,
+              backgroundColor: Colors.black,
             ),
             const CircularProgressIndicator(color: AppColors.primaryGreen),
           ],
@@ -349,6 +446,7 @@ class _BottomThumbs extends StatelessWidget {
                           url: media[i].thumbnailUrl,
                           width: 56,
                           height: 56,
+                          backgroundColor: Colors.black,
                         ),
                         if (isVideo)
                           Container(

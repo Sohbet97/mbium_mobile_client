@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
+import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
+import 'package:mbium_mobile_client/feature/search/model/search_model.dart';
 
 /// Alibaba-style floating circular icon buttons (back / favorite / share)
 /// replacing the plain [AppBar] actions row.
-class ProductDetailTopBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class ProductDetailTopBarWidget extends StatefulWidget
+    implements PreferredSizeWidget {
   const ProductDetailTopBarWidget({
     super.key,
     required this.product,
@@ -18,6 +21,31 @@ class ProductDetailTopBarWidget extends StatelessWidget implements PreferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
+  State<ProductDetailTopBarWidget> createState() =>
+      _ProductDetailTopBarWidgetState();
+}
+
+class _ProductDetailTopBarWidgetState extends State<ProductDetailTopBarWidget> {
+  final _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSubmit() {
+    final query = _searchController.text.trim();
+    if (query.isEmpty) return;
+    // NOTE: there's no product-search-by-text endpoint/screen yet —
+    // MySearchScreen only handles the image-detect flow so far — so this
+    // just opens it the same way the camera/mic buttons already do, rather
+    // than faking a results list. Wire in real query handling once a
+    // search endpoint exists.
+    Navigator.pushNamed(context, '/searchScreen', arguments: SearchModel());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -27,21 +55,24 @@ class ProductDetailTopBarWidget extends StatelessWidget implements PreferredSize
         icon: Icons.arrow_back_ios_new_rounded,
         onTap: () => Navigator.of(context).pop(),
       ),
-      actions: [
-        _CircleIconButton(
-          child: FavoriteItemWidget(product: product, size: 18),
-        ),
-        const SizedBox(width: 4),
-        _CircleIconButton(icon: Icons.share_outlined, onTap: onShare),
-        const SizedBox(width: 8),
-      ],
+      title: Row(
+        children: [
+          Expanded(
+            child: SearchWidget(
+              controller: _searchController,
+              onSubmit: _onSubmit,
+            ),
+          ),
+          _CircleIconButton(icon: Icons.share_outlined, onTap: widget.onShare),
+        ],
+      ),
     );
   }
 }
 
 class _CircleIconButton extends StatelessWidget {
   const _CircleIconButton({this.icon, this.onTap, this.child})
-      : assert(icon != null || child != null);
+    : assert(icon != null || child != null);
 
   final IconData? icon;
   final VoidCallback? onTap;
@@ -54,8 +85,8 @@ class _CircleIconButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          width: 36,
-          height: 36,
+          width: 30,
+          height: 30,
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,

@@ -3403,6 +3403,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Esasy bahasy`
+  String get esasy_baha {
+    return Intl.message('Esasy bahasy', name: 'esasy_baha', desc: '', args: []);
+  }
+
+  /// `dan (den)`
+  String get dan_den {
+    return Intl.message('dan (den)', name: 'dan_den', desc: '', args: []);
+  }
+
+  /// `Maglumatlary`
+  String get hasyetnama {
+    return Intl.message('Maglumatlary', name: 'hasyetnama', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

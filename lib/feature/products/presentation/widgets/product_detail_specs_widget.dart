@@ -17,12 +17,10 @@ class ProductDetailSpecsWidget extends StatelessWidget {
     final localization = S.of(context);
 
     final rows = <_SpecRow>[
-      if (product.sku.isNotEmpty)
-        _SpecRow(label: 'SKU', value: product.sku, icon: Icons.qr_code_2_rounded),
       if (product.weight != null)
         _SpecRow(
           label: localization.agramy,
-          value: '${product.weight} kg',
+          value: '${product.weight} g',
           icon: Icons.scale_outlined,
         ),
       if (product.barcode != null && product.barcode!.isNotEmpty)
@@ -77,7 +75,7 @@ class ProductDetailSpecsWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Häsiýetnama',
+                  S.of(context).hasyetnama,
                   style: context.appTextStyles.s13w600clBlack.copyWith(
                     color: Colors.black,
                     fontSize: 14,
@@ -125,7 +123,11 @@ class ProductDetailSpecsWidget extends StatelessWidget {
 }
 
 class _SpecRow {
-  const _SpecRow({required this.label, required this.value, required this.icon});
+  const _SpecRow({
+    required this.label,
+    required this.value,
+    required this.icon,
+  });
 
   final String label;
   final String value;

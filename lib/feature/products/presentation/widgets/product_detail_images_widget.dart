@@ -1,15 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
+import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/product_3d_view_screen.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_full_screen_images.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_spin_view_widget.dart';
 
 class ProductDetailImagesWidget extends StatefulWidget {
   final ProductDetailModel product;
-
-  const ProductDetailImagesWidget({super.key, required this.product});
+  final ProductModel littleProducts;
+  const ProductDetailImagesWidget({
+    super.key,
+    required this.product,
+    required this.littleProducts,
+  });
 
   @override
   State<ProductDetailImagesWidget> createState() =>
@@ -50,10 +56,8 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => Product3dViewScreen(
-          modelUrl: url,
-          title: widget.product.name,
-        ),
+        builder: (_) =>
+            Product3dViewScreen(modelUrl: url, title: widget.product.name),
       ),
     );
   }
@@ -75,8 +79,7 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
                     onToggle: (v) => setState(() => _is360Mode = v),
                   ),
                 const Spacer(),
-                if (_model3dUrl != null)
-                  _View3dChip(onTap: _open3dView),
+                if (_model3dUrl != null) _View3dChip(onTap: _open3dView),
               ],
             ),
             const SizedBox(height: 8),
@@ -98,6 +101,7 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
                     pageController: _pageController,
                     onPageChanged: (i) => setState(() => _currentIndex = i),
                     onOpenFullScreen: _openFullScreen,
+                    product: widget.littleProducts,
                   ),
           ),
         ],
@@ -237,7 +241,7 @@ class _PhotoView extends StatelessWidget {
   final PageController pageController;
   final ValueChanged<int> onPageChanged;
   final VoidCallback onOpenFullScreen;
-
+  final ProductModel product;
   const _PhotoView({
     super.key,
     required this.media,
@@ -245,6 +249,7 @@ class _PhotoView extends StatelessWidget {
     required this.pageController,
     required this.onPageChanged,
     required this.onOpenFullScreen,
+    required this.product,
   });
 
   @override
@@ -282,6 +287,7 @@ class _PhotoView extends StatelessWidget {
               currentIndex: currentIndex,
               pageController: pageController,
               onPageChanged: onPageChanged,
+              product: product,
             ),
           ),
         ),
@@ -383,12 +389,13 @@ class _MainMediaView extends StatelessWidget {
   final int currentIndex;
   final PageController pageController;
   final ValueChanged<int> onPageChanged;
-
+  final ProductModel product;
   const _MainMediaView({
     required this.media,
     required this.currentIndex,
     required this.pageController,
     required this.onPageChanged,
+    required this.product,
   });
 
   @override
@@ -425,7 +432,7 @@ class _MainMediaView extends StatelessWidget {
                         url: item.url,
                         width: double.infinity,
                         height: 280,
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                       if (item.media.type == 'video')
                         const Center(
@@ -443,18 +450,7 @@ class _MainMediaView extends StatelessWidget {
               Positioned(
                 top: 8,
                 right: 8,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.3),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Icon(
-                    Icons.fullscreen,
-                    color: AppColors.navWhite,
-                    size: 20,
-                  ),
-                ),
+                child: FavoriteItemWidget(product: product),
               ),
             if (media.length > 1)
               Positioned(
@@ -495,6 +491,7 @@ class ProductNetworkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
+  final Color backgroundColor;
 
   const ProductNetworkImage({
     super.key,
@@ -502,6 +499,7 @@ class ProductNetworkImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit = BoxFit.cover,
+    this.backgroundColor = AppColors.navBarGrey,
   });
 
   @override
@@ -516,7 +514,7 @@ class ProductNetworkImage extends StatelessWidget {
       placeholder: (_, _) => Container(
         width: width,
         height: height,
-        color: AppColors.navBarGrey,
+        color: backgroundColor,
         child: const Center(
           child: CircularProgressIndicator(
             strokeWidth: 2,
@@ -531,7 +529,7 @@ class ProductNetworkImage extends StatelessWidget {
   Widget _placeholder() => Container(
     width: width,
     height: height,
-    color: AppColors.navBarGrey,
+    color: backgroundColor,
     child: const Icon(
       Icons.image_not_supported_outlined,
       color: AppColors.textLightGrey,

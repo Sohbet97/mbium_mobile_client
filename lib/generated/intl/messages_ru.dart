@@ -207,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dalandyrys_sertifikaty_bolan": MessageLookupByLibrary.simpleMessage(
       "Dalandyryş sertifikaty bolan",
     ),
+    "dan_den": MessageLookupByLibrary.simpleMessage("dan (den)"),
     "delete_from_cart": MessageLookupByLibrary.simpleMessage(
       "Удалить из корзины",
     ),
@@ -242,6 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
     "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "esasy_baha": MessageLookupByLibrary.simpleMessage("Esasy bahasy"),
     "eyesi": MessageLookupByLibrary.simpleMessage("Eýesi"),
     "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
     "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
@@ -305,6 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "has_ginisleyin": MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
     "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
     "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
+    "hasyetnama": MessageLookupByLibrary.simpleMessage("Maglumatlary"),
     "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
     "hazir": MessageLookupByLibrary.simpleMessage("Häzir"),
     "hokmany": MessageLookupByLibrary.simpleMessage("Hökmany"),

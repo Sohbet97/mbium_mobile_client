@@ -44,6 +44,7 @@ class ProductDetailModel {
   final List<ProductMedia> productMedia;
   final List<ProductMedia> models3d;
   final List<DeliveryType> deliveryTypes;
+  final List<PriceTier> priceTiers;
 
   const ProductDetailModel({
     required this.id,
@@ -88,6 +89,7 @@ class ProductDetailModel {
     required this.productMedia,
     this.models3d = const [],
     this.deliveryTypes = const [],
+    this.priceTiers = const [],
   });
 
   factory ProductDetailModel.fromJson(Map<String, dynamic> json) {
@@ -178,7 +180,20 @@ class ProductDetailModel {
               .map((e) => DeliveryType.fromJson(e as Map<String, dynamic>))
               .toList()
           : [],
+      priceTiers: data['priceTiers'] != null
+          ? (data['priceTiers'] as List)
+              .map((e) => PriceTier.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
     );
+  }
+
+  /// The quantity-discount tier applicable to [qty], if any.
+  PriceTier? priceTierForQuantity(int qty) {
+    for (final tier in priceTiers) {
+      if (tier.appliesTo(qty)) return tier;
+    }
+    return null;
   }
 
   /// URL 3D-модели товара (.glb), если она есть
@@ -351,6 +366,7 @@ class ProductVariant {
   final DateTime? deletedAt;
   final List<ProductVariantSize> sizes;
   final List<ProductMedia> media;
+  final List<PriceTier> priceTiers;
   // Not yet returned by the API — parsed defensively so a min/max order-qty
   // block can light up on product cards as soon as the backend adds it.
   final int? minOrderQuantity;
@@ -372,6 +388,7 @@ class ProductVariant {
     this.deletedAt,
     this.sizes = const [],
     this.media = const [],
+    this.priceTiers = const [],
     this.minOrderQuantity,
     this.maxOrderQuantity,
   });
@@ -413,6 +430,11 @@ class ProductVariant {
               .map((e) => ProductMedia.fromJson(e as Map<String, dynamic>))
               .toList()
           : [],
+      priceTiers: json['priceTiers'] != null
+          ? (json['priceTiers'] as List)
+              .map((e) => PriceTier.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
       minOrderQuantity: json['min_order_quantity'] as int?,
       maxOrderQuantity: json['max_order_quantity'] as int?,
     );
@@ -427,6 +449,70 @@ class ProductVariant {
 
   List<ProductVariantSize> get availableSizes =>
       sizes.where((s) => s.isActive && s.stock > 0).toList();
+
+  /// The quantity-discount tier applicable to [qty], if any.
+  PriceTier? priceTierForQuantity(int qty) {
+    for (final tier in priceTiers) {
+      if (tier.appliesTo(qty)) return tier;
+    }
+    return null;
+  }
+}
+
+/// A quantity-based unit-price discount, scoped to either a base product
+/// (`productId` set, `variantId` null) or a specific variant (vice versa).
+class PriceTier {
+  final int id;
+  final int? productId;
+  final int? variantId;
+  final int minQty;
+  final int? maxQty;
+  final double unitPrice;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
+
+  const PriceTier({
+    required this.id,
+    this.productId,
+    this.variantId,
+    required this.minQty,
+    this.maxQty,
+    required this.unitPrice,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+  });
+
+  factory PriceTier.fromJson(Map<String, dynamic> json) {
+    double parseDouble(dynamic v) {
+      if (v == null) return 0.0;
+      if (v is num) return v.toDouble();
+      return double.tryParse(v.toString()) ?? 0.0;
+    }
+
+    return PriceTier(
+      id: json['id'] as int,
+      productId: json['product_id'] as int?,
+      variantId: json['variant_id'] as int?,
+      minQty: json['min_qty'] as int? ?? 0,
+      maxQty: json['max_qty'] as int?,
+      unitPrice: parseDouble(json['unit_price']),
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'])
+          : DateTime.now(),
+      updatedAt: json['updatedAt'] != null
+          ? DateTime.parse(json['updatedAt'])
+          : DateTime.now(),
+      deletedAt: json['deletedAt'] != null
+          ? DateTime.parse(json['deletedAt'])
+          : null,
+    );
+  }
+
+  /// Whether [qty] falls within this tier's [minQty]..[maxQty] range
+  /// (inclusive; an unset [maxQty] means unbounded).
+  bool appliesTo(int qty) => qty >= minQty && (maxQty == null || qty <= maxQty!);
 }
 
 /// A specific size of a [ProductVariant] — its `id` is the `variant_size_id`

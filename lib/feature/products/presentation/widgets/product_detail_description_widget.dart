@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import 'package:mbium_mobile_client/core/themes/theme.dart';
+
+import '../../../../generated/l10n.dart';
 
 /// Expandable "Düşündiriş" (description) card.
 class ProductDetailDescriptionWidget extends StatefulWidget {
-  const ProductDetailDescriptionWidget({super.key, required this.description});
-
+  const ProductDetailDescriptionWidget({
+    super.key,
+    required this.description,
+    required this.name,
+    required this.totalReview,
+    required this.productId,
+  });
+  final String name;
   final String description;
+  final int totalReview;
+  final int productId;
 
   @override
   State<ProductDetailDescriptionWidget> createState() =>
@@ -40,34 +49,25 @@ class _ProductDetailDescriptionWidgetState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryGreen.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(
-                  Icons.description_outlined,
-                  size: 15,
-                  color: AppColors.primaryGreen,
+              Expanded(
+                child: Text(
+                  widget.name,
+                  style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),
               const SizedBox(width: 8),
-              Text(
-                'Düşündiriş',
-                style: context.appTextStyles.s13w600clBlack.copyWith(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-              ),
+              // if (product.tags.isNotEmpty) _TagChip(label: product.tags.first),
             ],
           ),
+
           const SizedBox(height: 10),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 250),
-            crossFadeState:
-                _expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            crossFadeState: _expanded
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
             firstChild: Text(
               widget.description,
               maxLines: 3,
@@ -102,6 +102,29 @@ class _ProductDetailDescriptionWidgetState
                 ),
               ),
             ),
+          const SizedBox(height: 10),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/productReview',
+                arguments: widget.productId,
+              );
+            },
+            child: Row(
+              children: [
+                Text(
+                  '${S.of(context).teswirler} (${widget.totalReview})',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

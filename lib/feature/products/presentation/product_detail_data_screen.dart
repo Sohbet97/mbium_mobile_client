@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/extensions/product_extensions.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
@@ -31,7 +32,8 @@ class ProductDetailDataScreen extends StatelessWidget {
 
   int? get _discountPercent {
     if (model.compareAtPrice != null && model.compareAtPrice! > model.price) {
-      return (((model.compareAtPrice! - model.price) / model.compareAtPrice!) * 100)
+      return (((model.compareAtPrice! - model.price) / model.compareAtPrice!) *
+              100)
           .round();
     }
     return null;
@@ -68,36 +70,47 @@ class ProductDetailDataScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
-                ProductDetailImagesWidget(product: model),
+                ProductDetailImagesWidget(
+                  product: model,
+                  littleProducts: litleProductModel,
+                ),
                 ProductDetailBadgesOverlay(
-                  discount: _discountPercent,
+                  discount: null,
                   turboActive: litleProductModel.turboActive,
                 ),
               ],
             ),
+            if (model.deliveryTypes.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              ProductDetailDeliveryWidget(
+                deliveryTypes: model.deliveryTypes,
+                lang: lang,
+              ),
+            ],
             const SizedBox(height: 8),
             ProductDetailPriceCardWidget(product: model),
             const SizedBox(height: 8),
-            const PromoBannerWidget(),
-            const SizedBox(height: 8),
-            ProductDetailSellerCardWidget(shopId: model.shopId, shop: model.shop),
-            const SizedBox(height: 8),
-            ProductDetailDeliveryWidget(
-              deliveryTypes: model.deliveryTypes,
-              lang: lang,
+
+            // const PromoBannerWidget(),
+            // const SizedBox(height: 8),
+            // ProductDetailSellerCardWidget(
+            //   shopId: model.shopId,
+            //   shop: model.shop,
+            // ),
+            // const SizedBox(height: 8),
+            ProductDetailDescriptionWidget(
+              description: model.descriptionByLang(lang),
+              name: model.nameByLang(lang),
+              totalReview: model.reviewCount,
+              productId: model.id,
             ),
-            if (model.deliveryTypes.isNotEmpty) const SizedBox(height: 8),
-            ProductDetailDescriptionWidget(description: model.descriptionByLang(lang)),
             if (model.description.isNotEmpty) const SizedBox(height: 8),
             ProductDetailSpecsWidget(product: model),
-            const SizedBox(height: 8),
-            ProductDetailCommentsWidget(
-              productId: model.id,
-              reviewCount: model.reviewCount,
-            ),
+
             const SizedBox(height: 8),
           ],
         ),

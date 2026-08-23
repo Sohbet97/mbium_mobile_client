@@ -95,48 +95,30 @@ class _GiftPickerSheetState extends State<GiftPickerSheet> {
           },
         ),
       ],
-      child: DefaultTabController(
-        length: 2,
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.62,
-          decoration: const BoxDecoration(
-            color: Color(0xFF161616),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              Container(
-                width: 36,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  borderRadius: BorderRadius.circular(2),
-                ),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.62,
+        decoration: const BoxDecoration(
+          color: Color(0xFF161616),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Container(
+              width: 36,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.white24,
+                borderRadius: BorderRadius.circular(2),
               ),
-              _buildHeader(),
-              const TabBar(
-                tabs: [
-                  Tab(text: 'Iber'),
-                  Tab(text: 'Sowgatlar'),
-                ],
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.white54,
-                indicatorColor: AppColors.secondaryGreen,
-                dividerColor: Colors.white12,
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    _confirmedGift != null
-                        ? _buildConfirmation(_confirmedGift!)
-                        : _buildSendGrid(),
-                    _buildGiftsHistory(),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+            _buildHeader(),
+            Expanded(
+              child: _confirmedGift != null
+                  ? _buildConfirmation(_confirmedGift!)
+                  : _buildSendGrid(),
+            ),
+          ],
         ),
       ),
     );

@@ -216,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dalandyrys_sertifikaty_bolan": MessageLookupByLibrary.simpleMessage(
       "Dalandyryş sertifikaty bolan",
     ),
+    "dan_den": MessageLookupByLibrary.simpleMessage("dan (den)"),
     "degisli_hunarmenlerden_maslahatlar": MessageLookupByLibrary.simpleMessage(
       "Degişli hünärmenlerden aýratyn peýdaly maslahatlar",
     ),
@@ -256,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Elektron poçta arkaly dowam et",
     ),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "esasy_baha": MessageLookupByLibrary.simpleMessage("Esasy bahasy"),
     "eyesi": MessageLookupByLibrary.simpleMessage("Eýesi"),
     "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
     "favorites": MessageLookupByLibrary.simpleMessage("Halanlarym"),
@@ -326,6 +328,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "has_ginisleyin": MessageLookupByLibrary.simpleMessage("Has giňişleýin"),
     "hasabym": MessageLookupByLibrary.simpleMessage("Hasabym"),
     "hasap_ac": MessageLookupByLibrary.simpleMessage("Hasap açmak"),
+    "hasyetnama": MessageLookupByLibrary.simpleMessage("Maglumatlary"),
     "hawa": MessageLookupByLibrary.simpleMessage("Hawa"),
     "hazir": MessageLookupByLibrary.simpleMessage("Häzir"),
     "history": MessageLookupByLibrary.simpleMessage("Taryhy"),
