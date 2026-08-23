@@ -1,11 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
+import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
+import 'package:mbium_mobile_client/feature/banners/model/banner_model.dart';
 import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../../../generated/l10n.dart';
 
 class ShopDetailHeaderWidget extends StatelessWidget {
   final ShopDetailModel model;
@@ -69,10 +75,35 @@ class ShopDetailHeaderWidget extends StatelessWidget {
               Row(
                 children: [
                   Flexible(
-                    child: Text(
-                      model.localizedName,
-                      style: textStyles.s16w600clBlack.copyWith(fontSize: 18),
-                      overflow: TextOverflow.ellipsis,
+                    child: Row(
+                      children: [
+                        Text(
+                          model.localizedName,
+                          style: textStyles.s16w600clBlack.copyWith(
+                            fontSize: 18,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(width: 4),
+                        if (model.verificationStatus != 0)
+                          Row(
+                            children: [
+                              // Text(
+                              //   S.of(context).tassyklanan,
+                              //   style: TextStyle(
+                              //     fontSize: 11,
+                              //     color: Colors.white,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              Icon(
+                                Icons.verified,
+                                color: Colors.blue,
+                                size: 19,
+                              ),
+                            ],
+                          ),
+                      ],
                     ),
                   ),
                   if (model.isVerified == true) ...[
@@ -85,16 +116,7 @@ class ShopDetailHeaderWidget extends StatelessWidget {
                   ],
                 ],
               ),
-              if (model.type?.name != null) ...[
-                const SizedBox(height: 4),
-                Text(
-                  model.type!.name!,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: AppColors.lightTextSecondary,
-                  ),
-                ),
-              ],
+
               const SizedBox(height: 8),
               Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,
@@ -114,14 +136,6 @@ class ShopDetailHeaderWidget extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                   ],
-                  if (model.address != null && model.address!.isNotEmpty)
-                    Text(
-                      model.address!,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: AppColors.lightTextSecondary,
-                      ),
-                    ),
                 ],
               ),
             ],
@@ -138,7 +152,8 @@ class _ShopDetailBannerWidget extends StatefulWidget {
   const _ShopDetailBannerWidget({required this.model});
 
   @override
-  State<_ShopDetailBannerWidget> createState() => _ShopDetailBannerWidgetState();
+  State<_ShopDetailBannerWidget> createState() =>
+      _ShopDetailBannerWidgetState();
 }
 
 class _ShopDetailBannerWidgetState extends State<_ShopDetailBannerWidget> {
@@ -186,10 +201,32 @@ class _ShopDetailBannerWidgetState extends State<_ShopDetailBannerWidget> {
     super.dispose();
   }
 
+  Future<void> _openBannerLink(BannerModel banner) async {
+    final link = banner.linkUrl?.isNotEmpty == true
+        ? banner.linkUrl
+        : banner.buttonUrl;
+    if (link == null || link.isEmpty) return;
+    final uri = Uri.tryParse(link);
+    if (uri != null && await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final model = widget.model;
     final showVideo = _hasVideo && _initialized && _controller != null;
+
+    // Banners are fetched once for the whole app at startup — just filter
+    // the already-loaded list down to this shop's, no extra network call.
+    final bannerState = context.watch<BannerBloc>().state;
+    final shopBanners = bannerState is BannerLoaded
+        ? bannerState.banners
+              .where((b) => b.shopId == model.id && b.isCurrentlyActive)
+              .toList()
+        : const <BannerModel>[];
+    final banner = shopBanners.isNotEmpty ? shopBanners.first : null;
+    final bannerImageUrl = banner?.resolvedImageUrl;
 
     return SizedBox(
       height: 140,
@@ -197,16 +234,26 @@ class _ShopDetailBannerWidgetState extends State<_ShopDetailBannerWidget> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(
-            color: AppColors.primaryGreen,
-            child: model.logo != null && model.logo!.isNotEmpty
-                ? CachedNetworkImage(
-                    imageUrl: myMediaUrl + model.logo!,
-                    fit: BoxFit.cover,
-                    fadeInDuration: const Duration(milliseconds: 250),
-                    errorWidget: (_, _, _) => const SizedBox.shrink(),
-                  )
-                : null,
+          GestureDetector(
+            onTap: banner != null ? () => _openBannerLink(banner) : null,
+            child: Container(
+              color: AppColors.primaryGreen,
+              child: bannerImageUrl != null && bannerImageUrl.isNotEmpty
+                  ? CachedNetworkImage(
+                      imageUrl: bannerImageUrl,
+                      fit: BoxFit.cover,
+                      fadeInDuration: const Duration(milliseconds: 250),
+                      errorWidget: (_, _, _) => const SizedBox.shrink(),
+                    )
+                  : model.logo != null && model.logo!.isNotEmpty
+                  ? CachedNetworkImage(
+                      imageUrl: myMediaUrl + model.logo!,
+                      fit: BoxFit.cover,
+                      fadeInDuration: const Duration(milliseconds: 250),
+                      errorWidget: (_, _, _) => const SizedBox.shrink(),
+                    )
+                  : null,
+            ),
           ),
           if (showVideo)
             FittedBox(

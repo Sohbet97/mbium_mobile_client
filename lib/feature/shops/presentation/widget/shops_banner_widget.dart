@@ -5,6 +5,7 @@ import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/shops/extensions/shop_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
+import 'package:mbium_mobile_client/main.dart';
 
 class ShopsBannerWidget extends StatelessWidget {
   final ShopModel shop;
@@ -42,7 +43,7 @@ class ShopsBannerWidget extends StatelessWidget {
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(9),
                       child: CachedNetworkImage(
-                        imageUrl: shop.logo!,
+                        imageUrl: myMediaUrl + shop.logo!,
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => const Icon(
                           Icons.local_shipping_outlined,
@@ -57,17 +58,32 @@ class ShopsBannerWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    shop.localizedName,
-                    style: textStyles.s16w600clBlack,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    children: [
+                      SizedBox(
+                        child: Text(
+                          shop.localizedName,
+                          style: textStyles.s16w600clBlack,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+
+                      if (shop.verificationStatus != 0) ...[
+                        const SizedBox(width: 4),
+                        Icon(Icons.verified, color: Colors.blue, size: 19),
+                      ],
+                    ],
                   ),
                   const SizedBox(height: 3),
                   Row(
                     children: [
                       if (isVerified) ...[
-                        const Icon(Icons.verified, color: AppColors.primaryGreen, size: 14),
+                        const Icon(
+                          Icons.verified,
+                          color: AppColors.primaryGreen,
+                          size: 14,
+                        ),
                         const SizedBox(width: 3),
                         Text(
                           l10n.tassyklanan,
@@ -79,7 +95,11 @@ class ShopsBannerWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                       ],
-                      const Icon(Icons.star, color: AppColors.starYellow, size: 14),
+                      const Icon(
+                        Icons.star,
+                        color: AppColors.starYellow,
+                        size: 14,
+                      ),
                       const SizedBox(width: 2),
                       Text(
                         '${shop.rating ?? '0.0'}/5.0',
@@ -118,7 +138,11 @@ class ShopsBannerWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, size: 20, color: AppColors.lightTextSecondary),
+            const Icon(
+              Icons.chevron_right,
+              size: 20,
+              color: AppColors.lightTextSecondary,
+            ),
           ],
         ),
       ),

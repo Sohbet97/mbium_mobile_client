@@ -142,7 +142,7 @@ class _ProductDetailCommentsWidgetState
                       itemBuilder: (context, index) =>
                           ProductDetailCommentItemWidget(comment: preview[index]),
                     ),
-                    if (state.comments.length > 3 || state.hasMore)
+                    if (state.comments.length > 3)
                       Padding(
                         padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                         child: GestureDetector(

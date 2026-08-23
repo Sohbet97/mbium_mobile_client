@@ -330,7 +330,7 @@
 "bu_gun": "Bu gün",
 "adaty_jogap_wagty": "Adaty jogap wagty: 5-10 minut",
 "soragynyzy_yazyn": "Soragyňyzy ýazyň...",
-"tassyklanan_hunarmen_ondurji": "Tassyklanan hünärmen öndüriji",
+"tassyklanan_hunarmen_ondurji": "Tassyklanan satyjylar",
 "onlayn_sowda_sergisi": "Onlaýn söwda sergisi",
 "telefon_arkaly_giris": "Telefon belgiňiz arkaly giriň",
 "telefon_arkaly_giris_desc": "Dowam etmek üçin telefon belgiňizi giriziň. Size tassyklama kody bilen SMS ibereris",
@@ -392,7 +392,10 @@
 "esasy_baha"  : "Esasy bahasy",
 "dan_den" : "dan (den)",
 "hasyetnama"  : "Maglumatlary",
+"menzes_harytlar" : "Meňzeş harytlar",
 
+
+"shop_harytlar" : "Dükanyň harytlary",
 
 
 
@@ -423,5 +426,6 @@
 "teswir_giris_gerek": "Teswirleri görmek üçin ulgama giriň",
 "teswir_yuklenmedi": "Teswirler ýüklenmedi",
 "teswir_goshuldy": "Teswir goşuldy",
-"umumy_baha": "Umumy baha"
+"umumy_baha": "Umumy baha",
+"mbiumd_mahabat"  : "Mbiumda mahabat goy"
 }

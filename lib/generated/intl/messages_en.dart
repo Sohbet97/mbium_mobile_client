@@ -489,6 +489,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "mbium_satys_bilen_biznes": MessageLookupByLibrary.simpleMessage(
       "MBIUM satyş bilen Türkmenistan boýunça biznes syýahatyňyza başlaň",
     ),
+    "mbiumd_mahabat": MessageLookupByLibrary.simpleMessage(
+      "Mbiumda mahabat goy",
+    ),
     "mbiumda_satyp_basla": MessageLookupByLibrary.simpleMessage(
       "MBIUM-da satyp başla",
     ),
@@ -496,6 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menin_sargytlarym": MessageLookupByLibrary.simpleMessage(
       "Meniň sargytlarym",
     ),
+    "menzes_harytlar": MessageLookupByLibrary.simpleMessage("Meňzeş harytlar"),
     "mocberi_girizin": MessageLookupByLibrary.simpleMessage("Möçberi giriziň"),
     "mohum_habarlary": MessageLookupByLibrary.simpleMessage(
       "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň",
@@ -665,6 +669,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Şahsyýetiňiz tassyklandy",
     ),
     "shop_empty": MessageLookupByLibrary.simpleMessage("Dükan tapylmady"),
+    "shop_harytlar": MessageLookupByLibrary.simpleMessage("Dükanyň harytlary"),
     "shops_st": MessageLookupByLibrary.simpleMessage("Dükan bahalandyrmasy"),
     "siz_ucin_maslahat": MessageLookupByLibrary.simpleMessage(
       "Siz üçin maslahat beriýär",
@@ -713,7 +718,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tassyklanan dükan",
     ),
     "tassyklanan_hunarmen_ondurji": MessageLookupByLibrary.simpleMessage(
-      "Tassyklanan hünärmen öndüriji",
+      "Tassyklanan satyjylar",
     ),
     "tassyklanan_satyn_alyjy": MessageLookupByLibrary.simpleMessage(
       "Tassyklanan satyn alyjy",

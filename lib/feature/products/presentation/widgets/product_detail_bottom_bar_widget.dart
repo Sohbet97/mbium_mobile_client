@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,8 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/page/cart_pag
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/variant_picker_sheet.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
+import 'package:mbium_mobile_client/main.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -38,7 +41,7 @@ class ProductDetailBottomBarWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 20,
+            blurRadius: 12,
             offset: const Offset(0, -4),
           ),
         ],
@@ -46,21 +49,26 @@ class ProductDetailBottomBarWidget extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
           child: Row(
             children: [
-              // ── Отзывы ──────────────────────────────────────────
-              _ReviewButton(
-                count: model.reviewCount,
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/productReview',
-                  arguments: model.id,
+              _buildShop(context),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _ChatButton(
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    '/chatScreen',
+                    arguments: ShopModel(
+                      id: model.shopId,
+                      name: model.shop?.name,
+                      logo: model.shop?.logo,
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 10),
 
-              // ── Корзина ─────────────────────────────────────────
               Expanded(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 280),
@@ -168,61 +176,32 @@ class ProductDetailBottomBarWidget extends StatelessWidget {
       ),
     );
   }
-}
 
-// ─── Review button ────────────────────────────────────────────────────────────
-
-class _ReviewButton extends StatelessWidget {
-  final int count;
-  final VoidCallback onTap;
-
-  const _ReviewButton({required this.count, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
+  GestureDetector _buildShop(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: 52,
-            height: 52,
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.navBarGrey, width: 1.5),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: const Icon(
-              Icons.chat_bubble_outline_rounded,
-              color: AppColors.primaryGreen,
-              size: 20,
-            ),
-          ),
-          if (count > 0)
-            Positioned(
-              top: -6,
-              right: -6,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                decoration: BoxDecoration(
-                  color: AppColors.alibabaOrange,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.surface,
-                    width: 1.5,
-                  ),
-                ),
-                child: Text(
-                  count > 99 ? '99+' : '$count',
-                  style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-        ],
+      onTap: () {
+        final shop = ShopModel(id: model.shopId);
+
+        Navigator.pushNamed(context, '/shopDetail', arguments: shop);
+      },
+      child: Container(
+        height: 44,
+        width: 44,
+        padding: const EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.primaryGreen),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: model.shop != null
+            ? CachedNetworkImage(
+                imageUrl: myMediaUrl + model.shop!.logo.toString(),
+                errorWidget: (context, url, error) =>
+                    Center(child: Icon(Icons.home_filled)),
+                height: 38,
+                width: 38,
+                fit: BoxFit.cover,
+              )
+            : Center(child: Icon(Icons.home)),
       ),
     );
   }
@@ -249,19 +228,19 @@ class _AddButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 52,
+        height: 44,
         decoration: BoxDecoration(
           gradient: const LinearGradient(
             colors: [AppColors.primaryGreen, AppColors.secondaryGreen],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryGreen.withValues(alpha: 0.35),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
+              color: AppColors.primaryGreen.withValues(alpha: 0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -271,9 +250,9 @@ class _AddButton extends StatelessWidget {
             Icon(
               Icons.shopping_cart_outlined,
               color: AppColors.navBarGrey,
-              size: 18,
+              size: 16,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 6),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,7 +260,7 @@ class _AddButton extends StatelessWidget {
                 Text(
                   S.of(context).sebede_gos,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: AppColors.navWhite,
                   ),
@@ -290,7 +269,7 @@ class _AddButton extends StatelessWidget {
                   Text(
                     '${price.toStringAsFixed(2)} $currency',
                     style: TextStyle(
-                      fontSize: 11,
+                      fontSize: 10,
                       color: AppColors.navWhite.withValues(alpha: 0.85),
                       fontWeight: FontWeight.w500,
                     ),
@@ -327,19 +306,19 @@ class _StepperButton extends StatelessWidget {
     final total = price * quantity;
 
     return Container(
-      height: 52,
+      height: 44,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [AppColors.primaryGreen, AppColors.secondaryGreen],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryGreen.withValues(alpha: 0.35),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+            color: AppColors.primaryGreen.withValues(alpha: 0.3),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -369,7 +348,7 @@ class _StepperButton extends StatelessWidget {
                     '$quantity sany',
                     key: ValueKey(quantity),
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 13,
                       fontWeight: FontWeight.w700,
                       color: AppColors.navWhite,
                     ),
@@ -378,7 +357,7 @@ class _StepperButton extends StatelessWidget {
                 Text(
                   '${total.toStringAsFixed(2)} $currency',
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 10,
                     color: AppColors.navWhite.withValues(alpha: 0.85),
                     fontWeight: FontWeight.w500,
                   ),
@@ -407,12 +386,44 @@ class _StepBtn extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(12),
         splashColor: Colors.white24,
         child: SizedBox(
-          width: 48,
-          height: 52,
-          child: Icon(icon, color: AppColors.navWhite, size: 20),
+          width: 40,
+          height: 44,
+          child: Icon(icon, color: AppColors.navWhite, size: 18),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Chat button ──────────────────────────────────────────────────────────────
+
+class _ChatButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _ChatButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.featureGrey, width: 1.5),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.chat, color: AppColors.primaryGreen, size: 20),
+            const SizedBox(width: 5),
+            Text('Chat', style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
         ),
       ),
     );
@@ -431,11 +442,11 @@ class _CartPageButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 52,
-        height: 52,
+        width: 44,
+        height: 44,
         decoration: BoxDecoration(
           color: AppColors.primaryGreen.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: AppColors.primaryGreen.withValues(alpha: 0.3),
             width: 1.5,
@@ -444,7 +455,7 @@ class _CartPageButton extends StatelessWidget {
         child: const Icon(
           Icons.shopping_bag_outlined,
           color: AppColors.primaryGreen,
-          size: 22,
+          size: 20,
         ),
       ),
     );

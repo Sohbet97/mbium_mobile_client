@@ -20,9 +20,12 @@ import 'package:share_plus/share_plus.dart';
 /// the shop avatar in the main reels feed — replaces the old jump straight
 /// into [ShopDetailScreen].
 class ShopReelsScreen extends StatelessWidget {
-  const ShopReelsScreen({super.key, required this.shop});
+  const ShopReelsScreen({super.key, required this.shop, this.initialReelId});
 
   final ReelShop shop;
+  // Set when opened from a reel grid tile so the feed lands on that reel
+  // instead of always starting from the top.
+  final int? initialReelId;
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +33,16 @@ class ShopReelsScreen extends StatelessWidget {
       create: (context) =>
           ReelsBloc(repository: context.read<ReelsRepository>())
             ..add(LoadReels(ReelsFilterModel(shopId: shop.id))),
-      child: _ShopReelsView(shop: shop),
+      child: _ShopReelsView(shop: shop, initialReelId: initialReelId),
     );
   }
 }
 
 class _ShopReelsView extends StatefulWidget {
-  const _ShopReelsView({required this.shop});
+  const _ShopReelsView({required this.shop, this.initialReelId});
 
   final ReelShop shop;
+  final int? initialReelId;
 
   @override
   State<_ShopReelsView> createState() => _ShopReelsViewState();
@@ -82,19 +86,27 @@ class _ShopReelsViewState extends State<_ShopReelsView> {
     }
   }
 
-  void _openProduct(ReelProduct product) {
-    Navigator.pushNamed(
+  Future<void> _openProduct(ReelProduct product) async {
+    await _playerPool.pauseAll();
+    if (!mounted) return;
+    await Navigator.pushNamed(
       context,
       '/productDetail',
       arguments: product.toProductModel(),
     );
+    if (!mounted) return;
+    _playerPool.focus(_currentIndex, _currentReels.map((r) => r.video.url).toList());
   }
 
-  void _openShopProfile() {
-    Navigator.push(
+  Future<void> _openShopProfile() async {
+    await _playerPool.pauseAll();
+    if (!mounted) return;
+    await Navigator.push(
       context,
       FadeRoute(page: ShopDetailScreen(shopModel: widget.shop.toShopModel())),
     );
+    if (!mounted) return;
+    _playerPool.focus(_currentIndex, _currentReels.map((r) => r.video.url).toList());
   }
 
   void _shareReel(ReelsModel reel) {
@@ -172,7 +184,15 @@ class _ShopReelsViewState extends State<_ShopReelsView> {
 
             if (!_initialFocusRequested) {
               _initialFocusRequested = true;
+              final requestedIndex = widget.initialReelId != null
+                  ? reels.indexWhere((r) => r.id == widget.initialReelId)
+                  : 0;
+              final startIndex = requestedIndex >= 0 ? requestedIndex : 0;
               WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (startIndex != 0 && _pageController.hasClients) {
+                  _pageController.jumpToPage(startIndex);
+                }
+                setState(() => _currentIndex = startIndex);
                 _playerPool.focus(
                   _currentIndex,
                   reels.map((r) => r.video.url).toList(),

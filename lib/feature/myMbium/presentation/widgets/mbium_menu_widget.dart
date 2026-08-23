@@ -17,7 +17,7 @@ class MbiumMenuWidget extends StatelessWidget {
     final localization = S.of(context);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: BoxDecoration(color: color),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -41,13 +41,12 @@ class MbiumMenuWidget extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 11),
+          const SizedBox(height: 4),
 
           SizedBox(
-            height: 80,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 BlocBuilder<FavoriteBloc, FavoriteState>(
                   builder: (context, state) {
@@ -81,16 +80,8 @@ class MbiumMenuWidget extends StatelessWidget {
                   },
                 ),
 
-                _buildItem('$mainUrl/abuna.svg', localization.abuna, () {
-                  Navigator.pushNamed(context, '/abuna');
-                }, null),
-
-                _buildItem('$mainUrl/cupon.svg', localization.kupons, () {
-                  Navigator.pushNamed(context, '/cupons');
-                }, null),
-
                 _buildItem('$mainUrl/toleg.svg', localization.hasabym, () {
-                  Navigator.pushNamed(context, '/balance');
+                  Navigator.pushNamed(context, '/cupons');
                 }, null),
               ],
             ),
@@ -108,76 +99,88 @@ class MbiumMenuWidget extends StatelessWidget {
   ) {
     final bool hasBadge = badgeLabel != null && badgeLabel.isNotEmpty;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12), // Мягкий радиус эффекта нажатия
-      splashColor: Colors.black.withOpacity(0.04),
-      highlightColor: Colors.black.withOpacity(0.02),
-      child: Container(
-        width: 75,
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // 1. Обертываем только иконку, чтобы бадж не ломал верстку текста
-            Badge(
-              isLabelVisible: hasBadge,
-              label: hasBadge
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 5,
-                        vertical: 1,
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(
+          12,
+        ), // Мягкий радиус эффекта нажатия
+        splashColor: Colors.black.withOpacity(0.04),
+        highlightColor: Colors.black.withOpacity(0.02),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Badge(
+                    isLabelVisible: hasBadge,
+                    label: hasBadge
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                              vertical: 1,
+                            ),
+                            child: Text(
+                              badgeLabel,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 9,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: -0.1,
+                                height:
+                                    1.1, // Центрирование текста по вертикали
+                              ),
+                            ),
+                          )
+                        : null,
+                    // Смещаем бадж на край иконки (настраивайте под размер вашей SvgIcon)
+                    largeSize: 11,
+                    offset: const Offset(6, -4),
+                    backgroundColor: const Color(
+                      0xFFFF3B30,
+                    ), // Дорогой системный красный (iOS style)
+                    child: Container(
+                      padding: const EdgeInsets.all(
+                        8,
+                      ), // Легкая подложка для иконки, если нужно
+                      decoration: BoxDecoration(
+                        color: const Color(
+                          0xFFF8F9FA,
+                        ), // Мягкий трендовый фон для самой иконки
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Text(
-                        badgeLabel,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: -0.1,
-                          height: 1.1, // Центрирование текста по вертикали
-                        ),
-                      ),
-                    )
-                  : null,
-              // Смещаем бадж на край иконки (настраивайте под размер вашей SvgIcon)
-              largeSize: 16,
-              offset: const Offset(6, -4),
-              backgroundColor: const Color(
-                0xFFFF3B30,
-              ), // Дорогой системный красный (iOS style)
-              child: Container(
-                padding: const EdgeInsets.all(
-                  8,
-                ), // Легкая подложка для иконки, если нужно
-                decoration: BoxDecoration(
-                  color: const Color(
-                    0xFFF8F9FA,
-                  ), // Мягкий трендовый фон для самой иконки
-                  borderRadius: BorderRadius.circular(12),
+                      child: SvgIcon(iconName: url, height: 15, width: 15),
+                    ),
+                  ),
+                ],
+              ),
+
+              // 2. Спокойный читаемый текст
+              Expanded(
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: Color(
+                      0xFF1A1A1A,
+                    ), // Мягкий черный вместо контрастного Colors.black
+                    letterSpacing: -0.2,
+                  ),
                 ),
-                child: SvgIcon(iconName: url),
               ),
-            ),
-
-            const SizedBox(height: 6),
-
-            // 2. Спокойный читаемый текст
-            Text(
-              title,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-                color: Color(
-                  0xFF1A1A1A,
-                ), // Мягкий черный вместо контрастного Colors.black
-                letterSpacing: -0.2,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

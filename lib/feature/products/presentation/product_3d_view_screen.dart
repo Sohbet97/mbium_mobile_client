@@ -62,9 +62,14 @@ class _Product3dViewScreenState extends State<Product3dViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromARGB(
+        255,
+        147,
+        218,
+        189,
+      ).withOpacity(0.4),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.primaryGreen.withOpacity(0.1),
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.navWhite),
         title: Text(
@@ -113,7 +118,7 @@ class _Product3dViewScreenState extends State<Product3dViewScreen> {
 
     return SafeArea(
       child: ModelViewer(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.alibabaOrange,
         src: 'file://$_localPath',
         alt: widget.title,
         ar: true,

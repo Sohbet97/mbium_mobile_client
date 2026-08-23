@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
-import 'package:mbium_mobile_client/feature/home_products/presentation/widget/delivery_coin_banner_widget.dart';
+import 'package:mbium_mobile_client/feature/city/presentation/widget/city_banner_carousel_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_horizontal_item.dart';
@@ -51,7 +51,7 @@ class _CityBannerProductWidgetState extends State<CityBannerProductWidget> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const DeliveryCoinBannerWidget(),
+            const CityBannerCarouselWidget(),
             const SizedBox(height: 12),
             if (_products.isNotEmpty)
               SizedBox(

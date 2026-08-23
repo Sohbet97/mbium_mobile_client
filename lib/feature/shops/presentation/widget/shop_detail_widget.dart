@@ -8,11 +8,11 @@ import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_app_bar_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_header_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_tab_bar_widget.dart';
-import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_about_tab_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_products_tab_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_faq_tab_widget.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_fixed_header_delegate.dart';
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_detail_video_widget.dart';
+import 'package:mbium_mobile_client/feature/shops/presentation/widget/shop_reels_page.dart';
 
 class ShopDetailWidget extends StatefulWidget {
   const ShopDetailWidget({super.key, required this.model});
@@ -113,7 +113,6 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget>
             body: TabBarView(
               controller: _tabController,
               children: [
-                ShopDetailAboutTabWidget(model: widget.model),
                 ShopDetailProductsTabWidget(
                   model: widget.model,
                   productBloc: _productBloc,
@@ -122,6 +121,7 @@ class _ShopDetailWidgetState extends State<ShopDetailWidget>
                   isLoadingMore: _isLoadingMore,
                   onLoadMore: _loadMoreProducts,
                 ),
+                ShopReelsPage(model: widget.model),
                 ShopDetailFaqTabWidget(model: widget.model),
               ],
             ),

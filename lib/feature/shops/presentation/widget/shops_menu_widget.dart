@@ -19,8 +19,8 @@ class ShopsMenuWidget extends StatelessWidget {
         children: [
           _buildItem(
             iconUrl: 'assets/icons/category.svg',
-            title: l10n.category.toUpperCase(),
-            subTitle: l10n.boyunca,
+            title: '${l10n.category.toUpperCase()} ${l10n.boyunca}',
+            subTitle: '',
             color: color,
             onTap: () => Navigator.pushNamed(context, '/categories'),
           ),
@@ -58,8 +58,8 @@ class ShopsMenuWidget extends StatelessWidget {
 
           _buildItem(
             iconUrl: 'assets/icons/top.svg',
-            title: l10n.top,
-            subTitle: l10n.satys,
+            title: '${l10n.top} ${l10n.satys}',
+            subTitle: '',
             color: color,
             onTap: () => Navigator.pushNamed(context, '/top-products'),
           ),
@@ -84,7 +84,7 @@ class ShopsMenuWidget extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(6),
         ),
-        width: 120,
+        width: 140,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -97,7 +97,7 @@ class ShopsMenuWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    title,
+                    title.toUpperCase(),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(

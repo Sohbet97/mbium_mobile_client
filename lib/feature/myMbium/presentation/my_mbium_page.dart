@@ -67,11 +67,6 @@ class _MyMbiumDataPage extends StatelessWidget {
             }),
             const SizedBox(width: 5),
 
-            _buildActionButton('assets/icons/scan.svg', () {
-              // TODO click to scan
-            }),
-            const SizedBox(width: 5),
-
             _buildActionButton('assets/icons/settings.svg', () {
               Navigator.pushNamed(context, '/settings');
             }),
@@ -189,6 +184,7 @@ class _MyMbiumDataPage extends StatelessWidget {
             ),
           ),
         ),
+
         BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
             if (state is ProductLoading) {

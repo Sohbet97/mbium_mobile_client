@@ -8,6 +8,8 @@ import 'package:mbium_mobile_client/feature/products/presentation/product_3d_vie
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_full_screen_images.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_spin_view_widget.dart';
 
+import 'product_detail_badges_overlay_widget.dart';
+
 class ProductDetailImagesWidget extends StatefulWidget {
   final ProductDetailModel product;
   final ProductModel littleProducts;
@@ -66,24 +68,9 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
           // Переключатель (spin) + кнопка 3D-просмотра
-          if (_hasSpin || _model3dUrl != null) ...[
-            Row(
-              children: [
-                if (_hasSpin)
-                  _ModeToggle(
-                    is360: _is360Mode,
-                    onToggle: (v) => setState(() => _is360Mode = v),
-                  ),
-                const Spacer(),
-                if (_model3dUrl != null) _View3dChip(onTap: _open3dView),
-              ],
-            ),
-            const SizedBox(height: 8),
-          ],
 
           // Контент
           AnimatedSwitcher(
@@ -104,6 +91,14 @@ class _ProductDetailImagesWidgetState extends State<ProductDetailImagesWidget> {
                     product: widget.littleProducts,
                   ),
           ),
+          if (_model3dUrl != null) ...[
+            Positioned(
+              right: 8,
+              bottom: 8,
+              child: _View3dChip(onTap: _open3dView),
+            ),
+            const SizedBox(height: 8),
+          ],
         ],
       ),
     );

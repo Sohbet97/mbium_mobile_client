@@ -45,6 +45,15 @@ class ReelPlayerPool extends ChangeNotifier {
     }
   }
 
+  /// Pauses every live player without evicting them — for navigating away
+  /// to a screen pushed on top (e.g. a shop profile or product detail) so
+  /// the reel's audio/video doesn't keep running underneath.
+  Future<void> pauseAll() async {
+    for (final wrapper in _wrappers.values) {
+      await wrapper.pause();
+    }
+  }
+
   void _evictOutside(Set<int> keep) {
     final toRemove = _wrappers.keys.where((i) => !keep.contains(i)).toList();
     for (final index in toRemove) {

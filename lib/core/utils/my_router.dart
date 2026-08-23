@@ -41,6 +41,7 @@ import 'package:mbium_mobile_client/feature/splash/presentation/splash_screen.da
 import 'package:mbium_mobile_client/feature/tolegler/presentation/tolegler_Screen.dart';
 import 'package:mbium_mobile_client/feature/top_products/presentation/pages/top_products_page.dart';
 
+import '../../feature/chats/presentation/pages/chat_screen.dart';
 import '../../feature/favorite/presentation/favorite_screen.dart';
 import '../../feature/home/presentation/oz_bahany_sayla_screen.dart';
 import '../../feature/message/presentation/chats_screen.dart';
@@ -93,6 +94,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return FadeRoute(page: const SargytEtScreen());
     case '/chats':
       return FadeRoute(page: const ChatsScreen());
+    case '/chatScreen':
+      final shopModel = settings.arguments as ShopModel?;
+      return FadeRoute(page: ChatScreen(shop: shopModel));
     case '/ozBahanySayla':
       return FadeRoute(page: const OzBahanySaylaScreen());
     case '/rfqScreen':

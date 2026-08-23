@@ -16,10 +16,6 @@ final class LoadCommentsEvent extends CommentEvent {
   List<Object?> get props => [productId];
 }
 
-final class LoadMoreCommentsEvent extends CommentEvent {
-  const LoadMoreCommentsEvent();
-}
-
 final class RefreshCommentsEvent extends CommentEvent {
   const RefreshCommentsEvent();
 }

@@ -19,10 +19,13 @@ class ShopDetailTabBarWidget extends StatelessWidget {
         indicatorColor: AppColors.primaryGreen,
         indicatorWeight: 2,
         labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-        unselectedLabelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w400,
+        ),
         tabs: [
-          Tab(text: l10n.dukan_barada),
           Tab(text: l10n.harytlar),
+          Tab(text: l10n.reels),
           Tab(text: l10n.sorag_jogap),
         ],
       ),

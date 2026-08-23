@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/constants/helpers.dart';
 import 'package:mbium_mobile_client/core/constants/my_empty_widget.dart';
+import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
-import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
-import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
+import 'package:mbium_mobile_client/feature/products/bloc/recently/recently_viewed_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_horizontal_item.dart';
 import 'package:mbium_mobile_client/feature/shops/bloc/shop_bloc.dart';
@@ -14,7 +14,6 @@ import 'package:mbium_mobile_client/feature/shops/presentation/widget/shops_filt
 import 'package:mbium_mobile_client/feature/shops/presentation/widget/shops_menu_widget.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../generated/l10n.dart';
-import '../../../products/data/product_repository.dart';
 import '../../data/shop_repository.dart';
 import '../../model/shop_filter_model.dart';
 import '../widget/shop_item_card.dart';
@@ -29,14 +28,10 @@ class ShopsPage extends StatefulWidget {
 class _ShopsPageState extends State<ShopsPage> {
   final _searchController = TextEditingController();
   final _scrollController = ScrollController();
-  final _productController = ScrollController();
   late ShopBloc _shopBloc;
-  late ProductBloc _productBloc;
 
-  FilterModel _productFilter = FilterModel();
   ShopFilterModel _shopFilterModel = ShopFilterModel();
 
-  final List<ProductModel> _products = [];
   final List<ShopModel> _shops = [];
 
   @override
@@ -44,27 +39,16 @@ class _ShopsPageState extends State<ShopsPage> {
     super.initState();
     _shopBloc = ShopBloc(repository: context.read<ShopRepository>());
     _shopBloc.add(LoadShops(_shopFilterModel));
-    _productBloc = ProductBloc(repository: context.read<ProductRepository>());
     _scrollController.addListener(_onScroll);
-    _productBloc.add(LoadProducts(_productFilter));
-    _productController.addListener(_onScrollProduct);
   }
 
   @override
   void dispose() {
     _searchController.dispose();
     _scrollController.removeListener(_onScroll);
-    _productController.removeListener(_onScrollProduct);
-    _productBloc.close();
+    _shopBloc.close();
 
     super.dispose();
-  }
-
-  void _onScrollProduct() {
-    if (_productController.position.pixels >=
-        _productController.position.maxScrollExtent - 200) {
-      _productBloc.add(LoadMoreProducts());
-    }
   }
 
   void _onScroll() {
@@ -95,15 +79,10 @@ class _ShopsPageState extends State<ShopsPage> {
         ),
 
         const SizedBox(height: 10),
-        ShopsCategoryTabsWidget(
-          onCategorySelected: (index) {
-            setState(() {
-              _productFilter = FilterModel(categoryId: index);
-              _products.clear();
-              _productBloc.add(LoadProducts(_productFilter));
-            });
-          },
-        ),
+        // Recently-viewed products (below) aren't category-filterable, so
+        // this tab bar no longer drives anything — kept for the visual
+        // category browsing entry point it still offers elsewhere.
+        ShopsCategoryTabsWidget(onCategorySelected: (index) {}),
         const SizedBox(height: 10),
 
         Expanded(
@@ -117,56 +96,41 @@ class _ShopsPageState extends State<ShopsPage> {
                     const ShopsMenuWidget(),
                     const SizedBox(height: 16),
 
-                    BlocConsumer<ProductBloc, ProductState>(
-                      bloc: _productBloc,
-                      listener: (context, state) {
-                        if (state is ProductLoaded) {
-                          _products.addAll(state.products);
-                        }
-                      },
+                    BlocBuilder<RecentlyViewedBloc, RecentlyViewedState>(
                       builder: (context, state) {
-                        if (state is ProductError) {
-                          return SizedBox.shrink();
-                        }
-                        return _products.isEmpty
-                            ? SizedBox.shrink()
-                            : SizedBox(
-                                height: 180,
-                                child: ListView.builder(
-                                  controller: _productController,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount:
-                                      _products.length +
-                                      (state is ProductLoaded && state.hasMore
-                                          ? 1
-                                          : 0),
-                                  itemBuilder: (context, index) {
-                                    if (index < _products.length) {
-                                      final product = _products[index];
-                                      return ProductHorizontalItem(
-                                        productModel: product,
-                                        width: 120,
-                                      );
-                                    } else {
-                                      return Shimmer.fromColors(
-                                        baseColor: Colors.grey[300]!,
-                                        highlightColor: Colors.grey[100]!,
-                                        child: _buildShimmerEfects(),
-                                      );
-                                    }
-                                  },
+                        final products = state is RecentlyViewedLoaded
+                            ? state.products
+                            : const <ProductModel>[];
+                        if (products.isEmpty) return const SizedBox.shrink();
+
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                l10n.on_gorulen_onumler_section,
+                                style: context.appTextStyles.s16w600clBlack,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            SizedBox(
+                              height: 180,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                itemCount: products.length,
+                                itemBuilder: (context, index) => ProductHorizontalItem(
+                                  productModel: products[index],
+                                  width: 120,
                                 ),
-                              );
+                              ),
+                            ),
+                          ],
+                        );
                       },
                     ),
 
-                    // const ShopsHorizontalListWidget(),
-                    // ShopsSectionHeaderWidget(
-                    //   title: l10n.ondabaryjy_ondurijiler,
-                    //   onSeeAll: null,
-                    // ),
-                    // const ShopsOndabaryjyWidget(),
-                    // const ShopsFilterChipsWidget(),
                     const SizedBox(height: 16),
                     ShopsFilterChipsWidget(
                       onTypeSelected: (value) {
@@ -252,18 +216,6 @@ class _ShopsPageState extends State<ShopsPage> {
           ),
         ),
       ],
-    );
-  }
-
-  Container _buildShimmerEfects() {
-    return Container(
-      height: 90,
-      width: 110,
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
     );
   }
 

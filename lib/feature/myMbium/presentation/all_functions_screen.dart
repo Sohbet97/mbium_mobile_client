@@ -73,6 +73,13 @@ class _AllFunctionsScreenState extends State<AllFunctionsScreen> {
                               // TODO click to support
                             },
                           ),
+
+                          _buildItem(
+                            title: localization.mbiumd_mahabat,
+                            onTap: () {
+                              Navigator.pushNamed(context, '/chatScreen');
+                            },
+                          ),
                           _buildItem(
                             title: localization.orders,
                             onTap: () {
@@ -119,13 +126,6 @@ class _AllFunctionsScreenState extends State<AllFunctionsScreen> {
                           ),
 
                           _buildItem(
-                            title: localization.sargytlar,
-                            onTap: () {
-                              Navigator.pushNamed(context, '/orders');
-                            },
-                          ),
-
-                          _buildItem(
                             title: localization.gorulen_harytlar,
                             onTap: () {
                               Navigator.pushNamed(context, '/review');
@@ -133,7 +133,7 @@ class _AllFunctionsScreenState extends State<AllFunctionsScreen> {
                           ),
 
                           _buildItem(
-                            title: localization.cupons,
+                            title: localization.hasabym,
                             onTap: () {
                               Navigator.pushNamed(context, '/cupons');
                             },
@@ -143,13 +143,6 @@ class _AllFunctionsScreenState extends State<AllFunctionsScreen> {
                             title: localization.tolegler,
                             onTap: () {
                               Navigator.pushNamed(context, '/tolegler');
-                            },
-                          ),
-
-                          _buildItem(
-                            title: localization.abuna,
-                            onTap: () {
-                              Navigator.pushNamed(context, '/abuna');
                             },
                           ),
                         ],

@@ -2839,6 +2839,16 @@ class S {
     return Intl.message('Işlemeýär', name: 'islemeyar', desc: '', args: []);
   }
 
+  /// `Mbiumda mahabat goy`
+  String get mbiumd_mahabat {
+    return Intl.message(
+      'Mbiumda mahabat goy',
+      name: 'mbiumd_mahabat',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorag-jogap`
   String get sorag_jogap {
     return Intl.message('Sorag-jogap', name: 'sorag_jogap', desc: '', args: []);
@@ -2879,10 +2889,10 @@ class S {
     );
   }
 
-  /// `Tassyklanan hünärmen öndüriji`
+  /// `Tassyklanan satyjylar`
   String get tassyklanan_hunarmen_ondurji {
     return Intl.message(
-      'Tassyklanan hünärmen öndüriji',
+      'Tassyklanan satyjylar',
       name: 'tassyklanan_hunarmen_ondurji',
       desc: '',
       args: [],
@@ -3559,6 +3569,26 @@ class S {
     return Intl.message(
       'Teswir goşuldy',
       name: 'teswir_goshuldy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meňzeş harytlar`
+  String get menzes_harytlar {
+    return Intl.message(
+      'Meňzeş harytlar',
+      name: 'menzes_harytlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dükanyň harytlary`
+  String get shop_harytlar {
+    return Intl.message(
+      'Dükanyň harytlary',
+      name: 'shop_harytlar',
       desc: '',
       args: [],
     );
