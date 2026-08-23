@@ -41,6 +41,7 @@ import 'package:mbium_mobile_client/feature/cupons/bloc/coin_bloc.dart';
 import 'package:mbium_mobile_client/feature/cupons/data/coin_repository.dart';
 import 'package:mbium_mobile_client/feature/myMbium/bloc/address_bloc.dart';
 import 'package:mbium_mobile_client/feature/myMbium/data/address_repository.dart';
+import 'package:mbium_mobile_client/feature/myMbium/data/location_repository.dart';
 import 'package:mbium_mobile_client/feature/orders/bloc/order_bloc.dart';
 import 'package:mbium_mobile_client/feature/orders/data/order_repository.dart';
 
@@ -273,6 +274,9 @@ class _MyAppState extends State<MyApp> {
         // addresses
         RepositoryProvider(
           create: (context) => AddressRepository(dio: apiClient.dio),
+        ),
+        RepositoryProvider(
+          create: (context) => LocationRepository(dio: apiClient.dio),
         ),
 
         // orders

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/constants/helpers.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/utils/FadeRouter.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
 import 'package:mbium_mobile_client/feature/reels/bloc/reels_bloc.dart';
@@ -266,6 +267,14 @@ class _ReelsFeedViewState extends State<_ReelsFeedView> {
     }
   }
 
+  Future<void> _onRefresh() async {
+    final bloc = context.read<ReelsBloc>();
+    bloc.add(LoadReels(const ReelsFilterModel()));
+    await bloc.stream.firstWhere(
+      (state) => state is ReelsLoaded || state is ReelsError,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.reels.isEmpty) {
@@ -274,36 +283,41 @@ class _ReelsFeedViewState extends State<_ReelsFeedView> {
       );
     }
 
-    return ListenableBuilder(
-      listenable: _playerPool,
-      builder: (context, _) {
-        return PageView.builder(
-          controller: _pageController,
-          scrollDirection: Axis.vertical,
-          onPageChanged: _onPageChanged,
-          itemCount: widget.reels.length,
-          itemBuilder: (context, index) {
-            final reel = widget.reels[index];
-            final isLiked = widget.likedReelIds.contains(reel.id);
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      color: AppColors.primaryGreen,
+      backgroundColor: Colors.black87,
+      child: ListenableBuilder(
+        listenable: _playerPool,
+        builder: (context, _) {
+          return PageView.builder(
+            controller: _pageController,
+            scrollDirection: Axis.vertical,
+            onPageChanged: _onPageChanged,
+            itemCount: widget.reels.length,
+            itemBuilder: (context, index) {
+              final reel = widget.reels[index];
+              final isLiked = widget.likedReelIds.contains(reel.id);
 
-            return ReelFeedItem(
-              reel: reel,
-              player: _playerPool.wrapperFor(index),
-              topPadding: widget.topPadding,
-              isLiked: isLiked,
-              likeCount: reel.likeCount + (isLiked ? 1 : 0),
-              onDoubleTapLike: () => widget.onDoubleTapLike(reel),
-              onToggleLike: () => widget.onToggleLike(reel),
-              onOpenProduct: widget.onOpenProduct,
-              onOpenShop: () => widget.onOpenShop(reel.shop),
-              onShare: () => widget.onShare(reel),
-              commentController: widget.commentController,
-              onCommentSubmit: () {},
-              onCommentsOpenChanged: widget.onCommentsOpenChanged,
-            );
-          },
-        );
-      },
+              return ReelFeedItem(
+                reel: reel,
+                player: _playerPool.wrapperFor(index),
+                topPadding: widget.topPadding,
+                isLiked: isLiked,
+                likeCount: reel.likeCount + (isLiked ? 1 : 0),
+                onDoubleTapLike: () => widget.onDoubleTapLike(reel),
+                onToggleLike: () => widget.onToggleLike(reel),
+                onOpenProduct: widget.onOpenProduct,
+                onOpenShop: () => widget.onOpenShop(reel.shop),
+                onShare: () => widget.onShare(reel),
+                commentController: widget.commentController,
+                onCommentSubmit: () {},
+                onCommentsOpenChanged: widget.onCommentsOpenChanged,
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

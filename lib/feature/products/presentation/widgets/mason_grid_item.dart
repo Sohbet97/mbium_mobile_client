@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/core/themes/theme.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_control_widget.dart';
 import 'package:mbium_mobile_client/feature/favorite/presentation/favorite_item.dart';
@@ -13,6 +14,8 @@ import 'package:mbium_mobile_client/feature/products/presentation/widgets/produc
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_stats_row_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_tag_chip_widget.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_grid_turbo_badge_widget.dart';
+
+import '../../../../generated/l10n.dart';
 
 class ProductMassonGridItem extends StatefulWidget {
   const ProductMassonGridItem({super.key, required this.product});
@@ -67,6 +70,7 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
     final color = Theme.of(context).cardColor;
     final media = _displayMedia;
     final hasMultipleImages = media.length > 1;
+    final localization = S.of(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -100,41 +104,57 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                     ProductGridImageCarouselWidget(
                       media: media,
                       currentIndex: _currentIndex,
+                      onPageChanged: (index) =>
+                          setState(() => _currentIndex = index),
                     ),
                     // if (outOfStock) const ProductGridStockOverlayWidget(),
                     Positioned(
                       top: 8,
                       left: 8,
                       right: 8,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (product.turboActive) ...[
-                                const ProductGridTurboBadgeWidget(),
-                                if (discount != null) const SizedBox(height: 4),
-                              ],
-                              if (discount != null)
-                                ProductGridDiscountBadgeWidget(discount: discount),
-                            ],
-                          ),
                           FavoriteItemWidget(
                             product: product,
-                            size: 18,
+                            size: 22,
                             padding: const EdgeInsets.all(6),
                             withBackground: true,
                           ),
                         ],
                       ),
                     ),
+
                     if (product.has3dModel)
                       const Positioned(
-                        bottom: 8,
-                        right: 8,
+                        top: 8,
+                        left: 8,
                         child: ProductGrid3dBadgeWidget(),
+                      ),
+
+                    if (product.turboActive)
+                      Positioned(
+                        bottom: 2,
+                        right: 4,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(
+                              255,
+                              37,
+                              37,
+                              37,
+                            ).withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            'AD',
+                            style: TextStyle(
+                              color: AppColors.darkTextPrimary,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
                       ),
                   ],
                 ),
@@ -143,22 +163,6 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProductGridPriceRowWidget(
-                        price: product.price,
-                        compareAtPrice: product.compareAtPrice,
-                        currency: product.currency,
-                      ),
-                      if (product.deliveryTypes.isNotEmpty) ...[
-                        const SizedBox(height: 3),
-                        ProductGridShippingChipWidget(
-                          label: product.deliveryTypes.first.name,
-                        ),
-                        const SizedBox(height: 3),
-                      ],
-                      if (product.category?.name != null) ...[
-                        ProductGridTagChipWidget(label: product.category!.name),
-                        const SizedBox(height: 6),
-                      ],
                       Text(
                         product.name,
                         style: textStyles.s13w600clBlack.copyWith(
@@ -169,26 +173,62 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
+
+                      // if (product.category?.name != null) ...[
+                      //   ProductGridTagChipWidget(label: product.category!.name),
+                      //   const SizedBox(height: 6),
+                      // ],
+                      ProductGridPriceRowWidget(
+                        price: product.price,
+                        compareAtPrice: product.compareAtPrice,
+                        currency: product.currency,
+                      ),
+
+                      if (product.moderationStatus == 1)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 1),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryGreen.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                localization.tassyklanan,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Icon(
+                                Icons.verified,
+                                size: 14,
+                                color: const Color.fromARGB(255, 17, 137, 235),
+                              ),
+                            ],
+                          ),
+                        ),
                       ProductGridStatsRowWidget(
                         rating: product.rating,
                         reviewCount: product.reviewCount,
                         soldCount: product.soldCount,
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (product.shop?.name != null)
-                            Expanded(
-                              child: ProductGridShopRowWidget(
-                                shopName: product.shop!.name,
-                                isVerified: product.shop?.isVerified == true,
-                              ),
-                            )
-                          else
-                            const Spacer(),
-                          CartControlWidget(product: product),
-                        ],
-                      ),
+                      if (product.deliveryTypes.isNotEmpty) ...[
+                        const SizedBox(height: 3),
+                        ProductGridShippingChipWidget(
+                          label: product.deliveryTypes.first.name,
+                        ),
+                        const SizedBox(height: 3),
+                      ],
+                      // Row(
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: [
+                      //     const Spacer(),
+                      //     CartControlWidget(product: product),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

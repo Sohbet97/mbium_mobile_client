@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alternatiw_hokumde": MessageLookupByLibrary.simpleMessage(
       "Alternatiw hökmünde, siz Mbium.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
     ),
+    "arzalnasyklar": MessageLookupByLibrary.simpleMessage("Arzanlaşyk"),
     "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
     "baha_goraglylygy": MessageLookupByLibrary.simpleMessage(
       "Baha goraglylygy",
@@ -444,9 +445,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "mohum_habarlary": MessageLookupByLibrary.simpleMessage(
       "Möhüm habarlary sypdyrmazlyk üçin duýduryşy açyň",
     ),
-    "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt dastawka"),
+    "mugt_dastawka": MessageLookupByLibrary.simpleMessage("Mugt eltip bermek"),
     "mugt_dastawka_mbium_coin": MessageLookupByLibrary.simpleMessage(
-      "Mugt dastawka MBIUM Coin bilen töleseňiz",
+      "Mugt eltip bermek MBIUM Coin bilen töleseňiz",
     ),
     "mugt_eltip_bermek": MessageLookupByLibrary.simpleMessage(
       "Mugt eltip bermek",
@@ -726,6 +727,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "ynamly_tolegier": MessageLookupByLibrary.simpleMessage("Ynamly\ntölegler"),
     "yok": MessageLookupByLibrary.simpleMessage("Ýok"),
+    "yuzden_arzan": MessageLookupByLibrary.simpleMessage(
+      "100 TMT çenli harytlar",
+    ),
     "yza_gaytarmak_goragy": MessageLookupByLibrary.simpleMessage(
       "Yza\ngaytarmak\ngoragy",
     ),

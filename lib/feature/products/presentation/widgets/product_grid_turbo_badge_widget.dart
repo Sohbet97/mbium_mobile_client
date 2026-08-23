@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 
 class ProductGridTurboBadgeWidget extends StatelessWidget {
   const ProductGridTurboBadgeWidget({super.key});
@@ -6,30 +7,26 @@ class ProductGridTurboBadgeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFF8A00), Color(0xFFFF3D71)],
+        gradient: LinearGradient(
+          colors: [
+            AppColors.primaryGreen,
+            AppColors.primaryGreen.withOpacity(0.6),
+          ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(4),
       ),
-      child: const Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.bolt, color: Colors.white, size: 12),
-          SizedBox(width: 2),
-          Text(
-            'Turbo',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              letterSpacing: -0.2,
-            ),
-          ),
-        ],
+      child: Text(
+        'AD',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 9,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.2,
+        ),
       ),
     );
   }

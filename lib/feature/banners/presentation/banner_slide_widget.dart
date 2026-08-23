@@ -201,13 +201,16 @@ class _CtaButton extends StatelessWidget {
         vertical: compact ? 4 : 5,
       ),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [AppColors.alibabaOrange, Color(0xFFFF8A3D)],
+        gradient: LinearGradient(
+          colors: [
+            AppColors.primaryGreen,
+            AppColors.primaryGreen.withOpacity(0.7),
+          ],
         ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: AppColors.alibabaOrange.withValues(alpha: 0.35),
+            color: AppColors.primaryGreen.withValues(alpha: 0.35),
             blurRadius: compact ? 6 : 8,
             offset: const Offset(0, 2),
           ),

@@ -414,10 +414,10 @@ class S {
     return Intl.message('Kitaplar', name: 'kitaplar', desc: '', args: []);
   }
 
-  /// `Mugt dastawka`
+  /// `Mugt eltip bermek`
   String get mugt_dastawka {
     return Intl.message(
-      'Mugt dastawka',
+      'Mugt eltip bermek',
       name: 'mugt_dastawka',
       desc: '',
       args: [],
@@ -454,10 +454,10 @@ class S {
     );
   }
 
-  /// `Mugt dastawka MBIUM Coin bilen töleseňiz`
+  /// `Mugt eltip bermek MBIUM Coin bilen töleseňiz`
   String get mugt_dastawka_mbium_coin {
     return Intl.message(
-      'Mugt dastawka MBIUM Coin bilen töleseňiz',
+      'Mugt eltip bermek MBIUM Coin bilen töleseňiz',
       name: 'mugt_dastawka_mbium_coin',
       desc: '',
       args: [],
@@ -3382,6 +3382,26 @@ class S {
   /// `Bank karty`
   String get bank_karty {
     return Intl.message('Bank karty', name: 'bank_karty', desc: '', args: []);
+  }
+
+  /// `Arzanlaşyk`
+  String get arzalnasyklar {
+    return Intl.message(
+      'Arzanlaşyk',
+      name: 'arzalnasyklar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `100 TMT çenli harytlar`
+  String get yuzden_arzan {
+    return Intl.message(
+      '100 TMT çenli harytlar',
+      name: 'yuzden_arzan',
+      desc: '',
+      args: [],
+    );
   }
 }
 

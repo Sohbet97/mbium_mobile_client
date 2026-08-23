@@ -16,15 +16,16 @@ class ProductGridPriceRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.baseline,
+      crossAxisAlignment: CrossAxisAlignment.center,
       textBaseline: TextBaseline.alphabetic,
+
       children: [
         Flexible(
           flex: 3,
           child: Text(
             '${price.toStringAsFixed(0)} $currency',
             style: const TextStyle(
-              fontSize: 17,
+              fontSize: 15,
               fontWeight: FontWeight.w800,
               color: AppColors.alibabaOrange,
               letterSpacing: -0.4,
@@ -34,6 +35,8 @@ class ProductGridPriceRowWidget extends StatelessWidget {
           ),
         ),
         if (compareAtPrice != null) ...[
+          Icon(Icons.arrow_downward_sharp, color: Colors.red, size: 14),
+
           const SizedBox(width: 4),
           Flexible(
             flex: 2,

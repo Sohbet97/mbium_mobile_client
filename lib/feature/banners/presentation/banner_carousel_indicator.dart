@@ -36,7 +36,7 @@ class BannerCarouselIndicator extends StatelessWidget {
             height: 6,
             decoration: BoxDecoration(
               color: active
-                  ? AppColors.alibabaOrange
+                  ? AppColors.primaryGreen
                   : Colors.white.withValues(alpha: 0.6),
               borderRadius: BorderRadius.circular(3),
             ),

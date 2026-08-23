@@ -79,8 +79,8 @@ class FavoriteItemWidget extends StatelessWidget {
       onTap: isSyncing ? null : () => _onTap(context),
       child: Container(
         padding: padding,
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.6),
           shape: BoxShape.circle,
         ),
         child: child,

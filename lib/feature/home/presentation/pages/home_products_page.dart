@@ -5,6 +5,7 @@ import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
 import 'package:mbium_mobile_client/feature/banners/presentation/home_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/category/bloc/category_bloc.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/home_menu_widget.dart';
+import 'package:mbium_mobile_client/feature/home/presentation/widget/home_product_filtres.dart';
 import 'package:mbium_mobile_client/feature/home/presentation/widget/search_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/category_tabs_widget.dart';
 import 'package:mbium_mobile_client/feature/home_products/presentation/widget/collections_widget.dart';
@@ -55,8 +56,23 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
     super.dispose();
   }
 
+  HomeFilterModel? _selectedFilter;
   @override
   Widget build(BuildContext context) {
+    final localization = S.of(context);
+
+    final filtres = <HomeFilterModel>[
+      HomeFilterModel(name: localization.all, iconData: Icons.favorite),
+      HomeFilterModel(
+        name: localization.arzalnasyklar,
+        iconData: Icons.arrow_downward,
+      ),
+      HomeFilterModel(
+        name: localization.mugt_dastawka,
+        iconData: Icons.delivery_dining,
+      ),
+      HomeFilterModel(name: localization.yuzden_arzan, iconData: Icons.money),
+    ];
     return CustomScrollView(
       controller: _scrollController,
       slivers: [
@@ -108,37 +124,46 @@ class _HomeProductsPageState extends State<HomeProductsPage> {
                 const ProductCollectionsWidget(),
 
                 const SizedBox(height: 20),
-                CategoryTabsWidget(
-                  onCategorySelected: (int p1) {
-                    setState(() {
-                      p1 == 0
-                          ? _filter = FilterModel(categoryId: null)
-                          : _filter = FilterModel(categoryId: p1);
-                      _productBloc.add(LoadProducts(_filter));
-                    });
-                  },
-                ),
 
-                const SizedBox(height: 10),
+                SizedBox(),
+
+                HomeProductFiltres(
+                  onTap: (model) {
+                    if (model == filtres[0]) {
+                      _filter = FilterModel();
+                    }
+
+                    if (model == filtres[1]) {
+                      _filter = FilterModel(sort: 'price_desc');
+                    }
+
+                    if (model == filtres[2]) {
+                      _filter = FilterModel();
+                    }
+
+                    if (model == filtres[3]) {
+                      _filter = FilterModel(maxPrice: 100.00);
+                    }
+
+                    _productBloc.add(LoadProducts(_filter));
+                  },
+                  filtres: filtres,
+                ),
+                const SizedBox(height: 15),
+                // CategoryTabsWidget(
+                //   onCategorySelected: (int p1) {
+                //     setState(() {
+                //       p1 == 0
+                //           ? _filter = FilterModel(categoryId: null)
+                //           : _filter = FilterModel(categoryId: p1);
+                //       _productBloc.add(LoadProducts(_filter));
+                //     });
+                //   },
+                // ),
                 // ProductSectionWidget(products: _mockProducts),
-                const DeliveryCoinBannerWidget(),
               ],
             ),
           ),
-
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsetsGeometry.only(
-              top: 20,
-              left: 10,
-              bottom: 3,
-            ),
-            child: Text(
-              S.of(context).sizin_ucin,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-          ),
-        ),
 
         BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
@@ -215,7 +240,11 @@ List<_HomeGridEntry> _buildHomeGridEntries({
 
   final entries = <_HomeGridEntry>[];
   var insertionIndex = 0;
-  for (var chunkStart = 0; chunkStart < products.length; chunkStart += pageSize) {
+  for (
+    var chunkStart = 0;
+    chunkStart < products.length;
+    chunkStart += pageSize
+  ) {
     entries.add(_HomeGridEntry.banner(insertionIndex));
     insertionIndex++;
 

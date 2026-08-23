@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mbium_mobile_client/feature/myMbium/bloc/address_bloc.dart';
+import 'package:mbium_mobile_client/feature/myMbium/data/location_repository.dart';
 import 'package:mbium_mobile_client/feature/myMbium/models/address_model.dart';
+import 'package:mbium_mobile_client/feature/myMbium/models/location_model.dart';
 import 'package:mbium_mobile_client/feature/myMbium/presentation/addresses/widgets/location_picker_page.dart';
+import 'package:mbium_mobile_client/feature/myMbium/presentation/addresses/widgets/location_picker_sheet.dart';
 
 import '../../../../../generated/l10n.dart';
 
@@ -40,12 +43,6 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
   late final _addressController = TextEditingController(
     text: widget.initial?.address,
   );
-  late final _cityIdController = TextEditingController(
-    text: widget.initial?.cityId.toString(),
-  );
-  late final _regionIdController = TextEditingController(
-    text: widget.initial?.regionId.toString(),
-  );
   late final _latController = TextEditingController(
     text: widget.initial?.coordinates.lat.toString(),
   );
@@ -54,7 +51,54 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
   );
   late bool _isDefault = widget.initial?.isDefault ?? false;
 
+  // The address model only carries ids, not names — until the user actively
+  // (re)picks one, an edited address just shows "ID: n" as a placeholder
+  // since there's no "get by id" endpoint to resolve the name up front.
+  late int? _regionId = widget.initial?.regionId;
+  String? _regionName;
+  late int? _cityId = widget.initial?.cityId;
+  String? _cityName;
+
   bool get _isEditing => widget.initial != null;
+
+  Future<void> _pickRegion() async {
+    final region = await LocationPickerSheet.show<RegionModel>(
+      context,
+      title: 'Sebiti saýlaň',
+      fetch: (text) =>
+          context.read<LocationRepository>().getRegions(text: text),
+      labelOf: (r) => r.name,
+    );
+    if (region == null) return;
+    setState(() {
+      _regionId = region.id;
+      _regionName = region.name;
+      // Cities are scoped to a region — switching region invalidates
+      // whatever city was previously picked.
+      _cityId = null;
+      _cityName = null;
+    });
+  }
+
+  Future<void> _pickCity() async {
+    final regionId = _regionId;
+    if (regionId == null) return;
+
+    final city = await LocationPickerSheet.show<CityModel>(
+      context,
+      title: 'Şäheri saýlaň',
+      fetch: (text) => context.read<LocationRepository>().getCities(
+        text: text,
+        regionId: regionId,
+      ),
+      labelOf: (c) => c.name,
+    );
+    if (city == null) return;
+    setState(() {
+      _cityId = city.id;
+      _cityName = city.name;
+    });
+  }
 
   Future<void> _pickOnMap() async {
     final currentLat = double.tryParse(_latController.text);
@@ -76,8 +120,6 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
   void dispose() {
     _labelController.dispose();
     _addressController.dispose();
-    _cityIdController.dispose();
-    _regionIdController.dispose();
     _latController.dispose();
     _lngController.dispose();
     super.dispose();
@@ -86,13 +128,22 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
 
+    final regionId = _regionId;
+    final cityId = _cityId;
+    if (regionId == null || cityId == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Sebit we şäheri saýlaň')));
+      return;
+    }
+
     final address = AddressModel(
       id: widget.initial?.id ?? 0,
       userId: widget.initial?.userId ?? '',
       label: _labelController.text.trim(),
       address: _addressController.text.trim(),
-      cityId: int.tryParse(_cityIdController.text) ?? 0,
-      regionId: int.tryParse(_regionIdController.text) ?? 0,
+      cityId: cityId,
+      regionId: regionId,
       coordinates: AddressCoordinates(
         lat: double.tryParse(_latController.text) ?? 0,
         lng: double.tryParse(_lngController.text) ?? 0,
@@ -138,7 +189,9 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
               ),
               const SizedBox(height: 16),
               Text(
-                _isEditing ? localization.address_edit : localization.address_new,
+                _isEditing
+                    ? localization.address_edit
+                    : localization.address_new,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
@@ -169,22 +222,22 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
               Row(
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      controller: _cityIdController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: localization.address_city_id,
-                      ),
+                    child: _LocationSelectorField(
+                      label: 'Sebit',
+                      value:
+                          _regionName ??
+                          (_regionId != null ? 'ID: $_regionId' : null),
+                      onTap: _pickRegion,
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: TextFormField(
-                      controller: _regionIdController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: localization.address_region_id,
-                      ),
+                    child: _LocationSelectorField(
+                      label: 'Şäher',
+                      value:
+                          _cityName ??
+                          (_cityId != null ? 'ID: $_cityId' : null),
+                      onTap: _regionId == null ? null : _pickCity,
                     ),
                   ),
                 ],
@@ -247,6 +300,45 @@ class _AddressFormSheetState extends State<AddressFormSheet> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Mimics a [TextFormField]'s chrome (label, border) but opens
+/// [LocationPickerSheet] on tap instead of accepting direct text input.
+class _LocationSelectorField extends StatelessWidget {
+  const _LocationSelectorField({
+    required this.label,
+    required this.value,
+    required this.onTap,
+  });
+
+  final String label;
+  final String? value;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final enabled = onTap != null;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(4),
+      child: InputDecorator(
+        decoration: InputDecoration(labelText: label, enabled: enabled),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                value ?? '—',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: value == null ? Colors.grey : null),
+              ),
+            ),
+            Icon(Icons.arrow_drop_down, color: enabled ? null : Colors.grey),
+          ],
         ),
       ),
     );

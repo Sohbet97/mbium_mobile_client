@@ -27,7 +27,9 @@ class PromoBannerWidget extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 10),
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
                   child: Row(
                     children: [
                       const Icon(
@@ -50,7 +52,7 @@ class PromoBannerWidget extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              l10n.mbium_coin_bilen,
+                              'maks300 TMT',
                               style: const TextStyle(
                                 fontSize: 10,
                                 color: AppColors.textLightGrey,
@@ -77,7 +79,9 @@ class PromoBannerWidget extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 10),
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
                   child: Row(
                     children: [
                       const Icon(

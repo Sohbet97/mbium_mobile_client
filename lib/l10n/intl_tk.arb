@@ -34,11 +34,11 @@
   "elektronika": "Elektronika",
   "oyuncaklar": "Oýnawaçlar",
   "kitaplar": "Kitaplar",
-  "mugt_dastawka": "Mugt dastawka",
+  "mugt_dastawka": "Mugt eltip bermek",
   "mbium_coin_bilen": "MBIUM Coin bilen töleseňiz",
   "baha_goraglylygy": "Baha goraglylygy",
   "gune_cenli": "60 güne çenli",
-  "mugt_dastawka_mbium_coin": "Mugt dastawka MBIUM Coin bilen töleseňiz",
+  "mugt_dastawka_mbium_coin": "Mugt eltip bermek MBIUM Coin bilen töleseňiz",
   "maslahat_beriyanler": "Maslahat beriýänler",
   "maslahat_beriyanler_subtitle": "Saýlanan geýimlere görä harytlarymyz",
   "sargytlar": "Sargytlar",
@@ -386,7 +386,9 @@
 "bal_galyndy" : "MBIUM bal galyndy",
 "mukdary" : "Mukdary (coin)",
 "nagt"  : "Nagt",
-"bank_karty"  : "Bank karty"
+"bank_karty"  : "Bank karty",
+"arzalnasyklar" : "Arzanlaşyk",
+"yuzden_arzan"  : "100 TMT çenli harytlar"
 
 
 

@@ -1,24 +1,95 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_detail_model.dart';
 
-class ProductGridImageCarouselWidget extends StatelessWidget {
+/// Swipeable image carousel for a grid card — finger-drag via [PageView],
+/// plus auto-advance every 2s while more than one image exists. [currentIndex]
+/// still drives it externally (e.g. the parent's arrow-tap buttons); swipes
+/// and auto-advance report back out through [onPageChanged] so the parent's
+/// index (dots, arrow visibility) stays in sync either way.
+class ProductGridImageCarouselWidget extends StatefulWidget {
   final List<ProductMedia> media;
   final int currentIndex;
+  final ValueChanged<int>? onPageChanged;
 
   const ProductGridImageCarouselWidget({
     super.key,
     required this.media,
     required this.currentIndex,
+    this.onPageChanged,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (media.isEmpty) return _placeholder();
+  State<ProductGridImageCarouselWidget> createState() =>
+      _ProductGridImageCarouselWidgetState();
+}
 
-    final index = currentIndex.clamp(0, media.length - 1);
-    final url = media[index].thumbnailUrl;
+class _ProductGridImageCarouselWidgetState
+    extends State<ProductGridImageCarouselWidget> {
+  static const _autoPlayInterval = Duration(seconds: 2);
+
+  late final PageController _pageController;
+  Timer? _autoPlayTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: widget.currentIndex);
+    _startAutoPlay();
+  }
+
+  @override
+  void didUpdateWidget(covariant ProductGridImageCarouselWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.currentIndex != oldWidget.currentIndex &&
+        _pageController.hasClients &&
+        _pageController.page?.round() != widget.currentIndex) {
+      _pageController.animateToPage(
+        widget.currentIndex,
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeInOut,
+      );
+    }
+
+    if (widget.media.length != oldWidget.media.length) {
+      _startAutoPlay();
+    }
+  }
+
+  @override
+  void dispose() {
+    _autoPlayTimer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _startAutoPlay() {
+    _autoPlayTimer?.cancel();
+    if (widget.media.length <= 1) return;
+
+    _autoPlayTimer = Timer.periodic(_autoPlayInterval, (_) {
+      if (!mounted || !_pageController.hasClients) return;
+      final next = (widget.currentIndex + 1) % widget.media.length;
+      _pageController.animateToPage(
+        next,
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void _onPageChanged(int index) {
+    widget.onPageChanged?.call(index);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final media = widget.media;
+    if (media.isEmpty) return _placeholder();
 
     return SizedBox(
       width: double.infinity,
@@ -27,19 +98,30 @@ class ProductGridImageCarouselWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: url.isEmpty
-                ? _placeholder()
-                : AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 200),
-                    child: CachedNetworkImage(
-                      imageUrl: url,
-                      key: ValueKey(url),
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      fadeInDuration: const Duration(milliseconds: 300),
-                      errorWidget: (_, _, _) => _placeholder(),
-                    ),
-                  ),
+            // PageView needs a bounded height (unlike the old crossfade,
+            // which just took on the loaded image's own size) — a fixed
+            // aspect ratio is the simplest way to give it one without
+            // measuring every image up front.
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: PageView.builder(
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                itemCount: media.length,
+                itemBuilder: (context, index) {
+                  final url = media[index].thumbnailUrl;
+                  if (url.isEmpty) return _placeholder();
+                  return CachedNetworkImage(
+                    imageUrl: url,
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                    fadeInDuration: const Duration(milliseconds: 300),
+                    errorWidget: (_, _, _) => _placeholder(),
+                  );
+                },
+              ),
+            ),
           ),
           if (media.length > 1)
             Padding(
@@ -47,7 +129,7 @@ class ProductGridImageCarouselWidget extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(media.length, (i) {
-                  final active = i == index;
+                  final active = i == widget.currentIndex;
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     margin: const EdgeInsets.symmetric(horizontal: 2),
@@ -56,11 +138,11 @@ class ProductGridImageCarouselWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: active
                           ? Colors.white
-                          : Colors.white.withOpacity(0.5),
+                          : Colors.white.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(3),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           blurRadius: 2,
                         ),
                       ],

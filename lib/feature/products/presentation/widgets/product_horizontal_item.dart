@@ -70,12 +70,12 @@ class ProductHorizontalItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey.shade100, width: 1),
+          border: Border.all(color: Colors.grey.withValues(alpha: 0.12)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
@@ -105,17 +105,14 @@ class ProductHorizontalItem extends StatelessWidget {
                   ),
                   if (productModel.turboActive || discount != null)
                     Positioned(
-                      top: 8,
-                      left: 8,
+                      bottom: 2,
+                      right: 1,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (productModel.turboActive) ...[
                             const ProductGridTurboBadgeWidget(),
-                            if (discount != null) const SizedBox(height: 4),
                           ],
-                          if (discount != null)
-                            ProductGridDiscountBadgeWidget(discount: discount),
                         ],
                       ),
                     ),
@@ -185,7 +182,7 @@ class _PriceRow extends StatelessWidget {
     }
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.baseline,
+      crossAxisAlignment: CrossAxisAlignment.center,
       textBaseline: TextBaseline.alphabetic,
       children: [
         Flexible(
@@ -201,6 +198,7 @@ class _PriceRow extends StatelessWidget {
           ),
         ),
         if (productModel.compareAtPrice != null) ...[
+          Icon(Icons.arrow_downward, size: 11, color: AppColors.alibabaOrange),
           const SizedBox(width: 4),
           Text(
             productModel.compareAtPrice!.toStringAsFixed(0),
