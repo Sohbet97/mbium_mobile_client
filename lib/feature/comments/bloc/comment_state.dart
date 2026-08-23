@@ -55,3 +55,16 @@ final class CommentError extends CommentState {
   @override
   List<Object?> get props => [errorMessage, productId];
 }
+
+final class CommentSubmitting extends CommentState {}
+
+final class CommentSubmitSuccess extends CommentState {}
+
+final class CommentSubmitError extends CommentState {
+  final String errorMessage;
+
+  const CommentSubmitError({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
+}

@@ -17,6 +17,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<LoadCommentsEvent>(_onLoad);
     on<LoadMoreCommentsEvent>(_onLoadMore);
     on<RefreshCommentsEvent>(_onRefresh);
+    on<SubmitCommentEvent>(_onSubmit);
   }
 
   FutureOr<void> _onLoad(
@@ -25,17 +26,17 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   ) async {
     emit(CommentLoading());
     try {
-      final comments = await repository.getProductComments(
+      final response = await repository.getProductComments(
         event.productId,
         limit: _limit,
         skip: 0,
       );
       emit(
         CommentLoaded(
-          comments: comments,
+          comments: response.comments,
           productId: event.productId,
           skip: 0,
-          hasMore: comments.length >= _limit,
+          hasMore: response.hasMore(0, _limit),
         ),
       );
     } catch (e) {
@@ -56,17 +57,17 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
 
     try {
       final nextSkip = current.skip + _limit;
-      final more = await repository.getProductComments(
+      final response = await repository.getProductComments(
         current.productId,
         limit: _limit,
         skip: nextSkip,
       );
       emit(
         current.copyWith(
-          comments: [...current.comments, ...more],
+          comments: [...current.comments, ...response.comments],
           skip: nextSkip,
           isLoadingMore: false,
-          hasMore: more.length >= _limit,
+          hasMore: response.hasMore(nextSkip, _limit),
         ),
       );
     } catch (_) {
@@ -82,19 +83,35 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     if (current is! CommentLoaded) return;
 
     try {
-      final comments = await repository.getProductComments(
+      final response = await repository.getProductComments(
         current.productId,
         limit: _limit,
         skip: 0,
       );
       emit(
         current.copyWith(
-          comments: comments,
+          comments: response.comments,
           skip: 0,
-          hasMore: comments.length >= _limit,
+          hasMore: response.hasMore(0, _limit),
           isLoadingMore: false,
         ),
       );
     } catch (_) {}
+  }
+
+  FutureOr<void> _onSubmit(
+    SubmitCommentEvent event,
+    Emitter<CommentState> emit,
+  ) async {
+    final previous = state;
+    emit(CommentSubmitting());
+    try {
+      await repository.createComment(event.request);
+      emit(CommentSubmitSuccess());
+      add(LoadCommentsEvent(productId: event.request.productId));
+    } catch (e) {
+      emit(CommentSubmitError(errorMessage: e.toString()));
+      if (previous is CommentLoaded) emit(previous);
+    }
   }
 }
