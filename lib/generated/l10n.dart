@@ -3593,6 +3593,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Nädip kömek edip bileris?`
+  String get support_title {
+    return Intl.message(
+      'Nädip kömek edip bileris?',
+      name: 'support_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gözle ýa-da sorag ber`
+  String get support_search_hint {
+    return Intl.message(
+      'Gözle ýa-da sorag ber',
+      name: 'support_search_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hyzmat haýyşynyň ýagdaýy`
+  String get hyzmat_hayysynyn_yagdayy {
+    return Intl.message(
+      'Hyzmat haýyşynyň ýagdaýy',
+      name: 'hyzmat_hayysynyn_yagdayy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Size teklip edilýär`
+  String get size_teklip_edilyar {
+    return Intl.message(
+      'Size teklip edilýär',
+      name: 'size_teklip_edilyar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Janly söhbetdeşlik`
+  String get janly_sohbetdeslik {
+    return Intl.message(
+      'Janly söhbetdeşlik',
+      name: 'janly_sohbetdeslik',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tassyklama telefon belgimi nädip üýtgedip bilerin?`
+  String get faq_tassyklama_telefon {
+    return Intl.message(
+      'Tassyklama telefon belgimi nädip üýtgedip bilerin?',
+      name: 'faq_tassyklama_telefon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hasabym işjeňsizleşdirilse näme etmeli?`
+  String get faq_hasap_isjensizlesdi {
+    return Intl.message(
+      'Hasabym işjeňsizleşdirilse näme etmeli?',
+      name: 'faq_hasap_isjensizlesdi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hasabyma girip bilmesem näme etmeli?`
+  String get faq_hasaba_girip_bilmesem {
+    return Intl.message(
+      'Hasabyma girip bilmesem näme etmeli?',
+      name: 'faq_hasaba_girip_bilmesem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Harydyň bahasy, iň az sargyt mukdary we eltip beriş tölegini nädip bilip bilerin?`
+  String get faq_haryt_maglumaty {
+    return Intl.message(
+      'Harydyň bahasy, iň az sargyt mukdary we eltip beriş tölegini nädip bilip bilerin?',
+      name: 'faq_haryt_maglumaty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parolymy ýatdan çykarsam näme etmeli?`
+  String get faq_paroly_yatdan_cykarsam {
+    return Intl.message(
+      'Parolymy ýatdan çykarsam näme etmeli?',
+      name: 'faq_paroly_yatdan_cykarsam',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
