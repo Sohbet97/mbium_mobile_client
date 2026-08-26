@@ -59,6 +59,7 @@ dependencies:
   phone_form_field: ^10.0.17
   video_player: ^2.11.1
   share_plus: ^10.1.4
+  wakelock_plus: ^1.2.8
   url_launcher: ^6.3.1
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
@@ -84,9 +85,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon_square.png"
-  adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/icon_square.png"
+  image_path: "assets/logo.png"
   remove_alpha_ios: true
 
 # For information on the generic Dart part of this file, see the

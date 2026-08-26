@@ -44,16 +44,16 @@ class _ReelsPageState extends State<ReelsPage>
     super.dispose();
   }
 
-  void _openProduct(ReelProduct product) {
-    Navigator.pushNamed(
+  Future<void> _openProduct(ReelProduct product) async {
+    await Navigator.pushNamed(
       context,
       '/productDetail',
       arguments: product.toProductModel(),
     );
   }
 
-  void _openShop(ReelShop shop) {
-    Navigator.push(context, FadeRoute(page: ShopReelsScreen(shop: shop)));
+  Future<void> _openShop(ReelShop shop) async {
+    await Navigator.push(context, FadeRoute(page: ShopReelsScreen(shop: shop)));
   }
 
   void _shareReel(ReelsModel reel) {
@@ -149,8 +149,8 @@ class _ReelsPageState extends State<ReelsPage>
                 if (!_commentsOpen)
                   Positioned(
                     top: topPadding,
-                    left: 11,
-                    right: 11,
+                    left: 0,
+                    right: 0,
                     child: ReelsTabBar(tabController: _tabController),
                   ),
               ],
@@ -190,8 +190,8 @@ class _ReelsFeedView extends StatefulWidget {
   final Set<int> likedReelIds;
   final void Function(ReelsModel reel) onDoubleTapLike;
   final void Function(ReelsModel reel) onToggleLike;
-  final void Function(ReelProduct product) onOpenProduct;
-  final void Function(ReelShop shop) onOpenShop;
+  final Future<void> Function(ReelProduct product) onOpenProduct;
+  final Future<void> Function(ReelShop shop) onOpenShop;
   final void Function(ReelsModel reel) onShare;
   final TextEditingController commentController;
   final VoidCallback onLoadMore;
@@ -258,6 +258,17 @@ class _ReelsFeedViewState extends State<_ReelsFeedView> {
     );
   }
 
+  // Pauses the current reel before pushing a screen on top (product detail,
+  // shop profile) so the video doesn't keep playing underneath, then resumes
+  // it once that screen is popped.
+  Future<void> _navigateAndResume(Future<void> Function() navigate) async {
+    await _playerPool.pauseAll();
+    if (!mounted) return;
+    await navigate();
+    if (!mounted) return;
+    _focusCurrent();
+  }
+
   void _onPageChanged(int index) {
     setState(() => _currentIndex = index);
     _preloadManager.onPageSettleCandidate(index);
@@ -287,36 +298,39 @@ class _ReelsFeedViewState extends State<_ReelsFeedView> {
       onRefresh: _onRefresh,
       color: AppColors.primaryGreen,
       backgroundColor: Colors.black87,
-      child: ListenableBuilder(
-        listenable: _playerPool,
-        builder: (context, _) {
-          return PageView.builder(
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            onPageChanged: _onPageChanged,
-            itemCount: widget.reels.length,
-            itemBuilder: (context, index) {
-              final reel = widget.reels[index];
-              final isLiked = widget.likedReelIds.contains(reel.id);
+      child: SafeArea(
+        child: ListenableBuilder(
+          listenable: _playerPool,
+          builder: (context, _) {
+            return PageView.builder(
+              controller: _pageController,
+              scrollDirection: Axis.vertical,
+              onPageChanged: _onPageChanged,
+              itemCount: widget.reels.length,
+              itemBuilder: (context, index) {
+                final reel = widget.reels[index];
+                final isLiked = widget.likedReelIds.contains(reel.id);
 
-              return ReelFeedItem(
-                reel: reel,
-                player: _playerPool.wrapperFor(index),
-                topPadding: widget.topPadding,
-                isLiked: isLiked,
-                likeCount: reel.likeCount + (isLiked ? 1 : 0),
-                onDoubleTapLike: () => widget.onDoubleTapLike(reel),
-                onToggleLike: () => widget.onToggleLike(reel),
-                onOpenProduct: widget.onOpenProduct,
-                onOpenShop: () => widget.onOpenShop(reel.shop),
-                onShare: () => widget.onShare(reel),
-                commentController: widget.commentController,
-                onCommentSubmit: () {},
-                onCommentsOpenChanged: widget.onCommentsOpenChanged,
-              );
-            },
-          );
-        },
+                return ReelFeedItem(
+                  reel: reel,
+                  player: _playerPool.wrapperFor(index),
+                  topPadding: widget.topPadding,
+                  isLiked: isLiked,
+                  likeCount: reel.likeCount + (isLiked ? 1 : 0),
+                  onDoubleTapLike: () => widget.onDoubleTapLike(reel),
+                  onToggleLike: () => widget.onToggleLike(reel),
+                  onOpenProduct: (product) =>
+                      _navigateAndResume(() => widget.onOpenProduct(product)),
+                  onOpenShop: () =>
+                      _navigateAndResume(() => widget.onOpenShop(reel.shop)),
+                  onShare: () => widget.onShare(reel),
+                  commentController: widget.commentController,
+                  onCommentsOpenChanged: widget.onCommentsOpenChanged,
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

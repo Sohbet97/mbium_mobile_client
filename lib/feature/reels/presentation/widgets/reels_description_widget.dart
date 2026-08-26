@@ -129,6 +129,7 @@ class ReelsDescriptionWidget extends StatelessWidget {
                 children: [
                   _buildShop(context),
                   Text(caption, style: _textStyle),
+                  const SizedBox(height: 5),
                 ],
               );
             } else if (expanded) {
@@ -146,6 +147,7 @@ class ReelsDescriptionWidget extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 5),
                 ],
               );
             } else {
@@ -170,6 +172,7 @@ class ReelsDescriptionWidget extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 7),
                 ],
               );
             }

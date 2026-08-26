@@ -228,7 +228,6 @@ class _ShopReelsViewState extends State<_ShopReelsView> {
                       onOpenShop: _openShopProfile,
                       onShare: () => _shareReel(reel),
                       commentController: _commentController,
-                      onCommentSubmit: () {},
                     );
                   },
                 );

@@ -32,7 +32,7 @@ class ReelsCommentInput extends StatelessWidget {
               controller: controller,
               onSubmitted: (_) => onSubmit(),
               textAlignVertical: TextAlignVertical.center,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15, color: Colors.white),
               decoration: InputDecoration(
                 fillColor: Colors.transparent,
                 hintText: localization.oz_pikirini_yaz,

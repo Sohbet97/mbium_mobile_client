@@ -13,7 +13,7 @@ class ReelsModel {
   final int moderationStatus;
   final String? moderationNote;
   final DateTime? moderatedAt;
-  final int? moderatedBy;
+  final String? moderatedBy;
   final int? productId;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -61,7 +61,7 @@ class ReelsModel {
       moderatedAt: json['moderated_at'] != null
           ? DateTime.tryParse(json['moderated_at'] as String)
           : null,
-      moderatedBy: json['moderated_by'] as int?,
+      moderatedBy: json['moderated_by'] as String?,
       productId: json['product_id'] as int?,
       createdAt: json['createdAt'] != null
           ? DateTime.tryParse(json['createdAt'] as String)

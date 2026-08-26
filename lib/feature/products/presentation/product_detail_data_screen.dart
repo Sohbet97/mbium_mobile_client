@@ -83,6 +83,7 @@ class ProductDetailDataScreen extends StatelessWidget {
                 lang: lang,
               ),
             ],
+
             const SizedBox(height: 8),
             ProductDetailPriceCardWidget(product: model),
             const SizedBox(height: 8),

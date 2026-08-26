@@ -45,7 +45,6 @@ class CategoryGridItemWidget extends StatelessWidget {
   }
 
   Widget _buildPreview() {
-    print('image: ${model.image}');
     if (model.image != null) {
       return CachedNetworkImage(
         imageUrl: model.image!,

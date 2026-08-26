@@ -34,7 +34,7 @@ class MainCategoryWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 45,
+        height: 60,
         margin: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(color: color),
         child: Row(
@@ -42,7 +42,7 @@ class MainCategoryWidget extends StatelessWidget {
             const SizedBox(width: 4),
             if (isSelected)
               Container(
-                height: 30,
+                height: 50,
                 width: 2,
                 color: AppColors.primaryGreen,
                 margin: const EdgeInsets.only(right: 5),

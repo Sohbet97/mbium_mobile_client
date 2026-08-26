@@ -52,23 +52,13 @@ class _CategoryListPageState extends State<CategoryListPage> {
     _productBloc.add(LoadProducts(FilterModel(categoryId: category.id)));
   }
 
-  // Häzirki derejedäki doganlyk (sibling) kategoriýalar - çep sanaw
-  List<CategoryModel> get _siblings =>
-      _path.length <= 1 ? widget.categories : _path[_path.length - 2].children;
-
   CategoryModel? get _focus => _path.isEmpty ? null : _path.last;
 
-  // Çep sanawdan saýlama - şol bir derejede çalyşma
-  void _selectSibling(CategoryModel category) {
-    if (category.children.isEmpty) {
-      _openCategoryDetail(category);
-      return;
-    }
-    setState(() {
-      _path = _path.isEmpty
-          ? [category]
-          : [..._path.sublist(0, _path.length - 1), category];
-    });
+  // Çep sanaw (CategorySiblingsListWidget) diňe 1-nji derejedäki kök
+  // kategoriýalary görkezýär — saýlanan bolsa täze köki bellemek üçin
+  // path bütinleý täzeden başlanýar.
+  void _selectRoot(CategoryModel category) {
+    setState(() => _path = [category]);
     _loadProductsForCategory(category);
   }
 
@@ -90,11 +80,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
         builder: (_) => CategoryDetailScreen(category: category),
       ),
     );
-  }
-
-  void _jumpToBreadcrumb(int index) {
-    setState(() => _path = _path.sublist(0, index + 1));
-    _loadProductsForCategory(_path.last);
   }
 
   bool get _canPopScreen => _path.length <= 1;
@@ -120,20 +105,15 @@ class _CategoryListPageState extends State<CategoryListPage> {
           value: _productBloc,
           child: Column(
             children: [
-              CategoryBreadcrumbWidget(
-                path: _path,
-                languageCode: languageCode,
-                onSegmentTap: _jumpToBreadcrumb,
-              ),
               Expanded(
                 child: Row(
                   children: [
                     Flexible(
                       flex: 30,
                       child: CategorySiblingsListWidget(
-                        categories: _siblings,
-                        selected: focus,
-                        onTap: _selectSibling,
+                        categories: widget.categories,
+                        selected: _path.isNotEmpty ? _path.first : null,
+                        onTap: _selectRoot,
                       ),
                     ),
 
@@ -146,6 +126,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
                               languageCode: languageCode,
                               scrollController: _scrollController,
                               onChildTap: _drillInto,
+                              onOpenDetail: _openCategoryDetail,
                             ),
                     ),
                   ],

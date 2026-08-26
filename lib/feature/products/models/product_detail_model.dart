@@ -360,6 +360,7 @@ class ProductVariant {
   final double? compareAtPrice;
   final int stock;
   final Map<String, dynamic> attributes;
+  final String? colorHex;
   final bool isActive;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -382,6 +383,7 @@ class ProductVariant {
     this.compareAtPrice,
     required this.stock,
     required this.attributes,
+    this.colorHex,
     required this.isActive,
     required this.createdAt,
     required this.updatedAt,
@@ -402,7 +404,10 @@ class ProductVariant {
 
     return ProductVariant(
       id: json['id'] as int,
-      productId: json['product_id'] as int,
+      // Omitted by some endpoints (e.g. the nested `variants` on a product
+      // detail payload — redundant there since they're already scoped to
+      // the parent product) — default rather than crash.
+      productId: json['product_id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       sku: json['sku'] as String?,
       barcode: json['barcode'] as String?,
@@ -410,6 +415,7 @@ class ProductVariant {
       compareAtPrice: parseOptionalDouble(json['compare_at_price']),
       stock: json['stock'] as int? ?? 0,
       attributes: json['attributes'] as Map<String, dynamic>? ?? {},
+      colorHex: json['color_hex'] as String?,
       isActive: json['is_active'] as bool? ?? true,
       createdAt: json['createdAt'] != null
           ? DateTime.parse(json['createdAt'])

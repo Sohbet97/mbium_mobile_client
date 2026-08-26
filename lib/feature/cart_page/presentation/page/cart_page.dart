@@ -183,32 +183,32 @@ class _CartPageState extends State<CartPage> {
                         ),
                         const SizedBox(width: 8),
 
-                        GestureDetector(
-                          onTap: () {},
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.location_on_outlined,
-                                size: 14,
-                                color: AppColors.lightTextSecondary,
-                              ),
-                              const SizedBox(width: 2),
-                              Text(
-                                l10n.us_a_eltip_bermek,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: AppColors.lightTextSecondary,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: 11,
-                                color: AppColors.lightTextSecondary,
-                              ),
-                            ],
-                          ),
-                        ),
+                        // GestureDetector(
+                        //   onTap: () {},
+                        //   child: Row(
+                        //     mainAxisSize: MainAxisSize.min,
+                        //     children: [
+                        //       const Icon(
+                        //         Icons.location_on_outlined,
+                        //         size: 14,
+                        //         color: AppColors.lightTextSecondary,
+                        //       ),
+                        //       const SizedBox(width: 2),
+                        //       Text(
+                        //         l10n.us_a_eltip_bermek,
+                        //         style: const TextStyle(
+                        //           fontSize: 12,
+                        //           color: AppColors.lightTextSecondary,
+                        //         ),
+                        //       ),
+                        //       const Icon(
+                        //         Icons.arrow_forward_ios_rounded,
+                        //         size: 11,
+                        //         color: AppColors.lightTextSecondary,
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         const Spacer(),
 
                         GestureDetector(

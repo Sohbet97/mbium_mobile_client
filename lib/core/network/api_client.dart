@@ -97,10 +97,15 @@ class ApiClient {
       );
 
       if (response.statusCode != 200) {
-        final url = dio.options.baseUrl.replaceAll('/buyer', '');
-        final response = await dio.post('$url/auth/logout', data: {});
-
-        print('auth: ${response.statusCode}');
+        // Marked as already-retried so the response interceptor doesn't try
+        // to refresh the session again for this call if it also 401s — that
+        // would re-enter _refreshSession() while _refreshing (this very
+        // _doRefresh() call) hasn't resolved yet, deadlocking the request.
+        await dio.post(
+          '$url/auth/logout',
+          data: {},
+          options: Options(extra: {'retried': true}),
+        );
         return false;
       } else {
         final body = response.data as Map<String, dynamic>;

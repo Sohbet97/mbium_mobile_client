@@ -47,15 +47,13 @@ class _MyMbiumDataPage extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          flexibleSpace: Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    primaryColor.withOpacity(0.2),
-                    primaryColor.withOpacity(0.5),
-                  ],
-                ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  primaryColor.withValues(alpha: 0.2),
+                  primaryColor.withValues(alpha: 0.5),
+                ],
               ),
             ),
           ),

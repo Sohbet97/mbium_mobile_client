@@ -8,8 +8,6 @@ import 'package:mbium_mobile_client/feature/products/presentation/product_3d_vie
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_full_screen_images.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_spin_view_widget.dart';
 
-import 'product_detail_badges_overlay_widget.dart';
-
 class ProductDetailImagesWidget extends StatefulWidget {
   final ProductDetailModel product;
   final ProductModel littleProducts;
