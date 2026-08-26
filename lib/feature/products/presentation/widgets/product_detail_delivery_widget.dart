@@ -34,7 +34,8 @@ class ProductDetailDeliveryWidget extends StatelessWidget {
       height: 30,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(14)),
       child: deliveryTypes.length == 1
-          ? Expanded(
+          ? SizedBox(
+              width: double.infinity,
               child: Container(
                 color: AppColors.primaryGreen.withOpacity(0.2),
                 height: 30,

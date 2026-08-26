@@ -84,28 +84,22 @@ class _ProductFullScreenImagesState extends State<ProductFullScreenImages> {
                   onLockPaging: _setPagingLocked,
                 ),
               ),
-              AnimatedOpacity(
+              _TopBar(
+                currentIndex: _currentIndex,
+                total: widget.media.length,
+                onClose: () => Navigator.pop(context),
                 opacity: _showUI ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 200),
-                child: _TopBar(
-                  currentIndex: _currentIndex,
-                  total: widget.media.length,
-                  onClose: () => Navigator.pop(context),
-                ),
               ),
               if (widget.media.length > 1)
-                AnimatedOpacity(
-                  opacity: _showUI ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 200),
-                  child: _BottomThumbs(
-                    media: widget.media,
-                    selectedIndex: _currentIndex,
-                    onTap: (i) => _pageController.animateToPage(
-                      i,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    ),
+                _BottomThumbs(
+                  media: widget.media,
+                  selectedIndex: _currentIndex,
+                  onTap: (i) => _pageController.animateToPage(
+                    i,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
                   ),
+                  opacity: _showUI ? 1.0 : 0.0,
                 ),
             ],
           ),
@@ -332,49 +326,59 @@ class _TopBar extends StatelessWidget {
   final int currentIndex;
   final int total;
   final VoidCallback onClose;
+  final double opacity;
 
   const _TopBar({
     required this.currentIndex,
     required this.total,
     required this.onClose,
+    required this.opacity,
   });
 
   @override
   Widget build(BuildContext context) {
+    // AnimatedOpacity has to live *inside* this Positioned, not wrap it from
+    // outside — Positioned requires a Stack as its direct render parent, and
+    // an externally-wrapping AnimatedOpacity (with its own RenderObject)
+    // breaks that adjacency.
     return Positioned(
       top: 0,
       left: 0,
       right: 0,
-      child: Container(
-        padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top + 8,
-          left: 8,
-          right: 16,
-          bottom: 12,
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black.withValues(alpha: 0.6), Colors.transparent],
+      child: AnimatedOpacity(
+        opacity: opacity,
+        duration: const Duration(milliseconds: 200),
+        child: Container(
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).padding.top + 8,
+            left: 8,
+            right: 16,
+            bottom: 12,
           ),
-        ),
-        child: Row(
-          children: [
-            IconButton(
-              onPressed: onClose,
-              icon: const Icon(Icons.close, color: AppColors.navWhite),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.black.withValues(alpha: 0.6), Colors.transparent],
             ),
-            const Spacer(),
-            Text(
-              '${currentIndex + 1} / $total',
-              style: const TextStyle(
-                color: AppColors.navWhite,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+          ),
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: onClose,
+                icon: const Icon(Icons.close, color: AppColors.navWhite),
               ),
-            ),
-          ],
+              const Spacer(),
+              Text(
+                '${currentIndex + 1} / $total',
+                style: const TextStyle(
+                  color: AppColors.navWhite,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -387,20 +391,27 @@ class _BottomThumbs extends StatelessWidget {
   final List<ProductMedia> media;
   final int selectedIndex;
   final ValueChanged<int> onTap;
+  final double opacity;
 
   const _BottomThumbs({
     required this.media,
     required this.selectedIndex,
     required this.onTap,
+    required this.opacity,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Same reasoning as _TopBar: AnimatedOpacity must be inside this
+    // Positioned so Positioned's direct render parent stays the Stack.
     return Positioned(
       bottom: 0,
       left: 0,
       right: 0,
-      child: Container(
+      child: AnimatedOpacity(
+        opacity: opacity,
+        duration: const Duration(milliseconds: 200),
+        child: Container(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).padding.bottom + 12,
           top: 12,
@@ -464,6 +475,7 @@ class _BottomThumbs extends StatelessWidget {
               );
             },
           ),
+        ),
         ),
       ),
     );

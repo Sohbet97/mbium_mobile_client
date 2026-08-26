@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 enum ReelPlayerLifecycleState {
   idle,
@@ -9,6 +10,31 @@ enum ReelPlayerLifecycleState {
   playing,
   paused,
   error,
+}
+
+/// Keeps the screen awake while at least one reel is actively playing.
+/// Reference-counted (not a plain on/off toggle) because the pool can briefly
+/// hold two wrappers mid-transition — e.g. [ReelPlayerPool.focus] starts the
+/// new current reel playing *before* it pauses the old one, so a naive
+/// "pause disables" call on the old wrapper would turn the screen-sleep
+/// timer back on even though the new reel is still playing.
+class _ReelWakelock {
+  static int _activeCount = 0;
+
+  static void acquire() {
+    _activeCount++;
+    if (_activeCount == 1) {
+      WakelockPlus.enable();
+    }
+  }
+
+  static void release() {
+    if (_activeCount == 0) return;
+    _activeCount--;
+    if (_activeCount == 0) {
+      WakelockPlus.disable();
+    }
+  }
 }
 
 class ReelVideoCacheManager extends CacheManager {
@@ -88,8 +114,16 @@ class ReelPlayerWrapper extends ChangeNotifier {
   }
 
   void _setState(ReelPlayerLifecycleState value) {
+    final wasPlaying = _state == ReelPlayerLifecycleState.playing;
     _state = value;
     notifyListeners();
+
+    final isPlaying = value == ReelPlayerLifecycleState.playing;
+    if (isPlaying && !wasPlaying) {
+      _ReelWakelock.acquire();
+    } else if (!isPlaying && wasPlaying) {
+      _ReelWakelock.release();
+    }
   }
 
   @override
@@ -97,6 +131,9 @@ class ReelPlayerWrapper extends ChangeNotifier {
     _controller?.dispose();
     _controller = null;
     _startBackgroundCacheIfNeeded();
+    if (_state == ReelPlayerLifecycleState.playing) {
+      _ReelWakelock.release();
+    }
     super.dispose();
   }
 }

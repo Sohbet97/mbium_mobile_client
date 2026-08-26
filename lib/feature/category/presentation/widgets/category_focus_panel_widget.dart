@@ -7,6 +7,7 @@ import 'package:mbium_mobile_client/feature/banners/bloc/banner_bloc.dart';
 import 'package:mbium_mobile_client/feature/banners/presentation/category_banner_strip_widget.dart';
 import 'package:mbium_mobile_client/feature/banners/presentation/category_top_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/category/models/category_modes.dart';
+import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_drilldown_sheet.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/category_grid_item_widget.dart';
 import 'package:mbium_mobile_client/feature/products/bloc/product_bloc.dart';
 import 'package:mbium_mobile_client/feature/products/models/product_model.dart';
@@ -14,23 +15,81 @@ import 'package:mbium_mobile_client/feature/products/presentation/widgets/list_p
 
 import '../../../../generated/l10n.dart';
 
-class CategoryFocusPanelWidget extends StatelessWidget {
+const _gridLimit = 14;
+
+class CategoryFocusPanelWidget extends StatefulWidget {
   const CategoryFocusPanelWidget({
     super.key,
     required this.focus,
     required this.languageCode,
     required this.scrollController,
     required this.onChildTap,
+    required this.onOpenDetail,
   });
 
   final CategoryModel focus;
   final String languageCode;
   final ScrollController scrollController;
+
+  /// Tap on a real subcategory tile in the random grid.
   final ValueChanged<CategoryModel> onChildTap;
+
+  /// Tap on a level-3 item (or a childless level-2 item) inside the
+  /// drilldown sheet opened from the "added" tile.
+  final ValueChanged<CategoryModel> onOpenDetail;
+
+  @override
+  State<CategoryFocusPanelWidget> createState() =>
+      _CategoryFocusPanelWidgetState();
+}
+
+class _CategoryFocusPanelWidgetState extends State<CategoryFocusPanelWidget> {
+  late List<CategoryModel> _gridItems;
+
+  @override
+  void initState() {
+    super.initState();
+    _gridItems = _pickRandomGrandchildren();
+  }
+
+  @override
+  void didUpdateWidget(covariant CategoryFocusPanelWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.focus.id != widget.focus.id) {
+      setState(() => _gridItems = _pickRandomGrandchildren());
+    }
+  }
+
+  // Grid-de 3-nji derejäni (agtyklar) görkezýäris — 2-nji derejе diňe
+  // aşaky "dragawable" sheet-iň içinde görkezilýär.
+  List<CategoryModel> _pickRandomGrandchildren() {
+    final grandchildren =
+        widget.focus.children.expand((child) => child.children).toList()
+          ..shuffle();
+    return grandchildren.take(_gridLimit).toList();
+  }
+
+  void _openDrilldownSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => CategoryDrilldownSheet(
+        levelTwoCategories: widget.focus.children,
+        onCategorySelected: (category) {
+          Navigator.of(sheetContext).pop();
+          widget.onOpenDetail(category);
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final children = focus.children;
+    final focus = widget.focus;
+    final gridItems = _gridItems;
+    final showAddedTile = focus.children.isNotEmpty;
+
     final bannerState = context.watch<BannerBloc>().state;
     final hasCategoryBanners =
         bannerState is BannerLoaded &&
@@ -39,36 +98,53 @@ class CategoryFocusPanelWidget extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: CustomScrollView(
-        controller: scrollController,
+        controller: widget.scrollController,
         slivers: [
           if (hasCategoryBanners)
             SliverToBoxAdapter(
               child: CategoryTopBannerWidget(categoryId: focus.id),
             ),
 
-          if (children.isNotEmpty)
+          if (gridItems.isNotEmpty || showAddedTile)
             SliverGrid.builder(
-              itemCount: children.length + 1,
+              itemCount: gridItems.length + (showAddedTile ? 1 : 0),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 90,
+                maxCrossAxisExtent: 100,
               ),
               itemBuilder: (context, index) {
-                if (index == children.length) {
+                if (showAddedTile && index == gridItems.length) {
                   return Padding(
                     padding: const EdgeInsets.all(13.0),
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundColor: AppColors.bonusCoinGrey.withOpacity(0.4),
-                      child: Icon(Icons.category_outlined, color: Colors.white),
+                    child: GestureDetector(
+                      onTap: _openDrilldownSheet,
+                      child: CircleAvatar(
+                        radius: 18,
+                        backgroundColor: AppColors.bonusCoinGrey.withValues(
+                          alpha: 0.4,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.category_outlined, color: Colors.white),
+                            Text(
+                              S.of(context).ahlisi,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 }
-                final model = children[index];
+                final model = gridItems[index];
                 return CategoryGridItemWidget(
                   model: model,
-                  languageCode: languageCode,
-                  // onTap: () => onChildTap(model),
-                  onTap: () {},
+                  languageCode: widget.languageCode,
+                  onTap: () => widget.onChildTap(model),
                 );
               },
             ),

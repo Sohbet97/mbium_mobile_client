@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbium_mobile_client/core/themes/app_colors.dart';
+import 'package:mbium_mobile_client/feature/comments/bloc/comment_bloc.dart';
+import 'package:mbium_mobile_client/feature/products/presentation/widgets/product_detail_comment_item_widget.dart';
 
 import '../../../../generated/l10n.dart';
+
+const _latestCommentsCount = 2;
 
 /// Expandable "Düşündiriş" (description) card.
 class ProductDetailDescriptionWidget extends StatefulWidget {
@@ -25,6 +30,14 @@ class ProductDetailDescriptionWidget extends StatefulWidget {
 class _ProductDetailDescriptionWidgetState
     extends State<ProductDetailDescriptionWidget> {
   bool _expanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<CommentBloc>().add(
+      LoadCommentsEvent(productId: widget.productId),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +137,29 @@ class _ProductDetailDescriptionWidgetState
                 ),
               ],
             ),
+          ),
+          BlocBuilder<CommentBloc, CommentState>(
+            builder: (context, state) {
+              if (state is! CommentLoaded || state.comments.isEmpty) {
+                return const SizedBox.shrink();
+              }
+
+              final latest = [...state.comments]
+                ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+              final preview = latest.take(_latestCommentsCount).toList();
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  const Divider(height: 1),
+                  for (final comment in preview) ...[
+                    const SizedBox(height: 10),
+                    ProductDetailCommentItemWidget(comment: comment),
+                  ],
+                ],
+              );
+            },
           ),
         ],
       ),

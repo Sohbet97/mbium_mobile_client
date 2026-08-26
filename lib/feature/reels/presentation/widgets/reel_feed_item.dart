@@ -30,7 +30,6 @@ class ReelFeedItem extends StatefulWidget {
     required this.onOpenShop,
     required this.onShare,
     required this.commentController,
-    required this.onCommentSubmit,
     this.onCommentsOpenChanged,
   });
 
@@ -51,7 +50,6 @@ class ReelFeedItem extends StatefulWidget {
   final VoidCallback onOpenShop;
   final VoidCallback onShare;
   final TextEditingController commentController;
-  final VoidCallback onCommentSubmit;
 
   @override
   State<ReelFeedItem> createState() => _ReelFeedItemState();
@@ -210,8 +208,8 @@ class _ReelFeedItemState extends State<ReelFeedItem>
           curve: Curves.easeInOut,
           child: _commentsOpen
               ? CommentsSheet(
+                  productId: widget.reel.product?.id,
                   commentController: widget.commentController,
-                  onSubmit: widget.onCommentSubmit,
                   onClose: _toggleComments,
                 )
               : const SizedBox.shrink(),

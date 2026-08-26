@@ -30,6 +30,7 @@ class ProductModel {
   final bool isActive;
   final int? brandId;
   final int? supplierId;
+  final String? colorHex;
   final bool isPublished;
   final DateTime? scheduledAt;
   final int? moderationStatus;
@@ -82,6 +83,7 @@ class ProductModel {
     required this.isActive,
     this.brandId,
     this.supplierId,
+    this.colorHex,
     this.isPublished = false,
     this.scheduledAt,
     this.moderationStatus,
@@ -147,6 +149,7 @@ class ProductModel {
       isActive: json['is_active'] as bool? ?? true,
       brandId: json['brand_id'] as int?,
       supplierId: json['supplier_id'] as int?,
+      colorHex: json['color_hex'] as String?,
       isPublished: json['is_published'] as bool? ?? false,
       scheduledAt: json['scheduled_at'] != null
           ? DateTime.parse(json['scheduled_at'])
@@ -229,6 +232,7 @@ class ProductModel {
       'is_active': isActive,
       'brand_id': brandId,
       'supplier_id': supplierId,
+      'color_hex': colorHex,
       'is_published': isPublished,
       'scheduled_at': scheduledAt?.toIso8601String(),
       'moderation_status': moderationStatus,

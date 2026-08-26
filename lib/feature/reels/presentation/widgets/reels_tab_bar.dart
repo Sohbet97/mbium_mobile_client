@@ -10,46 +10,50 @@ class ReelsTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localization = S.of(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: TabBar(
-            controller: tabController,
-            isScrollable: true,
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white70,
-            labelStyle: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
+    return Container(
+      color: const Color.fromRGBO(0, 0, 0, 0.541),
+      padding: const EdgeInsets.symmetric(horizontal: 11),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: TabBar(
+              controller: tabController,
+              isScrollable: true,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white70,
+              labelStyle: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+              unselectedLabelStyle: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+              indicatorColor: AppColors.navWhite,
+              indicatorWeight: 1,
+              indicatorSize: TabBarIndicatorSize.label,
+              dividerColor: Colors.transparent,
+              tabAlignment: TabAlignment.start,
+              padding: EdgeInsets.zero,
+              labelPadding: const EdgeInsets.only(right: 16),
+              tabs: [
+                Tab(text: localization.agza_bolanlarym),
+                Tab(text: localization.oz_saherimdaki),
+                Tab(text: localization.umumy),
+              ],
             ),
-            unselectedLabelStyle: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
+          ),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(
+              context,
+              '/searchScreen',
+              arguments: SearchModel(),
             ),
-            indicatorColor: AppColors.navWhite,
-            indicatorWeight: 1,
-            indicatorSize: TabBarIndicatorSize.label,
-            dividerColor: Colors.transparent,
-            tabAlignment: TabAlignment.start,
-            padding: EdgeInsets.zero,
-            labelPadding: const EdgeInsets.only(right: 16),
-            tabs: [
-              Tab(text: localization.agza_bolanlarym),
-              Tab(text: localization.oz_saherimdaki),
-              Tab(text: localization.umumy),
-            ],
+            child: const Icon(Icons.search, color: Colors.white, size: 28),
           ),
-        ),
-        GestureDetector(
-          onTap: () => Navigator.pushNamed(
-            context,
-            '/searchScreen',
-            arguments: SearchModel(),
-          ),
-          child: const Icon(Icons.search, color: Colors.white, size: 28),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

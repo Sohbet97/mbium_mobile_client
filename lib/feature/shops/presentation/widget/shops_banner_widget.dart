@@ -60,19 +60,28 @@ class ShopsBannerWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      SizedBox(
-                        child: Text(
-                          shop.localizedName,
-                          style: textStyles.s16w600clBlack,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              shop.localizedName,
+                              style: textStyles.s16w600clBlack,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+
+                            if (shop.verificationStatus != 0) ...[
+                              const SizedBox(width: 4),
+                              Icon(
+                                Icons.verified,
+                                color: Colors.blue,
+                                size: 19,
+                              ),
+                            ],
+                          ],
                         ),
                       ),
-
-                      if (shop.verificationStatus != 0) ...[
-                        const SizedBox(width: 4),
-                        Icon(Icons.verified, color: Colors.blue, size: 19),
-                      ],
                     ],
                   ),
                   const SizedBox(height: 3),

@@ -3,6 +3,9 @@ import 'package:mbium_mobile_client/core/themes/app_colors.dart';
 import 'package:mbium_mobile_client/feature/category/models/category_modes.dart';
 import 'package:mbium_mobile_client/feature/category/presentation/widgets/main_category_widget.dart';
 
+/// Left rail of [CategoryListPage] — always lists every 1st-level (root)
+/// category. Tapping one makes it the focused root shown in
+/// [CategoryFocusPanelWidget].
 class CategorySiblingsListWidget extends StatelessWidget {
   const CategorySiblingsListWidget({
     super.key,

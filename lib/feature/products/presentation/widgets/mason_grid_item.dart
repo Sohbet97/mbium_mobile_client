@@ -43,6 +43,30 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
     return null;
   }
 
+  Color? _parseHexColor(String? hex) {
+    if (hex == null) return null;
+    var value = hex.trim();
+    if (value.startsWith('#')) value = value.substring(1);
+    if (value.length == 6) value = 'FF$value';
+    if (value.length != 8) return null;
+    final parsed = int.tryParse(value, radix: 16);
+    return parsed != null ? Color(parsed) : null;
+  }
+
+  // Esasy önümiň reňki + variantlaryň reňkleri (bar bolsa), gaýtalanmasyz.
+  List<Color> get _swatchColors {
+    final colors = <Color>[];
+    final base = _parseHexColor(product.colorHex);
+    if (base != null) colors.add(base);
+    for (final variant in product.variants) {
+      final variantColor = _parseHexColor(variant.colorHex);
+      if (variantColor != null && !colors.contains(variantColor)) {
+        colors.add(variantColor);
+      }
+    }
+    return colors;
+  }
+
   List<ProductMedia> get _displayMedia {
     final primary =
         product.productMedia.where((m) => m.role == 'primary').toList()
@@ -215,20 +239,42 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         reviewCount: product.reviewCount,
                         soldCount: product.soldCount,
                       ),
+
+                      if (_swatchColors.isNotEmpty) ...[
+                        Wrap(
+                          spacing: 4,
+                          runSpacing: 4,
+                          children: _swatchColors
+                              .map(
+                                (swatchColor) => Container(
+                                  width: 18,
+                                  height: 18,
+                                  decoration: BoxDecoration(
+                                    color: swatchColor,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.grey.withValues(alpha: 0.3),
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ],
                       if (product.deliveryTypes.isNotEmpty) ...[
                         const SizedBox(height: 3),
-                        ProductGridShippingChipWidget(
-                          label: product.deliveryTypes.first.name,
+                        Row(
+                          children: [
+                            if (product.deliveryTypes.isNotEmpty)
+                              Expanded(
+                                child: ProductGridShippingChipWidget(
+                                  label: product.deliveryTypes.first.name,
+                                ),
+                              ),
+                          ],
                         ),
                         const SizedBox(height: 3),
                       ],
-                      // Row(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      //   children: [
-                      //     const Spacer(),
-                      //     CartControlWidget(product: product),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ),
