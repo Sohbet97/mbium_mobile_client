@@ -13,14 +13,26 @@ class _LocalMessage {
   const _LocalMessage({required this.text, required this.isMine, required this.time});
 }
 
+/// Arguments for the `/chatScreen` route: a [ShopModel] to chat with (or
+/// null for support), plus an optional [initialMessage] that gets sent on
+/// the caller's behalf as soon as the screen opens — e.g. "interested in
+/// product X" from a product detail page.
+class ChatScreenArgs {
+  final ShopModel? shop;
+  final String? initialMessage;
+
+  const ChatScreenArgs({this.shop, this.initialMessage});
+}
+
 /// One-on-one conversation with a shop, or with support when [shop] is
 /// null (e.g. opened from [SupportScreen]). Same bubble/input styling as
 /// [ShopDetailFaqTabWidget] — messages are local-only for now, there's no
 /// backend chat endpoint yet.
 class ChatScreen extends StatefulWidget {
   final ShopModel? shop;
+  final String? initialMessage;
 
-  const ChatScreen({super.key, this.shop});
+  const ChatScreen({super.key, this.shop, this.initialMessage});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -33,10 +45,24 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _introAdded = false;
 
   @override
+  void initState() {
+    super.initState();
+    final initialMessage = widget.initialMessage?.trim();
+    if (initialMessage != null && initialMessage.isNotEmpty) {
+      _messages.add(
+        _LocalMessage(text: initialMessage, isMine: true, time: DateTime.now()),
+      );
+    }
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_introAdded) {
-      _messages.add(
+      // Inserted at 0 (not added) so it stays the opening message even
+      // though initState may already have queued an auto-sent message.
+      _messages.insert(
+        0,
         _LocalMessage(text: S.of(context).salam_komek, isMine: false, time: DateTime.now()),
       );
       _introAdded = true;

@@ -9,31 +9,32 @@ import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import 'package:mbium_mobile_client/feature/top_products/presentation/widget/category_bottom_sheet_widget.dart';
 import '../../../../generated/l10n.dart';
 
-class TopProductsHeaderWidget extends StatefulWidget {
-  const TopProductsHeaderWidget({super.key});
+class TopProductsHeaderWidget extends StatelessWidget {
+  final CategoryModel? selectedCategory;
+  final ValueChanged<CategoryModel?> onCategoryChanged;
 
-  @override
-  State<TopProductsHeaderWidget> createState() =>
-      _TopProductsHeaderWidgetState();
-}
-
-class _TopProductsHeaderWidgetState extends State<TopProductsHeaderWidget> {
-  CategoryModel? _selectedCategory;
+  const TopProductsHeaderWidget({
+    super.key,
+    this.selectedCategory,
+    required this.onCategoryChanged,
+  });
 
   void _openCategorySheet(
       BuildContext context, List<CategoryModel> categories) async {
-    final result = await showModalBottomSheet<CategoryModel>(
+    final result = await showModalBottomSheet<Object>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => CategoryBottomSheet(
         categories: categories,
-        selectedCategory: _selectedCategory,
+        selectedCategory: selectedCategory,
       ),
     );
 
-    if (result is CategoryModel) {
-      setState(() => _selectedCategory = result);
+    if (result == kClearCategoryFilter) {
+      onCategoryChanged(null);
+    } else if (result is CategoryModel) {
+      onCategoryChanged(result);
     }
   }
 
@@ -49,8 +50,8 @@ class _TopProductsHeaderWidgetState extends State<TopProductsHeaderWidget> {
             ? state.categories
             : <CategoryModel>[];
 
-        final buttonLabel = _selectedCategory != null
-            ? _selectedCategory!.getNameByLanguage(languageCode)
+        final buttonLabel = selectedCategory != null
+            ? selectedCategory!.getNameByLanguage(languageCode)
             : l10n.kategoriyany_saylan;
 
         return Container(

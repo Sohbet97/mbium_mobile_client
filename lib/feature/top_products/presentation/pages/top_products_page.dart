@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/feature/category/models/category_modes.dart';
 import '../widget/top_products_header_widget.dart';
 import '../widget/top_products_tabs_widget.dart';
 import '../widget/ahlisi_tab_widget.dart';
@@ -15,6 +16,7 @@ class TopProductsPage extends StatefulWidget {
 class _TopProductsPageState extends State<TopProductsPage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+  CategoryModel? _selectedCategory;
 
   @override
   void initState() {
@@ -34,7 +36,13 @@ class _TopProductsPageState extends State<TopProductsPage>
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          SliverToBoxAdapter(child: const TopProductsHeaderWidget()),
+          SliverToBoxAdapter(
+            child: TopProductsHeaderWidget(
+              selectedCategory: _selectedCategory,
+              onCategoryChanged: (category) =>
+                  setState(() => _selectedCategory = category),
+            ),
+          ),
           SliverPersistentHeader(
             pinned: true,
             delegate: _TabBarDelegate(
@@ -44,10 +52,10 @@ class _TopProductsPageState extends State<TopProductsPage>
         ],
         body: TabBarView(
           controller: _tabController,
-          children: const [
-            AhlisiTabWidget(),
-            SatuwLiderleriTabWidget(),
-            InMeshgurlarTabWidget(),
+          children: [
+            AhlisiTabWidget(categoryId: _selectedCategory?.id),
+            const SatuwLiderleriTabWidget(),
+            InMeshgurlarTabWidget(categoryId: _selectedCategory?.id),
           ],
         ),
       ),

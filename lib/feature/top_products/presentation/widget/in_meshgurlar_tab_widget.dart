@@ -7,7 +7,9 @@ import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/mason_grid_item.dart';
 
 class InMeshgurlarTabWidget extends StatefulWidget {
-  const InMeshgurlarTabWidget({super.key});
+  final int? categoryId;
+
+  const InMeshgurlarTabWidget({super.key, this.categoryId});
 
   @override
   State<InMeshgurlarTabWidget> createState() => _InMeshgurlarTabWidgetState();
@@ -17,7 +19,21 @@ class _InMeshgurlarTabWidgetState extends State<InMeshgurlarTabWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<ProductBloc>().add(const LoadProducts(FilterModel(limit: 10)));
+    _loadProducts();
+  }
+
+  @override
+  void didUpdateWidget(covariant InMeshgurlarTabWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.categoryId != widget.categoryId) {
+      _loadProducts();
+    }
+  }
+
+  void _loadProducts() {
+    context.read<ProductBloc>().add(
+          LoadProducts(FilterModel(limit: 10, categoryId: widget.categoryId)),
+        );
   }
 
   @override

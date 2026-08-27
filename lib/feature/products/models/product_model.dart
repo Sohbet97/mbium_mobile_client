@@ -31,6 +31,7 @@ class ProductModel {
   final int? brandId;
   final int? supplierId;
   final String? colorHex;
+  final String? color;
   final bool isPublished;
   final DateTime? scheduledAt;
   final int? moderationStatus;
@@ -84,6 +85,7 @@ class ProductModel {
     this.brandId,
     this.supplierId,
     this.colorHex,
+    this.color,
     this.isPublished = false,
     this.scheduledAt,
     this.moderationStatus,
@@ -150,6 +152,7 @@ class ProductModel {
       brandId: json['brand_id'] as int?,
       supplierId: json['supplier_id'] as int?,
       colorHex: json['color_hex'] as String?,
+      color: json['color'] as String?,
       isPublished: json['is_published'] as bool? ?? false,
       scheduledAt: json['scheduled_at'] != null
           ? DateTime.parse(json['scheduled_at'])
@@ -233,6 +236,7 @@ class ProductModel {
       'brand_id': brandId,
       'supplier_id': supplierId,
       'color_hex': colorHex,
+      'color': color,
       'is_published': isPublished,
       'scheduled_at': scheduledAt?.toIso8601String(),
       'moderation_status': moderationStatus,
@@ -350,14 +354,28 @@ class ProductShop {
   final int id;
   final String name;
   final bool? isVerified;
+  // The actual badge-eligibility flag — combines isVerified with the shop's
+  // plan, so it can be true even when isVerified is false.
+  final bool? hasBlueBadge;
+  final ShopPlan? plan;
 
-  ProductShop({required this.id, required this.name, this.isVerified});
+  ProductShop({
+    required this.id,
+    required this.name,
+    this.isVerified,
+    this.hasBlueBadge,
+    this.plan,
+  });
 
   factory ProductShop.fromJson(Map<String, dynamic> json) {
     return ProductShop(
       id: json['id'] as int,
       name: json['name'] as String? ?? '',
       isVerified: json['is_verified'] as bool?,
+      hasBlueBadge: json['has_blue_badge'] as bool?,
+      plan: json['plan'] != null
+          ? ShopPlan.fromJson(json['plan'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -365,5 +383,19 @@ class ProductShop {
     'id': id,
     'name': name,
     'is_verified': isVerified,
+    'has_blue_badge': hasBlueBadge,
+    'plan': plan?.toJson(),
   };
+}
+
+class ShopPlan {
+  final bool? verifiedBadge;
+
+  ShopPlan({this.verifiedBadge});
+
+  factory ShopPlan.fromJson(Map<String, dynamic> json) {
+    return ShopPlan(verifiedBadge: json['verified_badge'] as bool?);
+  }
+
+  Map<String, dynamic> toJson() => {'verified_badge': verifiedBadge};
 }

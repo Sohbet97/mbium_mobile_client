@@ -7,7 +7,9 @@ import 'package:mbium_mobile_client/feature/products/models/filter_model.dart';
 import 'package:mbium_mobile_client/feature/products/presentation/widgets/mason_grid_item.dart';
 
 class AhlisiTabWidget extends StatefulWidget {
-  const AhlisiTabWidget({super.key});
+  final int? categoryId;
+
+  const AhlisiTabWidget({super.key, this.categoryId});
 
   @override
   State<AhlisiTabWidget> createState() => _AhlisiTabWidgetState();
@@ -17,7 +19,21 @@ class _AhlisiTabWidgetState extends State<AhlisiTabWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<ProductBloc>().add(const LoadProducts(FilterModel(limit: 10)));
+    _loadProducts();
+  }
+
+  @override
+  void didUpdateWidget(covariant AhlisiTabWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.categoryId != widget.categoryId) {
+      _loadProducts();
+    }
+  }
+
+  void _loadProducts() {
+    context.read<ProductBloc>().add(
+          LoadProducts(FilterModel(limit: 10, categoryId: widget.categoryId)),
+        );
   }
 
   @override

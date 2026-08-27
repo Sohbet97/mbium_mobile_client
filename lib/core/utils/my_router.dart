@@ -95,8 +95,14 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/chats':
       return FadeRoute(page: const ChatsScreen());
     case '/chatScreen':
-      final shopModel = settings.arguments as ShopModel?;
-      return FadeRoute(page: ChatScreen(shop: shopModel));
+      final chatArgs = settings.arguments;
+      final shopModel = chatArgs is ChatScreenArgs
+          ? chatArgs.shop
+          : chatArgs as ShopModel?;
+      final initialMessage = chatArgs is ChatScreenArgs ? chatArgs.initialMessage : null;
+      return FadeRoute(
+        page: ChatScreen(shop: shopModel, initialMessage: initialMessage),
+      );
     case '/ozBahanySayla':
       return FadeRoute(page: const OzBahanySaylaScreen());
     case '/rfqScreen':

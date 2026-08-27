@@ -208,7 +208,7 @@ class _ProductMassonGridItemState extends State<ProductMassonGridItem> {
                         currency: product.currency,
                       ),
 
-                      if (product.moderationStatus == 1)
+                      if (product.shop?.hasBlueBadge == true)
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 1),
                           decoration: BoxDecoration(

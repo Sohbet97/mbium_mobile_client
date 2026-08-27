@@ -10,6 +10,9 @@ import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_e
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_item_widget.dart';
 import 'package:mbium_mobile_client/feature/cart_page/presentation/widget/cart_promo_banner_widget.dart';
 import 'package:mbium_mobile_client/feature/favorite/bloc/favorite_bloc.dart';
+import 'package:mbium_mobile_client/feature/myMbium/bloc/address_bloc.dart';
+import 'package:mbium_mobile_client/feature/myMbium/models/address_model.dart';
+import 'package:mbium_mobile_client/feature/myMbium/presentation/addresses/widgets/address_form_sheet.dart';
 import 'package:mbium_mobile_client/generated/l10n.dart';
 
 import '../../../../core/constants/my_empty_widget.dart';
@@ -30,6 +33,7 @@ class _CartPageState extends State<CartPage> {
   final _scrollController = ScrollController();
   final FilterModel _filter = FilterModel();
   late ProductBloc _productBloc;
+  AddressModel? _selectedAddress;
 
   @override
   void initState() {
@@ -41,6 +45,7 @@ class _CartPageState extends State<CartPage> {
     _scrollController.addListener(_onScroll);
     context.read<CartBloc>().add(const LoadCartEvent());
     context.read<FavoriteBloc>().add(LoadFavorites());
+    context.read<AddressBloc>().add(LoadAddressesEvent());
   }
 
   void _onScroll() {
@@ -48,6 +53,67 @@ class _CartPageState extends State<CartPage> {
         _scrollController.position.maxScrollExtent - 200) {
       _productBloc.add(const LoadMoreProducts());
     }
+  }
+
+  void _onAddressesLoaded(List<AddressModel> addresses) {
+    if (_selectedAddress != null || addresses.isEmpty) return;
+    final selected = addresses.where((a) => a.isDefault).isNotEmpty
+        ? addresses.firstWhere((a) => a.isDefault)
+        : addresses.first;
+    // Called from a bloc listener during build — defer the setState.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _selectedAddress == null) {
+        setState(() => _selectedAddress = selected);
+      }
+    });
+  }
+
+  void _pickAddress(List<AddressModel> addresses) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (sheetContext) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 12),
+            Text(
+              S.of(context).addresses,
+              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+            ),
+            const Divider(),
+            ...addresses.map(
+              (a) => ListTile(
+                leading: Icon(
+                  a.id == _selectedAddress?.id
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_off,
+                  color: AppColors.primaryGreen,
+                ),
+                title: Text(a.label, style: const TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(a.address),
+                onTap: () {
+                  setState(() => _selectedAddress = a);
+                  Navigator.of(sheetContext).pop();
+                },
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.add, color: AppColors.primaryGreen),
+              title: Text(S.of(context).address_add),
+              onTap: () {
+                Navigator.of(sheetContext).pop();
+                AddressFormSheet.show(context);
+              },
+            ),
+            const SizedBox(height: 12),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -183,32 +249,47 @@ class _CartPageState extends State<CartPage> {
                         ),
                         const SizedBox(width: 8),
 
-                        // GestureDetector(
-                        //   onTap: () {},
-                        //   child: Row(
-                        //     mainAxisSize: MainAxisSize.min,
-                        //     children: [
-                        //       const Icon(
-                        //         Icons.location_on_outlined,
-                        //         size: 14,
-                        //         color: AppColors.lightTextSecondary,
-                        //       ),
-                        //       const SizedBox(width: 2),
-                        //       Text(
-                        //         l10n.us_a_eltip_bermek,
-                        //         style: const TextStyle(
-                        //           fontSize: 12,
-                        //           color: AppColors.lightTextSecondary,
-                        //         ),
-                        //       ),
-                        //       const Icon(
-                        //         Icons.arrow_forward_ios_rounded,
-                        //         size: 11,
-                        //         color: AppColors.lightTextSecondary,
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
+                        BlocConsumer<AddressBloc, AddressState>(
+                          listener: (context, state) {
+                            if (state is AddressLoaded) {
+                              _onAddressesLoaded(state.addresses);
+                            }
+                          },
+                          builder: (context, state) {
+                            final addresses = state is AddressLoaded
+                                ? state.addresses
+                                : const <AddressModel>[];
+                            return GestureDetector(
+                              onTap: addresses.isEmpty
+                                  ? () => AddressFormSheet.show(context)
+                                  : () => _pickAddress(addresses),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.location_on_outlined,
+                                    size: 14,
+                                    color: AppColors.lightTextSecondary,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  Text(
+                                    _selectedAddress?.label ??
+                                        l10n.us_a_eltip_bermek,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: AppColors.lightTextSecondary,
+                                    ),
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 11,
+                                    color: AppColors.lightTextSecondary,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                         const Spacer(),
 
                         GestureDetector(
@@ -224,7 +305,6 @@ class _CartPageState extends State<CartPage> {
                                 isLabelVisible: count > 0,
                                 label: Text(
                                   count.toString(),
-
                                   style: const TextStyle(fontSize: 6),
                                 ),
                                 child: const Icon(

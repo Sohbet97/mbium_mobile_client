@@ -7,6 +7,11 @@ import 'package:mbium_mobile_client/feature/category/models/category_modes.dart'
 import 'package:mbium_mobile_client/feature/splash/bloc/main_bloc.dart';
 import '../../../../generated/l10n.dart';
 
+/// Returned by [CategoryBottomSheet] when the user picks "All" to clear the
+/// category filter — distinct from `null`, which means the sheet was
+/// dismissed (back/tap-outside/close) without changing the selection.
+const Object kClearCategoryFilter = Object();
+
 class CategoryBottomSheet extends StatelessWidget {
   final List<CategoryModel> categories;
   final CategoryModel? selectedCategory;
@@ -66,6 +71,24 @@ class CategoryBottomSheet extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
+
+              ListTile(
+                title: Text(
+                  l10n.ahlisi,
+                  style: TextStyle(
+                    fontWeight: selectedCategory == null
+                        ? FontWeight.w700
+                        : FontWeight.w400,
+                    color: selectedCategory == null
+                        ? AppColors.primaryGreen
+                        : null,
+                  ),
+                ),
+                trailing: selectedCategory == null
+                    ? const Icon(Icons.check, color: AppColors.primaryGreen)
+                    : null,
+                onTap: () => Navigator.pop(context, kClearCategoryFilter),
+              ),
 
               Expanded(
                 child: ListView.builder(

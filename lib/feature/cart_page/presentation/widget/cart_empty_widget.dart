@@ -16,18 +16,19 @@ class CartEmptyWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.shopping_cart_outlined,
-            color: AppColors.primaryGreen.withOpacity(0.3),
-            size: 55,
+          Image.asset(
+            'assets/images/cart.png',
+            height: 150,
+            width: 170,
+            fit: BoxFit.fill,
           ),
           const SizedBox(height: 12),
           Text(
-            l10n.sebedinez_bos,
-            style: const TextStyle(
+            l10n.sebedinez_bos.toUpperCase(),
+            style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              color: AppColors.primaryGreen.withOpacity(0.6),
             ),
           ),
         ],

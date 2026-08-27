@@ -5,8 +5,8 @@ import 'package:mbium_mobile_client/feature/myMbium/presentation/widgets/support
 import 'package:mbium_mobile_client/generated/l10n.dart';
 
 class SupportSuggestedListWidget extends StatelessWidget {
-  const SupportSuggestedListWidget({super.key});
-
+  const SupportSuggestedListWidget({super.key, required this.onTap});
+  final Function(String message) onTap;
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
@@ -24,7 +24,11 @@ class SupportSuggestedListWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(Icons.auto_awesome, color: AppColors.primaryGreen, size: 18),
+            const Icon(
+              Icons.auto_awesome,
+              color: AppColors.primaryGreen,
+              size: 18,
+            ),
             const SizedBox(width: 6),
             Text(l10n.size_teklip_edilyar, style: textStyles.s13w600clBlack),
           ],
@@ -32,10 +36,12 @@ class SupportSuggestedListWidget extends StatelessWidget {
         const SizedBox(height: 10),
         Column(
           children: questions
-              .map((q) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: SupportQuestionRowWidget(text: q, onTap: () {}),
-                  ))
+              .map(
+                (q) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SupportQuestionRowWidget(text: q, onTap: () => onTap(q)),
+                ),
+              )
               .toList(),
         ),
       ],
