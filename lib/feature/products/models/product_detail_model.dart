@@ -32,6 +32,8 @@ class ProductDetailModel {
   final int? brandId;
   final BrandModel? brand;
   final int? supplierId;
+  final String? colorHex;
+  final ProductColor? color;
   final bool isPublished;
   final DateTime? scheduledAt;
   final String? createdBy;
@@ -77,6 +79,8 @@ class ProductDetailModel {
     this.brandId,
     this.brand,
     this.supplierId,
+    this.colorHex,
+    this.color,
     required this.isPublished,
     this.scheduledAt,
     this.createdBy,
@@ -140,6 +144,10 @@ class ProductDetailModel {
           ? BrandModel.fromJson(data['brand'] as Map<String, dynamic>)
           : null,
       supplierId: data['supplier_id'] as int?,
+      colorHex: data['color_hex'] as String?,
+      color: data['color'] != null
+          ? ProductColor.fromJson(data['color'] as Map<String, dynamic>)
+          : null,
       isPublished: data['is_published'] as bool? ?? false,
       scheduledAt: data['scheduled_at'] != null
           ? DateTime.parse(data['scheduled_at'])
@@ -228,6 +236,8 @@ class ProductDetailModel {
         size?.compareAtPrice ?? variant?.compareAtPrice ?? compareAtPrice;
     final effectiveMedia =
         variant != null && variant.media.isNotEmpty ? variant.media : productMedia;
+    final effectiveColorHex = variant?.colorHex ?? colorHex;
+    final effectiveColor = variant?.color ?? color;
 
     return ProductModel(
       id: id,
@@ -258,6 +268,8 @@ class ProductDetailModel {
       isActive: isActive,
       brandId: brandId,
       supplierId: supplierId,
+      colorHex: effectiveColorHex,
+      color: effectiveColor,
       isPublished: isPublished,
       scheduledAt: scheduledAt,
       createdBy: createdBy,
@@ -361,6 +373,7 @@ class ProductVariant {
   final int stock;
   final Map<String, dynamic> attributes;
   final String? colorHex;
+  final ProductColor? color;
   final bool isActive;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -384,6 +397,7 @@ class ProductVariant {
     required this.stock,
     required this.attributes,
     this.colorHex,
+    this.color,
     required this.isActive,
     required this.createdAt,
     required this.updatedAt,
@@ -416,6 +430,9 @@ class ProductVariant {
       stock: json['stock'] as int? ?? 0,
       attributes: json['attributes'] as Map<String, dynamic>? ?? {},
       colorHex: json['color_hex'] as String?,
+      color: json['color'] != null
+          ? ProductColor.fromJson(json['color'] as Map<String, dynamic>)
+          : null,
       isActive: json['is_active'] as bool? ?? true,
       createdAt: json['createdAt'] != null
           ? DateTime.parse(json['createdAt'])

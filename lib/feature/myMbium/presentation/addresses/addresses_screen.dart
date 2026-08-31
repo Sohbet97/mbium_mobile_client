@@ -64,7 +64,7 @@ class _AddressesScreenState extends State<AddressesScreen> {
       appBar: AppBar(title: Text(localization.addresses)),
       floatingActionButton: FloatingActionButton(
         onPressed: () => AddressFormSheet.show(context),
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
       ),
       body: BlocConsumer<AddressBloc, AddressState>(
         listener: (context, state) {

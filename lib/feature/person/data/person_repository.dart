@@ -53,7 +53,8 @@ class PersonRepository {
     );
 
     print('response auth: $response');
-    print('response auth: ${response.statusCode}');
+    print('response auth: ${response.data}');
+    print('response auth: ${response.data['refresh_token']}');
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = response.data as Map<String, dynamic>;
@@ -113,6 +114,7 @@ class PersonRepository {
         email: raw['email'] as String? ?? '',
         name: raw['name'] as String?,
         surname: raw['surname'] as String?,
+        phone: raw['phone_number'] as String? ?? raw['phone'] as String?,
         avatar: raw['avatar'] as String? ?? shop?['logo'] as String?,
         token: getSavedToken() ?? '',
       );

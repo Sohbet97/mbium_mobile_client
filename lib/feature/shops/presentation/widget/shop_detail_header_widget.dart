@@ -11,8 +11,6 @@ import 'package:mbium_mobile_client/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../generated/l10n.dart';
-
 class ShopDetailHeaderWidget extends StatelessWidget {
   final ShopDetailModel model;
 

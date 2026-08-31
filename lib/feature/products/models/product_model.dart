@@ -31,7 +31,7 @@ class ProductModel {
   final int? brandId;
   final int? supplierId;
   final String? colorHex;
-  final String? color;
+  final ProductColor? color;
   final bool isPublished;
   final DateTime? scheduledAt;
   final int? moderationStatus;
@@ -152,7 +152,9 @@ class ProductModel {
       brandId: json['brand_id'] as int?,
       supplierId: json['supplier_id'] as int?,
       colorHex: json['color_hex'] as String?,
-      color: json['color'] as String?,
+      color: json['color'] != null
+          ? ProductColor.fromJson(json['color'] as Map<String, dynamic>)
+          : null,
       isPublished: json['is_published'] as bool? ?? false,
       scheduledAt: json['scheduled_at'] != null
           ? DateTime.parse(json['scheduled_at'])
@@ -236,7 +238,7 @@ class ProductModel {
       'brand_id': brandId,
       'supplier_id': supplierId,
       'color_hex': colorHex,
-      'color': color,
+      'color': color?.toJson(),
       'is_published': isPublished,
       'scheduled_at': scheduledAt?.toIso8601String(),
       'moderation_status': moderationStatus,
@@ -332,6 +334,24 @@ class ProductModel {
         url.endsWith('.glb') ||
         url.endsWith('.usdz');
   }
+}
+
+class ProductColor {
+  final int id;
+  final String name;
+  final String hex;
+
+  ProductColor({required this.id, required this.name, required this.hex});
+
+  factory ProductColor.fromJson(Map<String, dynamic> json) {
+    return ProductColor(
+      id: json['id'] as int,
+      name: json['name'] as String? ?? '',
+      hex: json['hex'] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'id': id, 'name': name, 'hex': hex};
 }
 
 class ProductCategory {

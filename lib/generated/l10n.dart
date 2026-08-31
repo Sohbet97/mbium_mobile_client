@@ -2649,6 +2649,26 @@ class S {
     );
   }
 
+  /// `Ýerleşiş bellenildi`
+  String get address_location_selected {
+    return Intl.message(
+      'Ýerleşiş bellenildi',
+      name: 'address_location_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ýerleşişi kartadan saýlaň`
+  String get address_location_required {
+    return Intl.message(
+      'Ýerleşişi kartadan saýlaň',
+      name: 'address_location_required',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Habarlaş`
   String get habarlas {
     return Intl.message('Habarlaş', name: 'habarlas', desc: '', args: []);
@@ -3134,6 +3154,11 @@ class S {
     );
   }
 
+  /// `Default`
+  String get esasy_gornus {
+    return Intl.message('Default', name: 'esasy_gornus', desc: '', args: []);
+  }
+
   /// `Ölçegler`
   String get sizes {
     return Intl.message('Ölçegler', name: 'sizes', desc: '', args: []);
@@ -3299,6 +3324,196 @@ class S {
     return Intl.message(
       'Shop #',
       name: 'checkout_shop_fallback_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full name`
+  String get doly_ady {
+    return Intl.message('Full name', name: 'doly_ady', desc: '', args: []);
+  }
+
+  /// `Phone number`
+  String get telefon_belgisi {
+    return Intl.message(
+      'Phone number',
+      name: 'telefon_belgisi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery type`
+  String get eltip_beris_gornushi {
+    return Intl.message(
+      'Delivery type',
+      name: 'eltip_beris_gornushi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Özm baryp aljak (operator habarlaşar)`
+  String get ozum_alaryn {
+    return Intl.message(
+      'Özm baryp aljak (operator habarlaşar)',
+      name: 'ozum_alaryn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dostawka`
+  String get eltip_beris {
+    return Intl.message('Dostawka', name: 'eltip_beris', desc: '', args: []);
+  }
+
+  /// `Postal code (optional)`
+  String get pocta_indeksi_hint {
+    return Intl.message(
+      'Postal code (optional)',
+      name: 'pocta_indeksi_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your full name`
+  String get checkout_enter_fullname_error {
+    return Intl.message(
+      'Enter your full name',
+      name: 'checkout_enter_fullname_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get checkout_enter_phone_error {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'checkout_enter_phone_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email`
+  String get checkout_enter_email_error {
+    return Intl.message(
+      'Enter your email',
+      name: 'checkout_enter_email_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal info`
+  String get checkout_personal_info_title {
+    return Intl.message(
+      'Personal info',
+      name: 'checkout_personal_info_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get checkout_first_name_hint {
+    return Intl.message(
+      'First name',
+      name: 'checkout_first_name_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get checkout_last_name_hint {
+    return Intl.message(
+      'Last name',
+      name: 'checkout_last_name_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery address`
+  String get checkout_delivery_address_title {
+    return Intl.message(
+      'Delivery address',
+      name: 'checkout_delivery_address_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank card (in-store only)`
+  String get checkout_payment_card_hint {
+    return Intl.message(
+      'Bank card (in-store only)',
+      name: 'checkout_payment_card_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash payment`
+  String get checkout_payment_cash_hint {
+    return Intl.message(
+      'Cash payment',
+      name: 'checkout_payment_cash_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Visa, MasterCard (Stripe)`
+  String get checkout_payment_stripe_hint {
+    return Intl.message(
+      'Visa, MasterCard (Stripe)',
+      name: 'checkout_payment_stripe_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment (QR)`
+  String get checkout_payment_qr_hint {
+    return Intl.message(
+      'Payment (QR)',
+      name: 'checkout_payment_qr_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Courier Wabrum`
+  String get checkout_delivery_courier_label {
+    return Intl.message(
+      'Courier Wabrum',
+      name: 'checkout_delivery_courier_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Self pickup`
+  String get checkout_delivery_pickup_label {
+    return Intl.message(
+      'Self pickup',
+      name: 'checkout_delivery_pickup_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note`
+  String get checkout_note_title {
+    return Intl.message(
+      'Note',
+      name: 'checkout_note_title',
       desc: '',
       args: [],
     );

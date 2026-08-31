@@ -120,23 +120,25 @@ class _LoginInScreenState extends State<LoginInScreen> {
                   onTap: state.isLoading ? () {} : () {},
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton.icon(
-                    iconAlignment: IconAlignment.end,
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/register');
-                    },
-                    icon: Icon(Icons.verified_user),
-                    label: Text(localization.register),
-                  ),
-                ],
-              ),
+              const SizedBox(height: 20),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     TextButton.icon(
+              //       iconAlignment: IconAlignment.end,
+              //       onPressed: () {
+              //         Navigator.pushNamed(context, '/register');
+              //       },
+              //       icon: Icon(Icons.verified_user),
+              //       label: Text(localization.register),
+              //     ),
+              //   ],
+              // ),
               GestureDetector(
                 onTap: state.isLoading
                     ? null
                     : () {
+                        context.read<PersonBloc>().add(LogOutEvent());
                         context.read<PersonBloc>().add(RegisterWithGostEvent());
                         if (widget.isModal == true) {
                           Navigator.pop(context);

@@ -65,6 +65,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ady giriziň",
     ),
     "address_latitude": MessageLookupByLibrary.simpleMessage("Giňlik"),
+    "address_location_required": MessageLookupByLibrary.simpleMessage(
+      "Ýerleşişi kartadan saýlaň",
+    ),
+    "address_location_selected": MessageLookupByLibrary.simpleMessage(
+      "Ýerleşiş bellenildi",
+    ),
     "address_longitude": MessageLookupByLibrary.simpleMessage("Uzynlyk"),
     "address_new": MessageLookupByLibrary.simpleMessage("Täze salgy"),
     "address_pick_on_map": MessageLookupByLibrary.simpleMessage(
@@ -177,8 +183,32 @@ class MessageLookup extends MessageLookupByLibrary {
       "Içki kategoriýa ýok",
     ),
     "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
+    "checkout_delivery_address_title": MessageLookupByLibrary.simpleMessage(
+      "Delivery address",
+    ),
+    "checkout_delivery_courier_label": MessageLookupByLibrary.simpleMessage(
+      "Courier Wabrum",
+    ),
+    "checkout_delivery_pickup_label": MessageLookupByLibrary.simpleMessage(
+      "Self pickup",
+    ),
     "checkout_enter_address_error": MessageLookupByLibrary.simpleMessage(
       "Please enter a delivery address",
+    ),
+    "checkout_enter_email_error": MessageLookupByLibrary.simpleMessage(
+      "Enter your email",
+    ),
+    "checkout_enter_fullname_error": MessageLookupByLibrary.simpleMessage(
+      "Enter your full name",
+    ),
+    "checkout_enter_phone_error": MessageLookupByLibrary.simpleMessage(
+      "Enter your phone number",
+    ),
+    "checkout_first_name_hint": MessageLookupByLibrary.simpleMessage(
+      "First name",
+    ),
+    "checkout_last_name_hint": MessageLookupByLibrary.simpleMessage(
+      "Last name",
     ),
     "checkout_manual_address": MessageLookupByLibrary.simpleMessage(
       "Enter manually",
@@ -186,11 +216,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkout_note_hint": MessageLookupByLibrary.simpleMessage(
       "Note (optional)",
     ),
+    "checkout_note_title": MessageLookupByLibrary.simpleMessage("Note"),
     "checkout_order_failed_prefix": MessageLookupByLibrary.simpleMessage(
       "Order failed: ",
     ),
     "checkout_order_success": MessageLookupByLibrary.simpleMessage(
       "Order placed successfully",
+    ),
+    "checkout_payment_card_hint": MessageLookupByLibrary.simpleMessage(
+      "Bank card (in-store only)",
+    ),
+    "checkout_payment_cash_hint": MessageLookupByLibrary.simpleMessage(
+      "Cash payment",
+    ),
+    "checkout_payment_qr_hint": MessageLookupByLibrary.simpleMessage(
+      "Payment (QR)",
+    ),
+    "checkout_payment_stripe_hint": MessageLookupByLibrary.simpleMessage(
+      "Visa, MasterCard (Stripe)",
+    ),
+    "checkout_personal_info_title": MessageLookupByLibrary.simpleMessage(
+      "Personal info",
     ),
     "checkout_select_address_error": MessageLookupByLibrary.simpleMessage(
       "Please select a delivery address",
@@ -230,6 +276,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Dizaýn sazlamalary",
     ),
     "doglan_guni": MessageLookupByLibrary.simpleMessage("Doglan güni"),
+    "doly_ady": MessageLookupByLibrary.simpleMessage("Full name"),
     "dowam_et": MessageLookupByLibrary.simpleMessage("Dowam et"),
     "dukan_barada": MessageLookupByLibrary.simpleMessage("Dükan barada"),
     "dukana_gir": MessageLookupByLibrary.simpleMessage("Dükana gir"),
@@ -258,6 +305,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
     "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
+    "eltip_beris": MessageLookupByLibrary.simpleMessage("Dostawka"),
+    "eltip_beris_gornushi": MessageLookupByLibrary.simpleMessage(
+      "Delivery type",
+    ),
     "email_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
       "Elektron poçta arkaly dowam et",
     ),
@@ -266,6 +317,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Esasy aýratynlyklar",
     ),
     "esasy_baha": MessageLookupByLibrary.simpleMessage("Esasy bahasy"),
+    "esasy_gornus": MessageLookupByLibrary.simpleMessage("Default"),
     "eyesi": MessageLookupByLibrary.simpleMessage("Eýesi"),
     "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
     "faq_haryt_maglumaty": MessageLookupByLibrary.simpleMessage(
@@ -614,7 +666,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "oz_pikirini_yaz": MessageLookupByLibrary.simpleMessage("öz pikiriňi ýaz"),
     "oz_saherimdaki": MessageLookupByLibrary.simpleMessage("Öz şäherimdäkiler"),
+    "ozum_alaryn": MessageLookupByLibrary.simpleMessage(
+      "Özm baryp aljak (operator habarlaşar)",
+    ),
     "parol": MessageLookupByLibrary.simpleMessage("Parol"),
+    "pocta_indeksi_hint": MessageLookupByLibrary.simpleMessage(
+      "Postal code (optional)",
+    ),
     "podpiska": MessageLookupByLibrary.simpleMessage("AI ýazgysy"),
     "podrobnoye": MessageLookupByLibrary.simpleMessage(
       "Подробнее о возврате товаров и средств",
@@ -765,6 +823,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "telefon_belgi": MessageLookupByLibrary.simpleMessage(
       "Telefon belgiňizi giriziň",
     ),
+    "telefon_belgisi": MessageLookupByLibrary.simpleMessage("Phone number"),
     "telefon_bilen_dowam_et": MessageLookupByLibrary.simpleMessage(
       "Telefon belgi arkaly dowam et",
     ),

@@ -64,6 +64,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ady giriziň",
     ),
     "address_latitude": MessageLookupByLibrary.simpleMessage("Giňlik"),
+    "address_location_required": MessageLookupByLibrary.simpleMessage(
+      "Ýerleşişi kartadan saýlaň",
+    ),
+    "address_location_selected": MessageLookupByLibrary.simpleMessage(
+      "Ýerleşiş bellenildi",
+    ),
     "address_longitude": MessageLookupByLibrary.simpleMessage("Uzynlyk"),
     "address_new": MessageLookupByLibrary.simpleMessage("Täze salgy"),
     "address_pick_on_map": MessageLookupByLibrary.simpleMessage(
@@ -162,20 +168,56 @@ class MessageLookup extends MessageLookupByLibrary {
       "Içki kategoriýa ýok",
     ),
     "chats": MessageLookupByLibrary.simpleMessage("Habarlar"),
+    "checkout_delivery_address_title": MessageLookupByLibrary.simpleMessage(
+      "Eltip berme adresi",
+    ),
+    "checkout_delivery_courier_label": MessageLookupByLibrary.simpleMessage(
+      "Kurýer Wabrum",
+    ),
+    "checkout_delivery_pickup_label": MessageLookupByLibrary.simpleMessage(
+      "Özüm alaryn",
+    ),
     "checkout_enter_address_error": MessageLookupByLibrary.simpleMessage(
       "Eltip bermek salgysyny giriziň",
     ),
+    "checkout_enter_email_error": MessageLookupByLibrary.simpleMessage(
+      "E-poçtaňyzy giriziň",
+    ),
+    "checkout_enter_fullname_error": MessageLookupByLibrary.simpleMessage(
+      "Doly adyňyzy giriziň",
+    ),
+    "checkout_enter_phone_error": MessageLookupByLibrary.simpleMessage(
+      "Telefon belgiňizi giriziň",
+    ),
+    "checkout_first_name_hint": MessageLookupByLibrary.simpleMessage("Ad"),
+    "checkout_last_name_hint": MessageLookupByLibrary.simpleMessage("Familiýa"),
     "checkout_manual_address": MessageLookupByLibrary.simpleMessage(
       "Elde girizmek",
     ),
     "checkout_note_hint": MessageLookupByLibrary.simpleMessage(
       "Bellik (hökman däl)",
     ),
+    "checkout_note_title": MessageLookupByLibrary.simpleMessage("Bellik"),
     "checkout_order_failed_prefix": MessageLookupByLibrary.simpleMessage(
       "Sargyt döredilmedi: ",
     ),
     "checkout_order_success": MessageLookupByLibrary.simpleMessage(
       "Sargyt üstünlikli döredildi",
+    ),
+    "checkout_payment_card_hint": MessageLookupByLibrary.simpleMessage(
+      "Bank kartoçkasy (diňe dükanda)",
+    ),
+    "checkout_payment_cash_hint": MessageLookupByLibrary.simpleMessage(
+      "Nagt tölegi",
+    ),
+    "checkout_payment_qr_hint": MessageLookupByLibrary.simpleMessage(
+      "Töleg (QR)",
+    ),
+    "checkout_payment_stripe_hint": MessageLookupByLibrary.simpleMessage(
+      "Visa, MasterCard (Stripe)",
+    ),
+    "checkout_personal_info_title": MessageLookupByLibrary.simpleMessage(
+      "Şahsy maglumatlar",
     ),
     "checkout_select_address_error": MessageLookupByLibrary.simpleMessage(
       "Eltip bermek salgysyny saýlaň",
@@ -209,6 +251,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Dizaýn sazlamalary",
     ),
     "doglan_guni": MessageLookupByLibrary.simpleMessage("Doglan güni"),
+    "doly_ady": MessageLookupByLibrary.simpleMessage("Doly ady"),
     "dukan_barada": MessageLookupByLibrary.simpleMessage("Dükan barada"),
     "dukana_gir": MessageLookupByLibrary.simpleMessage("Dükana gir"),
     "dukanlar": MessageLookupByLibrary.simpleMessage("Dükanlar"),
@@ -236,11 +279,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
     "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
+    "eltip_beris": MessageLookupByLibrary.simpleMessage("Eltip beriş"),
+    "eltip_beris_gornushi": MessageLookupByLibrary.simpleMessage(
+      "Eltip beriş görnüşi",
+    ),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "esasy_aydatynlyklar": MessageLookupByLibrary.simpleMessage(
       "Esasy aýratynlyklar",
     ),
     "esasy_baha": MessageLookupByLibrary.simpleMessage("Esasy bahasy"),
+    "esasy_gornus": MessageLookupByLibrary.simpleMessage("Esasy"),
     "eyesi": MessageLookupByLibrary.simpleMessage("Eýesi"),
     "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
     "faq_haryt_maglumaty": MessageLookupByLibrary.simpleMessage(
@@ -551,7 +599,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "oz_pikirini_yaz": MessageLookupByLibrary.simpleMessage("öz pikiriňi ýaz"),
     "oz_saherimdaki": MessageLookupByLibrary.simpleMessage("Öz şäherimdäkiler"),
+    "ozum_alaryn": MessageLookupByLibrary.simpleMessage(
+      "Özm baryp aljak (operator habarlaşar)",
+    ),
     "parol": MessageLookupByLibrary.simpleMessage("Parol"),
+    "pocta_indeksi_hint": MessageLookupByLibrary.simpleMessage(
+      "Poçta indeksi (hökman däl)",
+    ),
     "podrobnoye": MessageLookupByLibrary.simpleMessage(
       "Подробнее о возврате товаров и средств",
     ),
@@ -688,6 +742,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "telefon_arkaly_giris_desc": MessageLookupByLibrary.simpleMessage(
       "Dowam etmek üçin telefon belgiňizi giriziň. Size tassyklama kody bilen SMS ibereris",
     ),
+    "telefon_belgisi": MessageLookupByLibrary.simpleMessage("Telefon belgisi"),
     "tertiplemek": MessageLookupByLibrary.simpleMessage("Tertiplemek"),
     "teswir_giris_gerek": MessageLookupByLibrary.simpleMessage(
       "Teswirleri görmek üçin ulgama giriň",

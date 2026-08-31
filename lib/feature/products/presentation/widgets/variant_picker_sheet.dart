@@ -35,7 +35,10 @@ class _VariantPickerSheet extends StatefulWidget {
 }
 
 class _VariantPickerSheetState extends State<_VariantPickerSheet> {
-  late ProductVariant _variant;
+  // null selects the base product itself — shown as its own chip alongside
+  // the explicit variants, since it's a distinct sellable option (its own
+  // color/price/stock) rather than a fallback.
+  ProductVariant? _variant;
   ProductVariantSize? _size;
   int _quantity = 1;
 
@@ -43,15 +46,15 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
   void initState() {
     super.initState();
     _variant = widget.model.variants.first;
-    _size = _variant.availableSizes.isNotEmpty
-        ? _variant.availableSizes.first
+    _size = _variant!.availableSizes.isNotEmpty
+        ? _variant!.availableSizes.first
         : null;
   }
 
-  void _selectVariant(ProductVariant variant) {
+  void _selectVariant(ProductVariant? variant) {
     setState(() {
       _variant = variant;
-      _size = variant.availableSizes.isNotEmpty
+      _size = variant != null && variant.availableSizes.isNotEmpty
           ? variant.availableSizes.first
           : null;
       _quantity = 1;
@@ -63,22 +66,22 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
     setState(() => _size = size);
   }
 
-  bool get _needsSize => _variant.sizes.isNotEmpty;
+  bool get _needsSize => _variant?.sizes.isNotEmpty ?? false;
   bool get _canConfirm => !_needsSize || _size != null;
 
-  double get _unitPrice => _size?.price ?? _variant.price ?? widget.model.price;
+  double get _unitPrice => _size?.price ?? _variant?.price ?? widget.model.price;
 
   void _confirm() {
     final product = widget.model.toProductModel(variant: _variant, size: _size);
     final label = [
-      _variant.name,
+      _variant?.color?.name ?? _variant?.name,
       _size?.size?.name,
     ].whereType<String>().where((s) => s.isNotEmpty).join(' / ');
 
     context.read<CartBloc>().add(
       AddToCartEvent(
         product,
-        variantId: _variant.id,
+        variantId: _variant?.id,
         variantSizeId: _size?.id,
         variantLabel: label.isEmpty ? null : label,
         quantity: _quantity,
@@ -91,7 +94,7 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
     context.read<CartBloc>().add(
       RemoveFromCartEvent(
         widget.model.id,
-        variantId: _variant.id,
+        variantId: _variant?.id,
         variantSizeId: _size?.id,
       ),
     );
@@ -110,7 +113,7 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
       return s is CartLoaded
           ? s.quantityOf(
               widget.model.id,
-              variantId: _variant.id,
+              variantId: _variant?.id,
               variantSizeId: _size?.id,
             )
           : 0;
@@ -173,10 +176,24 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: variants.map((v) {
-                  final selected = v.id == _variant.id;
+                children: <ProductVariant?>[null, ...variants].map((v) {
+                  final selected = v?.id == _variant?.id;
+                  final hex = v == null
+                      ? (widget.model.color?.hex ?? widget.model.colorHex)
+                      : (v.color?.hex ?? v.colorHex);
+                  final label = v == null
+                      ? (widget.model.color?.name.isNotEmpty == true
+                            ? widget.model.color!.name
+                            : localization.esasy_gornus)
+                      : (v.color?.name.isNotEmpty == true ? v.color!.name : v.name);
                   return ChoiceChip(
-                    label: Text(v.name),
+                    avatar: hex != null
+                        ? CircleAvatar(
+                            backgroundColor: _colorFromHex(hex),
+                            radius: 8,
+                          )
+                        : null,
+                    label: Text(label),
                     selected: selected,
                     onSelected: (_) => _selectVariant(v),
                     selectedColor: AppColors.primaryGreen,
@@ -200,7 +217,7 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: _variant.sizes.map((s) {
+                  children: _variant!.sizes.map((s) {
                     final selected = _size?.id == s.id;
                     final outOfStock = s.stock <= 0 || !s.isActive;
                     return ChoiceChip(
@@ -317,6 +334,13 @@ class _VariantPickerSheetState extends State<_VariantPickerSheet> {
       ),
     );
   }
+}
+
+Color _colorFromHex(String hex) {
+  final cleaned = hex.replaceFirst('#', '');
+  final value = int.tryParse(cleaned, radix: 16);
+  if (value == null) return AppColors.navBarGrey;
+  return Color(cleaned.length == 6 ? 0xFF000000 | value : value);
 }
 
 class _QtyButton extends StatelessWidget {

@@ -5,6 +5,7 @@ class PersonModel {
   final String email;
   final String? name;
   final String? surname;
+  final String? phone;
   final String? avatar;
   final String token;
   final String? refreshToken;
@@ -14,6 +15,7 @@ class PersonModel {
     required this.email,
     this.name,
     this.surname,
+    this.phone,
     this.avatar,
     required this.token,
     this.refreshToken,
@@ -26,6 +28,9 @@ class PersonModel {
       email: user['email'] as String? ?? '',
       name: user['name'] as String?,
       surname: user['surname'] as String?,
+      // Registration sends `phone_number`; accept a plain `phone` too in
+      // case the profile endpoints ever shorten the key.
+      phone: user['phone_number'] as String? ?? user['phone'] as String?,
       avatar: user['avatar'] as String?,
       // Login/refresh responses use `accessToken`; older cached copies used
       // `token` — accept either.
@@ -41,6 +46,7 @@ class PersonModel {
       'email': email,
       'name': name,
       'surname': surname,
+      'phone_number': phone,
       'avatar': avatar,
       'token': token,
       'refreshToken': refreshToken,

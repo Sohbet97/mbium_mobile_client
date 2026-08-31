@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
-import '../../../../../generated/l10n.dart';
-
-/// Generic searchable bottom-sheet picker — used for both region and city
-/// selection in [AddressFormSheet], each just supplying its own [fetch]
-/// call and label.
+/// Generic bottom-sheet picker — used for both region and city selection in
+/// [AddressFormSheet], each just supplying its own [fetch] call and label.
+/// Lists the full result set with no search input; the [fetch] signature
+/// still takes a text query for symmetry with the search endpoints, but is
+/// always called with an empty string.
 class LocationPickerSheet<T> extends StatefulWidget {
   const LocationPickerSheet({
     super.key,
@@ -41,8 +39,6 @@ class LocationPickerSheet<T> extends StatefulWidget {
 }
 
 class _LocationPickerSheetState<T> extends State<LocationPickerSheet<T>> {
-  final _searchController = TextEditingController();
-  Timer? _debounce;
   List<T> _items = const [];
   bool _loading = true;
   String? _error;
@@ -50,28 +46,16 @@ class _LocationPickerSheetState<T> extends State<LocationPickerSheet<T>> {
   @override
   void initState() {
     super.initState();
-    _search('');
+    _load();
   }
 
-  @override
-  void dispose() {
-    _debounce?.cancel();
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  void _onChanged(String value) {
-    _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 350), () => _search(value));
-  }
-
-  Future<void> _search(String text) async {
+  Future<void> _load() async {
     setState(() {
       _loading = true;
       _error = null;
     });
     try {
-      final result = await widget.fetch(text);
+      final result = await widget.fetch('');
       if (!mounted) return;
       setState(() {
         _items = result.items;
@@ -88,8 +72,6 @@ class _LocationPickerSheetState<T> extends State<LocationPickerSheet<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final loc = S.of(context);
-
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.75,
@@ -111,21 +93,6 @@ class _LocationPickerSheetState<T> extends State<LocationPickerSheet<T>> {
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
-                controller: _searchController,
-                autofocus: true,
-                onChanged: _onChanged,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: loc.search,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
                 ),
               ),
             ),

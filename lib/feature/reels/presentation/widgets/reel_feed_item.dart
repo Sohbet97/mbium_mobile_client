@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mbium_mobile_client/feature/favorite/presentation/shop_favorite_item.dart';
 import 'package:mbium_mobile_client/feature/reels/models/gift_model.dart';
 import 'package:mbium_mobile_client/feature/reels/models/reels_model.dart';
 import 'package:mbium_mobile_client/feature/reels/player/reel_player_wrapper.dart';
@@ -7,6 +8,7 @@ import 'package:mbium_mobile_client/feature/reels/presentation/widgets/comments_
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/gift_picker_sheet.dart';
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reel_player_view.dart';
 import 'package:mbium_mobile_client/feature/reels/presentation/widgets/reels_description_widget.dart';
+import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/main.dart';
 
 /// One full-screen reel: video surface + all overlays. Shared by the main
@@ -251,23 +253,53 @@ class _ReelFeedItemState extends State<ReelFeedItem>
       children: [
         GestureDetector(
           onTap: widget.onOpenShop,
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white24,
-              border: Border.all(color: Colors.white, width: 1.5),
-              image: logo != null && logo.isNotEmpty
-                  ? DecorationImage(
-                      image: NetworkImage(myMediaUrl + logo),
-                      fit: BoxFit.cover,
-                    )
-                  : null,
-            ),
-            child: logo == null || logo.isEmpty
-                ? const Icon(Icons.storefront, color: Colors.white, size: 22)
-                : null,
+          child: Stack(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white24,
+                  border: Border.all(color: Colors.white, width: 1.5),
+                  image: logo != null && logo.isNotEmpty
+                      ? DecorationImage(
+                          image: NetworkImage(myMediaUrl + logo),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                ),
+                child: logo == null || logo.isEmpty
+                    ? const Icon(
+                        Icons.storefront,
+                        color: Colors.white,
+                        size: 22,
+                      )
+                    : null,
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: const BoxDecoration(
+                      color: Colors.white60,
+                      shape: BoxShape.circle,
+                    ),
+                    child: ShopFavoriteItemWidget(
+                      shop: ShopDetailModel(
+                        id: widget.reel.shop.id,
+                        name: widget.reel.shop.name,
+                        logo: widget.reel.shop.logo,
+                      ),
+                      size: 14,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 12),

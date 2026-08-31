@@ -6,6 +6,7 @@ import 'package:mbium_mobile_client/feature/favorite/presentation/shop_favorite_
 import 'package:mbium_mobile_client/feature/shops/extensions/shop_detail_extension.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_detail_model.dart';
 import 'package:mbium_mobile_client/feature/shops/model/shop_model.dart';
+import 'package:mbium_mobile_client/main.dart';
 
 class ShopFavoriteListItem extends StatelessWidget {
   const ShopFavoriteListItem({super.key, required this.shop});
@@ -30,7 +31,7 @@ class ShopFavoriteListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: shop.logo != null && shop.logo!.isNotEmpty
                   ? CachedNetworkImage(
-                      imageUrl: shop.logo!,
+                      imageUrl: myMediaUrl + shop.logo!,
                       width: 56,
                       height: 56,
                       fit: BoxFit.cover,
