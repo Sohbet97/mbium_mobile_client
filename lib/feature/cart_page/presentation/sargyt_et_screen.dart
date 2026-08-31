@@ -24,8 +24,16 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
   final _noteController = TextEditingController();
   final _manualAddressController = TextEditingController();
   AddressModel? _selectedAddress;
-  bool _useManualAddress = false;
   bool _submitting = false;
+  final _nameController = TextEditingController();
+  final _surnameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _cityController = TextEditingController();
+  final _postalCodeController = TextEditingController();
+  String _selectedRegionLabel = '';
+  final Map<int, String> _shopDeliveryMethods = {};
+  String _paymentMethod = 'card_in_shop';
 
   @override
   void initState() {
@@ -34,9 +42,23 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_selectedRegionLabel.isEmpty) {
+      _selectedRegionLabel = S.of(context).asgabat_saher_ici;
+    }
+  }
+
+  @override
   void dispose() {
     _noteController.dispose();
     _manualAddressController.dispose();
+    _nameController.dispose();
+    _surnameController.dispose();
+    _phoneController.dispose();
+    _emailController.dispose();
+    _cityController.dispose();
+    _postalCodeController.dispose();
     super.dispose();
   }
 
@@ -48,7 +70,10 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
     // Called from a bloc listener during build — defer the setState.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && _selectedAddress == null) {
-        setState(() => _selectedAddress = selected);
+        setState(() {
+          _selectedAddress = selected;
+          _manualAddressController.text = selected.address;
+        });
       }
     });
   }
@@ -81,7 +106,10 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
                 title: Text(a.label, style: const TextStyle(fontWeight: FontWeight.w600)),
                 subtitle: Text(a.address),
                 onTap: () {
-                  setState(() => _selectedAddress = a);
+                  setState(() {
+                    _selectedAddress = a;
+                    _manualAddressController.text = a.address;
+                  });
                   Navigator.of(sheetContext).pop();
                 },
               ),
@@ -101,6 +129,31 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
     );
   }
 
+  void _openRegionPicker() {
+    final l10n = S.of(context);
+    final options = [l10n.asgabat_saher_ici, 'Ahal', 'Balkan', 'Daşoguz', 'Lebap', 'Mary'];
+
+    showModalBottomSheet(
+      context: context,
+      builder: (sheetContext) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: options
+              .map(
+                (o) => ListTile(
+                  title: Text(o),
+                  onTap: () {
+                    setState(() => _selectedRegionLabel = o);
+                    Navigator.of(sheetContext).pop();
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
+  }
+
   Map<int, List<CartModel>> _groupByShop(List<CartModel> items) {
     final groups = <int, List<CartModel>>{};
     for (final item in items) {
@@ -111,15 +164,9 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
 
   Future<void> _submit(List<CartModel> items) async {
     final localization = S.of(context);
-    final deliveryAddress = _useManualAddress
-        ? _manualAddressController.text.trim()
-        : _selectedAddress?.address ?? '';
+    final deliveryAddress = _manualAddressController.text.trim();
     if (deliveryAddress.isEmpty) {
-      showGlobalMessage(
-        _useManualAddress
-            ? localization.checkout_enter_address_error
-            : localization.checkout_select_address_error,
-      );
+      showGlobalMessage(localization.checkout_select_address_error);
       return;
     }
     if (items.isEmpty || _submitting) return;
@@ -192,13 +239,16 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
+                  _buildPersonalInfoSection(),
+                  const SizedBox(height: 16),
                   _buildAddressSection(),
-                  const SizedBox(height: 20),
-                  _buildNoteField(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   ..._groupByShop(items).entries.map(
-                    (entry) => _buildShopGroup(entry.key, entry.value),
-                  ),
+                        (entry) => _buildShopGroup(entry.key, entry.value, currency),
+                      ),
+                  _buildPaymentSection(),
+                  const SizedBox(height: 16),
+                  _buildNoteField(),
                 ],
               ),
             ),
@@ -208,138 +258,119 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
     );
   }
 
-  Widget _buildAddressSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            ChoiceChip(
-              label: Text(S.of(context).addresses),
-              selected: !_useManualAddress,
-              onSelected: (_) => setState(() => _useManualAddress = false),
-              selectedColor: AppColors.primaryGreen,
-              labelStyle: TextStyle(
-                color: !_useManualAddress ? Colors.white : null,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(width: 8),
-            ChoiceChip(
-              label: Text(S.of(context).checkout_manual_address),
-              selected: _useManualAddress,
-              onSelected: (_) => setState(() => _useManualAddress = true),
-              selectedColor: AppColors.primaryGreen,
-              labelStyle: TextStyle(
-                color: _useManualAddress ? Colors.white : null,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        _useManualAddress ? _buildManualAddressField() : _buildSavedAddressTile(),
-      ],
-    );
-  }
-
-  Widget _buildManualAddressField() {
-    return TextField(
-      controller: _manualAddressController,
-      maxLines: 2,
-      decoration: InputDecoration(
-        hintText: S.of(context).address_field_hint,
-        prefixIcon: const Icon(Icons.location_on_outlined, color: AppColors.primaryGreen),
-        filled: true,
-        fillColor: Theme.of(context).cardColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide.none,
-        ),
+  Widget _buildPersonalInfoSection() {
+    final l10n = S.of(context);
+    return _sectionCard(
+      title: l10n.sahsy_maglumatlar,
+      child: Column(
+        children: [
+          _plainField(controller: _nameController, hint: l10n.ady),
+          const SizedBox(height: 10),
+          _plainField(controller: _surnameController, hint: l10n.familiyasy),
+          const SizedBox(height: 10),
+          _plainField(
+            controller: _phoneController,
+            hint: l10n.telefon_hint,
+            keyboardType: TextInputType.phone,
+          ),
+          const SizedBox(height: 10),
+          _plainField(
+            controller: _emailController,
+            hint: l10n.email_hint,
+            keyboardType: TextInputType.emailAddress,
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildSavedAddressTile() {
-    return BlocBuilder<AddressBloc, AddressState>(
-      builder: (context, state) {
-        if (state is AddressLoading || state is AddressInitial) {
-          return const SizedBox(height: 60, child: MyLoadingWidget());
-        }
+  Widget _buildAddressSection() {
+    final l10n = S.of(context);
 
-        final addresses = state is AddressLoaded ? state.addresses : const <AddressModel>[];
-        return GestureDetector(
-          onTap: addresses.isEmpty
-              ? () => AddressFormSheet.show(context)
-              : () => _pickAddress(addresses),
-          child: Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: AppColors.primaryGreen.withValues(alpha: 0.3)),
-            ),
-            child: Row(
-              children: [
-                const Icon(Icons.location_on_outlined, color: AppColors.primaryGreen),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _selectedAddress != null
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _selectedAddress!.label,
-                              style: const TextStyle(fontWeight: FontWeight.w700),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              _selectedAddress!.address,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: AppColors.lightTextSecondary),
-                            ),
-                          ],
-                        )
-                      : Text(
-                          S.of(context).address_add,
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
+    return _sectionCard(
+      title: l10n.eltip_berme_adresi_bashlyk,
+      child: Column(
+        children: [
+          BlocBuilder<AddressBloc, AddressState>(
+            builder: (context, state) {
+              final addresses =
+                  state is AddressLoaded ? state.addresses : const <AddressModel>[];
+              return TextField(
+                controller: _manualAddressController,
+                maxLines: 2,
+                decoration: InputDecoration(
+                  hintText: l10n.address_field_hint,
+                  filled: true,
+                  fillColor: Theme.of(context).scaffoldBackgroundColor,
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.bookmark_outline, color: AppColors.primaryGreen),
+                    onPressed: addresses.isEmpty
+                        ? () => AddressFormSheet.show(context)
+                        : () => _pickAddress(addresses),
+                  ),
                 ),
-                const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: AppColors.lightTextSecondary),
-              ],
+              );
+            },
+          ),
+          const SizedBox(height: 10),
+          _plainField(controller: _cityController, hint: l10n.saher_hint),
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              l10n.welayat_hint,
+              style: const TextStyle(fontSize: 12, color: AppColors.lightTextSecondary),
             ),
           ),
-        );
-      },
-    );
-  }
-
-  Widget _buildNoteField() {
-    return TextField(
-      controller: _noteController,
-      maxLines: 3,
-      decoration: InputDecoration(
-        hintText: S.of(context).checkout_note_hint,
-        filled: true,
-        fillColor: Theme.of(context).cardColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide.none,
-        ),
+          const SizedBox(height: 6),
+          GestureDetector(
+            onTap: _openRegionPicker,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: AppColors.primaryGreen),
+              ),
+              child: Text(
+                _selectedRegionLabel,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: AppColors.primaryGreen,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          _plainField(
+            controller: _postalCodeController,
+            hint: l10n.pocta_indeksi_hint,
+            keyboardType: TextInputType.number,
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildShopGroup(int shopId, List<CartModel> shopItems) {
+  Widget _buildShopGroup(int shopId, List<CartModel> shopItems, String currency) {
+    final l10n = S.of(context);
     final shopName = shopItems.first.product.shop?.name ??
-        '${S.of(context).checkout_shop_fallback_prefix}$shopId';
+        '${l10n.checkout_shop_fallback_prefix}$shopId';
+    final method = _shopDeliveryMethods[shopId] ?? 'courier';
+
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(14),
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -348,7 +379,10 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
             children: [
               const Icon(Icons.storefront_outlined, size: 18, color: AppColors.primaryGreen),
               const SizedBox(width: 6),
-              Text(shopName, style: const TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                shopName,
+                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+              ),
             ],
           ),
           const Divider(height: 20),
@@ -366,7 +400,8 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Text('x${item.quantity}', style: TextStyle(color: AppColors.lightTextSecondary)),
+                  Text('x${item.quantity}',
+                      style: const TextStyle(color: AppColors.lightTextSecondary)),
                   const SizedBox(width: 8),
                   Text(
                     '${(item.product.price * item.quantity).toStringAsFixed(2)} ${item.product.currency}',
@@ -376,7 +411,184 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 14),
+          Text(
+            l10n.eltip_berme_usuly,
+            style: const TextStyle(fontSize: 12, color: AppColors.lightTextSecondary),
+          ),
+          const SizedBox(height: 8),
+          _deliveryOption(
+            shopId: shopId,
+            value: 'courier',
+            selected: method == 'courier',
+            icon: Icons.delivery_dining_outlined,
+            title: l10n.kurher_wabrum,
+            subtitle: '13:00 - 20:00',
+            price: '25 $currency',
+          ),
+          const SizedBox(height: 10),
+          _deliveryOption(
+            shopId: shopId,
+            value: 'pickup',
+            selected: method == 'pickup',
+            icon: Icons.storefront_outlined,
+            title: l10n.ozi_alyp_gitmek,
+            subtitle: '10:00 - 20:00',
+            price: '0 $currency',
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _deliveryOption({
+    required int shopId,
+    required String value,
+    required bool selected,
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required String price,
+  }) {
+    return GestureDetector(
+      onTap: () => setState(() => _shopDeliveryMethods[shopId] = value),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              selected ? Icons.radio_button_checked : Icons.radio_button_off,
+              color: AppColors.primaryGreen,
+            ),
+            const SizedBox(width: 10),
+            Icon(icon, size: 22, color: AppColors.lightTextSecondary),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                  const SizedBox(height: 2),
+                  Text(subtitle,
+                      style: const TextStyle(fontSize: 12, color: AppColors.lightTextSecondary)),
+                ],
+              ),
+            ),
+            Text(
+              price,
+              style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.primaryGreen),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPaymentSection() {
+    final l10n = S.of(context);
+    final options = <(String, String)>[
+      ('card_in_shop', l10n.bank_kartockasy_dukanda),
+      ('cash', l10n.nagt_tolegi),
+      ('stripe', 'Visa, MasterCard (Stripe)'),
+      ('qr', l10n.toleg_qr),
+    ];
+
+    return _sectionCard(
+      title: l10n.toleg_usuly,
+      child: Column(
+        children: options.map((opt) {
+          final (value, label) = opt;
+          final selected = _paymentMethod == value;
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: GestureDetector(
+              onTap: () => setState(() => _paymentMethod = value),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      selected ? Icons.radio_button_checked : Icons.radio_button_off,
+                      color: AppColors.primaryGreen,
+                    ),
+                    const SizedBox(width: 12),
+                    Text(label,
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildNoteField() {
+    return _sectionCard(
+      title: S.of(context).bellik,
+      child: TextField(
+        controller: _noteController,
+        maxLines: 3,
+        decoration: InputDecoration(
+          hintText: S.of(context).checkout_note_hint,
+          filled: true,
+          fillColor: Theme.of(context).scaffoldBackgroundColor,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _sectionCard({required String title, required Widget child}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+          const SizedBox(height: 12),
+          child,
+        ],
+      ),
+    );
+  }
+
+  Widget _plainField({
+    required TextEditingController controller,
+    required String hint,
+    TextInputType? keyboardType,
+  }) {
+    return TextField(
+      controller: controller,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        hintText: hint,
+        filled: true,
+        fillColor: Theme.of(context).scaffoldBackgroundColor,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }
@@ -400,7 +612,7 @@ class _SargytEtScreenState extends State<SargytEtScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(S.of(context).jemi, style: TextStyle(color: AppColors.lightTextSecondary)),
+                    Text(S.of(context).jemi, style: const TextStyle(color: AppColors.lightTextSecondary)),
                     Text(
                       '${total.toStringAsFixed(2)} $currency',
                       style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),

@@ -78,7 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addresses_empty": MessageLookupByLibrary.simpleMessage(
       "Salgylaryňyz heniz ýok",
     ),
-    "ady": MessageLookupByLibrary.simpleMessage("Ady"),
+    "ady": MessageLookupByLibrary.simpleMessage("Ad"),
     "agramy": MessageLookupByLibrary.simpleMessage("Agramy"),
     "agza_bolanlarym": MessageLookupByLibrary.simpleMessage("Agza bolanlarym"),
     "ahlisi": MessageLookupByLibrary.simpleMessage("Ählisi"),
@@ -113,6 +113,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Alternatiw hökmünde, siz Mbium.com tarapyndan berlen resmi bank maglumatlaryny ulanyp, esbap goragly bank geçirimini saýlap bilersiňiz.",
     ),
     "arzalnasyklar": MessageLookupByLibrary.simpleMessage("Arzanlaşyk"),
+    "asgabat_saher_ici": MessageLookupByLibrary.simpleMessage(
+      "Aşgabat (şäher içi)",
+    ),
     "ay_on": MessageLookupByLibrary.simpleMessage("aý öň"),
     "ayakgaplar": MessageLookupByLibrary.simpleMessage("Aýakgaplar"),
     "az_galdy": MessageLookupByLibrary.simpleMessage("Az galdy"),
@@ -130,6 +133,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "balans_doldurmak": MessageLookupByLibrary.simpleMessage(
       "Balansy doldurmak",
     ),
+    "bank_kartockasy_dukanda": MessageLookupByLibrary.simpleMessage(
+      "Bank kartoçkasy (diňe dükanda)",
+    ),
     "bank_karty": MessageLookupByLibrary.simpleMessage("Bank karty"),
     "barkode": MessageLookupByLibrary.simpleMessage("Barkod"),
     "basga": MessageLookupByLibrary.simpleMessage("Başga"),
@@ -140,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Başga bildirişler",
     ),
     "belgini_uytget": MessageLookupByLibrary.simpleMessage("Belgini üýtget"),
+    "bellik": MessageLookupByLibrary.simpleMessage("Bellik"),
     "bildirisher": MessageLookupByLibrary.simpleMessage("Bildirişler"),
     "bildirisleri_yakynyy": MessageLookupByLibrary.simpleMessage(
       "Bildirişleri ýakynly we hiç haçan täze aksiyalary we sargytlary görüň.",
@@ -236,6 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "egin_esikler": MessageLookupByLibrary.simpleMessage("Egin-eşikler"),
     "elektronika": MessageLookupByLibrary.simpleMessage("Elektronika"),
+    "eltip_berme_adresi_bashlyk": MessageLookupByLibrary.simpleMessage(
+      "Eltip berme adresi",
+    ),
+    "eltip_berme_usuly": MessageLookupByLibrary.simpleMessage(
+      "Eltip berme usuly",
+    ),
+    "email_hint": MessageLookupByLibrary.simpleMessage("E-mail"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "esasy_aydatynlyklar": MessageLookupByLibrary.simpleMessage(
       "Esasy aýratynlyklar",
@@ -243,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "esasy_baha": MessageLookupByLibrary.simpleMessage("Esasy bahasy"),
     "eyesi": MessageLookupByLibrary.simpleMessage("Eýesi"),
     "familiasy": MessageLookupByLibrary.simpleMessage("Familiýasy"),
+    "familiyasy": MessageLookupByLibrary.simpleMessage("Familiýa"),
     "gallery": MessageLookupByLibrary.simpleMessage("Gallereýa"),
     "garashylyan_mukdar": MessageLookupByLibrary.simpleMessage(
       "Garaşylýan mukdar TMT",
@@ -396,6 +411,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "korzinada": MessageLookupByLibrary.simpleMessage("Sebetde:"),
     "kss": MessageLookupByLibrary.simpleMessage("KSS"),
+    "kurher_wabrum": MessageLookupByLibrary.simpleMessage("Kürýer Wabrum"),
     "kuryer_tizligi": MessageLookupByLibrary.simpleMessage("Kurýer tizligi"),
     "language": MessageLookupByLibrary.simpleMessage("Dil"),
     "like": MessageLookupByLibrary.simpleMessage("Likelar"),
@@ -470,6 +486,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "my_mbium": MessageLookupByLibrary.simpleMessage("Meniň Mbium"),
     "nagt": MessageLookupByLibrary.simpleMessage("Nagt"),
+    "nagt_tolegi": MessageLookupByLibrary.simpleMessage("Nagt tölegi"),
     "nasazlyk_yuze_cykdy": MessageLookupByLibrary.simpleMessage(
       "Näsazlyk ýüze çykdy",
     ),
@@ -530,7 +547,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "oz_pikirini_yaz": MessageLookupByLibrary.simpleMessage("öz pikiriňi ýaz"),
     "oz_saherimdaki": MessageLookupByLibrary.simpleMessage("Öz şäherimdäkiler"),
+    "ozi_alyp_gitmek": MessageLookupByLibrary.simpleMessage("Özi alyp gitmek"),
     "parol": MessageLookupByLibrary.simpleMessage("Parol"),
+    "pocta_indeksi_hint": MessageLookupByLibrary.simpleMessage("Poçta indeksi"),
     "podrobnoye": MessageLookupByLibrary.simpleMessage(
       "Подробнее о возврате товаров и средств",
     ),
@@ -557,9 +576,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Я прочитал(а), понял(а) и соглашаюсь выполнять правила публикации запросов на покупку satyn almak boýunça sargytlary neşir etmegiň düzgünleri",
     ),
     "russkiy": MessageLookupByLibrary.simpleMessage("Русский"),
+    "saher_hint": MessageLookupByLibrary.simpleMessage("Şäher"),
+    "sahsy_maglumatlar": MessageLookupByLibrary.simpleMessage(
+      "Şahsy maglumatlar",
+    ),
     "salam_komek": MessageLookupByLibrary.simpleMessage(
       "Salam, size nähili kömek edip bileris?",
     ),
+    "salgy_hint": MessageLookupByLibrary.simpleMessage("Salgy"),
     "sargydynyz_nadip_gorap_bilersiniz": MessageLookupByLibrary.simpleMessage(
       "Sargydyňyzy nädip gorap bilersiňiz",
     ),
@@ -658,6 +682,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "telefon_arkaly_giris_desc": MessageLookupByLibrary.simpleMessage(
       "Dowam etmek üçin telefon belgiňizi giriziň. Size tassyklama kody bilen SMS ibereris",
     ),
+    "telefon_hint": MessageLookupByLibrary.simpleMessage("Telefon"),
     "tertiplemek": MessageLookupByLibrary.simpleMessage("Tertiplemek"),
     "teswir_giris_gerek": MessageLookupByLibrary.simpleMessage(
       "Teswirleri görmek üçin ulgama giriň",
@@ -673,6 +698,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "teswirler_heniz_yok": MessageLookupByLibrary.simpleMessage(
       "Entek teswir ýok",
     ),
+    "toleg_qr": MessageLookupByLibrary.simpleMessage("Töleg (QR)"),
     "toleg_usullary": MessageLookupByLibrary.simpleMessage("Töleg usullary:"),
     "toleg_usuly": MessageLookupByLibrary.simpleMessage("Töleg usuly"),
     "tolog_gaytarmak_desc": MessageLookupByLibrary.simpleMessage(
@@ -722,6 +748,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "we_gizlilik_syyyasatyna": MessageLookupByLibrary.simpleMessage(
       "we gizlilik syýasatyna razy bolýarsyňyz.",
     ),
+    "welayat_hint": MessageLookupByLibrary.simpleMessage("Welaýat"),
     "welayatlar_boyunca": MessageLookupByLibrary.simpleMessage(
       "Welaýatlar boýunça",
     ),

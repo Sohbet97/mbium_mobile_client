@@ -437,5 +437,25 @@
 "teswir_giris_gerek": "Teswirleri görmek üçin ulgama giriň",
 "teswir_yuklenmedi": "Teswirler ýüklenmedi",
 "teswir_goshuldy": "Teswir goşuldy",
-"umumy_baha": "Umumy baha"
+"umumy_baha": "Umumy baha",
+
+"sahsy_maglumatlar": "Şahsy maglumatlar",
+"ady": "Ad",
+"familiyasy": "Familiýa",
+"telefon_hint": "Telefon",
+"email_hint": "E-mail",
+"eltip_berme_adresi_bashlyk": "Eltip berme adresi",
+"salgy_hint": "Salgy",
+"saher_hint": "Şäher",
+"welayat_hint": "Welaýat",
+"asgabat_saher_ici": "Aşgabat (şäher içi)",
+"pocta_indeksi_hint": "Poçta indeksi",
+"eltip_berme_usuly": "Eltip berme usuly",
+"kurher_wabrum": "Kürýer Wabrum",
+"ozi_alyp_gitmek": "Özi alyp gitmek",
+"toleg_usuly": "Töleg usuly",
+"bank_kartockasy_dukanda": "Bank kartoçkasy (diňe dükanda)",
+"nagt_tolegi": "Nagt tölegi",
+"toleg_qr": "Töleg (QR)",
+"bellik": "Bellik"
 }

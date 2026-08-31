@@ -1309,9 +1309,9 @@ class S {
     );
   }
 
-  /// `Ady`
+  /// `Ad`
   String get ady {
-    return Intl.message('Ady', name: 'ady', desc: '', args: []);
+    return Intl.message('Ad', name: 'ady', desc: '', args: []);
   }
 
   /// `Familiýasy`
@@ -3592,6 +3592,131 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Şahsy maglumatlar`
+  String get sahsy_maglumatlar {
+    return Intl.message(
+      'Şahsy maglumatlar',
+      name: 'sahsy_maglumatlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Familiýa`
+  String get familiyasy {
+    return Intl.message('Familiýa', name: 'familiyasy', desc: '', args: []);
+  }
+
+  /// `Telefon`
+  String get telefon_hint {
+    return Intl.message('Telefon', name: 'telefon_hint', desc: '', args: []);
+  }
+
+  /// `E-mail`
+  String get email_hint {
+    return Intl.message('E-mail', name: 'email_hint', desc: '', args: []);
+  }
+
+  /// `Eltip berme adresi`
+  String get eltip_berme_adresi_bashlyk {
+    return Intl.message(
+      'Eltip berme adresi',
+      name: 'eltip_berme_adresi_bashlyk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salgy`
+  String get salgy_hint {
+    return Intl.message('Salgy', name: 'salgy_hint', desc: '', args: []);
+  }
+
+  /// `Şäher`
+  String get saher_hint {
+    return Intl.message('Şäher', name: 'saher_hint', desc: '', args: []);
+  }
+
+  /// `Welaýat`
+  String get welayat_hint {
+    return Intl.message('Welaýat', name: 'welayat_hint', desc: '', args: []);
+  }
+
+  /// `Aşgabat (şäher içi)`
+  String get asgabat_saher_ici {
+    return Intl.message(
+      'Aşgabat (şäher içi)',
+      name: 'asgabat_saher_ici',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poçta indeksi`
+  String get pocta_indeksi_hint {
+    return Intl.message(
+      'Poçta indeksi',
+      name: 'pocta_indeksi_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eltip berme usuly`
+  String get eltip_berme_usuly {
+    return Intl.message(
+      'Eltip berme usuly',
+      name: 'eltip_berme_usuly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kürýer Wabrum`
+  String get kurher_wabrum {
+    return Intl.message(
+      'Kürýer Wabrum',
+      name: 'kurher_wabrum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Özi alyp gitmek`
+  String get ozi_alyp_gitmek {
+    return Intl.message(
+      'Özi alyp gitmek',
+      name: 'ozi_alyp_gitmek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank kartoçkasy (diňe dükanda)`
+  String get bank_kartockasy_dukanda {
+    return Intl.message(
+      'Bank kartoçkasy (diňe dükanda)',
+      name: 'bank_kartockasy_dukanda',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nagt tölegi`
+  String get nagt_tolegi {
+    return Intl.message('Nagt tölegi', name: 'nagt_tolegi', desc: '', args: []);
+  }
+
+  /// `Töleg (QR)`
+  String get toleg_qr {
+    return Intl.message('Töleg (QR)', name: 'toleg_qr', desc: '', args: []);
+  }
+
+  /// `Bellik`
+  String get bellik {
+    return Intl.message('Bellik', name: 'bellik', desc: '', args: []);
   }
 }
 

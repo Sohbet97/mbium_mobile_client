@@ -5,7 +5,6 @@ import 'package:mbium_mobile_client/feature/home/presentation/pages/home_product
 import 'package:mbium_mobile_client/feature/shops/presentation/pages/shops_page.dart';
 
 import '../../../../generated/l10n.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 

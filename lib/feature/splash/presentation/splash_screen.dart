@@ -17,20 +17,21 @@ class _SplashScreenState extends State<SplashScreen> {
   bool _navigated = false;
 
   @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset('assets/splasch.mp4')
-      ..addListener(_onVideoTick)
-      ..initialize()
-          .then((_) {
-            if (!mounted) return;
-            setState(() {});
-            _controller.play();
-          })
-          .catchError((_) {
-            _goHome();
-          });
-  }
+void initState() {
+  super.initState();
+  _controller = VideoPlayerController.asset('assets/splasch.mp4')
+    ..addListener(_onVideoTick)
+    ..initialize()
+        .then((_) {
+          if (!mounted) return;
+          setState(() {});
+          _controller.play();
+        })
+        .catchError((_) {
+          _goHome();
+        });
+  Future.delayed(const Duration(seconds: 6), _goHome);
+}
 
   void _onVideoTick() {
     final value = _controller.value;
