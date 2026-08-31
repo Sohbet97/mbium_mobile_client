@@ -3593,6 +3593,151 @@ class S {
       args: [],
     );
   }
+
+  /// `Doly ady`
+  String get doly_ady {
+    return Intl.message('Doly ady', name: 'doly_ady', desc: '', args: []);
+  }
+
+  /// `E-poçta`
+  String get epocta_adres {
+    return Intl.message('E-poçta', name: 'epocta_adres', desc: '', args: []);
+  }
+
+  /// `Telefon belgisi`
+  String get telefon_belgisi {
+    return Intl.message(
+      'Telefon belgisi',
+      name: 'telefon_belgisi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doldurulmandyr`
+  String get doldurulmandyr {
+    return Intl.message(
+      'Doldurulmandyr',
+      name: 'doldurulmandyr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paroly üýtgetmek`
+  String get paroly_uytgetmek {
+    return Intl.message(
+      'Paroly üýtgetmek',
+      name: 'paroly_uytgetmek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birikdirilen hasaplar`
+  String get birikdirilen_hasaplar {
+    return Intl.message(
+      'Birikdirilen hasaplar',
+      name: 'birikdirilen_hasaplar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ulgama çalt girmek üçin hasabyňyzy şu hyzmatlar bilen baglaň`
+  String get birikdirilen_hasaplar_desc {
+    return Intl.message(
+      'Ulgama çalt girmek üçin hasabyňyzy şu hyzmatlar bilen baglaň',
+      name: 'birikdirilen_hasaplar_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birikdirildi`
+  String get birikdirildi {
+    return Intl.message(
+      'Birikdirildi',
+      name: 'birikdirildi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birikdirmek`
+  String get birikdirmek {
+    return Intl.message('Birikdirmek', name: 'birikdirmek', desc: '', args: []);
+  }
+
+  /// `Haryt gözleg meýilnamalary`
+  String get haryt_gozleg_meyilnamalary {
+    return Intl.message(
+      'Haryt gözleg meýilnamalary',
+      name: 'haryt_gozleg_meyilnamalary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Şahsylaşdyrylan tekliplerini alyň`
+  String get personallashdyrylan_teklipler {
+    return Intl.message(
+      'Şahsylaşdyrylan tekliplerini alyň',
+      name: 'personallashdyrylan_teklipler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gözleg tejribäňizi gowulandyrmak üçin gysga soragnama dolduryň`
+  String get personallashdyrylan_teklipler_desc {
+    return Intl.message(
+      'Gözleg tejribäňizi gowulandyrmak üçin gysga soragnama dolduryň',
+      name: 'personallashdyrylan_teklipler_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Üýtget`
+  String get uytget {
+    return Intl.message('Üýtget', name: 'uytget', desc: '', args: []);
+  }
+
+  /// `Tassykla`
+  String get ok_diyip_tassykla {
+    return Intl.message(
+      'Tassykla',
+      name: 'ok_diyip_tassykla',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ýatyr`
+  String get yatyr {
+    return Intl.message('Ýatyr', name: 'yatyr', desc: '', args: []);
+  }
+
+  /// `Köne parol`
+  String get koni_parol {
+    return Intl.message('Köne parol', name: 'koni_parol', desc: '', args: []);
+  }
+
+  /// `Täze parol`
+  String get taze_parol {
+    return Intl.message('Täze parol', name: 'taze_parol', desc: '', args: []);
+  }
+
+  /// `Parol üýtgedildi`
+  String get parol_uytgedildi {
+    return Intl.message(
+      'Parol üýtgedildi',
+      name: 'parol_uytgedildi',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

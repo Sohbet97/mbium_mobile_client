@@ -457,5 +457,25 @@
 "teswir_goshuldy": "Teswir goşuldy",
 "umumy_baha": "Umumy baha",
 "menzes_harytlar" : "Meňzeş harytlar",
-"shop_harytlar" : "Dükanyň harytlary"
+"shop_harytlar" : "Dükanyň harytlary",
+
+"doly_ady": "Doly ady",
+"epocta_adres": "E-poçta",
+"telefon_belgisi": "Telefon belgisi",
+"doldurulmandyr": "Doldurulmandyr",
+"paroly_uytgetmek": "Paroly üýtgetmek",
+"birikdirilen_hasaplar": "Birikdirilen hasaplar",
+"birikdirilen_hasaplar_desc": "Ulgama çalt girmek üçin hasabyňyzy şu hyzmatlar bilen baglaň",
+"birikdirildi": "Birikdirildi",
+"birikdirmek": "Birikdirmek",
+"haryt_gozleg_meyilnamalary": "Haryt gözleg meýilnamalary",
+"personallashdyrylan_teklipler": "Şahsylaşdyrylan tekliplerini alyň",
+"personallashdyrylan_teklipler_desc": "Gözleg tejribäňizi gowulandyrmak üçin gysga soragnama dolduryň",
+
+"uytget": "Üýtget",
+"ok_diyip_tassykla": "Tassykla",
+"yatyr": "Ýatyr",
+"koni_parol": "Köne parol",
+"taze_parol": "Täze parol",
+"parol_uytgedildi": "Parol üýtgedildi"
 }
