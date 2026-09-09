@@ -515,9 +515,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "order_cancel_title": MessageLookupByLibrary.simpleMessage(
       "Sargydy ýatyrmak?",
     ),
+    "order_after_sale": MessageLookupByLibrary.simpleMessage("Gaýtarmak"),
     "order_note_prefix": MessageLookupByLibrary.simpleMessage("Bellik: "),
     "order_number_prefix": MessageLookupByLibrary.simpleMessage("Sargyt №"),
     "order_status_prefix": MessageLookupByLibrary.simpleMessage("Ýagdaý: "),
+    "order_to_pay": MessageLookupByLibrary.simpleMessage("Töleg"),
+    "order_to_receive": MessageLookupByLibrary.simpleMessage("Gowşuryş"),
+    "order_to_review": MessageLookupByLibrary.simpleMessage("Syn"),
+    "order_to_ship": MessageLookupByLibrary.simpleMessage("Ugratmak"),
     "orders": MessageLookupByLibrary.simpleMessage("Sargytlarym"),
     "orders_empty": MessageLookupByLibrary.simpleMessage(
       "Sargytlaryňyz heniz ýok",

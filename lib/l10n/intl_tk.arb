@@ -447,5 +447,11 @@
 "yatyr": "Ýatyr",
 "koni_parol": "Köne parol",
 "taze_parol": "Täze parol",
-"parol_uytgedildi": "Parol üýtgedildi"
+"parol_uytgedildi": "Parol üýtgedildi",
+
+"order_to_pay": "Töleg",
+"order_to_ship": "Ugratmak",
+"order_to_receive": "Gowşuryş",
+"order_to_review": "Syn",
+"order_after_sale": "Gaýtarmak"
 }

@@ -457,5 +457,11 @@
 "yatyr": "Ýatyr",
 "koni_parol": "Köne parol",
 "taze_parol": "Täze parol",
-"parol_uytgedildi": "Parol üýtgedildi"
+"parol_uytgedildi": "Parol üýtgedildi",
+
+"order_to_pay": "Оплата",
+"order_to_ship": "Отправка",
+"order_to_receive": "Доставка",
+"order_to_review": "Отзыв",
+"order_after_sale": "Возврат"
 }

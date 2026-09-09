@@ -534,9 +534,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "order_cancel_title": MessageLookupByLibrary.simpleMessage(
       "Отменить заказ?",
     ),
+    "order_after_sale": MessageLookupByLibrary.simpleMessage("Возврат"),
     "order_note_prefix": MessageLookupByLibrary.simpleMessage("Заметка: "),
     "order_number_prefix": MessageLookupByLibrary.simpleMessage("Заказ №"),
     "order_status_prefix": MessageLookupByLibrary.simpleMessage("Статус: "),
+    "order_to_pay": MessageLookupByLibrary.simpleMessage("Оплата"),
+    "order_to_receive": MessageLookupByLibrary.simpleMessage("Доставка"),
+    "order_to_review": MessageLookupByLibrary.simpleMessage("Отзыв"),
+    "order_to_ship": MessageLookupByLibrary.simpleMessage("Отправка"),
     "orders": MessageLookupByLibrary.simpleMessage("Sargytlarym"),
     "orders_empty": MessageLookupByLibrary.simpleMessage(
       "У вас пока нет заказов",

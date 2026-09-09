@@ -3738,6 +3738,36 @@ class S {
       args: [],
     );
   }
+
+  /// `To pay`
+  String get order_to_pay {
+    return Intl.message('To pay', name: 'order_to_pay', desc: '', args: []);
+  }
+
+  /// `To ship`
+  String get order_to_ship {
+    return Intl.message('To ship', name: 'order_to_ship', desc: '', args: []);
+  }
+
+  /// `To receive`
+  String get order_to_receive {
+    return Intl.message(
+      'To receive',
+      name: 'order_to_receive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review`
+  String get order_to_review {
+    return Intl.message('Review', name: 'order_to_review', desc: '', args: []);
+  }
+
+  /// `Returns`
+  String get order_after_sale {
+    return Intl.message('Returns', name: 'order_after_sale', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
